@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumit Chauhan | Software Engineer & Competitive Programmer</title>
+    <meta name="description"
+        content="Portfolio of Sumit Chauhan - Software Engineer, Competitive Programmer, and Java Developer from NIT Jalandhar">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode using a class
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5', // Indigo
+                        secondary: '#06b6d4', // Cyan
+                        dark: '#0f172a', // Slate-900
+                        light: '#f8fafc', // Slate-50
+                        "dark-card": "#1e293b" // Slate-800
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <style>
+        /* --- Animated Gradient Blobs --- */
+        @keyframes rotate {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(360deg) scale(1.05); }
+        }
+
+        .blob-1, .blob-2 {
+            position: absolute;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: rotate 20s infinite alternate;
+        }
+
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -100px;
+            background: radial-gradient(circle, #4f46e5, transparent 70%);
+        }
+
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            bottom: -100px;
+            right: -150px;
+            background: radial-gradient(circle, #06b6d4, transparent 70%);
+            animation-duration: 25s;
+        }
+
+        /* --- Glassmorphism Effect --- */
+        .glass-effect {
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            background-color: rgba(248, 250, 252, 0.1); /* light-10% */
+            border: 1px solid rgba(255, 255, 255, 0.125);
+        }
+
+        html.dark .glass-effect {
+            background-color: rgba(30, 41, 59, 0.25); /* dark-card-25% */
+            border-color: rgba(51, 65, 85, 0.5);
+        }
+
+        /* --- Scroll Fade-in Animation --- */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- Gradient Text --- */
+        .gradient-text {
+            background: linear-gradient(90deg, #4f46e5, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* --- Active Nav Link --- */
+        .nav-link.active {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        html.dark .nav-link.active {
+            color: #06b6d4;
+        }
+
+        /* --- Bouncing Skill Icons --- */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .skill-card:hover .skill-icon {
+            animation: bounce 0.6s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-light text-dark dark:bg-dark dark:text-light font-sans antialiased relative overflow-x-hidden">
+
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
+
+    <nav class="fixed w-full top-0 z-50 glass-effect shadow-md">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold gradient-text">Sumit<span class="text-secondary">.</span></a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">About</a>
+                <a href="#skills" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Skills</a>
+                <a href="#experience" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Experience</a>
+                <a href="#projects" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Projects</a>
+                <a href="#achievements" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Achievements</a>
+                <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
+                    </button>
+                <button id="menu-btn" class="md:hidden p-2">
+                    <i data-feather="menu" class="text-dark dark:text-light"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden p-4 space-y-2">
+             <a href="#about" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">About</a>
+             <a href="#skills" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Skills</a>
+             <a href="#experience" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Experience</a>
+             <a href="#projects" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Projects</a>
+             <a href="#achievements" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Achievements</a>
+             <a href="#contact" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="min-h-screen flex items-center pt-24">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 text-center md:text-left">
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
+                    Hi, I'm <span class="gradient-text">Sumit</span>
+                </h1>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200">
+                    a <span id="role-text" class="text-primary dark:text-secondary font-mono">Software Engineer</span>
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-lg mx-auto md:mx-0">
+                    I design systems that scale, write code that speaks, and solve problems that matter.
+                </p>
+                <div class="flex justify-center md:justify-start space-x-4 pt-4">
+                    <a href="https://drive.google.com/file/d/1yuwGUb59_LYCUSW10i2tzyr--gjIDiMN/view?usp=sharing" target="_blank" class="px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow-lg hover:shadow-primary/50 hover:scale-105 transform transition-all duration-300">
+                        View Resume
+                    </a>
+                    <a href="#contact" class="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/10 hover:scale-105 transform transition-all duration-300">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="flex justify-center items-center">
+                 <div class="relative w-72 h-72 md:w-96 md:h-96">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full blur-2xl opacity-60"></div>
+                    <img src="images/profile.png" alt="Sumit Chauhan" class="relative w-full h-full object-cover rounded-full shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">About <span class="gradient-text">Me</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-start">
+                <div class="md:col-span-3 space-y-4 text-lg text-gray-700 dark:text-gray-300">
+                    <p>
+                        Hey there 👋 I’m <span class="font-semibold text-primary dark:text-secondary">Sumit Chauhan</span>, a
+                        <span class="font-semibold">Computer Science undergrad at NIT Jalandhar (Batch of 2026)</span> and a passionate software engineer + competitive programmer who loves solving real-world problems with clean, scalable code.
+                    </p>
+                    <p>
+                        I’ve built projects like HerbiGPT, an AI-powered Ayurveda chatbot using LangChain, and CyberFlux, a distributed network intrusion detection system. I also contribute to open-source — most recently to Google’s Gemini CLI, improving authentication reliability for GCP users.
+                    </p>
+                    <p>
+                        Beyond the keyboard, I'm an avid chess player and enjoy the collaborative strategy of cricket. These pursuits sharpen my analytical thinking and teamwork skills, which I apply to my technical work. I'm always exploring backend systems, distributed design, and GenAI pipelines, aiming to build products that are both technically deep and practically useful.
+                    </p>
+                </div>
+                <div class="md:col-span-2 space-y-6">
+                    <div class="glass-effect p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4 text-primary dark:text-secondary">Education</h3>
+                         <div>
+                            <h4 class="font-semibold text-lg">B.Tech in Computer Science</h4>
+                            <p class="text-gray-600 dark:text-gray-400">NIT Jalandhar • 2022 - 2026 (CGPA: 7.55)</p>
+                        </div>
+                    </div>
+                    <div class="glass-effect p-6 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-4 text-primary dark:text-secondary">Interests</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Artificial Intelligence</span>
+                            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full">Machine Learning</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Data Structures & Algorithms</span>
+                            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full">System Design</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Open Source</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 bg-gray-50 dark:bg-dark-card/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">My <span class="gradient-text">Skills</span></h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Technologies I work with and competitive programming platforms I excel at.</p>
+            </div>
+            
+            <h3 class="text-2xl font-semibold text-center mb-8">Tech Stack</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center">
+                <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
+                    <i data-feather="code" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">Java</p>
+                </div>
+                <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
+                    <i data-feather="code" class="skill-icon mx-auto w-12 h-12 text-secondary"></i><p class="mt-2 font-semibold">Python</p>
+                </div>
+                <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
+                    <i data-feather="code" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">C++</p>
+                </div>
+                 <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
+                    <i data-feather="database" class="skill-icon mx-auto w-12 h-12 text-secondary"></i><p class="mt-2 font-semibold">SQL</p>
+                </div>
+                <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
+                    <i data-feather="cpu" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">LangChain</p>
+                </div>
+                <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
+                    <i data-feather="git-branch" class="skill-icon mx-auto w-12 h-12 text-secondary"></i><p class="mt-2 font-semibold">Git & GitHub</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold text-center mt-16 mb-8">Competitive Programming</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <a href="https://codeforces.com/profile/SumitXorY" target="_blank" class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300">
+                    <div class="flex items-center space-x-4">
+                        <img src="https://codeforces.org/s/0/favicon.ico" alt="Codeforces" class="h-10 w-10 rounded-full">
+                        <div>
+                            <h4 class="font-bold text-lg">Codeforces</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Expert (1715)</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.codechef.com/users/sumit_chauhan" target="_blank" class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300">
+                     <div class="flex items-center space-x-4">
+                        <img src="images/codecef image.webp" alt="CodeChef" class="h-10 w-10">
+                        <div>
+                            <h4 class="font-bold text-lg">CodeChef</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">5-Star (2060)</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank" class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300">
+                     <div class="flex items-center space-x-4">
+                        <img src="https://leetcode.com/static/images/LeetCode_logo_rvs.png" alt="LeetCode" class="h-10 w-10 dark:invert">
+                        <div>
+                            <h4 class="font-bold text-lg">LeetCode</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Knight (1966)</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank" class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300">
+                     <div class="flex items-center space-x-4">
+                        <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png" alt="GeeksforGeeks" class="h-10 w-10">
+                        <div>
+                            <h4 class="font-bold text-lg">GeeksforGeeks</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">4-Star (1986)</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Experience & <span class="gradient-text">Contributions</span></h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">My professional experience and contributions to open-source projects.</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <div class="relative pl-8 py-6 border-l-2 border-primary dark:border-secondary">
+                    <div class="absolute -left-[11px] top-8 w-5 h-5 bg-primary dark:bg-secondary rounded-full border-4 border-light dark:border-dark"></div>
+                    <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Jun 2025 - Present</p>
+                    <h3 class="text-2xl font-bold mt-1">Open Source Contributor</h3>
+                    <p class="text-lg font-semibold text-primary dark:text-secondary">Gemini CLI - Google</p>
+                    <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                        <li>Added `GOOGLE_CLOUD_PROJECT` ID fallback to improve GCP CLI authentication reliability.</li>
+                        <li>Worked with maintainers to integrate changes while preserving backward compatibility.</li>
+                    </ul>
+                    <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-4 py-2 bg-slate-800 text-white dark:bg-slate-200 dark:text-dark text-sm rounded-md hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors">
+                        <i data-feather="github" class="mr-2 w-4 h-4"></i> View Pull Request
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects" class="py-24 bg-gray-50 dark:bg-dark-card/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Featured <span class="gradient-text">Projects</span></h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">A selection of projects that showcase my skills and interests.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <article class="group relative rounded-xl overflow-hidden bg-white dark:bg-dark-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                    <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80" alt="HerbiGPT screenshot" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="absolute bottom-0 z-20 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">HerbiGPT - AI Ayurveda Chatbot</h3>
+                        <p class="opacity-0 max-h-0 group-hover:max-h-full group-hover:opacity-100 transition-all duration-500 ease-in-out">Provides instant, AI-driven Ayurvedic advice. Built with a LangChain-based retrieval system trained on 2500+ sources to reduce hallucinations.</p>
+                        <div class="flex flex-wrap gap-2 my-4">
+                            <span class="px-2 py-1 bg-white/20 text-sm rounded">React</span><span class="px-2 py-1 bg-white/20 text-sm rounded">Express</span><span class="px-2 py-1 bg-white/20 text-sm rounded">Python</span><span class="px-2 py-1 bg-white/20 text-sm rounded">LangChain</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Gosling-dude/HerbiGPT---Your-Holistic-Wellness-Guide.git" target="_blank" class="hover:text-secondary transition-colors"><i data-feather="github"></i></a>
+                            <a href="https://herbigpt.netlify.app/" target="_blank" class="hover:text-secondary transition-colors"><i data-feather="external-link"></i></a>
+                        </div>
+                    </div>
+                </article>
+                <article class="group relative rounded-xl overflow-hidden bg-white dark:bg-dark-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                    <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="CyberFlux screenshot" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <div class="absolute bottom-0 z-20 p-6 text-white">
+                        <h3 class="text-2xl font-bold mb-2">CyberFlux - Network Intrusion Detection</h3>
+                        <p class="opacity-0 max-h-0 group-hover:max-h-full group-hover:opacity-100 transition-all duration-500 ease-in-out">A TCP/IP-based distributed packet inspection system on a Raspberry Pi cluster to detect SSH brute-force and ARP spoofing attacks in real-time.</p>
+                        <div class="flex flex-wrap gap-2 my-4">
+                            <span class="px-2 py-1 bg-white/20 text-sm rounded">Python</span><span class="px-2 py-1 bg-white/20 text-sm rounded">C++</span><span class="px-2 py-1 bg-white/20 text-sm rounded">Scapy</span><span class="px-2 py-1 bg-white/20 text-sm rounded">Linux</span>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Gosling-dude/CyberFlux-Advanced-Network-Intrusion-Detection-System-NIDS.git" target="_blank" class="hover:text-secondary transition-colors"><i data-feather="github"></i></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="text-center mt-12">
+                <a href="https://github.com/Gosling-dude" target="_blank" class="inline-flex items-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/10 hover:scale-105 transform transition-all duration-300">
+                    View All Projects <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">My <span class="gradient-text">Achievements</span></h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Milestones from my competitive programming and academic journey.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300">
+                    <div class="text-6xl font-extrabold text-primary mb-2">17th</div>
+                    <h3 class="text-xl font-semibold">CodeChef Starters 199B</h3>
+                    <p class="text-gray-600 dark:text-gray-400">out of 34,700+ global participants.</p>
+                </div>
+                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300">
+                    <div class="text-6xl font-extrabold text-secondary mb-2">226th</div>
+                    <h3 class="text-xl font-semibold">Edu Codeforces Round 181</h3>
+                    <p class="text-gray-600 dark:text-gray-400">out of 20,000+ participants (Div. 2).</p>
+                </div>
+                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300">
+                    <div class="text-6xl font-extrabold text-primary mb-2">1st</div>
+                    <h3 class="text-xl font-semibold">UK Chess competition</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Secured first place in Sports Fest 2023.</p>
+                </div>
+                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300">
+                    <div class="text-6xl font-extrabold text-secondary mb-2">3rd</div>
+                    <h3 class="text-xl font-semibold">QuantIQ</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Placed 3rd Runner-up in Sports Fest 2024 for excellence in mathematics and puzzle solving.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-gray-50 dark:bg-dark-card/50">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-4">Get In <span class="gradient-text">Touch</span></h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">Have a project in mind or want to connect? I'd love to hear from you. Feel free to reach out!</p>
+            <div class="flex justify-center items-center space-x-6 md:space-x-8">
+                <a href="mailto:sumitchauhan.job@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transform hover:scale-110 transition-all duration-300" aria-label="Email">
+                    <i data-feather="mail" class="w-10 h-10"></i>
+                </a>
+                <a href="https://github.com/Gosling-dude" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transform hover:scale-110 transition-all duration-300" aria-label="GitHub">
+                    <i data-feather="github" class="w-10 h-10"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transform hover:scale-110 transition-all duration-300" aria-label="LinkedIn">
+                    <i data-feather="linkedin" class="w-10 h-10"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 bg-dark text-light">
+        <div class="max-w-7xl mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2025 Sumit Chauhan. All rights reserved.</p>
+            <p class="text-sm mt-2">Designed with passion and coded with caffeine.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize feather icons
+        feather.replace();
+
+        // --- Theme Toggle Functionality ---
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        function updateThemeIcon() {
+            const isDark = html.classList.contains('dark');
+            themeToggleButton.innerHTML = isDark ? feather.icons['sun'].toSvg() : feather.icons['moon'].toSvg();
+        }
+
+        themeToggleButton.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            updateThemeIcon();
+        });
+        updateThemeIcon();
+
+        // --- Mobile Menu ---
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Intersection Observer for Scroll Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Intersection Observer for Active Nav Link ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                    });
+                }
+            });
+        }, { rootMargin: '-50% 0px -50% 0px' });
+
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // --- Smooth Scrolling & Close Mobile Menu on Link Click ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (!targetId || targetId === '#') return;
+                e.preventDefault();
+
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+
+                document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // --- Text Rotator for Hero Section ---
+        const roleText = document.getElementById('role-text');
+        const roles = ["Software Engineer", "Competitive Programmer", "Java Developer"];
+        let roleIndex = 0;
+
+        function updateRole() {
+            roleText.style.opacity = '0';
+            setTimeout(() => {
+                roleIndex = (roleIndex + 1) % roles.length;
+                roleText.textContent = roles[roleIndex];
+                roleText.style.opacity = '1';
+            }, 300); // Time for fade out
+        }
+
+        setInterval(updateRole, 3000); // Change role every 3 seconds
+
+    </script>
+</body>
+</html>
