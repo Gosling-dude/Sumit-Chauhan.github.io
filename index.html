@@ -387,6 +387,11 @@
                 <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Milestones from my competitive programming and academic journey.</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <a href="https://codeforces.com/contest/2172/standings" target="_blank" class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 block">
+                    <div class="text-6xl font-extrabold text-primary mb-2">392nd</div>
+                    <h3 class="text-xl font-semibold">ICPC Asia Taichung Regional</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Global Rank (AIR 23) in 2025.</p>
+                </a>
                 <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300">
                     <div class="text-6xl font-extrabold text-primary mb-2">17th</div>
                     <h3 class="text-xl font-semibold">CodeChef Starters 199B</h3>
@@ -515,19 +520,44 @@
 
         // --- Text Rotator for Hero Section ---
         const roleText = document.getElementById('role-text');
-        const roles = ["Software Engineer", "Competitive Programmer", "Java Developer"];
+        const roles = ["Software Engineer", "Competitive Programmer", "AI/ML Enthusiast"];
         let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const delayBetweenRoles = 2000;
 
-        function updateRole() {
-            roleText.style.opacity = '0';
-            setTimeout(() => {
+        function type() {
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                // Deleting
+                roleText.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                // Typing
+                roleText.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                // Finished typing, pause, then start deleting
+                setTimeout(() => isDeleting = true, delayBetweenRoles);
+            } else if (isDeleting && charIndex === 0) {
+                // Finished deleting, move to next role
+                isDeleting = false;
                 roleIndex = (roleIndex + 1) % roles.length;
-                roleText.textContent = roles[roleIndex];
-                roleText.style.opacity = '1';
-            }, 300); // Time for fade out
-        }
+            }
 
-        setInterval(updateRole, 3000); // Change role every 3 seconds
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(type, charIndex === currentRole.length ? delayBetweenRoles : speed);
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(type, 500);
+        });
+
 
     </script>
 </body>
