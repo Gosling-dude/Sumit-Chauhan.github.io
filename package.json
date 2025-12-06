@@ -1,0 +1,23 @@
+{
+  "name": "myportfolio",
+  "version": "1.0.0",
+  "description": "A modern, fully responsive, single-page portfolio website built with Tailwind CSS and vanilla JavaScript. Designed to showcase projects, skills, and experience with a clean, professional UI, animated elements, and dark mode support.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gosling-dude/Sumit-Chauhan.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gosling-dude/Sumit-Chauhan.github.io/issues"
+  },
+  "homepage": "https://github.com/Gosling-dude/Sumit-Chauhan.github.io#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.17"
+  }
+}

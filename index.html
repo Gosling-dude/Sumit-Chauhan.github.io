@@ -276,7 +276,7 @@
                         <img src="https://codeforces.org/s/0/favicon.ico" alt="Codeforces" class="h-10 w-10 rounded-full">
                         <div>
                             <h4 class="font-bold text-lg">Codeforces</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Expert (1715)</p>
+                            <p id="codeforces-rating" class="text-sm text-gray-600 dark:text-gray-400">Expert (1715)</p>
                         </div>
                     </div>
                 </a>
@@ -285,7 +285,7 @@
                         <img src="images/codecef image.webp" alt="CodeChef" class="h-10 w-10">
                         <div>
                             <h4 class="font-bold text-lg">CodeChef</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">5-Star (2060)</p>
+                            <p id="codechef-rating" class="text-sm text-gray-600 dark:text-gray-400">5-Star (2060)</p>
                         </div>
                      </div>
                 </a>
@@ -294,7 +294,7 @@
                         <img src="https://leetcode.com/static/images/LeetCode_logo_rvs.png" alt="LeetCode" class="h-10 w-10 dark:invert">
                         <div>
                             <h4 class="font-bold text-lg">LeetCode</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Knight (1966)</p>
+                            <p id="leetcode-rating" class="text-sm text-gray-600 dark:text-gray-400">Knight (1966)</p>
                         </div>
                      </div>
                 </a>
@@ -303,10 +303,32 @@
                         <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png" alt="GeeksforGeeks" class="h-10 w-10">
                         <div>
                             <h4 class="font-bold text-lg">GeeksforGeeks</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">4-Star (1986)</p>
+                            <p id="gfg-rating" class="text-sm text-gray-600 dark:text-gray-400">4-Star (1986)</p>
                         </div>
                      </div>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Dashboard Section -->
+    <section id="stats-dashboard" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Real-Time <span class="gradient-text">Stats</span></h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Live data from my competitive programming journey.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="glass-effect p-8 rounded-xl text-center">
+                    <div id="total-solved" class="text-6xl font-extrabold text-primary mb-2">...</div>
+                    <h3 class="text-xl font-semibold">Total Problems Solved</h3>
+                    <p class="text-gray-600 dark:text-gray-400">(Codeforces + LeetCode)</p>
+                </div>
+                <div class="glass-effect p-8 rounded-xl text-center">
+                    <div id="total-contests" class="text-6xl font-extrabold text-secondary mb-2">...</div>
+                    <h3 class="text-xl font-semibold">Total Contests Attended</h3>
+                    <p class="text-gray-600 dark:text-gray-400">(Codeforces + LeetCode)</p>
+                </div>
             </div>
         </div>
     </section>
@@ -560,5 +582,6 @@
 
 
     </script>
+    <script src="api.js"></script>
 </body>
 </html>
