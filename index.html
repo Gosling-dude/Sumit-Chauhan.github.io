@@ -311,29 +311,24 @@
         </div>
     </section>
 
-    <!-- Stats Dashboard Section -->
-    <section id="stats-dashboard" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Real-Time <span class="gradient-text">Stats</span></h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Live data from my competitive programming journey.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="glass-effect p-8 rounded-xl text-center">
-                    <div id="total-solved" class="text-6xl font-extrabold text-primary mb-2">...</div>
-                    <h3 class="text-xl font-semibold">Total Problems Solved</h3>
-                    <p class="text-gray-600 dark:text-gray-400">(Codeforces + LeetCode)</p>
-                </div>
-                <div class="glass-effect p-8 rounded-xl text-center">
-                    <div id="total-contests" class="text-6xl font-extrabold text-secondary mb-2">...</div>
-                    <h3 class="text-xl font-semibold">Total Contests Attended</h3>
-                    <p class="text-gray-600 dark:text-gray-400">(Codeforces + LeetCode)</p>
-                </div>
-            </div>
+<!-- Codolio Dashboard Section -->
+<section id="codolio-dashboard" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4">Stats &amp; <span class="gradient-text">Standings</span></h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">A live look at my competitive programming stats and rankings.</p>
         </div>
-    </section>
-
-    <section id="experience" class="py-24">
+        <div class="glass-effect rounded-xl p-2 md:p-4 overflow-hidden">
+            <iframe 
+                src="https://codolio.com/profile/sumit%20chauhan" 
+                class="w-full h-[950px] rounded-lg border-none"
+                frameborder="0"
+                >
+            </iframe>
+        </div>
+    </div>
+</section>
+<!-- End Codolio Dashboard Section -->    <section id="experience" class="py-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold mb-4">Experience & <span class="gradient-text">Contributions</span></h2>
@@ -408,28 +403,33 @@
                 <h2 class="text-4xl font-bold mb-4">My <span class="gradient-text">Achievements</span></h2>
                 <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Milestones from my competitive programming and academic journey.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <a href="https://codeforces.com/contest/2172/standings" target="_blank" class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 block">
-                    <div class="text-6xl font-extrabold text-primary mb-2">392nd</div>
-                    <h3 class="text-xl font-semibold">ICPC Asia Taichung Regional</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Global Rank (AIR 23) in 2025.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- ICPC Achievement (Larger) -->
+                <a href="https://codeforces.com/contest/2172/standings" target="_blank" class="md:col-span-2 glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 block flex flex-col justify-center">
+                    <div class="text-7xl font-extrabold text-primary mb-2">492nd</div>
+                    <h3 class="text-2xl font-semibold">ICPC Asia Taichung Regional</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">Global Rank (AIR 23) in 2025.</p>
                 </a>
-                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300">
+                <!-- Codeforces Achievement -->
+                <a href="https://codeforces.com/contest/2158/standings/participant/225031612#p225031612" target="_blank" class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 block flex flex-col justify-center">
+                    <div class="text-6xl font-extrabold text-secondary mb-2">28th</div>
+                    <h3 class="text-xl font-semibold">Codeforces Round 1067 (Div. 2)</h3>
+                    <p class="text-gray-600 dark:text-gray-400">India Rank: 2 (Global Rank 28)</p>
+                </a>
+                <!-- CodeChef Achievement -->
+                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 flex flex-col justify-center">
                     <div class="text-6xl font-extrabold text-primary mb-2">17th</div>
                     <h3 class="text-xl font-semibold">CodeChef Starters 199B</h3>
-                    <p class="text-gray-600 dark:text-gray-400">out of 34,700+ global participants.</p>
+                    <p class="text-gray-600 dark:text-gray-400">out of 34,700+ participants.</p>
                 </div>
-                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300">
-                    <div class="text-6xl font-extrabold text-secondary mb-2">226th</div>
-                    <h3 class="text-xl font-semibold">Edu Codeforces Round 181</h3>
-                    <p class="text-gray-600 dark:text-gray-400">out of 20,000+ participants (Div. 2).</p>
-                </div>
-                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300">
+                <!-- Chess Achievement -->
+                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 flex flex-col justify-center">
                     <div class="text-6xl font-extrabold text-primary mb-2">1st</div>
                     <h3 class="text-xl font-semibold">UK Chess competition</h3>
                     <p class="text-gray-600 dark:text-gray-400">Secured first place in Sports Fest 2023.</p>
                 </div>
-                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300">
+                <!-- QuantIQ Achievement -->
+                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 flex flex-col justify-center">
                     <div class="text-6xl font-extrabold text-secondary mb-2">3rd</div>
                     <h3 class="text-xl font-semibold">QuantIQ</h3>
                     <p class="text-gray-600 dark:text-gray-400">Placed 3rd Runner-up in Sports Fest 2024 for excellence in mathematics and puzzle solving.</p>
