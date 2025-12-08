@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 
 <head>
     <meta charset="UTF-8">
@@ -32,6 +32,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
     <style>
         /* --- Animated Gradient Blobs --- */
         @keyframes rotate {
@@ -75,18 +76,6 @@
         html.dark .glass-effect {
             background-color: rgba(30, 41, 59, 0.25); /* dark-card-25% */
             border-color: rgba(51, 65, 85, 0.5);
-        }
-
-        /* --- Scroll Fade-in Animation --- */
-        section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         
         /* --- Gradient Text --- */
@@ -137,8 +126,7 @@
                 <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Contact</a>
             </div>
             <div class="flex items-center space-x-4">
-                <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors">
-                </button>
+                
                 <button id="menu-btn" class="md:hidden p-2">
                     <i data-feather="menu" class="text-dark dark:text-light"></i>
                 </button>
@@ -154,9 +142,15 @@
         </div>
     </nav>
 
+    <main id="main-content">
     <section id="hero" class="min-h-screen flex items-center pt-24">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6 text-center md:text-left">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
+            <div class="md:col-span-2 flex justify-center items-end">
+                 <div class="relative w-full max-w-sm">
+                    <img src="images/its me portfolio.png" alt="Sumit Chauhan" class="relative w-full h-auto object-cover profile-image-mask">
+                 </div>
+            </div>
+            <div class="md:col-span-3 space-y-6 text-center md:text-left">
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
                     Hi, I'm <span class="gradient-text">Sumit</span>
                 </h1>
@@ -175,12 +169,6 @@
                     </a>
                 </div>
             </div>
-            <div class="flex justify-center items-center">
-                 <div class="relative w-72 h-72 md:w-96 md:h-96">
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full blur-2xl opacity-60"></div>
-                    <img src="images/profile.png" alt="Sumit Chauhan" class="relative w-full h-full object-cover rounded-full shadow-2xl">
-                 </div>
-            </div>
         </div>
     </section>
 
@@ -188,7 +176,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-16">About <span class="gradient-text">Me</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-start">
-                <div class="md:col-span-3 space-y-4 text-lg text-gray-700 dark:text-gray-300">
+                <div class="md:col-span-3 space-y-4 text-lg text-gray-700 dark:text-gray-300 about-text-content">
                     <p>
                         Hey there 👋 I’m <span class="font-semibold text-primary dark:text-secondary">Sumit Chauhan</span>, a
                         <span class="font-semibold">Computer Science undergrad at NIT Jalandhar (Batch of 2026)</span> and a passionate software engineer + competitive programmer who loves solving real-world problems with clean, scalable code.
@@ -200,7 +188,7 @@
                         Beyond the keyboard, I'm an avid chess player and enjoy the collaborative strategy of cricket. These pursuits sharpen my analytical thinking and teamwork skills, which I apply to my technical work. I'm always exploring backend systems, distributed design, and GenAI pipelines, aiming to build products that are both technically deep and practically useful.
                     </p>
                 </div>
-                <div class="md:col-span-2 space-y-6">
+                <div class="md:col-span-2 space-y-6 about-cards">
                     <div class="glass-effect p-6 rounded-xl">
                         <h3 class="text-xl font-semibold mb-4 text-primary dark:text-secondary">Education</h3>
                          <div>
@@ -216,6 +204,10 @@
                             <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Data Structures & Algorithms</span>
                             <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full">System Design</span>
                             <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Open Source</span>
+                            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full">Quantitative Analysis</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Maths</span>
+                            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full">Puzzles</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Chess</span>
                         </div>
                     </div>
                 </div>
@@ -226,127 +218,183 @@
     <section id="skills" class="py-24 bg-gray-50 dark:bg-dark-card/50">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">My <span class="gradient-text">Skills</span></h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Technologies I work with and competitive programming platforms I excel at.</p>
+                <h2 class="text-4xl font-bold mb-4">My <span class="gradient-text">Arsenal</span></h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">A collection of the languages, tools, and technologies I use to build, optimize, and solve complex problems.</p>
             </div>
-           <h3 class="text-2xl font-semibold text-center mb-8">Tech Stack</h3>
-<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center">
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="code" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">Java</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="code" class="skill-icon mx-auto w-12 h-12 text-secondary"></i><p class="mt-2 font-semibold">Python</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="code" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">C++</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="cpu" class="skill-icon mx-auto w-12 h-12 text-secondary"></i><p class="mt-2 font-semibold">LangChain</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="layout" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">BeautifulSoup</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="eye" class="skill-icon mx-auto w-12 h-12 text-secondary"></i><p class="mt-2 font-semibold">Tesseract OCR</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="shield" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">Scapy</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="box" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">Git & GitHub</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="zap" class="skill-icon mx-auto w-12 h-12 text-secondary"></i><p class="mt-2 font-semibold">Generative AI & LLMs</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="cloud" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">Cloud Platforms (GCP, AWS)</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="terminal" class="skill-icon mx-auto w-12 h-12 text-primary"></i><p class="mt-2 font-semibold">Linux Networking</p>
-    </div>
-    <div class="skill-card p-4 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300">
-        <i data-feather="hard-drive" class="skill-icon mx-auto w-12 h-12 text-secondary"></i><p class="mt-2 font-semibold">Raspberry Pi</p>
-    </div>
-</div>
 
-            <h3 class="text-2xl font-semibold text-center mt-16 mb-8">Competitive Programming</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <a href="https://codeforces.com/profile/SumitXorY" target="_blank" class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center space-x-4">
-                        <img src="https://codeforces.org/s/0/favicon.ico" alt="Codeforces" class="h-10 w-10 rounded-full">
-                        <div>
-                            <h4 class="font-bold text-lg">Codeforces</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Expert (1880)</p>
+            <div class="space-y-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-8">Languages</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Java (CP)</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">C++</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Python</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">JavaScript</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">TypeScript</p>
                         </div>
                     </div>
-                </a>
-                <a href="https://www.codechef.com/users/sumit_chauhan" target="_blank" class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300">
-                     <div class="flex items-center space-x-4">
-                        <img src="images/codecef image.webp" alt="CodeChef" class="h-10 w-10">
-                        <div>
-                            <h4 class="font-bold text-lg">CodeChef</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">5-Star (2060)</p>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-8">Core Expertise</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="git-merge" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Data Structures & Algorithms</p>
                         </div>
-                     </div>
-                </a>
-                <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank" class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300">
-                     <div class="flex items-center space-x-4">
-                        <img src="https://leetcode.com/static/images/LeetCode_logo_rvs.png" alt="LeetCode" class="h-10 w-10 dark:invert">
-                        <div>
-                            <h4 class="font-bold text-lg">LeetCode</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Knight (1966)</p>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="award" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Competitive Programming</p>
                         </div>
-                     </div>
-                </a>
-                <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank" class="glass-effect p-6 rounded-xl hover:scale-105 transition-transform duration-300">
-                     <div class="flex items-center space-x-4">
-                        <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png" alt="GeeksforGeeks" class="h-10 w-10">
-                        <div>
-                            <h4 class="font-bold text-lg">GeeksforGeeks</h4>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">4-Star (1986)</p>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="key" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Problem-Solving</p>
                         </div>
-                     </div>
-                </a>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="zap" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Algorithmic Optimization</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-8">Frameworks & Libraries</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="box" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Next.js</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="box" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">React</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="server" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Node.js</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="wind" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Tailwind CSS</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-8">AI / ML & Backend</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="cpu" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">LangChain / LangGraph</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="gift" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Gemini API</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="refresh-cw" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">LLM Automation</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="globe" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">REST APIs</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="database" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">MongoDB / PostgreSQL</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-center mb-8">Tools & Workflow</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="github" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Git & GitHub</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="terminal" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">VS Code & Linux CLI</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="fast-forward" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Java Fast I/O Templates</p>
+                        </div>
+                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
+                            <i data-feather="layers" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
+                            <p class="font-semibold">Full-Stack Architecture</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-<!-- Codolio Dashboard Section -->
-<section id="codolio-dashboard" class="py-24">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold mb-4">Stats &amp; <span class="gradient-text">Standings</span></h2>
-            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">A live look at my competitive programming stats and rankings.</p>
-        </div>
-        <div class="glass-effect rounded-xl p-2 md:p-4 overflow-hidden">
-            <iframe 
-                src="https://codolio.com/profile/sumit%20chauhan" 
-                class="w-full h-[950px] rounded-lg border-none"
-                frameborder="0"
-                >
-            </iframe>
-        </div>
-    </div>
-</section>
-<!-- End Codolio Dashboard Section -->    <section id="experience" class="py-24">
+    <section id="experience" class="py-24">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold mb-4">Experience & <span class="gradient-text">Contributions</span></h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">My professional experience and contributions to open-source projects.</p>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">A timeline of my professional experience and key open-source contributions.</p>
             </div>
-            <div class="max-w-3xl mx-auto">
-                <div class="relative pl-8 py-6 border-l-2 border-primary dark:border-secondary">
-                    <div class="absolute -left-[11px] top-8 w-5 h-5 bg-primary dark:bg-secondary rounded-full border-4 border-light dark:border-dark"></div>
-                    <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Jun 2025 - Present</p>
-                    <h3 class="text-2xl font-bold mt-1">Open Source Contributor</h3>
-                    <p class="text-lg font-semibold text-primary dark:text-secondary">Gemini CLI - Google</p>
-                    <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                        <li>Added `GOOGLE_CLOUD_PROJECT` ID fallback to improve GCP CLI authentication reliability.</li>
-                        <li>Worked with maintainers to integrate changes while preserving backward compatibility.</li>
-                    </ul>
-                    <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-4 py-2 bg-slate-800 text-white dark:bg-slate-200 dark:text-dark text-sm rounded-md hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors">
-                        <i data-feather="github" class="mr-2 w-4 h-4"></i> View Pull Request
-                    </a>
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-3xl font-bold mt-1 mb-8 text-center md:text-left">Open Source Contributor</h3>
+                <!-- Timeline Container -->
+                <div class="relative border-l-2 border-primary dark:border-secondary">
+                    <!-- Google Contribution -->
+                    <div class="relative pl-8 py-6">
+                        <div class="absolute -left-[11px] top-8 w-5 h-5 bg-primary dark:bg-secondary rounded-full border-4 border-light dark:border-dark"></div>
+                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Jan 2025 - Present · Remote</p>
+                        <p class="text-lg font-semibold text-primary dark:text-secondary">Google - Gemini CLI</p>
+                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                            <li>Authored a feature to add fallback support for a key environment variable, improving developer experience.</li>
+                            <li>Developed a secure, reusable GitHub Action for the Gemini CLI to enable seamless CI/CD integration.</li>
+                            <li>Improved auth stability by enforcing safe defaults, fixing enum mismatches, and updating test mocks.</li>
+                        </ul>
+                        <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-4 py-2 bg-slate-800 text-white dark:bg-slate-200 dark:text-dark text-sm rounded-md hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors">
+                            <i data-feather="github" class="mr-2 w-4 h-4"></i> View Contribution (PR #2725)
+                        </a>
+                    </div>
+                    <!-- OpenAPI Contribution 1 -->
+                    <div class="relative pl-8 py-6 mb-8">
+                        <div class="absolute -left-[11px] top-8 w-5 h-5 bg-primary dark:bg-secondary rounded-full border-4 border-light dark:border-dark"></div>
+                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Contribution</p>
+                        <p class="text-lg font-semibold text-primary dark:text-secondary">OpenAPI Generator</p>
+                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                            <li>Introduced a `declareStrictTypes` option to add `declare(strict_types=1);` to all generated PHP files.</li>
+                            <li>Promotes modern PHP standards and improves code quality by enabling strict type checking across the generated client.</li>
+                        </ul>
+                        <a href="https://github.com/OpenAPITools/openapi-generator/pull/21179" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-4 py-2 bg-slate-800 text-white dark:bg-slate-200 dark:text-dark text-sm rounded-md hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors">
+                            <i data-feather="github" class="mr-2 w-4 h-4"></i> View Contribution (PR #21179)
+                        </a>
+                    </div>
+
+                    <!-- OpenAPI Contribution 2 -->
+                    <div class="relative pl-8 py-6 mb-8">
+                        <div class="absolute -left-[11px] top-8 w-5 h-5 bg-primary dark:bg-secondary rounded-full border-4 border-light dark:border-dark"></div>
+                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Contribution</p>
+                        <p class="text-lg font-semibold text-primary dark:text-secondary">OpenAPI Generator</p>
+                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                            <li>Created a `validate-python.sh` script to perform comprehensive post-generation checks on the Python client.</li>
+                            <li>Ensures the generated SDK can be successfully built, installed, and instantiated, improving its reliability.</li>
+                        </ul>
+                        <a href="https://github.com/OpenAPITools/openapi-generator/pull/21420" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-4 py-2 bg-slate-800 text-white dark:bg-slate-200 dark:text-dark text-sm rounded-md hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors">
+                            <i data-feather="github" class="mr-2 w-4 h-4"></i> View Contribution (PR #21420)
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -359,7 +407,7 @@
                 <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">A selection of projects that showcase my skills and interests.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
-                <article class="group relative rounded-xl overflow-hidden bg-white dark:bg-dark-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <article class="group relative tilt-card rounded-xl overflow-hidden bg-white dark:bg-dark-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/80 to-transparent"></div>
                     <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80" alt="HerbiGPT screenshot" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     <div class="absolute bottom-0 z-20 p-6 text-white">
@@ -374,7 +422,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="group relative rounded-xl overflow-hidden bg-white dark:bg-dark-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <article class="group relative tilt-card rounded-xl overflow-hidden bg-white dark:bg-dark-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/80 to-transparent"></div>
                     <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="CyberFlux screenshot" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     <div class="absolute bottom-0 z-20 p-6 text-white">
@@ -455,6 +503,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <footer class="py-8 bg-dark text-light">
         <div class="max-w-7xl mx-auto px-6 text-center text-gray-400">
@@ -463,6 +512,11 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script> 
+    <script src="script.js"></script>
     <script>
         // Initialize feather icons
         feather.replace();
@@ -494,19 +548,6 @@
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-        });
-
-        // --- Intersection Observer for Scroll Animations ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
         });
 
         // --- Intersection Observer for Active Nav Link ---
