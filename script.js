@@ -27,44 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(raf)
 
 
-    // --- Typing Animation for Roles ---
-    const roles = ["Software Engineer", "Competitive Programmer", "AI/ML Enthusiast", "Java Developer"];
-    const roleTextElement = document.getElementById('role-text');
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function typeAnimation() {
-        const currentRole = roles[roleIndex];
-        let displayText = '';
-
-        if (isDeleting) {
-            displayText = currentRole.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            displayText = currentRole.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
-        roleTextElement.textContent = displayText;
-        roleTextElement.classList.add('tracking-wider');
-
-        let typeSpeed = isDeleting ? 100 : 150;
-
-        if (!isDeleting && charIndex === currentRole.length) {
-            typeSpeed = 2000; // Pause at the end of the word
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-            typeSpeed = 500; // Pause before typing the next word
-        }
-
-        setTimeout(typeAnimation, typeSpeed);
-    }
-    
-    typeAnimation();
-
     // --- Scroll-triggered Animations ---
     // Animate Hero Section on load
     const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -73,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .from('#hero h2', { opacity: 0, y: 30, duration: 0.8 }, '-=0.6')
         .from('#hero p', { opacity: 0, y: 20, duration: 0.6 }, '-=0.6')
         .from('#hero .flex a', { opacity: 0, y: 20, duration: 0.5, stagger: 0.2 }, '-=0.4')
-        .from('#hero .relative', { opacity: 0, scale: 0.9, duration: 0.8 }, '-=0.8');
+        .from('#hero .image-wrapper', { opacity: 0, scale: 0.9, duration: 0.8 }, '-=0.8');
 
     // Animate all other sections on scroll
     gsap.utils.toArray('section:not(#hero)').forEach(section => {
@@ -102,4 +64,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
-
