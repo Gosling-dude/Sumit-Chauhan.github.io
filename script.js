@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .from('#hero .flex a', { opacity: 0, y: 20, duration: 0.5, stagger: 0.2 }, '-=0.4')
         .from('#hero .image-wrapper', { opacity: 0, scale: 0.9, duration: 0.8 }, '-=0.8');
 
-    // Animate all other sections on scroll
-    gsap.utils.toArray('section:not(#hero)').forEach(section => {
+    // Animate all other sections on scroll (exclude Contact to prevent icon flicker)
+    gsap.utils.toArray('section:not(#hero):not(#contact)').forEach(section => {
         const timeline = gsap.timeline({
             scrollTrigger: {
                 trigger: section,
