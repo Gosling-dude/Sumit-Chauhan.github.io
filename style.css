@@ -1,18 +1,217 @@
-/* Custom styles for the portfolio redesign */
-html {
-    scroll-behavior: auto !important; /* Override for Lenis smooth scroll */
+:root {
+  --bg-color: #050505;
+  --surface-color: rgba(255, 255, 255, 0.03);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  
+  --accent-primary: #7c3aed; /* Violet 600 */
+  --accent-secondary: #06b6d4; /* Cyan 500 */
 }
 
-.profile-image-mask {
-    mask-image: radial-gradient(ellipse 60% 70% at 50% 40%, black 30%, transparent 90%);
-    -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 40%, black 30%, transparent 90%);
+/* Global Styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: inherit;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ... existing code ... */
-        html.dark .nav-link.active {
-            color: #06b6d4;
-        }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color); 
+}
+::-webkit-scrollbar-thumb {
+  background: #333; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 
-        /* --- Bouncing Skill Icons --- */
-        @keyframes bounce {
+/* --- Premium Backgrounds --- */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
 
+.ambient-light {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(0,0,0,0) 70%);
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- Gradient Text --- */
+.text-gradient {
+  background: linear-gradient(to right, #ffffff, #888888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Glow Navigation --- */
+nav {
+  background: rgba(5, 5, 5, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-link {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--text-primary);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 2px;
+}
+
+/* --- Magic Glowing Cards (Bento Boxes) --- */
+#cards-container:hover > .glow-card::after {
+  opacity: 1;
+}
+
+.glow-card {
+  background-color: var(--surface-color);
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.glow-card:hover::before {
+  opacity: 1;
+}
+
+.glow-card::before,
+.glow-card::after {
+  border-radius: inherit;
+  content: "";
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  transition: opacity 500ms;
+  width: 100%;
+}
+
+.glow-card::before {
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.06),
+    transparent 40%
+  );
+  z-index: 3;
+}
+
+.glow-card::after {  
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(255, 255, 255, 0.4),
+    transparent 40%
+  );
+  z-index: 1;
+}
+
+.glow-card > .glow-card-content {
+  background-color: #0a0a0a; /* Darker interior */
+  border-radius: inherit;
+  margin: 1px; /* The border width */
+  z-index: 2;
+  position: absolute;
+  inset: 1px;
+  height: calc(100% - 2px);
+  width: calc(100% - 2px);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Non-bounding wrapper for content inside glow card */
+.glow-card > .glow-card-content > * {
+   z-index: 5;
+   position: relative;
+}
+
+
+/* --- Buttons --- */
+.btn-primary {
+  background: linear-gradient(to right, #ffffff, #e0e0e0);
+  color: #000;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Badges */
+.badge {
+  background: linear-gradient(145deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1));
+  border: 1px solid rgba(255,255,255,0.05);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Image mask */
+.img-glow {
+    filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.3));
+}

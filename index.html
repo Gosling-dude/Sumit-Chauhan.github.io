@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth overflow-x-hidden dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumit Chauhan | Software Engineer & Competitive Programmer</title>
+    <title>Sumit Chauhan | Software Engineer</title>
     <meta name="description"
-        content="Portfolio of Sumit Chauhan - Software Engineer, Competitive Programmer, and Java Developer from NIT Jalandhar">
+        content="Portfolio of Sumit Chauhan - Software Engineer, Backend Systems, and Distributed Systems enthusiast from NIT Jalandhar">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <script>
         tailwind.config = {
-            darkMode: 'class', // Enable dark mode using a class
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#4f46e5', // Indigo
-                        secondary: '#06b6d4', // Cyan
-                        dark: '#0f172a', // Slate-900
-                        light: '#f8fafc', // Slate-50
-                        "dark-card": "#1e293b" // Slate-800
+                        dark: '#050505',
+                        "dark-surface": "#0a0a0a",
+                        "dark-border": "rgba(255, 255, 255, 0.08)",
+                        primary: '#7c3aed', // accent-primary
+                        secondary: '#06b6d4', // accent-secondary
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -33,652 +34,800 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* --- Animated Gradient Blobs --- */
-        @keyframes rotate {
-            from { transform: rotate(0deg) scale(1); }
-            to { transform: rotate(360deg) scale(1.05); }
-        }
-
-        .blob-1, .blob-2 {
-            position: absolute;
-            filter: blur(60px);
-            z-index: -1;
-            opacity: 0.4;
-            animation: rotate 20s infinite alternate;
-        }
-
-        .blob-1 {
-            width: 300px;
-            height: 300px;
-            top: -50px;
-            left: -100px;
-            background: radial-gradient(circle, #4f46e5, transparent 70%);
-        }
-
-        .blob-2 {
-            width: 350px;
-            height: 350px;
-            bottom: -100px;
-            right: -150px;
-            background: radial-gradient(circle, #06b6d4, transparent 70%);
-            animation-duration: 25s;
-        }
-
-        /* --- Glassmorphism Effect --- */
-        .glass-effect {
-            backdrop-filter: blur(12px) saturate(150%);
-            -webkit-backdrop-filter: blur(12px) saturate(150%);
-            background-color: rgba(248, 250, 252, 0.1); /* light-10% */
-            border: 1px solid rgba(255, 255, 255, 0.125);
-        }
-
-        html.dark .glass-effect {
-            background-color: rgba(30, 41, 59, 0.25); /* dark-card-25% */
-            border-color: rgba(51, 65, 85, 0.5);
-        }
-        
-        /* --- Gradient Text --- */
-        .gradient-text {
-            background: linear-gradient(90deg, #4f46e5, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
-
-        /* --- Active Nav Link --- */
-        .nav-link.active {
-            color: #4f46e5;
-            font-weight: 600;
-        }
-
-        html.dark .nav-link.active {
-            color: #06b6d4;
-        }
-
-        /* --- Bouncing Skill Icons --- */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .skill-card:hover .skill-icon {
-            animation: bounce 0.6s ease-in-out;
-        }
-    </style>
 </head>
 
-<body class="bg-dark text-light font-sans antialiased relative overflow-x-hidden">
+<body
+    class="bg-dark text-white font-sans antialiased relative overflow-x-hidden selection:bg-primary selection:text-white">
 
-    <div class="blob-1"></div>
-    <div class="blob-2"></div>
+    <!-- Ambient Background Effects -->
+    <div class="bg-grid-pattern"></div>
+    <div class="ambient-light"></div>
 
-    <nav class="fixed w-full top-0 z-50 glass-effect shadow-md">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold gradient-text">Sumit<span class="text-secondary">.</span></a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">About</a>
-                <a href="#skills" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Skills</a>
-                <a href="#experience" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Experience</a>
-                <a href="#projects" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Projects</a>
-                <a href="#achievements" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Achievements</a>
-                    <a href="https://drive.google.com/file/d/1SvcnctyYM8Ce36Gpd630K4pw6WgJIHg3/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">View Resume</a>
-                <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors duration-300">Contact</a>
+    <nav class="fixed w-full top-0 z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tighter mix-blend-difference z-10">SUMIT<span
+                    class="text-primary">.</span></a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="https://drive.google.com/file/d/1SvcnctyYM8Ce36Gpd630K4pw6WgJIHg3/view?usp=sharing"
+                    target="_blank" rel="noopener noreferrer" class="nav-link flex items-center gap-1 group">
+                    Resume <i data-feather="external-link"
+                        class="w-3 h-3 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"></i>
+                </a>
             </div>
-            <div class="flex items-center space-x-4">
-                
-                <button id="menu-btn" class="md:hidden p-2">
-                    <i data-feather="menu" class="text-dark dark:text-light"></i>
-                </button>
-            </div>
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="md:hidden p-2 text-white/70 hover:text-white transition-colors">
+                <i data-feather="menu"></i>
+            </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden p-4 space-y-2">
-             <a href="#about" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">About</a>
-             <a href="#skills" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Skills</a>
-             <a href="#experience" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Experience</a>
-             <a href="#projects" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Projects</a>
-             <a href="#achievements" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Achievements</a>
-             <a href="#contact" class="nav-link block py-2 px-4 hover:text-primary dark:hover:text-secondary transition-colors">Contact</a>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full bg-dark/95 backdrop-blur-xl border-b border-dark-border py-4 px-6 flex flex-col space-y-4 text-sm font-medium shadow-2xl">
+            <a href="#about" class="text-white/70 hover:text-white transition-colors">About</a>
+            <a href="#skills" class="text-white/70 hover:text-white transition-colors">Skills</a>
+            <a href="#projects" class="text-white/70 hover:text-white transition-colors">Projects</a>
+            <a href="#experience" class="text-white/70 hover:text-white transition-colors">Experience</a>
+            <a href="#achievements" class="text-white/70 hover:text-white transition-colors">Achievements</a>
+            <a href="https://drive.google.com/file/d/1SvcnctyYM8Ce36Gpd630K4pw6WgJIHg3/view?usp=sharing" target="_blank"
+                rel="noopener noreferrer" class="text-primary hover:text-secondary transition-colors">View Resume →</a>
         </div>
     </nav>
 
-    <main id="main-content">
-    <section id="hero" class="min-h-screen flex items-center pt-24 relative isolate z-10">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
-            <div class="md:col-span-2 flex justify-center items-end">
-                      <div class="relative image-wrapper w-full max-w-sm">
-                    <img src="images/its me portfolio.png" alt="Sumit Chauhan" class="relative w-full h-auto object-cover profile-image-mask">
-                 </div>
-            </div>
-            <div class="md:col-span-3 space-y-6 text-center md:text-left relative z-10">
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight">
-                    Hi, I'm <span class="gradient-text">Sumit</span>
-                </h1>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-200">
-                    a <span id="role-text" class="text-primary dark:text-secondary font-mono">Software Engineer</span>
-                </h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-lg mx-auto md:mx-0">
-                    I design systems that scale, write code that speaks, and solve problems that matter.
-                </p>
+    <main id="main-content" class="relative z-10 pt-24 pb-32">
+        <div id="cards-container" class="max-w-6xl mx-auto px-6 space-y-32">
 
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16">About <span class="gradient-text">Me</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-start">
-                <div class="md:col-span-3 space-y-4 text-lg text-gray-700 dark:text-gray-300 about-text-content">
-                    <p>
-                        Hey there 👋 I’m <span class="font-semibold text-primary dark:text-secondary">Sumit Chauhan</span>, a
-                        <span class="font-semibold">Computer Science undergrad at NIT Jalandhar (Batch of 2026)</span> and a passionate software engineer + competitive programmer who loves solving real-world problems with clean, scalable code.
-                    </p>
-                    <p>
-                        I’ve built projects like HerbiGPT, an AI-powered Ayurveda chatbot using LangChain, and CyberFlux, a distributed network intrusion detection system. I also contribute to open-source — most recently to Google’s Gemini CLI, improving authentication reliability for GCP users.
-                    </p>
-                    <p>
-                        Beyond the keyboard, I'm an avid chess player and enjoy the collaborative strategy of cricket. These pursuits sharpen my analytical thinking and teamwork skills, which I apply to my technical work. I'm always exploring backend systems, distributed design, and GenAI pipelines, aiming to build products that are both technically deep and practically useful.
-                    </p>
-                </div>
-                <div class="md:col-span-2 space-y-6 about-cards">
-                    <div class="glass-effect p-6 rounded-xl">
-                        <h3 class="text-xl font-semibold mb-4 text-primary dark:text-secondary">Education</h3>
-                         <div>
-                            <h4 class="font-semibold text-lg">B.Tech in Computer Science</h4>
-                            <p class="text-gray-600 dark:text-gray-400">NIT Jalandhar • 2022 - 2026 </p>
-                         </div>
+            <!-- HERO SECTION -->
+            <section id="hero" class="min-h-[85vh] flex flex-col justify-center relative items-start">
+                <div class="space-y-6 w-full max-w-4xl">
+                    <div class="hero-badge badge flex gap-2 w-fit mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse self-center"></span> Available for
+                        Opportunities
                     </div>
-                    <div class="glass-effect p-6 rounded-xl">
-                        <h3 class="text-xl font-semibold mb-4 text-primary dark:text-secondary">Interests</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Artificial Intelligence</span>
-                            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full">Machine Learning</span>
-                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Data Structures & Algorithms</span>
-                            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full">System Design</span>
-                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Open Source</span>
-                            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full">Quantitative Analysis</span>
-                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Maths</span>
-                            <span class="px-3 py-1 bg-secondary/10 text-secondary rounded-full">Puzzles</span>
-                            <span class="px-3 py-1 bg-primary/10 text-primary rounded-full">Chess</span>
+
+                    <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-[1.1]">
+                        <div class="hero-title-line overflow-hidden"><span class="block">BUILDING</span></div>
+                        <div class="hero-title-line overflow-hidden"><span
+                                class="block text-gradient-accent">SCALABLE</span></div>
+                        <div class="hero-title-line overflow-hidden"><span class="block text-gradient">SYSTEMS.</span>
+                        </div>
+                    </h1>
+
+                    <p class="hero-desc text-xl md:text-2xl text-gray-400 max-w-2xl font-light mt-6 leading-relaxed">
+                        I'm Sumit Chauhan, a <span id="role-text" class="text-white font-mono font-medium">Software
+                            Engineer.</span> <br />
+                        Based in India, solving complex problems with clean code.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 mt-10 pt-4">
+                        <a href="#projects"
+                            class="hero-cta btn-primary px-8 py-4 rounded-full font-semibold text-sm tracking-wide flex items-center gap-2">
+                            Explore Work <i data-feather="arrow-down-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#contact"
+                            class="hero-cta btn-secondary px-8 py-4 rounded-full font-semibold text-sm tracking-wide">
+                            Get in touch
+                        </a>
+                        <div class="hero-cta flex items-center gap-4 ml-4">
+                            <a href="https://github.com/Gosling-dude" target="_blank"
+                                class="text-gray-500 hover:text-white transition-colors p-2"><i
+                                    data-feather="github"></i></a>
+                            <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank"
+                                class="text-gray-500 hover:text-white transition-colors p-2"><i
+                                    data-feather="linkedin"></i></a>
+                            <a href="mailto:sumitchauhan.job@gmail.com"
+                                class="text-gray-500 hover:text-white transition-colors p-2"><i
+                                    data-feather="mail"></i></a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Coding Profiles -->
-    <section id="profiles" class="py-24 bg-dark-card/50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Coding <span class="gradient-text">Profiles</span></h2>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">Find me on competitive programming platforms and coding communities.</p>
-            </div>
+                <!-- Profile Image in Hero -->
+                <div
+                    class="absolute right-0 lg:right-10 xl:right-20 top-1/2 -translate-y-1/2 w-[400px] h-[400px] xl:w-[500px] xl:h-[500px] hidden lg:block pointer-events-none z-0">
+                    <img src="images/Profile.jpg?v=5" alt="Sumit Chauhan"
+                        class="w-full h-full object-contain mix-blend-lighten"
+                        style="mask-image: radial-gradient(ellipse 45% 60% at 50% 30%, black 50%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 45% 60% at 50% 30%, black 50%, transparent 100%);" />
+                </div>
+            </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Codeforces -->
-                <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer" class="group glass-effect p-6 rounded-xl block hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <img src="images/codeforces.svg" alt="Codeforces" class="h-6 w-6" />
-                            <h3 class="text-xl font-semibold text-secondary">Codeforces</h3>
+            <!-- ABOUT & PROFILES BENTO GRID -->
+            <section id="about" class="pt-12 reveal-up scroll-m-24">
+                <div class="flex items-baseline gap-4 mb-10">
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">About.</h2>
+                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Main Bio (Large Span) -->
+                    <div class="glow-card md:col-span-2 lg:col-span-3 min-h-[300px]">
+                        <div class="glow-card-content justify-between">
+                            <div class="badge w-fit mb-6 text-xs"><i data-feather="user" class="w-3 h-3 mr-1"></i> Bio
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-medium tracking-tight leading-snug text-white/90">
+                                Computer Science undergrad at <span class="text-white">NIT Jalandhar</span> (Batch of
+                                2026), deeply focused on <span class="text-gradient">Backend Systems & Distributed
+                                    Architectures</span>.
+                            </h3>
+                            <p class="text-gray-400 mt-6 leading-relaxed flex-grow text-base md:text-lg">
+                                I’ve built AI workflow engines like Weaveflow and RAG assistants like HerbiGPT. I
+                                heavily contribute to open-source — primarily <span class="text-white">Google’s Gemini
+                                    CLI</span> and the <span class="text-white">CNCF OpenTelemetry</span> project.
+                                Beyond the keyboard, I'm an avid chess player applying strategic thinking to system
+                                design.
+                            </p>
+                            <div class="mt-8 pt-4 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">B.Tech CSE
+                                    </p>
+                                    <p class="text-sm font-medium mt-1">NITJ • CGPA: 7.56</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Class XII
+                                    </p>
+                                    <p class="text-sm font-medium mt-1">92.6%</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Class X</p>
+                                    <p class="text-sm font-medium mt-1">90.8%</p>
+                                </div>
+                                <div class="md:text-right">
+                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Location
+                                    </p>
+                                    <p class="text-sm font-medium mt-1">Dehradun, India</p>
+                                </div>
+                            </div>
                         </div>
-                        <span class="px-2 py-1 text-xs rounded bg-secondary/10 text-secondary">Rating</span>
                     </div>
-                    <p class="mt-2 text-gray-300">SumitXorY</p>
-                    <p class="mt-1 text-gray-400">1944 · Candidate Master</p>
-                    <div class="mt-4 text-sm text-gray-400 group-hover:text-gray-300">Visit Profile →</div>
-                </a>
 
-                <!-- LeetCode -->
-                <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank" rel="noopener noreferrer" class="group glass-effect p-6 rounded-xl block hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <img src="images/leetcode.svg" alt="LeetCode" class="h-6 w-6" />
-                            <h3 class="text-xl font-semibold text-secondary">LeetCode</h3>
+                </div>
+            </section>
+
+            <!-- CODING PROFILES SECTION -->
+            <section id="coding-profiles" class="reveal-up scroll-m-24">
+                <div class="flex items-baseline gap-4 mb-10">
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Coding Profiles.</h2>
+                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Coding Profile 1 : Codeforces -->
+                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank"
+                        class="glow-card group min-h-[150px]">
+                        <div
+                            class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
+                            <div class="flex items-center justify-between w-full">
+                                <img src="images/codeforces.svg" alt="CF"
+                                    class="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity" />
+                                <i data-feather="arrow-up-right"
+                                    class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div class="mt-auto pt-8">
+                                <h4 class="font-bold text-xl text-white">Codeforces</h4>
+                                <p class="text-base text-gray-300 mt-1">Candidate Master <span
+                                        class="text-primary font-mono ml-1 font-bold">1944</span></p>
+                            </div>
                         </div>
-                        <span class="px-2 py-1 text-xs rounded bg-secondary/10 text-secondary">Rating</span>
-                    </div>
-                    <p class="mt-2 text-gray-300">sumit_chauhan_</p>
-                    <p class="mt-1 text-gray-400">1898 · Knight</p>
-                    <div class="mt-4 text-sm text-gray-400 group-hover:text-gray-300">Visit Profile →</div>
-                </a>
+                    </a>
 
-                <!-- CodeChef -->
-                <a href="https://www.codechef.com/users/sumit_chauhan" target="_blank" rel="noopener noreferrer" class="group glass-effect p-6 rounded-xl block hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <img src="images/codechef.png" alt="CodeChef" class="h-6 w-6" />
-                            <h3 class="text-xl font-semibold text-secondary">CodeChef</h3>
+                    <!-- Coding Profile 2 : LeetCode -->
+                    <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank"
+                        class="glow-card group min-h-[150px]">
+                        <div
+                            class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
+                            <div class="flex items-center justify-between w-full">
+                                <img src="images/leetcode.svg" alt="LC"
+                                    class="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity" />
+                                <i data-feather="arrow-up-right"
+                                    class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div class="mt-auto pt-8">
+                                <h4 class="font-bold text-xl text-white">LeetCode</h4>
+                                <p class="text-base text-gray-300 mt-1">Knight <span
+                                        class="text-primary font-mono ml-1 font-bold">1898</span></p>
+                            </div>
                         </div>
-                        <span class="px-2 py-1 text-xs rounded bg-secondary/10 text-secondary">Rating</span>
-                    </div>
-                    <p class="mt-2 text-gray-300">sumit_chauhan</p>
-                    <p class="mt-1 text-gray-400">2023 · 5 ★</p>
-                    <div class="mt-4 text-sm text-gray-400 group-hover:text-gray-300">Visit Profile →</div>
-                </a>
+                    </a>
 
-                <!-- GeeksforGeeks -->
-                <a href="https://www.geeksforgeeks.org/profile/sumit_chauhan143" target="_blank" rel="noopener noreferrer" class="group glass-effect p-6 rounded-xl block hover:scale-105 transition-transform duration-300">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <img src="images/gfg.svg" alt="GeeksforGeeks" class="h-6 w-6" />
-                            <h3 class="text-xl font-semibold text-secondary">GeeksforGeeks</h3>
+                    <!-- Coding Profile 3 : CodeChef -->
+                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank"
+                        class="glow-card group min-h-[150px]">
+                        <div
+                            class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
+                            <div class="flex items-center justify-between w-full">
+                                <img src="images/codechef.png" alt="CC"
+                                    class="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity"
+                                    filter="invert(1)" style="filter: brightness(0) invert(1);" />
+                                <i data-feather="arrow-up-right"
+                                    class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div class="mt-auto pt-8">
+                                <h4 class="font-bold text-xl text-white">CodeChef</h4>
+                                <p class="text-base text-gray-300 mt-1">5 Star <span
+                                        class="text-primary font-mono ml-1 font-bold">2023</span></p>
+                            </div>
                         </div>
-                        <span class="px-2 py-1 text-xs rounded bg-secondary/10 text-secondary">Rating</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- SKILLS SECTION -->
+            <section id="skills" class="reveal-up scroll-m-24">
+                <div class="flex items-baseline gap-4 mb-10">
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Skills.</h2>
+                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-grid">
+                    <!-- Column 1 -->
+                    <div class="space-y-4">
+                        <div class="glow-card min-h-[120px]">
+                            <div class="glow-card-content">
+                                <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4">Languages
+                                </h3>
+                                <div class="flex flex-wrap gap-3">
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-cplusplus-plain colored text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">C++</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-java-plain colored text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Java</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-python-plain colored text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Python</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-typescript-plain colored text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">TypeScript</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-azuresqldatabase-plain colored text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">SQL</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-c-plain colored text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">C</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glow-card min-h-[120px]">
+                            <div class="glow-card-content">
+                                <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4">Core CS
+                                </h3>
+                                <div class="flex flex-wrap gap-3">
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i data-feather="cpu"
+                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Data
+                                            Structures</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i data-feather="git-merge"
+                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Algorithms</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i data-feather="command"
+                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">OS</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i data-feather="wifi"
+                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Networks</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i data-feather="database"
+                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">DBMS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="mt-2 text-gray-300">sumit_chauhan143</p>
-                    <p class="mt-1 text-gray-400">1988 · 4 ★</p>
-                    <div class="mt-4 text-sm text-gray-400 group-hover:text-gray-300">Visit Profile →</div>
-                </a>
-            </div>
-        </div>
-    </section>
 
+                    <!-- Column 2 -->
+                    <div class="space-y-4">
+                        <div class="glow-card min-h-[120px]">
+                            <div class="glow-card-content">
+                                <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4">Backend
+                                    Systems / Infra</h3>
+                                <div class="flex flex-wrap gap-3">
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i data-feather="server"
+                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">REST
+                                            APIs</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i data-feather="grid"
+                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Microservices</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-primary/10 border border-primary/30 rounded-lg hover:-translate-y-1 hover:bg-primary/20 hover:border-primary/50 transition-all cursor-default group">
+                                        <i data-feather="share-2"
+                                            class="w-4 h-4 text-primary group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-xs font-semibold text-primary transition-colors">Distributed
+                                            Systems</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-postgresql-plain colored text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">PostgreSQL</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-redis-plain colored text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Redis</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-docker-plain colored text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Docker</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i
+                                            class="devicon-linux-plain text-white text-lg group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Linux</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i data-feather="git-branch"
+                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">CI/CD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glow-card min-h-[120px]">
+                            <div class="glow-card-content">
+                                <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4">AI / ML
+                                    Tooling</h3>
+                                <div class="flex flex-wrap gap-3">
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-secondary/10 border border-secondary/20 rounded-lg hover:-translate-y-1 hover:bg-secondary/20 hover:border-secondary/40 transition-all cursor-default group">
+                                        <i data-feather="link-2"
+                                            class="w-4 h-4 text-secondary group-hover:scale-110 transition-transform"></i>
+                                        <span
+                                            class="text-xs font-semibold text-secondary transition-colors">LangChain</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-secondary/10 border border-secondary/20 rounded-lg hover:-translate-y-1 hover:bg-secondary/20 hover:border-secondary/40 transition-all cursor-default group">
+                                        <i data-feather="layers"
+                                            class="w-4 h-4 text-secondary group-hover:scale-110 transition-transform"></i>
+                                        <span class="text-xs font-semibold text-secondary transition-colors">RAG
+                                            Pipelines</span>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
+                                        <i data-feather="bar-chart-2"
+                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
+                                        <span
+                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Vector
+                                            Embeddings</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <section id="experience" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Experience & <span class="gradient-text">Contributions</span></h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">A timeline of my professional experience and key open-source contributions.</p>
-            </div>
-            <div class="max-w-4xl mx-auto">
-                <h3 class="text-3xl font-bold mt-1 mb-8 text-center md:text-left">Open Source Contributor</h3>
+            <!-- PROJECTS SECTION -->
+            <section id="projects" class="reveal-up scroll-m-24">
+                <div class="flex items-baseline gap-4 mb-10">
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Projects.</h2>
+                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-grid">
+
+                    <!-- Weaveflow -->
+                    <div class="glow-card group min-h-[400px]">
+                        <div class="glow-card-content p-0 overflow-hidden">
+                            <div class="h-48 w-full bg-dark overflow-hidden relative border-b border-white/5">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10">
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
+                                    alt="Dashboard"
+                                    class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700 ease-out" />
+                                <div class="absolute top-4 left-4 z-20 flex gap-2">
+                                    <a href="https://github.com/Gosling-dude/weaveflow" target="_blank"
+                                        class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 text-white hover:bg-white hover:text-black transition-colors"><i
+                                            data-feather="github" class="w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-2xl font-bold mb-3 tracking-tight">Weaveflow</h3>
+                                <ul class="text-gray-400 text-base leading-relaxed mb-6 list-disc pl-4 space-y-2">
+                                    <li>Built workflow orchestration platform for multi-step AI pipelines.</li>
+                                    <li>Designed microservice-based backend APIs enabling distributed workflow
+                                        execution.
+                                    </li>
+                                    <li>Implemented REST APIs and service integrations between workflow components.</li>
+                                    <li>Developed relational data model using PostgreSQL for workflow state persistence.
+                                    </li>
+                                    <li>Built CI/CD pipelines using GitHub Actions for automated builds.</li>
+                                </ul>
+                                <div class="mt-auto flex flex-wrap gap-2">
+                                    <span
+                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Next.js</span>
+                                    <span
+                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">TypeScript</span>
+                                    <span
+                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">PostgreSQL</span>
+                                    <span
+                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">REST</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HerbiGPT -->
+                    <div class="glow-card group min-h-[400px]">
+                        <div class="glow-card-content p-0 overflow-hidden">
+                            <div class="h-48 w-full bg-dark overflow-hidden relative border-b border-white/5">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10">
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2670&auto=format&fit=crop"
+                                    alt="AI Bot"
+                                    class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700 ease-out" />
+                                <div class="absolute top-4 left-4 z-20 flex gap-2">
+                                    <a href="https://github.com/Gosling-dude/HerbiGPT---Your-Holistic-Wellness-Guide.git"
+                                        target="_blank"
+                                        class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 text-white hover:bg-white hover:text-black transition-colors"><i
+                                            data-feather="github" class="w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-2xl font-bold mb-3 tracking-tight">HerbiGPT</h3>
+                                <ul class="text-gray-400 text-base leading-relaxed mb-6 list-disc pl-4 space-y-2">
+                                    <li>Built AI assistant using Retrieval-Augmented Generation enabling
+                                        knowledge-grounded
+                                        responses.</li>
+                                    <li>Developed Python backend services for document ingestion, vector indexing and
+                                        LLM
+                                        queries.</li>
+                                    <li>Implemented automated document processing pipeline using OCR and web scraping.
+                                    </li>
+                                    <li>Designed scalable retrieval system supporting concurrent semantic search
+                                        queries.
+                                    </li>
+                                </ul>
+                                <div class="mt-auto flex flex-wrap gap-2">
+                                    <span
+                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Python</span>
+                                    <span
+                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">LangChain</span>
+                                    <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Vector
+                                        DB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPERIENCE (Open Source) SECTION -->
+            <section id="experience" class="reveal-up scroll-m-24 max-w-4xl mx-auto">
+                <div class="flex flex-col items-center text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-white">
+                        Experience & <span class="text-secondary">Contributions</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl text-sm md:text-base">
+                        A timeline of my professional experience and key open-source contributions.
+                    </p>
+                </div>
+
+                <div class="mb-10 pl-2 lg:pl-10">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
+                        Open Source Contributor
+                    </h3>
+                    <p
+                        class="text-gray-400 text-base md:text-lg leading-relaxed max-w-3xl border-l-2 border-secondary/50 pl-4 py-1">
+                        These are some of my meaningful, production-grade open-source contributions that involved real
+                        code reviews, CI pipelines, and collaboration with maintainers.
+                    </p>
+                </div>
+
                 <!-- Timeline Container -->
-                <div class="relative border-l-2 border-primary dark:border-secondary">
-                    <!-- Linux Foundation - OpenTelemetry Java -->
-                    <div class="relative pl-8 py-6 mb-8">
-                        <div class="absolute -left-[11px] top-8 w-5 h-5 bg-primary dark:bg-secondary rounded-full border-4 border-light dark:border-dark"></div>
-                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Contribution</p>
-                        <p class="text-lg font-semibold text-primary dark:text-secondary">Linux Foundation — OpenTelemetry Java</p>
-                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Open-source contribution to the Java SDK under the OpenTelemetry project.</li>
-                            <li>Improved code quality and developer experience through collaborative review.</li>
-                            <li>Aligned changes with project guidelines and CI checks.</li>
+                <div class="relative border-l border-secondary ml-4 md:ml-12 space-y-12 pb-8">
+                    <!-- Item 1 -->
+                    <div class="relative pl-8 md:pl-10">
+                        <!-- Timeline Dot -->
+                        <div
+                            class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(6,182,212,0.8)]">
+                        </div>
+
+                        <div class="text-[0.65rem] text-gray-400 font-medium mb-1 tracking-widest uppercase">
+                            Contribution</div>
+                        <h4 class="text-lg md:text-xl font-bold text-secondary mb-3">OpenTelemetry (CNCF Project)</h4>
+
+                        <ul class="text-base text-gray-300 space-y-2 mb-5 list-disc pl-5 marker:text-gray-600">
+                            <li><strong class="text-white">Emit warning when TraceIdRatioBasedSampler is used as child
+                                    sampler</strong></li>
+                            <li class="text-gray-400">Added a spec-required compatibility warning at configuration time
+                                without changing
+                                runtime behavior.</li>
                         </ul>
-                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-4 py-2 bg-slate-800 text-white dark:bg-slate-200 dark:text-dark text-sm rounded-md hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors">
-                            <i data-feather="github" class="mr-2 w-4 h-4"></i> View Contribution (PR #7937)
-                        </a>
-                    </div>
-                    <!-- Google Contribution -->
-                    <div class="relative pl-8 py-6">
-                        <div class="absolute -left-[11px] top-8 w-5 h-5 bg-primary dark:bg-secondary rounded-full border-4 border-light dark:border-dark"></div>
-                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Jan 2025 - Present · Remote</p>
-                        <p class="text-lg font-semibold text-primary dark:text-secondary">Google - Gemini CLI</p>
-                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Authored a feature to add fallback support for a key environment variable, improving developer experience.</li>
-                            <li>Developed a secure, reusable GitHub Action for the Gemini CLI to enable seamless CI/CD integration.</li>
-                            <li>Improved auth stability by enforcing safe defaults, fixing enum mismatches, and updating test mocks.</li>
-                        </ul>
-                        <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-4 py-2 bg-slate-800 text-white dark:bg-slate-200 dark:text-dark text-sm rounded-md hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors">
-                            <i data-feather="github" class="mr-2 w-4 h-4"></i> View Contribution (PR #2725)
-                        </a>
-                    </div>
-                    <!-- OpenAPI Contribution 1 -->
-                    <div class="relative pl-8 py-6 mb-8">
-                        <div class="absolute -left-[11px] top-8 w-5 h-5 bg-primary dark:bg-secondary rounded-full border-4 border-light dark:border-dark"></div>
-                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Contribution</p>
-                        <p class="text-lg font-semibold text-primary dark:text-secondary">OpenAPI Generator</p>
-                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Introduced a `declareStrictTypes` option to add `declare(strict_types=1);` to all generated PHP files.</li>
-                            <li>Promotes modern PHP standards and improves code quality by enabling strict type checking across the generated client.</li>
-                        </ul>
-                        <a href="https://github.com/OpenAPITools/openapi-generator/pull/21179" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-4 py-2 bg-slate-800 text-white dark:bg-slate-200 dark:text-dark text-sm rounded-md hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors">
-                            <i data-feather="github" class="mr-2 w-4 h-4"></i> View Contribution (PR #21179)
+
+                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank"
+                            class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-black bg-white rounded hover:bg-white/90 transition-colors shadow-sm">
+                            <i data-feather="git-pull-request" class="w-3 h-3"></i> View Contribution (PR #7937)
                         </a>
                     </div>
 
-                    <!-- OpenAPI Contribution 2 -->
-                    <div class="relative pl-8 py-6 mb-8">
-                        <div class="absolute -left-[11px] top-8 w-5 h-5 bg-primary dark:bg-secondary rounded-full border-4 border-light dark:border-dark"></div>
-                        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Contribution</p>
-                        <p class="text-lg font-semibold text-primary dark:text-secondary">OpenAPI Generator</p>
-                        <ul class="mt-4 list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Created a `validate-python.sh` script to perform comprehensive post-generation checks on the Python client.</li>
-                            <li>Ensures the generated SDK can be successfully built, installed, and instantiated, improving its reliability.</li>
+                    <!-- Item 2 -->
+                    <div class="relative pl-8 md:pl-10">
+                        <div
+                            class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(6,182,212,0.8)]">
+                        </div>
+
+                        <div class="text-[0.65rem] text-gray-400 font-medium mb-1 tracking-widest uppercase">
+                            Contribution</div>
+                        <h4 class="text-lg md:text-xl font-bold text-secondary mb-3">OpenTelemetry (CNCF Project)</h4>
+
+                        <ul class="text-base text-gray-300 space-y-2 mb-5 list-disc pl-5 marker:text-gray-600">
+                            <li><strong class="text-white">Clarify suppressed warnings in API common module</strong>
+                            </li>
+                            <li class="text-gray-400">Improved maintainability by documenting intentional warning
+                                suppressions. No functional
+                                changes.</li>
                         </ul>
-                        <a href="https://github.com/OpenAPITools/openapi-generator/pull/21420" target="_blank" rel="noopener noreferrer" class="inline-flex items-center mt-4 px-4 py-2 bg-slate-800 text-white dark:bg-slate-200 dark:text-dark text-sm rounded-md hover:bg-slate-700 dark:hover:bg-slate-300 transition-colors">
-                            <i data-feather="github" class="mr-2 w-4 h-4"></i> View Contribution (PR #21420)
+
+                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7951" target="_blank"
+                            class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-black bg-white rounded hover:bg-white/90 transition-colors shadow-sm">
+                            <i data-feather="git-pull-request" class="w-3 h-3"></i> View Contribution (PR #7951)
+                        </a>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="relative pl-8 md:pl-10">
+                        <div
+                            class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(6,182,212,0.8)]">
+                        </div>
+
+                        <div
+                            class="text-[0.65rem] text-gray-400 font-medium mb-1 tracking-widest uppercase flex items-center gap-2">
+                            Jan 2025 – Present <span
+                                class="inline-block w-[3px] h-[3px] rounded-full bg-gray-600"></span> Remote
+                        </div>
+                        <h4 class="text-lg md:text-xl font-bold text-secondary mb-3">Google - Gemini CLI</h4>
+
+                        <ul class="text-base text-gray-300 space-y-2 mb-5 list-disc pl-5 marker:text-gray-600">
+                            <li><strong class="text-white">Support GOOGLE_CLOUD_PROJECT_ID fallback</strong></li>
+                            <li class="text-gray-400">Added a backward-compatible environment variable fallback,
+                                improving developer
+                                experience across platforms.</li>
+                        </ul>
+
+                        <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank"
+                            class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-black bg-white rounded hover:bg-white/90 transition-colors shadow-sm">
+                            <i data-feather="git-pull-request" class="w-3 h-3"></i> View Contribution (PR #2725)
                         </a>
                     </div>
                 </div>
-            </div>
+
+                <div
+                    class="mt-8 pt-10 border-t border-dark-border lg:pl-12 flex flex-col md:flex-row items-center md:items-start gap-4 text-center md:text-left">
+                    <div class="p-3 bg-white/5 rounded-full border border-white/10">
+                        <i data-feather="github" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-300 mb-2">For more open source contributions and <strong
+                                class="text-white font-mono">📊 GitHub Stats</strong>,</p>
+                        <a href="https://github.com/Gosling-dude" target="_blank"
+                            class="inline-flex items-center text-secondary font-medium hover:text-white transition-colors group">
+                            visit my GitHub profile
+                            <i data-feather="arrow-right"
+                                class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ACHIEVEMENTS & LEADERSHIP BENTO -->
+            <section id="achievements" class="reveal-up scroll-m-24">
+                <div class="flex items-baseline gap-4 mb-10">
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Highlights.</h2>
+                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-grid">
+
+                    <!-- Huge Stat -->
+                    <div class="glow-card md:col-span-2 lg:col-span-3 min-h-[200px]">
+                        <div class="glow-card-content justify-center items-center text-center p-8">
+                            <div class="text-7xl md:text-8xl font-black text-gradient-accent tracking-tighter mb-4">
+                                1500+
+                            </div>
+                            <h4 class="text-2xl font-bold text-white mb-2">Algorithmic Problems Solved</h4>
+                            <p class="text-gray-400">across Codeforces, LeetCode, and CodeChef.</p>
+                        </div>
+                    </div>
+
+                    <!-- ICPC -->
+                    <a href="https://codeforces.com/contest/2172/standings" target="_blank"
+                        class="glow-card group min-h-[160px]">
+                        <div class="glow-card-content justify-center p-6 transition-colors group-hover:bg-white/[0.02]">
+                            <i data-feather="external-link"
+                                class="w-4 h-4 text-gray-600 absolute top-4 right-4 group-hover:text-white transition-colors"></i>
+                            <div
+                                class="text-3xl font-black text-white mb-2 group-hover:-translate-y-1 transition-transform">
+                                AIR 23</div>
+                            <h4 class="text-base font-bold text-gray-300 mb-1">ICPC Asia Regional '25</h4>
+                            <p class="text-sm text-gray-500">Global Rank 492 in Taichung.</p>
+                        </div>
+                    </a>
+
+                    <!-- CF EDU -->
+                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank"
+                        class="glow-card group min-h-[160px]">
+                        <div class="glow-card-content justify-center p-6 transition-colors group-hover:bg-white/[0.02]">
+                            <i data-feather="external-link"
+                                class="w-4 h-4 text-gray-600 absolute top-4 right-4 group-hover:text-white transition-colors"></i>
+                            <div
+                                class="text-3xl font-black text-white mb-2 group-hover:-translate-y-1 transition-transform">
+                                226th</div>
+                            <h4 class="text-base font-bold text-gray-300 mb-1">Edu Codeforces Round 181</h4>
+                            <p class="text-sm text-gray-500">Out of 20,000+ globally.</p>
+                        </div>
+                    </a>
+
+                    <!-- CodeChef Starters -->
+                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank"
+                        class="glow-card group min-h-[160px]">
+                        <div class="glow-card-content justify-center p-6 transition-colors group-hover:bg-white/[0.02]">
+                            <i data-feather="external-link"
+                                class="w-4 h-4 text-gray-600 absolute top-4 right-4 group-hover:text-white transition-colors"></i>
+                            <div
+                                class="text-3xl font-black text-white mb-2 group-hover:-translate-y-1 transition-transform">
+                                24th</div>
+                            <h4 class="text-base font-bold text-gray-300 mb-1">CodeChef Starters 212B</h4>
+                            <p class="text-sm text-gray-500">Out of 34,700+ globally.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- LEADERSHIP & ACTIVITIES -->
+            <section id="leadership" class="reveal-up scroll-m-24">
+                <div class="flex items-baseline gap-4 mb-10">
+                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Leadership & Activities.</h2>
+                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-grid">
+                    <!-- Mentorship -->
+                    <div class="glow-card min-h-[150px]">
+                        <div class="glow-card-content flex flex-col justify-center items-center text-center p-6">
+                            <i data-feather="users" class="w-8 h-8 text-primary mb-3"></i>
+                            <h3 class="text-lg font-bold text-white mb-1">Mentorship</h3>
+                            <p class="text-sm text-gray-400">Mentored junior students in competitive programming</p>
+                        </div>
+                    </div>
+                    <!-- Chess -->
+                    <div class="glow-card min-h-[150px]">
+                        <div class="glow-card-content flex flex-col justify-center items-center text-center p-6">
+                            <i data-feather="award" class="w-8 h-8 text-secondary mb-3"></i>
+                            <h3 class="text-lg font-bold text-white mb-1">1st Place</h3>
+                            <p class="text-sm text-gray-400">Inter-NIT Chess Championship</p>
+                        </div>
+                    </div>
+                    <!-- Cricket -->
+                    <div class="glow-card min-h-[150px]">
+                        <div class="glow-card-content flex flex-col justify-center items-center text-center p-6">
+                            <i data-feather="target" class="w-8 h-8 text-primary mb-3"></i>
+                            <h3 class="text-lg font-bold text-white mb-1">3rd Runner-up</h3>
+                            <p class="text-sm text-gray-400">Inter-NIT Cricket Competition</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER CTA -->
+            <section id="contact" class="pt-24 pb-12 reveal-up flex flex-col items-center text-center">
+                <h2 class="text-4xl md:text-6xl font-black tracking-tight mb-6">Let's build something.</h2>
+                <p class="text-xl text-gray-400 max-w-xl mb-10">Currently open for new opportunities. Whether you have a
+                    question or just want to say hi, I'll try my best to get back to you!</p>
+                <a href="mailto:sumitchauhan.job@gmail.com"
+                    class="btn-primary px-10 py-5 rounded-full font-bold text-lg tracking-wide shadow-lg border border-white/20">
+                    Say Hello <i data-feather="send" class="w-4 h-4 inline-block ml-2 -mt-1"></i>
+                </a>
+
+                <div class="mt-8 flex flex-col md:flex-row gap-6 justify-center">
+                    <a href="tel:+918218097607"
+                        class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+                        <i data-feather="phone" class="w-5 h-5 text-primary"></i> <span
+                            class="font-mono text-sm tracking-widest">+91-8218097607</span>
+                    </a>
+                    <a href="mailto:sumitchauhan.job@gmail.com"
+                        class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+                        <i data-feather="mail" class="w-5 h-5 text-secondary"></i> <span
+                            class="font-mono text-sm tracking-widest">sumitchauhan.job@gmail.com</span>
+                    </a>
+                </div>
+
+                <div
+                    class="mt-20 pt-8 border-t border-white/5 w-full flex flex-col items-center justify-center text-sm text-gray-500 gap-2">
+                    <p>&copy; 2025 Sumit Chauhan. All rights reserved.</p>
+                    <p>Designed with passion and coded with caffeine.</p>
+                    <div class="flex gap-4 mt-4">
+                        <a href="https://github.com/Gosling-dude" class="hover:text-white transition-colors">GitHub</a>
+                        <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/"
+                            class="hover:text-white transition-colors">LinkedIn</a>
+                    </div>
+                </div>
+            </section>
+
         </div>
-    </section>
-
-    <section id="skills" class="py-24 bg-gray-50 dark:bg-dark-card/50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">My <span class="gradient-text">Arsenal</span></h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">A collection of the languages, tools, and technologies I use to build, optimize, and solve complex problems.</p>
-            </div>
-
-            <div class="space-y-12">
-                <div>
-                    <h3 class="text-2xl font-semibold text-center mb-8">Languages</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Java (CP)</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">C++</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Python</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">JavaScript</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="code" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">TypeScript</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-2xl font-semibold text-center mb-8">Core Expertise</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="git-merge" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Data Structures & Algorithms</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="award" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Competitive Programming</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="key" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Problem-Solving</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="zap" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Algorithmic Optimization</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-2xl font-semibold text-center mb-8">Frameworks & Libraries</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="box" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Next.js</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="box" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">React</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="server" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Node.js</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="wind" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Tailwind CSS</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-2xl font-semibold text-center mb-8">AI / ML & Backend</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="cpu" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">LangChain / LangGraph</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="gift" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Gemini API</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="refresh-cw" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">LLM Automation</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="globe" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">REST APIs</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="database" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">MongoDB / PostgreSQL</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-2xl font-semibold text-center mb-8">Tools & Workflow</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="github" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Git & GitHub</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="terminal" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">VS Code & Linux CLI</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="fast-forward" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Java Fast I/O Templates</p>
-                        </div>
-                        <div class="skill-card tilt-card p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-primary/20 dark:hover:shadow-secondary/20 transition-shadow duration-300 flex flex-col items-center justify-center">
-                            <i data-feather="layers" class="w-12 h-12 mb-4 text-primary dark:text-secondary"></i>
-                            <p class="font-semibold">Full-Stack Architecture</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="projects" class="py-24 bg-gray-50 dark:bg-dark-card/50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Featured <span class="gradient-text">Projects</span></h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">A selection of projects that showcase my skills and interests.</p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <article class="group relative tilt-card rounded-xl overflow-hidden bg-white dark:bg-dark-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                    <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/80 to-transparent"></div>
-                    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80" alt="HerbiGPT screenshot" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute bottom-0 z-20 p-6 text-white">
-                        <h3 class="text-2xl font-bold mb-2">HerbiGPT - AI Ayurveda Chatbot</h3>
-                        <p class="opacity-0 max-h-0 group-hover:max-h-full group-hover:opacity-100 transition-all duration-500 ease-in-out">Provides instant, AI-driven Ayurvedic advice. Built with a LangChain-based retrieval system trained on 2500+ sources to reduce hallucinations.</p>
-                        <div class="flex flex-wrap gap-2 my-4">
-                            <span class="px-2 py-1 bg-white/20 text-sm rounded">React</span><span class="px-2 py-1 bg-white/20 text-sm rounded">Express</span><span class="px-2 py-1 bg-white/20 text-sm rounded">Python</span><span class="px-2 py-1 bg-white/20 text-sm rounded">LangChain</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/Gosling-dude/HerbiGPT---Your-Holistic-Wellness-Guide.git" target="_blank" class="hover:text-secondary transition-colors"><i data-feather="github"></i></a>
-                            <a href="https://herbigpt.netlify.app/" target="_blank" class="hover:text-secondary transition-colors"><i data-feather="external-link"></i></a>
-                        </div>
-                    </div>
-                </article>
-                <article class="group relative tilt-card rounded-xl overflow-hidden bg-white dark:bg-dark-card shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                    <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/80 to-transparent"></div>
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" alt="CyberFlux screenshot" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                    <div class="absolute bottom-0 z-20 p-6 text-white">
-                        <h3 class="text-2xl font-bold mb-2">CyberFlux - Network Intrusion Detection</h3>
-                        <p class="opacity-0 max-h-0 group-hover:max-h-full group-hover:opacity-100 transition-all duration-500 ease-in-out">A TCP/IP-based distributed packet inspection system on a Raspberry Pi cluster to detect SSH brute-force and ARP spoofing attacks in real-time.</p>
-                        <div class="flex flex-wrap gap-2 my-4">
-                            <span class="px-2 py-1 bg-white/20 text-sm rounded">Python</span><span class="px-2 py-1 bg-white/20 text-sm rounded">C++</span><span class="px-2 py-1 bg-white/20 text-sm rounded">Scapy</span><span class="px-2 py-1 bg-white/20 text-sm rounded">Linux</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/Gosling-dude/CyberFlux-Advanced-Network-Intrusion-Detection-System-NIDS.git" target="_blank" class="hover:text-secondary transition-colors"><i data-feather="github"></i></a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="text-center mt-12">
-                <a href="https://github.com/Gosling-dude" target="_blank" class="inline-flex items-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary/10 hover:scale-105 transform transition-all duration-300">
-                    View All Projects <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="achievements" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">My <span class="gradient-text">Achievements</span></h2>
-                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Milestones from my competitive programming and academic journey.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- ICPC Achievement (Larger) -->
-                <a href="https://codeforces.com/contest/2172/standings" target="_blank" class="md:col-span-2 glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 block flex flex-col justify-center">
-                    <div class="text-7xl font-extrabold text-primary mb-2">492nd</div>
-                    <h3 class="text-2xl font-semibold">ICPC Asia Taichung Regional</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mt-1">Global Rank (AIR 23) in 2025.</p>
-                </a>
-                <!-- Codeforces Achievement -->
-                <a href="https://codeforces.com/contest/2158/standings/participant/225031612#p225031612" target="_blank" class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 block flex flex-col justify-center">
-                    <div class="text-6xl font-extrabold text-secondary mb-2">28th</div>
-                    <h3 class="text-xl font-semibold">Codeforces Round 1067 (Div. 2)</h3>
-                    <p class="text-gray-600 dark:text-gray-400">India Rank: 2 (Global Rank 28)</p>
-                </a>
-                <!-- CodeChef Achievement -->
-                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 flex flex-col justify-center">
-                    <div class="text-6xl font-extrabold text-primary mb-2">17th</div>
-                    <h3 class="text-xl font-semibold">CodeChef Starters 199B</h3>
-                    <p class="text-gray-600 dark:text-gray-400">out of 34,700+ participants.</p>
-                </div>
-                <!-- Chess Achievement -->
-                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 flex flex-col justify-center">
-                    <div class="text-6xl font-extrabold text-primary mb-2">1st</div>
-                    <h3 class="text-xl font-semibold">UK Chess competition</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Secured first place in Sports Fest 2022.</p>
-                </div>
-                <!-- QuantIQ Achievement -->
-                <div class="glass-effect p-8 rounded-xl text-center hover:scale-105 transition-transform duration-300 flex flex-col justify-center">
-                    <div class="text-6xl font-extrabold text-secondary mb-2">3rd</div>
-                    <h3 class="text-xl font-semibold">QuantIQ</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Placed 3rd Runner-up in Sports Fest 2024 for excellence in mathematics and puzzle solving.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-24 bg-gray-50 dark:bg-dark-card/50">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-4">Get In <span class="gradient-text">Touch</span></h2>
-            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">Have a project in mind or want to connect? I'd love to hear from you. Feel free to reach out!</p>
-            <div class="flex justify-center items-center space-x-6 md:space-x-8">
-                <a href="mailto:sumitchauhan.job@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transform hover:scale-110 transition-all duration-300" aria-label="Email">
-                    <i data-feather="mail" class="w-10 h-10"></i>
-                </a>
-                <a href="https://github.com/Gosling-dude" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transform hover:scale-110 transition-all duration-300" aria-label="GitHub">
-                    <i data-feather="github" class="w-10 h-10"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transform hover:scale-110 transition-all duration-300" aria-label="LinkedIn">
-                    <i data-feather="linkedin" class="w-10 h-10"></i>
-                </a>
-            </div>
-        </div>
-    </section>
     </main>
-
-    <footer class="py-8 bg-dark text-light">
-        <div class="max-w-7xl mx-auto px-6 text-center text-gray-400">
-            <p>&copy; 2025 Sumit Chauhan. All rights reserved.</p>
-            <p class="text-sm mt-2">Designed with passion and coded with caffeine.</p>
-        </div>
-    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script> 
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
     <script src="script.js"></script>
     <script>
-        // Initialize feather icons
         feather.replace();
-
-        // Dark theme is permanent: no toggle logic
-
-        // --- Mobile Menu ---
+        // mobile menu toggle
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
-        // --- Intersection Observer for Active Nav Link ---
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section');
-
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
-                    });
-                }
-            });
-        }, { rootMargin: '-50% 0px -50% 0px' });
-
-        sections.forEach(section => sectionObserver.observe(section));
-
-        // --- Smooth Scrolling & Close Mobile Menu on Link Click ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
-                if (!targetId || targetId === '#') return;
-                e.preventDefault();
-
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-
-                document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth' });
-            });
+        document.querySelectorAll('#mobile-menu a').forEach(a => {
+            a.addEventListener('click', () => mobileMenu.classList.add('hidden'))
         });
-
-        // --- Text Rotator for Hero Section ---
-        const roleText = document.getElementById('role-text');
-        const roles = ["Software Engineer", "Competitive Programmer", "AI/ML Enthusiast"];
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 100;
-        const deletingSpeed = 50;
-        const delayBetweenRoles = 2000;
-
-        function type() {
-            const currentRole = roles[roleIndex];
-            
-            if (isDeleting) {
-                // Deleting
-                roleText.textContent = currentRole.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                // Typing
-                roleText.textContent = currentRole.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentRole.length) {
-                // Finished typing, pause, then start deleting
-                setTimeout(() => isDeleting = true, delayBetweenRoles);
-            } else if (isDeleting && charIndex === 0) {
-                // Finished deleting, move to next role
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-            }
-
-            const speed = isDeleting ? deletingSpeed : typingSpeed;
-            setTimeout(type, charIndex === currentRole.length ? delayBetweenRoles : speed);
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(type, 500);
-        });
-
-
     </script>
 </body>
+
 </html>
