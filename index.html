@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth overflow-x-hidden dark">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -33,11 +33,11 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body
-    class="bg-dark text-white font-sans antialiased relative overflow-x-hidden selection:bg-primary selection:text-white">
+    class="bg-dark text-white font-sans antialiased relative overflow-x-clip selection:bg-primary selection:text-white">
 
     <!-- Ambient Background Effects -->
     <div class="bg-grid-pattern"></div>
@@ -570,6 +570,62 @@
 
                 <div class="mb-10 pl-2 lg:pl-10">
                     <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
+                        Professional Experience
+                    </h3>
+                </div>
+
+                <!-- Professional Experience Timeline -->
+                <div class="relative border-l border-primary ml-4 md:ml-12 space-y-12 pb-16">
+                    <!-- Item 1: Kalvium -->
+                    <div class="relative pl-8 md:pl-10">
+                        <!-- Timeline Dot -->
+                        <div
+                            class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_10px_rgba(124,58,237,0.8)]">
+                        </div>
+
+                        <div class="flex items-start gap-4 mb-2">
+                            <!-- Kalvium Logo Placeholder -->
+                            <div
+                                class="w-12 h-12 rounded bg-white/5 flex-shrink-0 flex items-center justify-center border border-white/10 mt-1 uppercase font-bold text-xl text-primary font-mono shadow-sm">
+                                K
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white tracking-tight">Teaching Ninja</h4>
+                                <div class="text-sm text-gray-400 font-medium mt-1">Kalvium · Internship</div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="text-[0.7rem] text-gray-500 font-medium tracking-widest uppercase flex flex-col md:flex-row gap-1 md:gap-2 mb-4">
+                            <span>Mar 2026 - Present <span
+                                    class="text-gray-600 font-normal lowercase tracking-normal md:ml-1">· 1
+                                    mo</span></span>
+                            <span
+                                class="hidden md:inline-block w-[3px] h-[3px] rounded-full bg-gray-600 self-center"></span>
+                            <span>Bengaluru, India · On-site</span>
+                        </div>
+
+                        <p class="text-base text-gray-300 leading-relaxed max-w-2xl mb-5">
+                            Mentoring undergraduate students in Data Structures & Algorithms, Competitive Programming,
+                            System Design, and core Computer Science fundamentals. Conducting coding sessions, guiding
+                            problem-solving approaches, and supporting hands-on learning to build strong software
+                            engineering foundations.
+                        </p>
+
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Data
+                                Structures</span>
+                            <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Algorithms</span>
+                            <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">System
+                                Design</span>
+                            <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Competitive
+                                Programming</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-10 pl-2 lg:pl-10">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
                         Open Source Contributor
                     </h3>
                     <p
@@ -579,7 +635,7 @@
                     </p>
                 </div>
 
-                <!-- Timeline Container -->
+                <!-- Timeline Container (Open Source) -->
                 <div class="relative border-l border-secondary ml-4 md:ml-12 space-y-12 pb-8">
                     <!-- Item 1 -->
                     <div class="relative pl-8 md:pl-10">
@@ -815,7 +871,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
     <script>
         feather.replace();
         // mobile menu toggle

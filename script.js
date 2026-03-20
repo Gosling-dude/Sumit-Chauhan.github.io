@@ -6,26 +6,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
     });
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
 
     // --- Mouse Glow Effect (Glowing Cards) ---
-    document.getElementById('cards-container').onmousemove = e => {
-        for(const card of document.getElementsByClassName("glow-card")) {
-          const rect = card.getBoundingClientRect(),
-                x = e.clientX - rect.left,
-                y = e.clientY - rect.top;
-      
-          card.style.setProperty("--mouse-x", `${x}px`);
-          card.style.setProperty("--mouse-y", `${y}px`);
-        };
-    }
+    const cards = document.querySelectorAll(".glow-card");
+    cards.forEach(card => {
+        let ticking = false;
+        card.addEventListener("mousemove", (e) => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+                    card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    });
 
     // --- Active Nav Link Update ---
     const navLinks = document.querySelectorAll('.nav-link');
@@ -75,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: 0,
             y: 40,
             duration: 1,
-            ease: 'expo.out'
+            ease: 'expo.out',
+            clearProps: 'all'
         });
     });
 
@@ -91,27 +103,28 @@ document.addEventListener('DOMContentLoaded', () => {
             y: 30,
             stagger: 0.1,
             duration: 0.8,
-            ease: 'back.out(1.2)'
+            ease: 'back.out(1.2)',
+            clearProps: 'all'
         });
     });
 
     // --- Hero Text Typing Effect (Reimplemented for new UI) ---
     const roleText = document.getElementById('role-text');
-    if(roleText) {
+    if (roleText) {
         const roles = ["Software Engineer.", "Competitive Programmer.", "Backend Systems Specialist."];
         let roleIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        
+
         function type() {
             const currentRole = roles[roleIndex];
             if (isDeleting) charIndex--;
             else charIndex++;
-    
+
             roleText.textContent = currentRole.substring(0, charIndex);
-    
+
             let typeSpeed = isDeleting ? 30 : 80;
-    
+
             if (!isDeleting && charIndex === currentRole.length) {
                 typeSpeed = 2000;
                 isDeleting = true;
