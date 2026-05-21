@@ -32,22 +32,34 @@
     </script>
     <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css?v=4">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css?v=12">
 </head>
 
 <body
     class="bg-dark text-white font-sans antialiased relative overflow-x-clip selection:bg-primary selection:text-white">
 
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="custom-cursor"></div>
+    <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" class="scroll-progress"></div>
+
     <!-- Ambient Background Effects -->
     <div class="bg-grid-pattern"></div>
+    <div class="noise-overlay"></div>
+    <div class="gradient-orb gradient-orb--1"></div>
+    <div class="gradient-orb gradient-orb--2"></div>
+    <div class="gradient-orb gradient-orb--3"></div>
     <div class="ambient-light"></div>
 
     <nav class="fixed w-full top-0 z-50 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold tracking-tighter mix-blend-difference z-10">SUMIT<span
                     class="text-primary">.</span></a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium relative">
+                <div id="nav-pill" class="nav-pill"></div>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
@@ -81,8 +93,11 @@
         <div id="cards-container" class="max-w-6xl mx-auto px-6 space-y-32">
 
             <!-- HERO SECTION -->
-            <section id="hero" class="min-h-[85vh] flex flex-col justify-center relative items-start">
-                <div class="space-y-6 w-full max-w-4xl">
+            <section id="hero" class="min-h-[85vh] flex flex-col justify-center relative items-start hero-perspective">
+                <!-- Hero Glow Orbs -->
+                <div class="hero-glow" style="top: 10%; left: -5%;"></div>
+                <div class="hero-glow hero-glow--secondary" style="bottom: 20%; right: 10%;"></div>
+                <div class="space-y-6 w-full max-w-4xl lg:max-w-[55%] lg:self-end relative z-10">
                     <div class="hero-badge badge flex gap-2 w-fit mb-6">
                         <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse self-center"></span> Available for
                         Opportunities
@@ -104,8 +119,9 @@
 
                     <div class="flex flex-wrap items-center gap-4 mt-10 pt-4">
                         <a href="#projects"
-                            class="hero-cta btn-primary px-8 py-4 rounded-full font-semibold text-sm tracking-wide flex items-center gap-2">
-                            Explore Work <i data-feather="arrow-down-right" class="w-4 h-4"></i>
+                            class="hero-cta btn-primary px-8 py-4 rounded-full font-semibold text-sm tracking-wide flex items-center gap-2 relative overflow-hidden">
+                            <span class="btn-shimmer"></span>
+                            <span class="relative z-10 flex items-center gap-2">Explore Work <i data-feather="arrow-down-right" class="w-4 h-4"></i></span>
                         </a>
                         <a href="#contact"
                             class="hero-cta btn-secondary px-8 py-4 rounded-full font-semibold text-sm tracking-wide">
@@ -127,9 +143,9 @@
 
                 <!-- Profile Image in Hero -->
                 <div
-                    class="absolute right-0 lg:right-10 xl:right-20 top-1/2 -translate-y-1/2 w-[400px] h-[400px] xl:w-[500px] xl:h-[500px] hidden lg:block pointer-events-none z-0">
+                    class="absolute left-0 lg:left-10 xl:left-20 top-1/2 -translate-y-1/2 w-[400px] h-[400px] xl:w-[500px] xl:h-[500px] hidden lg:block pointer-events-none z-0">
                     <img src="images/Profile.jpg?v=5" alt="Sumit Chauhan"
-                        class="w-full h-full object-contain mix-blend-lighten"
+                        class="w-full h-full object-contain mix-blend-lighten hero-profile-img"
                         style="mask-image: radial-gradient(ellipse 45% 60% at 50% 30%, black 50%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 45% 60% at 50% 30%, black 50%, transparent 100%);" />
                 </div>
             </section>
@@ -138,12 +154,12 @@
             <section id="about" class="pt-12 reveal-up scroll-m-24">
                 <div class="flex items-baseline gap-4 mb-10">
                     <h2 class="text-3xl md:text-5xl font-bold tracking-tight">About.</h2>
-                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                    <div class="h-[1px] flex-grow section-divider"></div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     <!-- Main Bio (Large Span) -->
-                    <div class="glow-card md:col-span-2 lg:col-span-3 min-h-[300px]">
+                    <div class="glow-card md:col-span-2 lg:col-span-3 min-h-[350px]">
                         <div class="glow-card-content justify-between">
                             <div class="badge w-fit mb-6 text-xs"><i data-feather="user" class="w-3 h-3 mr-1"></i> Bio
                             </div>
@@ -190,12 +206,12 @@
             <section id="coding-profiles" class="reveal-up scroll-m-24">
                 <div class="flex items-baseline gap-4 mb-10">
                     <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Coding Profiles.</h2>
-                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                    <div class="h-[1px] flex-grow section-divider"></div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     <!-- Coding Profile 1 : Codeforces -->
                     <a href="https://codeforces.com/profile/SumitXorY" target="_blank"
-                        class="glow-card group min-h-[150px]">
+                        class="glow-card group min-h-[180px]">
                         <div
                             class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
                             <div class="flex items-center justify-between w-full">
@@ -206,15 +222,15 @@
                             </div>
                             <div class="mt-auto pt-8">
                                 <h4 class="font-bold text-xl text-white">Codeforces</h4>
-                                <p class="text-base text-gray-300 mt-1">Candidate Master <span
-                                        class="text-primary font-mono ml-1 font-bold">1944</span></p>
+                                <p class="text-base text-gray-300 mt-1">Expert <span
+                                        class="text-primary font-mono ml-1 font-bold">1864</span></p>
                             </div>
                         </div>
                     </a>
 
                     <!-- Coding Profile 2 : LeetCode -->
                     <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank"
-                        class="glow-card group min-h-[150px]">
+                        class="glow-card group min-h-[180px]">
                         <div
                             class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
                             <div class="flex items-center justify-between w-full">
@@ -233,7 +249,7 @@
 
                     <!-- Coding Profile 3 : CodeChef -->
                     <a href="https://www.codechef.com/users/gosling_dude" target="_blank"
-                        class="glow-card group min-h-[150px]">
+                        class="glow-card group min-h-[180px]">
                         <div
                             class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
                             <div class="flex items-center justify-between w-full">
@@ -246,18 +262,293 @@
                             <div class="mt-auto pt-8">
                                 <h4 class="font-bold text-xl text-white">CodeChef</h4>
                                 <p class="text-base text-gray-300 mt-1">5 Star <span
-                                        class="text-primary font-mono ml-1 font-bold">2023</span></p>
+                                        class="text-primary font-mono ml-1 font-bold">2070</span></p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Coding Profile 4 : GeeksforGeeks -->
+                    <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank"
+                        class="glow-card group min-h-[180px]">
+                        <div
+                            class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
+                            <div class="flex items-center justify-between w-full">
+                                <img src="images/gfg.svg" alt="GFG"
+                                    class="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity" />
+                                <i data-feather="arrow-up-right"
+                                    class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div class="mt-auto pt-8">
+                                <h4 class="font-bold text-xl text-white">GeeksforGeeks</h4>
+                                <p class="text-base text-gray-300 mt-1">Score <span
+                                        class="text-primary font-mono ml-1 font-bold" id="gfg-profile-score">1491</span></p>
                             </div>
                         </div>
                     </a>
                 </div>
+
+                <!-- Live Coding Dashboard -->
+                <div class="glow-card mt-8 col-span-full">
+                    <div class="glow-card-content p-6 md:p-8 bg-dark border border-white/10">
+                        <!-- Title & Tab Selection -->
+                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    Live Contest Telemetry
+                                </h3>
+                                <div class="flex flex-wrap items-center gap-3 mt-1">
+                                    <p class="text-sm text-gray-400">Real-time status updates across major platforms</p>
+                                    <button id="telemetry-sync-btn" class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold font-mono text-emerald-400 hover:text-white bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-md transition-all duration-300 group cursor-pointer" title="Sync Live Data">
+                                        <i data-feather="refresh-cw" class="w-3 h-3 group-hover:rotate-180 transition-transform duration-500"></i>
+                                        <span>Sync Data</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Tab Buttons -->
+                            <div class="flex bg-white/5 p-1 rounded-xl border border-white/10 w-full lg:w-auto overflow-x-auto gap-1">
+                                <button id="db-tab-cf" class="dashboard-tab-btn px-4 py-2 text-xs md:text-sm font-medium rounded-lg transition-all text-white bg-white/10 flex items-center justify-center gap-2 whitespace-nowrap flex-1 lg:flex-none">
+                                    <img src="images/codeforces.svg" class="w-4 h-4" alt="CF"> Codeforces
+                                </button>
+                                <button id="db-tab-lc" class="dashboard-tab-btn px-4 py-2 text-xs md:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white flex items-center justify-center gap-2 whitespace-nowrap flex-1 lg:flex-none">
+                                    <img src="images/leetcode.svg" class="w-4 h-4" alt="LC"> LeetCode
+                                </button>
+                                <button id="db-tab-cc" class="dashboard-tab-btn px-4 py-2 text-xs md:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white flex items-center justify-center gap-2 whitespace-nowrap flex-1 lg:flex-none">
+                                    <img src="images/codechef.png" class="w-4 h-4 brightness-0 invert" alt="CC"> CodeChef
+                                </button>
+                                <button id="db-tab-gfg" class="dashboard-tab-btn px-4 py-2 text-xs md:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white flex items-center justify-center gap-2 whitespace-nowrap flex-1 lg:flex-none">
+                                    <img src="images/gfg.svg" class="w-4 h-4" alt="GFG"> GeeksforGeeks
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tab Contents Wrapper -->
+                        <div class="relative min-h-[220px] w-full">
+                            <!-- Loader Overlay -->
+                            <div id="dashboard-loader" class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-dark/70 backdrop-blur-sm z-10 rounded-xl transition-all duration-300 pointer-events-none opacity-0">
+                                <div class="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                                <span class="text-xs text-gray-400 font-mono tracking-wider">Syncing telemetry...</span>
+                            </div>
+
+                            <!-- CODEFORCES PANEL -->
+                            <div id="db-panel-cf" class="dashboard-tab-pane space-y-6">
+                                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Current Rating</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="cf-rating">1944</div>
+                                        <span class="text-xs text-primary font-medium mt-0.5" id="cf-rank">Candidate Master</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Max Rating</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="cf-max-rating">1944</div>
+                                        <span class="text-xs text-gray-400 mt-0.5" id="cf-max-rank">Candidate Master</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Problems Solved</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="cf-solved">650+</div>
+                                        <span class="text-xs text-emerald-400 mt-0.5">Live Counted</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">User Handle</span>
+                                        <div class="text-lg font-bold text-white mt-1 truncate" id="cf-handle">SumitXorY</div>
+                                        <span class="text-xs text-gray-400 mt-0.5">Active Profile</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
+                                        <i data-feather="award" class="w-4 h-4 text-primary"></i> Recent Contest Performance
+                                    </h4>
+                                    <div class="overflow-x-auto rounded-xl border border-white/5 bg-white/[0.01]">
+                                        <table class="w-full text-left border-collapse text-sm min-w-[500px]">
+                                            <thead>
+                                                <tr class="border-b border-white/5 text-gray-400 bg-white/[0.02] font-mono text-[10px] uppercase">
+                                                    <th class="p-3">Contest Name</th>
+                                                    <th class="p-3 text-center">Rank</th>
+                                                    <th class="p-3 text-center">Rating Δ</th>
+                                                    <th class="p-3 text-center">New Rating</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="cf-contests-body" class="divide-y divide-white/5 text-gray-300 font-medium">
+                                                <tr>
+                                                    <td class="p-3 text-gray-400">Educational Codeforces Round 181</td>
+                                                    <td class="p-3 text-center font-mono text-gray-400">226</td>
+                                                    <td class="p-3 text-center font-mono text-emerald-400">+72</td>
+                                                    <td class="p-3 text-center font-mono font-bold text-white">1944</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-3 text-gray-400">Codeforces Round 990 (Div. 2)</td>
+                                                    <td class="p-3 text-center font-mono text-gray-400">482</td>
+                                                    <td class="p-3 text-center font-mono text-emerald-400">+45</td>
+                                                    <td class="p-3 text-center font-mono font-bold text-white">1872</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- LEETCODE PANEL -->
+                            <div id="db-panel-lc" class="dashboard-tab-pane space-y-6 hidden">
+                                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">LeetCode Rating</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="lc-rating">1898</div>
+                                        <span class="text-xs text-primary font-medium mt-0.5" id="lc-rank">Knight</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Global Ranking</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="lc-ranking">Top 2.5%</div>
+                                        <span class="text-xs text-gray-400 mt-0.5" id="lc-ranking-exact">Rank #18,342</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Solved / Total</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="lc-solved">600+</div>
+                                        <span class="text-xs text-gray-400 mt-0.5" id="lc-acceptance">Acceptance: 52%</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">User Handle</span>
+                                        <div class="text-lg font-bold text-white mt-1 truncate" id="lc-handle">sumit_chauhan_</div>
+                                        <span class="text-xs text-gray-400 mt-0.5">Active Profile</span>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <h4 class="text-xs font-bold text-white uppercase tracking-wider font-mono">Problem Difficulty Distribution</h4>
+                                    <div class="space-y-4">
+                                        <!-- Easy -->
+                                        <div>
+                                            <div class="flex justify-between text-xs mb-1.5 font-mono">
+                                                <span class="text-emerald-400 font-medium">EASY</span>
+                                                <span class="text-gray-400" id="lc-easy-count">150 / 800</span>
+                                            </div>
+                                            <div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                                                <div class="h-full bg-emerald-500 rounded-full transition-all duration-1000" id="lc-easy-bar" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Medium -->
+                                        <div>
+                                            <div class="flex justify-between text-xs mb-1.5 font-mono">
+                                                <span class="text-amber-400 font-medium">MEDIUM</span>
+                                                <span class="text-gray-400" id="lc-medium-count">380 / 1600</span>
+                                            </div>
+                                            <div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                                                <div class="h-full bg-amber-500 rounded-full transition-all duration-1000" id="lc-medium-bar" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                        <!-- Hard -->
+                                        <div>
+                                            <div class="flex justify-between text-xs mb-1.5 font-mono">
+                                                <span class="text-rose-400 font-medium">HARD</span>
+                                                <span class="text-gray-400" id="lc-hard-count">70 / 700</span>
+                                            </div>
+                                            <div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                                                <div class="h-full bg-rose-500 rounded-full transition-all duration-1000" id="lc-hard-bar" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CODECHEF PANEL -->
+                            <div id="db-panel-cc" class="dashboard-tab-pane space-y-6 hidden">
+                                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">CodeChef Rating</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="cc-rating">2023</div>
+                                        <span class="text-xs text-primary font-medium mt-0.5" id="cc-stars">5 Star (5★)</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Peak Rating</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="cc-max-rating">2023</div>
+                                        <span class="text-xs text-gray-400 mt-0.5">Personal Best</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Global Rank</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="cc-global-rank">1850</div>
+                                        <span class="text-xs text-emerald-400 mt-0.5">Top 1%</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Country Rank</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="cc-country-rank">1100</div>
+                                        <span class="text-xs text-gray-400 mt-0.5">India</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-5 space-y-3">
+                                        <h4 class="text-xs font-bold text-white uppercase tracking-wider font-mono">Platform Summary</h4>
+                                        <ul class="space-y-2 text-sm text-gray-400">
+                                            <li class="flex justify-between"><span class="font-mono text-xs">User Handle:</span> <span class="text-white font-medium">gosling_dude</span></li>
+                                            <li class="flex justify-between"><span class="font-mono text-xs">Account Status:</span> <span class="text-emerald-400 font-medium">Active</span></li>
+                                            <li class="flex justify-between"><span class="font-mono text-xs">Rating Category:</span> <span class="text-white font-medium">Div 1</span></li>
+                                            <li class="flex justify-between"><span class="font-mono text-xs">Platform Solved:</span> <span class="text-white font-mono" id="cc-solved">300+</span></li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-5 flex flex-col justify-center items-center text-center space-y-2">
+                                        <div class="text-5xl font-black text-gradient-accent tracking-tighter" id="cc-stars-display">5★</div>
+                                        <h4 class="text-lg font-bold text-white">Elite Competitive Coder</h4>
+                                        <p class="text-xs text-gray-400 max-w-[250px]">Maintaining a 5-Star status puts you in the top tier of competitive programmers worldwide.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- GEEKFORGEEKS PANEL -->
+                            <div id="db-panel-gfg" class="dashboard-tab-pane space-y-6 hidden">
+                                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Coding Score</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="gfg-score">1491</div>
+                                        <span class="text-xs text-primary font-medium mt-0.5">Overall Status</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Problems Solved</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="gfg-solved">438</div>
+                                        <span class="text-xs text-gray-400 mt-0.5">Live Counted</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Institute Rank</span>
+                                        <div class="text-2xl font-bold text-white mt-1" id="gfg-rank">155</div>
+                                        <span class="text-xs text-emerald-400 mt-0.5">NIT Jalandhar</span>
+                                    </div>
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
+                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">User Handle</span>
+                                        <div class="text-lg font-bold text-white mt-1 truncate" id="gfg-handle">sumit_chauhan143</div>
+                                        <span class="text-xs text-gray-400 mt-0.5">Active Profile</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-5 space-y-3">
+                                        <h4 class="text-xs font-bold text-white uppercase tracking-wider font-mono">Platform Summary</h4>
+                                        <ul class="space-y-2 text-sm text-gray-400">
+                                            <li class="flex justify-between"><span class="font-mono text-xs">Institute:</span> <span class="text-white font-medium truncate max-w-[200px]">NIT Jalandhar</span></li>
+                                            <li class="flex justify-between"><span class="font-mono text-xs">Longest Streak:</span> <span class="text-emerald-400 font-mono font-medium" id="gfg-streak">202 days</span></li>
+                                            <li class="flex justify-between"><span class="font-mono text-xs">Education:</span> <span class="text-white font-medium">B.Tech CSE</span></li>
+                                            <li class="flex justify-between"><span class="font-mono text-xs">Account Status:</span> <span class="text-emerald-400 font-medium">Active</span></li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-5 flex flex-col justify-center items-center text-center space-y-2">
+                                        <div class="text-5xl font-black text-gradient-accent tracking-tighter" id="gfg-badge">NIT</div>
+                                        <h4 class="text-lg font-bold text-white">NIT Jalandhar Rank 155</h4>
+                                        <p class="text-xs text-gray-400 max-w-[250px]">Consistently ranking among top computer science students at NIT Jalandhar.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
+
 
             <!-- SKILLS SECTION -->
             <section id="skills" class="reveal-up scroll-m-24">
                 <div class="flex items-baseline gap-4 mb-10">
                     <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Skills.</h2>
-                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                    <div class="h-[1px] flex-grow section-divider"></div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-grid">
@@ -464,7 +755,7 @@
             <section id="projects" class="reveal-up scroll-m-24">
                 <div class="flex items-baseline gap-4 mb-10">
                     <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Projects.</h2>
-                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                    <div class="h-[1px] flex-grow section-divider"></div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-grid">
@@ -735,7 +1026,7 @@
             <section id="achievements" class="reveal-up scroll-m-24">
                 <div class="flex items-baseline gap-4 mb-10">
                     <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Highlights.</h2>
-                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                    <div class="h-[1px] flex-grow section-divider"></div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-grid">
@@ -743,11 +1034,11 @@
                     <!-- Huge Stat -->
                     <div class="glow-card md:col-span-2 lg:col-span-3 min-h-[200px]">
                         <div class="glow-card-content justify-center items-center text-center p-8">
-                            <div class="text-7xl md:text-8xl font-black text-gradient-accent tracking-tighter mb-4">
-                                1500+
+                            <div class="text-7xl md:text-8xl font-black text-gradient-accent tracking-tighter mb-4 stat-counter" data-count="1649">
+                                0
                             </div>
                             <h4 class="text-2xl font-bold text-white mb-2">Algorithmic Problems Solved</h4>
-                            <p class="text-gray-400">across Codeforces, LeetCode, and CodeChef.</p>
+                            <p class="text-gray-400">across Codeforces, LeetCode, CodeChef, and GeeksforGeeks.</p>
                         </div>
                     </div>
 
@@ -799,7 +1090,7 @@
             <section id="leadership" class="reveal-up scroll-m-24">
                 <div class="flex items-baseline gap-4 mb-10">
                     <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Leadership & Activities.</h2>
-                    <div class="h-[1px] bg-dark-border flex-grow"></div>
+                    <div class="h-[1px] flex-grow section-divider"></div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-grid">
@@ -836,8 +1127,9 @@
                 <p class="text-xl text-gray-400 max-w-xl mb-10">Currently open for new opportunities. Whether you have a
                     question or just want to say hi, I'll try my best to get back to you!</p>
                 <a href="mailto:sumitchauhan.job@gmail.com"
-                    class="btn-primary px-10 py-5 rounded-full font-bold text-lg tracking-wide shadow-lg border border-white/20">
-                    Say Hello <i data-feather="send" class="w-4 h-4 inline-block ml-2 -mt-1"></i>
+                    class="btn-primary px-10 py-5 rounded-full font-bold text-lg tracking-wide shadow-lg border border-white/20 relative overflow-hidden">
+                    <span class="btn-shimmer"></span>
+                    <span class="relative z-10">Say Hello <i data-feather="send" class="w-4 h-4 inline-block ml-2 -mt-1"></i></span>
                 </a>
 
                 <div class="mt-8 flex flex-col md:flex-row gap-6 justify-center">
@@ -871,7 +1163,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=12"></script>
     <script>
         feather.replace();
         // mobile menu toggle
