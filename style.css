@@ -144,11 +144,11 @@ body {
   position: fixed;
   border-radius: 50%;
   pointer-events: none;
-  will-change: transform;
   z-index: -1;
   filter: blur(20px);
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+  contain: strict;
 }
 
 /* Orb 1 — Violet, top-left */
@@ -300,11 +300,7 @@ nav {
   position: relative;
   display: flex;
   flex-direction: column;
-  transition:
-    transform 0.6s var(--ease-out-expo),
-    box-shadow 0.5s ease;
-  transform-style: preserve-3d;
-  will-change: transform;
+  transition: box-shadow 0.5s ease;
 }
 
 .glow-card:hover {
@@ -365,6 +361,7 @@ nav {
   flex-direction: column;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   border-left: 1px solid rgba(255, 255, 255, 0.02);
+  contain: layout paint;
 }
 
 .glow-card > .glow-card-content > * {
@@ -472,9 +469,10 @@ nav {
     rgba(124, 58, 237, 0.15) 0%,
     transparent 70%
   );
-  filter: blur(60px);
+  filter: blur(40px);
   pointer-events: none;
   animation: pulse-glow 8s ease-in-out infinite;
+  contain: strict;
 }
 
 /* Hero glow — cyan variant */
@@ -489,7 +487,6 @@ nav {
 /* Profile image float */
 .hero-profile-img {
   animation: float 6s ease-in-out infinite;
-  will-change: transform;
 }
 
 /* Image glow drop-shadow */
@@ -657,6 +654,12 @@ nav {
 .dashboard-tab-btn {
   position: relative;
   transition: all 0.3s var(--ease-out-expo);
+  cursor: pointer;
+}
+
+.dashboard-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
 }
 
 .dashboard-tab-btn.active {

@@ -16,38 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Failed to register GSAP ScrollTrigger:', e);
     }
 
-    // ─── 3. LENIS SMOOTH SCROLL ──────────────────────────────────────────
+    // ─── 3. SMOOTH SCROLL (Native CSS) ─────────────────────────────────────
+    // Lenis removed for scroll performance — native CSS `scroll-behavior: smooth`
+    // handles anchor scrolling without hijacking every wheel event on the JS thread.
     let lenis = null;
-    try {
-        if (typeof Lenis !== 'undefined') {
-            lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                orientation: 'vertical',
-                gestureOrientation: 'vertical',
-                smoothWheel: true,
-                wheelMultiplier: 1,
-                touchMultiplier: 2,
-            });
-
-            // Connect Lenis to GSAP ticker
-            if (typeof gsap !== 'undefined') {
-                gsap.ticker.add((time) => {
-                    lenis.raf(time * 1000);
-                });
-                gsap.ticker.lagSmoothing(0);
-            }
-
-            // Sync Lenis scroll with ScrollTrigger
-            if (typeof ScrollTrigger !== 'undefined') {
-                lenis.on('scroll', ScrollTrigger.update);
-            }
-        } else {
-            console.warn('Lenis smooth scroll library not loaded.');
-        }
-    } catch (e) {
-        console.error('Failed to initialize Lenis:', e);
-    }
 
     // ─── 4. SCROLL PROGRESS BAR ──────────────────────────────────────────
     const scrollProgressBar = document.getElementById('scroll-progress');
@@ -74,10 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Combined scroll listener for progress + nav state (passive for performance)
+    // Combined scroll listener — uses rAF throttle to avoid layout thrashing
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-        updateScrollProgress();
-        updateNavScrollState();
+        if (!scrollTicking) {
+            requestAnimationFrame(() => {
+                updateScrollProgress();
+                updateNavScrollState();
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
     }, { passive: true });
 
     // Initial call
@@ -108,35 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 rafId = requestAnimationFrame(() => {
                     const x = clientX - rect.left;
                     const y = clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
 
                     // Set CSS custom properties for radial gradient glow
                     card.style.setProperty('--mouse-x', x + 'px');
                     card.style.setProperty('--mouse-y', y + 'px');
 
-                    // 3D tilt (only if animations are enabled)
-                    if (!prefersReducedMotion) {
-                        const rotateX = ((y - centerY) / centerY) * -5;
-                        const rotateY = ((x - centerX) / centerX) * 5;
-
-                        if (typeof gsap !== 'undefined') {
-                            gsap.to(card, {
-                                rotateX: rotateX,
-                                rotateY: rotateY,
-                                scale: 1.03,
-                                y: -5,
-                                duration: 0.5,
-                                ease: 'power2.out',
-                                transformPerspective: 800,
-                                transformOrigin: 'center center',
-                            });
-                        } else {
-                            card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03) translateY(-5px)`;
-                            card.style.transition = 'transform 0.2s ease-out';
-                        }
-                    }
-
+                    // 3D tilt disabled for scroll perf — glow effect only
                     rafId = null;
                 });
             });
@@ -146,23 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cancelAnimationFrame(rafId);
                     rafId = null;
                 }
-                rect = null; // Clear cache
-
-                if (!prefersReducedMotion) {
-                    if (typeof gsap !== 'undefined') {
-                        gsap.to(card, {
-                            rotateX: 0,
-                            rotateY: 0,
-                            scale: 1,
-                            y: 0,
-                            duration: 0.7,
-                            ease: 'elastic.out(1, 0.3)',
-                        });
-                    } else {
-                        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0px)';
-                        card.style.transition = 'transform 0.5s ease-out';
-                    }
-                }
+                rect = null;
             });
         });
     }
@@ -292,15 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                if (lenis) {
-                    lenis.scrollTo(targetElement, {
-                        offset: 0,
-                        duration: 1.2,
-                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    });
-                } else {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
+                targetElement.scrollIntoView({ behavior: 'smooth' });
             }
 
             // Close mobile menu if open
