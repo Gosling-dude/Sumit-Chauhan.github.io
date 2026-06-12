@@ -794,7 +794,7 @@ if (mobileMenuBtn && mobileMenu) {
    LIVE TELEMETRY DASHBOARD
    ================================================================ */
 
-const CACHE_KEY = 'portfolio_telemetry_cache_v3';
+const CACHE_KEY = 'portfolio_telemetry_cache_v4';
 const CACHE_TTL = 5 * 60 * 1000;
 
 const FALLBACK_DATA = {
@@ -828,12 +828,16 @@ function loadCache() {
     if (!raw) return null;
     const data = JSON.parse(raw);
     if (Date.now() - data.timestamp > CACHE_TTL) return null;
+    if (!data.lc?.rating || !data.lc?.solved) return null;
+    if (!data.cc?.rating || data.cc?.rating < 100) return null;
     return data;
   } catch { return null; }
 }
 
 function saveCache(data) {
   try {
+    if (!data.lc?.rating || !data.lc?.solved) return;
+    if (!data.cc?.rating || data.cc?.rating < 100) return;
     localStorage.setItem(CACHE_KEY, JSON.stringify({ ...data, timestamp: Date.now() }));
   } catch {}
 }
@@ -872,24 +876,34 @@ async function fetchCF(handle) {
 }
 
 async function fetchLC(handle) {
-  const [res, statsRes] = await Promise.all([
+  const [res, statsRes, contestRes] = await Promise.all([
     fetch(`https://alfa-leetcode-api.onrender.com/${handle}`),
-    fetch(`https://alfa-leetcode-api.onrender.com/${handle}/solved`)
+    fetch(`https://alfa-leetcode-api.onrender.com/${handle}/solved`),
+    fetch(`https://alfa-leetcode-api.onrender.com/${handle}/contest`),
   ]);
 
-  const data  = await res.json();
-  const stats = await statsRes.json();
+  const data    = await res.json();
+  const stats   = await statsRes.json();
+  const contest = await contestRes.json();
+
+  const rating = Math.round(contest?.contestRating) || 0;
+  const easy   = stats.easySolved   || 0;
+  const medium = stats.mediumSolved || 0;
+  const hard   = stats.hardSolved   || 0;
+  const solved = easy + medium + hard;
+
+  if (!rating && !solved) throw new Error('LC API returned empty data');
 
   return {
-    rating:     data.ranking || 0,
-    rank:       data.badge?.name || 'Knight',
-    ranking:    data.ranking || 0,
-    solved:     stats.solvedProblem || 0,
-    acceptance: data.acceptanceRate || '0',
+    rating:     rating  || FALLBACK_DATA.lc.rating,
+    rank:       data.badge?.name || FALLBACK_DATA.lc.rank,
+    ranking:    data.ranking     || FALLBACK_DATA.lc.ranking,
+    solved:     solved  || FALLBACK_DATA.lc.solved,
+    acceptance: String(data.acceptanceRate || FALLBACK_DATA.lc.acceptance),
     handle,
-    easy:   stats.easySolved   || 0,
-    medium: stats.mediumSolved || 0,
-    hard:   stats.hardSolved   || 0,
+    easy:   easy   || FALLBACK_DATA.lc.easy,
+    medium: medium || FALLBACK_DATA.lc.medium,
+    hard:   hard   || FALLBACK_DATA.lc.hard,
   };
 }
 
@@ -905,13 +919,16 @@ async function fetchCC(handle) {
   const globalRankEl  = doc.querySelector('.rating-ranks li:first-child strong');
   const countryRankEl = doc.querySelector('.rating-ranks li:last-child strong');
 
+  const rating = parseInt(ratingEl?.textContent?.trim() || '0', 10);
+  if (!rating || rating < 100) throw new Error('CC scrape returned invalid rating');
+
   return {
-    rating:      parseInt(ratingEl?.textContent?.trim() || '1756', 10),
-    stars:       starsEl?.textContent?.trim()?.replace(/[()]/g, '') || '3★',
-    maxRating:   1817,
-    globalRank:  globalRankEl  ? parseInt(globalRankEl.textContent.replace(/,/g, ''), 10) : 4116,
-    countryRank: countryRankEl ? parseInt(countryRankEl.textContent.replace(/,/g, ''), 10) : 1068,
-    solved:      solvedEl ? parseInt(solvedEl.textContent.match(/\d+/)?.[0] || '189', 10) : 189,
+    rating,
+    stars:       starsEl?.textContent?.trim()?.replace(/[()]/g, '') || FALLBACK_DATA.cc.stars,
+    maxRating:   rating,
+    globalRank:  globalRankEl  ? parseInt(globalRankEl.textContent.replace(/,/g, ''), 10) : FALLBACK_DATA.cc.globalRank,
+    countryRank: countryRankEl ? parseInt(countryRankEl.textContent.replace(/,/g, ''), 10) : FALLBACK_DATA.cc.countryRank,
+    solved:      solvedEl ? parseInt(solvedEl.textContent.match(/\d+/)?.[0] || '0', 10) : FALLBACK_DATA.cc.solved,
   };
 }
 
@@ -1045,7 +1062,7 @@ function switchDashboardTab(tab) {
 const HANDLES = {
   cf: 'SumitXorY',
   lc: 'sumit__chauhan__',
-  cc: 'sumitchauhan08',
+  cc: 'gosling_dude',
   gfg: 'sumitchauh99td'
 };
 
@@ -1065,10 +1082,10 @@ async function updateTelemetry() {
     ]);
 
     const data = {
-      cf:  cf.status  === 'fulfilled' ? cf.value  : FALLBACK_DATA.cf,
-      lc:  lc.status  === 'fulfilled' ? lc.value  : FALLBACK_DATA.lc,
-      cc:  cc.status  === 'fulfilled' ? cc.value  : FALLBACK_DATA.cc,
-      gfg: gfg.status === 'fulfilled' ? gfg.value : FALLBACK_DATA.gfg,
+      cf:  cf.status  === 'fulfilled' && cf.value?.rating                           ? cf.value  : FALLBACK_DATA.cf,
+      lc:  lc.status  === 'fulfilled' && lc.value?.rating && lc.value?.solved       ? lc.value  : FALLBACK_DATA.lc,
+      cc:  cc.status  === 'fulfilled' && cc.value?.rating && cc.value?.rating > 100 ? cc.value  : FALLBACK_DATA.cc,
+      gfg: gfg.status === 'fulfilled' && gfg.value?.score                           ? gfg.value : FALLBACK_DATA.gfg,
     };
 
     renderTelemetry(data);
