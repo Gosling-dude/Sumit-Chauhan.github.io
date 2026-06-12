@@ -5,1176 +5,1014 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sumit Chauhan | Software Engineer</title>
-    <meta name="description"
-        content="Portfolio of Sumit Chauhan - Software Engineer, Backend Systems, and Distributed Systems enthusiast from NIT Jalandhar">
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <meta name="description" content="Portfolio of Sumit Chauhan — Software Engineer specializing in Backend Systems and Distributed Architectures. NIT Jalandhar, Batch of 2026.">
+    <meta name="keywords" content="Sumit Chauhan, Software Engineer, Backend Systems, Distributed Systems, NIT Jalandhar, Competitive Programming">
+    <meta property="og:title" content="Sumit Chauhan | Software Engineer">
+    <meta property="og:description" content="Software Engineer specializing in Backend Systems & Distributed Architectures.">
+    <meta property="og:type" content="website">
+
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap">
+
+    <!-- Devicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+    <!-- Feather icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        dark: '#050505',
-                        "dark-surface": "#0a0a0a",
-                        "dark-border": "rgba(255, 255, 255, 0.08)",
-                        primary: '#7c3aed', // accent-primary
-                        secondary: '#06b6d4', // accent-secondary
+                        base: '#060608',
+                        surface: '#0e0e12',
+                        'surface-2': '#141418',
+                        accent: '#818cf8',
+                        'accent-dim': '#6366f1',
+                        'accent-2': '#22d3ee',
+                        'accent-3': '#a78bfa',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Space Grotesk', 'monospace']
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     }
                 }
             }
         }
     </script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="style.css?v=14">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body
-    class="bg-dark text-white font-sans antialiased relative overflow-x-clip selection:bg-primary selection:text-white">
+<body>
+    <!-- Custom cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
 
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="custom-cursor"></div>
-    <div class="custom-cursor-follower" id="custom-cursor-follower"></div>
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
 
-    <!-- Scroll Progress Bar -->
-    <div id="scroll-progress" class="scroll-progress"></div>
+    <!-- Canvas for particles -->
+    <canvas id="hero-canvas" class="hero-canvas"></canvas>
 
-    <!-- Ambient Background Effects -->
-    <div class="bg-grid-pattern"></div>
-    <div class="noise-overlay"></div>
-    <div class="gradient-orb gradient-orb--1"></div>
-    <div class="gradient-orb gradient-orb--2"></div>
-    <div class="gradient-orb gradient-orb--3"></div>
-    <div class="ambient-light"></div>
+    <!-- Ambient background orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
 
-    <nav class="fixed w-full top-0 z-50 transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold tracking-tighter mix-blend-difference z-10">SUMIT<span
-                    class="text-primary">.</span></a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium relative">
-                <div id="nav-pill" class="nav-pill"></div>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#achievements" class="nav-link">Achievements</a>
-                <a href="https://drive.google.com/file/d/1SvcnctyYM8Ce36Gpd630K4pw6WgJIHg3/view?usp=sharing"
-                    target="_blank" rel="noopener noreferrer" class="nav-link flex items-center gap-1 group">
-                    Resume <i data-feather="external-link"
-                        class="w-3 h-3 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"></i>
-                </a>
+    <!-- Grid overlay -->
+    <div class="bg-grid-overlay"></div>
+
+    <!-- ========================
+         NAVIGATION
+    ========================= -->
+    <nav id="main-nav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                SC<span class="nav-logo-accent">.</span>
+            </a>
+
+            <div class="nav-center">
+                <a href="#about" class="nav-link" data-target="about">About</a>
+                <a href="#skills" class="nav-link" data-target="skills">Skills</a>
+                <a href="#projects" class="nav-link" data-target="projects">Projects</a>
+                <a href="#experience" class="nav-link" data-target="experience">Experience</a>
+                <a href="#achievements" class="nav-link" data-target="achievements">Highlights</a>
             </div>
-            <!-- Mobile Menu Toggle -->
-            <button id="menu-btn" class="md:hidden p-2 text-white/70 hover:text-white transition-colors">
-                <i data-feather="menu"></i>
+
+            <a href="https://drive.google.com/file/d/1SvcnctyYM8Ce36Gpd630K4pw6WgJIHg3/view?usp=sharing"
+               target="_blank" rel="noopener noreferrer"
+               class="nav-resume mag-btn">
+                Resume <span aria-hidden="true">↗</span>
+            </a>
+
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
             </button>
         </div>
-        <!-- Mobile Dropdown -->
-        <div id="mobile-menu"
-            class="hidden md:hidden absolute w-full bg-dark/95 backdrop-blur-xl border-b border-dark-border py-4 px-6 flex flex-col space-y-4 text-sm font-medium shadow-2xl">
-            <a href="#about" class="text-white/70 hover:text-white transition-colors">About</a>
-            <a href="#skills" class="text-white/70 hover:text-white transition-colors">Skills</a>
-            <a href="#projects" class="text-white/70 hover:text-white transition-colors">Projects</a>
-            <a href="#experience" class="text-white/70 hover:text-white transition-colors">Experience</a>
-            <a href="#achievements" class="text-white/70 hover:text-white transition-colors">Achievements</a>
-            <a href="https://drive.google.com/file/d/1SvcnctyYM8Ce36Gpd630K4pw6WgJIHg3/view?usp=sharing" target="_blank"
-                rel="noopener noreferrer" class="text-primary hover:text-secondary transition-colors">View Resume →</a>
+
+        <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+            <a href="#about" class="mobile-nav-link">About</a>
+            <a href="#skills" class="mobile-nav-link">Skills</a>
+            <a href="#projects" class="mobile-nav-link">Projects</a>
+            <a href="#experience" class="mobile-nav-link">Experience</a>
+            <a href="#achievements" class="mobile-nav-link">Highlights</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+            <a href="https://drive.google.com/file/d/1SvcnctyYM8Ce36Gpd630K4pw6WgJIHg3/view?usp=sharing"
+               target="_blank" rel="noopener noreferrer"
+               class="mobile-resume-link">View Resume ↗</a>
         </div>
     </nav>
 
-    <main id="main-content" class="relative z-10 pt-24 pb-32">
-        <div id="cards-container" class="max-w-6xl mx-auto px-6 space-y-32">
+    <main>
 
-            <!-- HERO SECTION -->
-            <section id="hero" class="min-h-[85vh] flex flex-col justify-center relative items-start hero-perspective">
-                <!-- Hero Glow Orbs -->
-                <div class="hero-glow" style="top: 10%; left: -5%;"></div>
-                <div class="hero-glow hero-glow--secondary" style="bottom: 20%; right: 10%;"></div>
-                <div class="space-y-6 w-full max-w-4xl lg:max-w-[55%] lg:self-end relative z-10">
-                    <div class="hero-badge badge flex gap-2 w-fit mb-6">
-                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse self-center"></span> Available for
-                        Opportunities
+        <!-- ========================
+             HERO SECTION
+        ========================= -->
+        <section id="hero" class="hero-section">
+
+            <!-- Decorative large BG text -->
+            <div class="hero-bg-word" aria-hidden="true">BUILD</div>
+
+            <div class="hero-grid">
+                <!-- Left: Primary content -->
+                <div class="hero-content">
+                    <div class="hero-badge" data-anim="hero-badge">
+                        <span class="badge-dot"></span>
+                        Available for Opportunities
                     </div>
 
-                    <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-[1.1]">
-                        <div class="hero-title-line overflow-hidden"><span class="block">BUILDING</span></div>
-                        <div class="hero-title-line overflow-hidden"><span
-                                class="block text-gradient-accent">SCALABLE</span></div>
-                        <div class="hero-title-line overflow-hidden"><span class="block text-gradient">SYSTEMS.</span>
-                        </div>
+                    <h1 class="hero-title">
+                        <span class="hero-title-line" data-anim="hero-line">BUILDING</span>
+                        <span class="hero-title-line hero-title-accent" data-anim="hero-line">SCALABLE</span>
+                        <span class="hero-title-line hero-title-dim" data-anim="hero-line">SYSTEMS.</span>
                     </h1>
 
-                    <p class="hero-desc text-xl md:text-2xl text-gray-400 max-w-2xl font-light mt-6 leading-relaxed">
-                        I'm Sumit Chauhan, a <span id="role-text" class="text-white font-mono font-medium">Software
-                            Engineer.</span> <br />
-                        Based in India, solving complex problems with clean code.
+                    <p class="hero-desc" data-anim="hero-desc">
+                        I'm <strong>Sumit Chauhan</strong>, a
+                        <span class="hero-role-wrap"><span id="role-text" class="hero-role">Software Engineer.</span></span>
+                        <br>Based in India. Building what matters.
                     </p>
 
-                    <div class="flex flex-wrap items-center gap-4 mt-10 pt-4">
-                        <a href="#projects"
-                            class="hero-cta btn-primary px-8 py-4 rounded-full font-semibold text-sm tracking-wide flex items-center gap-2 relative overflow-hidden">
-                            <span class="btn-shimmer"></span>
-                            <span class="relative z-10 flex items-center gap-2">Explore Work <i data-feather="arrow-down-right" class="w-4 h-4"></i></span>
+                    <div class="hero-actions" data-anim="hero-actions">
+                        <a href="#projects" class="btn-primary mag-btn">
+                            <span>Explore Work</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                            </svg>
                         </a>
-                        <a href="#contact"
-                            class="hero-cta btn-secondary px-8 py-4 rounded-full font-semibold text-sm tracking-wide">
-                            Get in touch
+                        <a href="#contact" class="btn-ghost mag-btn">Get in touch</a>
+                    </div>
+
+                    <div class="hero-social" data-anim="hero-actions">
+                        <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="GitHub">
+                            <i data-feather="github"></i>
                         </a>
-                        <div class="hero-cta flex items-center gap-4 ml-4">
-                            <a href="https://github.com/Gosling-dude" target="_blank"
-                                class="text-gray-500 hover:text-white transition-colors p-2"><i
-                                    data-feather="github"></i></a>
-                            <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank"
-                                class="text-gray-500 hover:text-white transition-colors p-2"><i
-                                    data-feather="linkedin"></i></a>
-                            <a href="mailto:sumitchauhan.job@gmail.com"
-                                class="text-gray-500 hover:text-white transition-colors p-2"><i
-                                    data-feather="mail"></i></a>
-                        </div>
+                        <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="LinkedIn">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="mailto:sumitchauhan.job@gmail.com" class="social-btn mag-btn" aria-label="Email">
+                            <i data-feather="mail"></i>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Profile Image in Hero -->
-                <div
-                    class="absolute left-0 lg:left-10 xl:left-20 top-1/2 -translate-y-1/2 w-[400px] h-[400px] xl:w-[500px] xl:h-[500px] hidden lg:block pointer-events-none z-0">
-                    <img src="images/Profile.jpg?v=5" alt="Sumit Chauhan"
-                        class="w-full h-full object-contain mix-blend-lighten hero-profile-img"
-                        style="mask-image: radial-gradient(ellipse 45% 60% at 50% 30%, black 50%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 45% 60% at 50% 30%, black 50%, transparent 100%);" />
-                </div>
-            </section>
+                <!-- Right: Visual / Profile -->
+                <div class="hero-visual" data-anim="hero-visual">
+                    <div class="profile-orbit-wrap">
+                        <!-- Rotating rings -->
+                        <div class="profile-ring ring-outer"></div>
+                        <div class="profile-ring ring-mid"></div>
 
-            <!-- ABOUT & PROFILES BENTO GRID -->
-            <section id="about" class="pt-12 reveal-up scroll-m-24">
-                <div class="flex items-baseline gap-4 mb-10">
-                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">About.</h2>
-                    <div class="h-[1px] flex-grow section-divider"></div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <!-- Main Bio (Large Span) -->
-                    <div class="glow-card md:col-span-2 lg:col-span-3 min-h-[350px]">
-                        <div class="glow-card-content justify-between">
-                            <div class="badge w-fit mb-6 text-xs"><i data-feather="user" class="w-3 h-3 mr-1"></i> Bio
-                            </div>
-                            <h3 class="text-2xl md:text-3xl font-medium tracking-tight leading-snug text-white/90">
-                                Computer Science undergrad at <span class="text-white">NIT Jalandhar</span> (Batch of
-                                2026), deeply focused on <span class="text-gradient">Backend Systems & Distributed
-                                    Architectures</span>.
-                            </h3>
-                            <p class="text-gray-400 mt-6 leading-relaxed flex-grow text-base md:text-lg">
-                                I’ve built AI workflow engines like Weaveflow and RAG assistants like HerbiGPT. I
-                                heavily contribute to open-source — primarily <span class="text-white">Google’s Gemini
-                                    CLI</span> and the <span class="text-white">CNCF OpenTelemetry</span> project.
-                                Beyond the keyboard, I'm an avid chess player applying strategic thinking to system
-                                design.
-                            </p>
-                            <div class="mt-8 pt-4 border-t border-white/5 grid grid-cols-2 md:grid-cols-4 gap-4">
-                                <div>
-                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">B.Tech CSE
-                                    </p>
-                                    <p class="text-sm font-medium mt-1">NITJ • CGPA: 7.56</p>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Class XII
-                                    </p>
-                                    <p class="text-sm font-medium mt-1">92.6%</p>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Class X</p>
-                                    <p class="text-sm font-medium mt-1">90.8%</p>
-                                </div>
-                                <div class="md:text-right">
-                                    <p class="text-xs text-gray-500 uppercase tracking-widest font-semibold">Location
-                                    </p>
-                                    <p class="text-sm font-medium mt-1">Dehradun, India</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- CODING PROFILES SECTION -->
-            <section id="coding-profiles" class="reveal-up scroll-m-24">
-                <div class="flex items-baseline gap-4 mb-10">
-                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Coding Profiles.</h2>
-                    <div class="h-[1px] flex-grow section-divider"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- Coding Profile 1 : Codeforces -->
-                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank"
-                        class="glow-card group min-h-[180px]">
-                        <div
-                            class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
-                            <div class="flex items-center justify-between w-full">
-                                <img src="images/codeforces.svg" alt="CF"
-                                    class="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity" />
-                                <i data-feather="arrow-up-right"
-                                    class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
-                            </div>
-                            <div class="mt-auto pt-8">
-                                <h4 class="font-bold text-xl text-white">Codeforces</h4>
-                                <p class="text-base text-gray-300 mt-1">Expert <span
-                                        class="text-primary font-mono ml-1 font-bold">1864</span></p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Coding Profile 2 : LeetCode -->
-                    <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank"
-                        class="glow-card group min-h-[180px]">
-                        <div
-                            class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
-                            <div class="flex items-center justify-between w-full">
-                                <img src="images/leetcode.svg" alt="LC"
-                                    class="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity" />
-                                <i data-feather="arrow-up-right"
-                                    class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
-                            </div>
-                            <div class="mt-auto pt-8">
-                                <h4 class="font-bold text-xl text-white">LeetCode</h4>
-                                <p class="text-base text-gray-300 mt-1">Knight <span
-                                        class="text-primary font-mono ml-1 font-bold">1898</span></p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Coding Profile 3 : CodeChef -->
-                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank"
-                        class="glow-card group min-h-[180px]">
-                        <div
-                            class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
-                            <div class="flex items-center justify-between w-full">
-                                <img src="images/codechef.png" alt="CC"
-                                    class="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity"
-                                    filter="invert(1)" style="filter: brightness(0) invert(1);" />
-                                <i data-feather="arrow-up-right"
-                                    class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
-                            </div>
-                            <div class="mt-auto pt-8">
-                                <h4 class="font-bold text-xl text-white">CodeChef</h4>
-                                <p class="text-base text-gray-300 mt-1">5 Star <span
-                                        class="text-primary font-mono ml-1 font-bold">2070</span></p>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Coding Profile 4 : GeeksforGeeks -->
-                    <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank"
-                        class="glow-card group min-h-[180px]">
-                        <div
-                            class="glow-card-content justify-between bg-dark border border-white/10 transition-colors group-hover:bg-white/[0.04]">
-                            <div class="flex items-center justify-between w-full">
-                                <img src="images/gfg.svg" alt="GFG"
-                                    class="w-8 h-8 opacity-80 group-hover:opacity-100 transition-opacity" />
-                                <i data-feather="arrow-up-right"
-                                    class="w-5 h-5 text-gray-500 group-hover:text-white transition-colors"></i>
-                            </div>
-                            <div class="mt-auto pt-8">
-                                <h4 class="font-bold text-xl text-white">GeeksforGeeks</h4>
-                                <p class="text-base text-gray-300 mt-1">Score <span
-                                        class="text-primary font-mono ml-1 font-bold" id="gfg-profile-score">1491</span></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Live Coding Dashboard -->
-                <div class="glow-card mt-8 col-span-full">
-                    <div class="glow-card-content p-6 md:p-8 bg-dark border border-white/10">
-                        <!-- Title & Tab Selection -->
-                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
-                            <div>
-                                <h3 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                                    Live Contest Telemetry
-                                </h3>
-                                <div class="flex flex-wrap items-center gap-3 mt-1">
-                                    <p class="text-sm text-gray-400">Real-time status updates across major platforms</p>
-                                    <button id="telemetry-sync-btn" class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-semibold font-mono text-emerald-400 hover:text-white bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-md transition-all duration-300 group cursor-pointer" title="Sync Live Data">
-                                        <i data-feather="refresh-cw" class="w-3 h-3 group-hover:rotate-180 transition-transform duration-500"></i>
-                                        <span>Sync Data</span>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <!-- Tab Buttons -->
-                            <div class="flex bg-white/5 p-1 rounded-xl border border-white/10 w-full lg:w-auto overflow-x-auto gap-1">
-                                <button id="db-tab-cf" class="dashboard-tab-btn px-4 py-2 text-xs md:text-sm font-medium rounded-lg transition-all text-white bg-white/10 flex items-center justify-center gap-2 whitespace-nowrap flex-1 lg:flex-none">
-                                    <img src="images/codeforces.svg" class="w-4 h-4" alt="CF"> Codeforces
-                                </button>
-                                <button id="db-tab-lc" class="dashboard-tab-btn px-4 py-2 text-xs md:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white flex items-center justify-center gap-2 whitespace-nowrap flex-1 lg:flex-none">
-                                    <img src="images/leetcode.svg" class="w-4 h-4" alt="LC"> LeetCode
-                                </button>
-                                <button id="db-tab-cc" class="dashboard-tab-btn px-4 py-2 text-xs md:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white flex items-center justify-center gap-2 whitespace-nowrap flex-1 lg:flex-none">
-                                    <img src="images/codechef.png" class="w-4 h-4 brightness-0 invert" alt="CC"> CodeChef
-                                </button>
-                                <button id="db-tab-gfg" class="dashboard-tab-btn px-4 py-2 text-xs md:text-sm font-medium rounded-lg transition-all text-gray-400 hover:text-white flex items-center justify-center gap-2 whitespace-nowrap flex-1 lg:flex-none">
-                                    <img src="images/gfg.svg" class="w-4 h-4" alt="GFG"> GeeksforGeeks
-                                </button>
-                            </div>
+                        <!-- Profile image -->
+                        <div class="profile-img-frame">
+                            <img src="images/Profile.jpg?v=5" alt="Sumit Chauhan — Software Engineer" class="profile-img" />
                         </div>
 
-                        <!-- Tab Contents Wrapper -->
-                        <div class="relative min-h-[220px] w-full">
-                            <!-- Loader Overlay -->
-                            <div id="dashboard-loader" class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-dark/70 backdrop-blur-sm z-10 rounded-xl transition-all duration-300 pointer-events-none opacity-0">
-                                <div class="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
-                                <span class="text-xs text-gray-400 font-mono tracking-wider">Syncing telemetry...</span>
-                            </div>
-
-                            <!-- CODEFORCES PANEL -->
-                            <div id="db-panel-cf" class="dashboard-tab-pane space-y-6">
-                                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Current Rating</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="cf-rating">1944</div>
-                                        <span class="text-xs text-primary font-medium mt-0.5" id="cf-rank">Candidate Master</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Max Rating</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="cf-max-rating">1944</div>
-                                        <span class="text-xs text-gray-400 mt-0.5" id="cf-max-rank">Candidate Master</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Problems Solved</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="cf-solved">650+</div>
-                                        <span class="text-xs text-emerald-400 mt-0.5">Live Counted</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">User Handle</span>
-                                        <div class="text-lg font-bold text-white mt-1 truncate" id="cf-handle">SumitXorY</div>
-                                        <span class="text-xs text-gray-400 mt-0.5">Active Profile</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="space-y-3">
-                                    <h4 class="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
-                                        <i data-feather="award" class="w-4 h-4 text-primary"></i> Recent Contest Performance
-                                    </h4>
-                                    <div class="overflow-x-auto rounded-xl border border-white/5 bg-white/[0.01]">
-                                        <table class="w-full text-left border-collapse text-sm min-w-[500px]">
-                                            <thead>
-                                                <tr class="border-b border-white/5 text-gray-400 bg-white/[0.02] font-mono text-[10px] uppercase">
-                                                    <th class="p-3">Contest Name</th>
-                                                    <th class="p-3 text-center">Rank</th>
-                                                    <th class="p-3 text-center">Rating Δ</th>
-                                                    <th class="p-3 text-center">New Rating</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="cf-contests-body" class="divide-y divide-white/5 text-gray-300 font-medium">
-                                                <tr>
-                                                    <td class="p-3 text-gray-400">Educational Codeforces Round 181</td>
-                                                    <td class="p-3 text-center font-mono text-gray-400">226</td>
-                                                    <td class="p-3 text-center font-mono text-emerald-400">+72</td>
-                                                    <td class="p-3 text-center font-mono font-bold text-white">1944</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="p-3 text-gray-400">Codeforces Round 990 (Div. 2)</td>
-                                                    <td class="p-3 text-center font-mono text-gray-400">482</td>
-                                                    <td class="p-3 text-center font-mono text-emerald-400">+45</td>
-                                                    <td class="p-3 text-center font-mono font-bold text-white">1872</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- LEETCODE PANEL -->
-                            <div id="db-panel-lc" class="dashboard-tab-pane space-y-6 hidden">
-                                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">LeetCode Rating</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="lc-rating">1898</div>
-                                        <span class="text-xs text-primary font-medium mt-0.5" id="lc-rank">Knight</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Global Ranking</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="lc-ranking">Top 2.5%</div>
-                                        <span class="text-xs text-gray-400 mt-0.5" id="lc-ranking-exact">Rank #18,342</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Solved / Total</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="lc-solved">600+</div>
-                                        <span class="text-xs text-gray-400 mt-0.5" id="lc-acceptance">Acceptance: 52%</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">User Handle</span>
-                                        <div class="text-lg font-bold text-white mt-1 truncate" id="lc-handle">sumit_chauhan_</div>
-                                        <span class="text-xs text-gray-400 mt-0.5">Active Profile</span>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-4">
-                                    <h4 class="text-xs font-bold text-white uppercase tracking-wider font-mono">Problem Difficulty Distribution</h4>
-                                    <div class="space-y-4">
-                                        <!-- Easy -->
-                                        <div>
-                                            <div class="flex justify-between text-xs mb-1.5 font-mono">
-                                                <span class="text-emerald-400 font-medium">EASY</span>
-                                                <span class="text-gray-400" id="lc-easy-count">150 / 800</span>
-                                            </div>
-                                            <div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                                                <div class="h-full bg-emerald-500 rounded-full transition-all duration-1000" id="lc-easy-bar" style="width: 0%"></div>
-                                            </div>
-                                        </div>
-                                        <!-- Medium -->
-                                        <div>
-                                            <div class="flex justify-between text-xs mb-1.5 font-mono">
-                                                <span class="text-amber-400 font-medium">MEDIUM</span>
-                                                <span class="text-gray-400" id="lc-medium-count">380 / 1600</span>
-                                            </div>
-                                            <div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                                                <div class="h-full bg-amber-500 rounded-full transition-all duration-1000" id="lc-medium-bar" style="width: 0%"></div>
-                                            </div>
-                                        </div>
-                                        <!-- Hard -->
-                                        <div>
-                                            <div class="flex justify-between text-xs mb-1.5 font-mono">
-                                                <span class="text-rose-400 font-medium">HARD</span>
-                                                <span class="text-gray-400" id="lc-hard-count">70 / 700</span>
-                                            </div>
-                                            <div class="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                                                <div class="h-full bg-rose-500 rounded-full transition-all duration-1000" id="lc-hard-bar" style="width: 0%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- CODECHEF PANEL -->
-                            <div id="db-panel-cc" class="dashboard-tab-pane space-y-6 hidden">
-                                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">CodeChef Rating</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="cc-rating">2023</div>
-                                        <span class="text-xs text-primary font-medium mt-0.5" id="cc-stars">5 Star (5★)</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Peak Rating</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="cc-max-rating">2023</div>
-                                        <span class="text-xs text-gray-400 mt-0.5">Personal Best</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Global Rank</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="cc-global-rank">1850</div>
-                                        <span class="text-xs text-emerald-400 mt-0.5">Top 1%</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Country Rank</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="cc-country-rank">1100</div>
-                                        <span class="text-xs text-gray-400 mt-0.5">India</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-5 space-y-3">
-                                        <h4 class="text-xs font-bold text-white uppercase tracking-wider font-mono">Platform Summary</h4>
-                                        <ul class="space-y-2 text-sm text-gray-400">
-                                            <li class="flex justify-between"><span class="font-mono text-xs">User Handle:</span> <span class="text-white font-medium">gosling_dude</span></li>
-                                            <li class="flex justify-between"><span class="font-mono text-xs">Account Status:</span> <span class="text-emerald-400 font-medium">Active</span></li>
-                                            <li class="flex justify-between"><span class="font-mono text-xs">Rating Category:</span> <span class="text-white font-medium">Div 1</span></li>
-                                            <li class="flex justify-between"><span class="font-mono text-xs">Platform Solved:</span> <span class="text-white font-mono" id="cc-solved">300+</span></li>
-                                        </ul>
-                                    </div>
-                                    
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-5 flex flex-col justify-center items-center text-center space-y-2">
-                                        <div class="text-5xl font-black text-gradient-accent tracking-tighter" id="cc-stars-display">5★</div>
-                                        <h4 class="text-lg font-bold text-white">Elite Competitive Coder</h4>
-                                        <p class="text-xs text-gray-400 max-w-[250px]">Maintaining a 5-Star status puts you in the top tier of competitive programmers worldwide.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- GEEKFORGEEKS PANEL -->
-                            <div id="db-panel-gfg" class="dashboard-tab-pane space-y-6 hidden">
-                                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Coding Score</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="gfg-score">1491</div>
-                                        <span class="text-xs text-primary font-medium mt-0.5">Overall Status</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Problems Solved</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="gfg-solved">438</div>
-                                        <span class="text-xs text-gray-400 mt-0.5">Live Counted</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">Institute Rank</span>
-                                        <div class="text-2xl font-bold text-white mt-1" id="gfg-rank">155</div>
-                                        <span class="text-xs text-emerald-400 mt-0.5">NIT Jalandhar</span>
-                                    </div>
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 flex flex-col justify-center">
-                                        <span class="text-[10px] text-gray-500 uppercase tracking-wider font-mono">User Handle</span>
-                                        <div class="text-lg font-bold text-white mt-1 truncate" id="gfg-handle">sumit_chauhan143</div>
-                                        <span class="text-xs text-gray-400 mt-0.5">Active Profile</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-5 space-y-3">
-                                        <h4 class="text-xs font-bold text-white uppercase tracking-wider font-mono">Platform Summary</h4>
-                                        <ul class="space-y-2 text-sm text-gray-400">
-                                            <li class="flex justify-between"><span class="font-mono text-xs">Institute:</span> <span class="text-white font-medium truncate max-w-[200px]">NIT Jalandhar</span></li>
-                                            <li class="flex justify-between"><span class="font-mono text-xs">Longest Streak:</span> <span class="text-emerald-400 font-mono font-medium" id="gfg-streak">202 days</span></li>
-                                            <li class="flex justify-between"><span class="font-mono text-xs">Education:</span> <span class="text-white font-medium">B.Tech CSE</span></li>
-                                            <li class="flex justify-between"><span class="font-mono text-xs">Account Status:</span> <span class="text-emerald-400 font-medium">Active</span></li>
-                                        </ul>
-                                    </div>
-                                    
-                                    <div class="bg-white/[0.02] border border-white/5 rounded-xl p-5 flex flex-col justify-center items-center text-center space-y-2">
-                                        <div class="text-5xl font-black text-gradient-accent tracking-tighter" id="gfg-badge">NIT</div>
-                                        <h4 class="text-lg font-bold text-white">NIT Jalandhar Rank 155</h4>
-                                        <p class="text-xs text-gray-400 max-w-[250px]">Consistently ranking among top computer science students at NIT Jalandhar.</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- Floating metric cards -->
+                        <div class="float-card float-card--tl">
+                            <span class="float-card-platform">Codeforces</span>
+                            <span class="float-card-value">Expert · 1944</span>
+                        </div>
+                        <div class="float-card float-card--tr">
+                            <span class="float-card-platform">LeetCode</span>
+                            <span class="float-card-value">Knight · 1898</span>
+                        </div>
+                        <div class="float-card float-card--br">
+                            <span class="float-card-platform">Solved</span>
+                            <span class="float-card-value float-card-value--big">1649<span class="float-card-plus">+</span></span>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
+            <!-- Scroll cue -->
+            <div class="hero-scroll-cue">
+                <div class="scroll-cue-line"></div>
+                <span class="scroll-cue-label">scroll</span>
+            </div>
+        </section>
 
-            <!-- SKILLS SECTION -->
-            <section id="skills" class="reveal-up scroll-m-24">
-                <div class="flex items-baseline gap-4 mb-10">
-                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Skills.</h2>
-                    <div class="h-[1px] flex-grow section-divider"></div>
+        <!-- ========================
+             ABOUT SECTION
+        ========================= -->
+        <section id="about" class="page-section">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-num">01</span>
+                    <span class="eyebrow-dash"></span>
+                    <span class="eyebrow-text">ABOUT</span>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 stagger-grid">
-                    <!-- Column 1 -->
-                    <div class="space-y-4">
-                        <div class="glow-card min-h-[120px]">
-                            <div class="glow-card-content">
-                                <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4">Languages
-                                </h3>
-                                <div class="flex flex-wrap gap-3">
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-cplusplus-plain colored text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">C++</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-java-plain colored text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Java</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-python-plain colored text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Python</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-typescript-plain colored text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">TypeScript</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-azuresqldatabase-plain colored text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">SQL</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-c-plain colored text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">C</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="glow-card min-h-[120px]">
-                            <div class="glow-card-content">
-                                <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4">Core CS
-                                </h3>
-                                <div class="flex flex-wrap gap-3">
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i data-feather="cpu"
-                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Data
-                                            Structures</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i data-feather="git-merge"
-                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Algorithms</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i data-feather="command"
-                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">OS</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i data-feather="wifi"
-                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Networks</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i data-feather="database"
-                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">DBMS</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Column 2 -->
-                    <div class="space-y-4">
-                        <div class="glow-card min-h-[120px]">
-                            <div class="glow-card-content">
-                                <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4">Backend
-                                    Systems / Infra</h3>
-                                <div class="flex flex-wrap gap-3">
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i data-feather="server"
-                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">REST
-                                            APIs</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i data-feather="grid"
-                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Microservices</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-primary/10 border border-primary/30 rounded-lg hover:-translate-y-1 hover:bg-primary/20 hover:border-primary/50 transition-all cursor-default group">
-                                        <i data-feather="share-2"
-                                            class="w-4 h-4 text-primary group-hover:scale-110 transition-transform"></i>
-                                        <span class="text-xs font-semibold text-primary transition-colors">Distributed
-                                            Systems</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-postgresql-plain colored text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">PostgreSQL</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-redis-plain colored text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Redis</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-docker-plain colored text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Docker</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i
-                                            class="devicon-linux-plain text-white text-lg group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Linux</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i data-feather="git-branch"
-                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">CI/CD</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="glow-card min-h-[120px]">
-                            <div class="glow-card-content">
-                                <h3 class="text-sm uppercase tracking-widest text-gray-500 font-semibold mb-4">AI / ML
-                                    Tooling</h3>
-                                <div class="flex flex-wrap gap-3">
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-secondary/10 border border-secondary/20 rounded-lg hover:-translate-y-1 hover:bg-secondary/20 hover:border-secondary/40 transition-all cursor-default group">
-                                        <i data-feather="link-2"
-                                            class="w-4 h-4 text-secondary group-hover:scale-110 transition-transform"></i>
-                                        <span
-                                            class="text-xs font-semibold text-secondary transition-colors">LangChain</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-secondary/10 border border-secondary/20 rounded-lg hover:-translate-y-1 hover:bg-secondary/20 hover:border-secondary/40 transition-all cursor-default group">
-                                        <i data-feather="layers"
-                                            class="w-4 h-4 text-secondary group-hover:scale-110 transition-transform"></i>
-                                        <span class="text-xs font-semibold text-secondary transition-colors">RAG
-                                            Pipelines</span>
-                                    </div>
-                                    <div
-                                        class="flex items-center gap-2 px-3 py-2 bg-[#050505] border border-white/10 rounded-lg hover:-translate-y-1 hover:bg-white/5 hover:border-white/20 transition-all cursor-default group">
-                                        <i data-feather="bar-chart-2"
-                                            class="w-4 h-4 text-gray-400 group-hover:scale-110 transition-transform group-hover:text-white"></i>
-                                        <span
-                                            class="text-xs font-semibold text-gray-300 group-hover:text-white transition-colors">Vector
-                                            Embeddings</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- PROJECTS SECTION -->
-            <section id="projects" class="reveal-up scroll-m-24">
-                <div class="flex items-baseline gap-4 mb-10">
-                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Projects.</h2>
-                    <div class="h-[1px] flex-grow section-divider"></div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-grid">
-
-                    <!-- Weaveflow -->
-                    <div class="glow-card group min-h-[400px]">
-                        <div class="glow-card-content p-0 overflow-hidden">
-                            <div class="h-48 w-full bg-dark overflow-hidden relative border-b border-white/5">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10">
-                                </div>
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
-                                    alt="Dashboard"
-                                    class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700 ease-out" />
-                                <div class="absolute top-4 left-4 z-20 flex gap-2">
-                                    <a href="https://github.com/Gosling-dude/weaveflow" target="_blank"
-                                        class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 text-white hover:bg-white hover:text-black transition-colors"><i
-                                            data-feather="github" class="w-4 h-4"></i></a>
-                                </div>
-                            </div>
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-2xl font-bold mb-3 tracking-tight">Weaveflow</h3>
-                                <ul class="text-gray-400 text-base leading-relaxed mb-6 list-disc pl-4 space-y-2">
-                                    <li>Built workflow orchestration platform for multi-step AI pipelines.</li>
-                                    <li>Designed microservice-based backend APIs enabling distributed workflow
-                                        execution.
-                                    </li>
-                                    <li>Implemented REST APIs and service integrations between workflow components.</li>
-                                    <li>Developed relational data model using PostgreSQL for workflow state persistence.
-                                    </li>
-                                    <li>Built CI/CD pipelines using GitHub Actions for automated builds.</li>
-                                </ul>
-                                <div class="mt-auto flex flex-wrap gap-2">
-                                    <span
-                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Next.js</span>
-                                    <span
-                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">TypeScript</span>
-                                    <span
-                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">PostgreSQL</span>
-                                    <span
-                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">REST</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HerbiGPT -->
-                    <div class="glow-card group min-h-[400px]">
-                        <div class="glow-card-content p-0 overflow-hidden">
-                            <div class="h-48 w-full bg-dark overflow-hidden relative border-b border-white/5">
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10">
-                                </div>
-                                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2670&auto=format&fit=crop"
-                                    alt="AI Bot"
-                                    class="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700 ease-out" />
-                                <div class="absolute top-4 left-4 z-20 flex gap-2">
-                                    <a href="https://github.com/Gosling-dude/HerbiGPT---Your-Holistic-Wellness-Guide.git"
-                                        target="_blank"
-                                        class="w-8 h-8 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center border border-white/10 text-white hover:bg-white hover:text-black transition-colors"><i
-                                            data-feather="github" class="w-4 h-4"></i></a>
-                                </div>
-                            </div>
-                            <div class="p-6 flex flex-col flex-grow">
-                                <h3 class="text-2xl font-bold mb-3 tracking-tight">HerbiGPT</h3>
-                                <ul class="text-gray-400 text-base leading-relaxed mb-6 list-disc pl-4 space-y-2">
-                                    <li>Built AI assistant using Retrieval-Augmented Generation enabling
-                                        knowledge-grounded
-                                        responses.</li>
-                                    <li>Developed Python backend services for document ingestion, vector indexing and
-                                        LLM
-                                        queries.</li>
-                                    <li>Implemented automated document processing pipeline using OCR and web scraping.
-                                    </li>
-                                    <li>Designed scalable retrieval system supporting concurrent semantic search
-                                        queries.
-                                    </li>
-                                </ul>
-                                <div class="mt-auto flex flex-wrap gap-2">
-                                    <span
-                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Python</span>
-                                    <span
-                                        class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">LangChain</span>
-                                    <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Vector
-                                        DB</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- EXPERIENCE (Open Source) SECTION -->
-            <section id="experience" class="reveal-up scroll-m-24 max-w-4xl mx-auto">
-                <div class="flex flex-col items-center text-center mb-16">
-                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-white">
-                        Experience & <span class="text-secondary">Contributions</span>
-                    </h2>
-                    <p class="text-gray-400 max-w-2xl text-sm md:text-base">
-                        A timeline of my professional experience and key open-source contributions.
-                    </p>
-                </div>
-
-                <div class="mb-10 pl-2 lg:pl-10">
-                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
-                        Professional Experience
-                    </h3>
-                </div>
-
-                <!-- Professional Experience Timeline -->
-                <div class="relative border-l border-primary ml-4 md:ml-12 space-y-12 pb-16">
-                    <!-- Item 1: Kalvium -->
-                    <div class="relative pl-8 md:pl-10">
-                        <!-- Timeline Dot -->
-                        <div
-                            class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_10px_rgba(124,58,237,0.8)]">
-                        </div>
-
-                        <div class="flex items-start gap-4 mb-2">
-                            <!-- Kalvium Logo Placeholder -->
-                            <div
-                                class="w-12 h-12 rounded bg-white/5 flex-shrink-0 flex items-center justify-center border border-white/10 mt-1 uppercase font-bold text-xl text-primary font-mono shadow-sm">
-                                K
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold text-white tracking-tight">Teaching Ninja</h4>
-                                <div class="text-sm text-gray-400 font-medium mt-1">Kalvium · Internship</div>
-                            </div>
-                        </div>
-
-                        <div
-                            class="text-[0.7rem] text-gray-500 font-medium tracking-widest uppercase flex flex-col md:flex-row gap-1 md:gap-2 mb-4">
-                            <span>Mar 2026 - Present <span
-                                    class="text-gray-600 font-normal lowercase tracking-normal md:ml-1">· 1
-                                    mo</span></span>
-                            <span
-                                class="hidden md:inline-block w-[3px] h-[3px] rounded-full bg-gray-600 self-center"></span>
-                            <span>Bengaluru, India · On-site</span>
-                        </div>
-
-                        <p class="text-base text-gray-300 leading-relaxed max-w-2xl mb-5">
-                            Mentoring undergraduate students in Data Structures & Algorithms, Competitive Programming,
-                            System Design, and core Computer Science fundamentals. Conducting coding sessions, guiding
-                            problem-solving approaches, and supporting hands-on learning to build strong software
-                            engineering foundations.
+                <div class="about-layout">
+                    <div class="about-left reveal-elem">
+                        <h2 class="section-headline">The engineer<br>behind the systems.</h2>
+                        <p class="about-primary-text">
+                            Computer Science undergrad at <strong>NIT Jalandhar</strong> (Batch of 2026), deeply focused on <em class="text-accent-glow">Backend Systems</em> &amp; <em class="text-accent-glow">Distributed Architectures</em>.
+                        </p>
+                        <p class="about-secondary-text">
+                            I've built AI workflow engines like Weaveflow and RAG assistants like HerbiGPT. I heavily contribute to open-source — primarily <strong>Google's Gemini CLI</strong> and the <strong>CNCF OpenTelemetry</strong> project. Beyond the keyboard, I'm an avid chess player, applying strategic thinking to system design.
                         </p>
 
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Data
-                                Structures</span>
-                            <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Algorithms</span>
-                            <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">System
-                                Design</span>
-                            <span class="text-xs font-mono text-gray-500 bg-white/5 py-1 px-2 rounded">Competitive
-                                Programming</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-10 pl-2 lg:pl-10">
-                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight">
-                        Open Source Contributor
-                    </h3>
-                    <p
-                        class="text-gray-400 text-base md:text-lg leading-relaxed max-w-3xl border-l-2 border-secondary/50 pl-4 py-1">
-                        These are some of my meaningful, production-grade open-source contributions that involved real
-                        code reviews, CI pipelines, and collaboration with maintainers.
-                    </p>
-                </div>
-
-                <!-- Timeline Container (Open Source) -->
-                <div class="relative border-l border-secondary ml-4 md:ml-12 space-y-12 pb-8">
-                    <!-- Item 1 -->
-                    <div class="relative pl-8 md:pl-10">
-                        <!-- Timeline Dot -->
-                        <div
-                            class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(6,182,212,0.8)]">
-                        </div>
-
-                        <div class="text-[0.65rem] text-gray-400 font-medium mb-1 tracking-widest uppercase">
-                            Contribution</div>
-                        <h4 class="text-lg md:text-xl font-bold text-secondary mb-3">OpenTelemetry (CNCF Project)</h4>
-
-                        <ul class="text-base text-gray-300 space-y-2 mb-5 list-disc pl-5 marker:text-gray-600">
-                            <li><strong class="text-white">Emit warning when TraceIdRatioBasedSampler is used as child
-                                    sampler</strong></li>
-                            <li class="text-gray-400">Added a spec-required compatibility warning at configuration time
-                                without changing
-                                runtime behavior.</li>
-                        </ul>
-
-                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank"
-                            class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-black bg-white rounded hover:bg-white/90 transition-colors shadow-sm">
-                            <i data-feather="git-pull-request" class="w-3 h-3"></i> View Contribution (PR #7937)
-                        </a>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="relative pl-8 md:pl-10">
-                        <div
-                            class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(6,182,212,0.8)]">
-                        </div>
-
-                        <div class="text-[0.65rem] text-gray-400 font-medium mb-1 tracking-widest uppercase">
-                            Contribution</div>
-                        <h4 class="text-lg md:text-xl font-bold text-secondary mb-3">OpenTelemetry (CNCF Project)</h4>
-
-                        <ul class="text-base text-gray-300 space-y-2 mb-5 list-disc pl-5 marker:text-gray-600">
-                            <li><strong class="text-white">Clarify suppressed warnings in API common module</strong>
-                            </li>
-                            <li class="text-gray-400">Improved maintainability by documenting intentional warning
-                                suppressions. No functional
-                                changes.</li>
-                        </ul>
-
-                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7951" target="_blank"
-                            class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-black bg-white rounded hover:bg-white/90 transition-colors shadow-sm">
-                            <i data-feather="git-pull-request" class="w-3 h-3"></i> View Contribution (PR #7951)
-                        </a>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="relative pl-8 md:pl-10">
-                        <div
-                            class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(6,182,212,0.8)]">
-                        </div>
-
-                        <div
-                            class="text-[0.65rem] text-gray-400 font-medium mb-1 tracking-widest uppercase flex items-center gap-2">
-                            Jan 2025 – Present <span
-                                class="inline-block w-[3px] h-[3px] rounded-full bg-gray-600"></span> Remote
-                        </div>
-                        <h4 class="text-lg md:text-xl font-bold text-secondary mb-3">Google - Gemini CLI</h4>
-
-                        <ul class="text-base text-gray-300 space-y-2 mb-5 list-disc pl-5 marker:text-gray-600">
-                            <li><strong class="text-white">Support GOOGLE_CLOUD_PROJECT_ID fallback</strong></li>
-                            <li class="text-gray-400">Added a backward-compatible environment variable fallback,
-                                improving developer
-                                experience across platforms.</li>
-                        </ul>
-
-                        <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank"
-                            class="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-semibold text-black bg-white rounded hover:bg-white/90 transition-colors shadow-sm">
-                            <i data-feather="git-pull-request" class="w-3 h-3"></i> View Contribution (PR #2725)
-                        </a>
-                    </div>
-                </div>
-
-                <div
-                    class="mt-8 pt-10 border-t border-dark-border lg:pl-12 flex flex-col md:flex-row items-center md:items-start gap-4 text-center md:text-left">
-                    <div class="p-3 bg-white/5 rounded-full border border-white/10">
-                        <i data-feather="github" class="w-6 h-6 text-white"></i>
-                    </div>
-                    <div>
-                        <p class="text-gray-300 mb-2">For more open source contributions and <strong
-                                class="text-white font-mono">📊 GitHub Stats</strong>,</p>
-                        <a href="https://github.com/Gosling-dude" target="_blank"
-                            class="inline-flex items-center text-secondary font-medium hover:text-white transition-colors group">
-                            visit my GitHub profile
-                            <i data-feather="arrow-right"
-                                class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ACHIEVEMENTS & LEADERSHIP BENTO -->
-            <section id="achievements" class="reveal-up scroll-m-24">
-                <div class="flex items-baseline gap-4 mb-10">
-                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Highlights.</h2>
-                    <div class="h-[1px] flex-grow section-divider"></div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-grid">
-
-                    <!-- Huge Stat -->
-                    <div class="glow-card md:col-span-2 lg:col-span-3 min-h-[200px]">
-                        <div class="glow-card-content justify-center items-center text-center p-8">
-                            <div class="text-7xl md:text-8xl font-black text-gradient-accent tracking-tighter mb-4 stat-counter" data-count="1649">
-                                0
+                        <div class="about-info-row">
+                            <div class="about-info-item">
+                                <i data-feather="map-pin"></i>
+                                <span>Dehradun, India</span>
                             </div>
-                            <h4 class="text-2xl font-bold text-white mb-2">Algorithmic Problems Solved</h4>
-                            <p class="text-gray-400">across Codeforces, LeetCode, CodeChef, and GeeksforGeeks.</p>
+                            <div class="about-info-item">
+                                <i data-feather="book-open"></i>
+                                <span>B.Tech CSE · NITJ</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- ICPC -->
-                    <a href="https://codeforces.com/contest/2172/standings" target="_blank"
-                        class="glow-card group min-h-[160px]">
-                        <div class="glow-card-content justify-center p-6 transition-colors group-hover:bg-white/[0.02]">
-                            <i data-feather="external-link"
-                                class="w-4 h-4 text-gray-600 absolute top-4 right-4 group-hover:text-white transition-colors"></i>
-                            <div
-                                class="text-3xl font-black text-white mb-2 group-hover:-translate-y-1 transition-transform">
-                                AIR 23</div>
-                            <h4 class="text-base font-bold text-gray-300 mb-1">ICPC Asia Regional '25</h4>
-                            <p class="text-sm text-gray-500">Global Rank 492 in Taichung.</p>
-                        </div>
-                    </a>
-
-                    <!-- CF EDU -->
-                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank"
-                        class="glow-card group min-h-[160px]">
-                        <div class="glow-card-content justify-center p-6 transition-colors group-hover:bg-white/[0.02]">
-                            <i data-feather="external-link"
-                                class="w-4 h-4 text-gray-600 absolute top-4 right-4 group-hover:text-white transition-colors"></i>
-                            <div
-                                class="text-3xl font-black text-white mb-2 group-hover:-translate-y-1 transition-transform">
-                                226th</div>
-                            <h4 class="text-base font-bold text-gray-300 mb-1">Edu Codeforces Round 181</h4>
-                            <p class="text-sm text-gray-500">Out of 20,000+ globally.</p>
-                        </div>
-                    </a>
-
-                    <!-- CodeChef Starters -->
-                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank"
-                        class="glow-card group min-h-[160px]">
-                        <div class="glow-card-content justify-center p-6 transition-colors group-hover:bg-white/[0.02]">
-                            <i data-feather="external-link"
-                                class="w-4 h-4 text-gray-600 absolute top-4 right-4 group-hover:text-white transition-colors"></i>
-                            <div
-                                class="text-3xl font-black text-white mb-2 group-hover:-translate-y-1 transition-transform">
-                                24th</div>
-                            <h4 class="text-base font-bold text-gray-300 mb-1">CodeChef Starters 212B</h4>
-                            <p class="text-sm text-gray-500">Out of 34,700+ globally.</p>
-                        </div>
-                    </a>
-                </div>
-            </section>
-
-            <!-- LEADERSHIP & ACTIVITIES -->
-            <section id="leadership" class="reveal-up scroll-m-24">
-                <div class="flex items-baseline gap-4 mb-10">
-                    <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Leadership & Activities.</h2>
-                    <div class="h-[1px] flex-grow section-divider"></div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-grid">
-                    <!-- Mentorship -->
-                    <div class="glow-card min-h-[150px]">
-                        <div class="glow-card-content flex flex-col justify-center items-center text-center p-6">
-                            <i data-feather="users" class="w-8 h-8 text-primary mb-3"></i>
-                            <h3 class="text-lg font-bold text-white mb-1">Mentorship</h3>
-                            <p class="text-sm text-gray-400">Mentored junior students in competitive programming</p>
-                        </div>
-                    </div>
-                    <!-- Chess -->
-                    <div class="glow-card min-h-[150px]">
-                        <div class="glow-card-content flex flex-col justify-center items-center text-center p-6">
-                            <i data-feather="award" class="w-8 h-8 text-secondary mb-3"></i>
-                            <h3 class="text-lg font-bold text-white mb-1">1st Place</h3>
-                            <p class="text-sm text-gray-400">Inter-NIT Chess Championship</p>
-                        </div>
-                    </div>
-                    <!-- Cricket -->
-                    <div class="glow-card min-h-[150px]">
-                        <div class="glow-card-content flex flex-col justify-center items-center text-center p-6">
-                            <i data-feather="target" class="w-8 h-8 text-primary mb-3"></i>
-                            <h3 class="text-lg font-bold text-white mb-1">3rd Runner-up</h3>
-                            <p class="text-sm text-gray-400">Inter-NIT Cricket Competition</p>
+                    <div class="about-right reveal-elem">
+                        <div class="edu-stat-grid">
+                            <div class="edu-stat-card">
+                                <div class="edu-stat-val">7.56</div>
+                                <div class="edu-stat-key">CGPA</div>
+                                <div class="edu-stat-sub">B.Tech CSE · NITJ</div>
+                            </div>
+                            <div class="edu-stat-card">
+                                <div class="edu-stat-val">92.6%</div>
+                                <div class="edu-stat-key">Class XII</div>
+                                <div class="edu-stat-sub">CBSE Board</div>
+                            </div>
+                            <div class="edu-stat-card">
+                                <div class="edu-stat-val">90.8%</div>
+                                <div class="edu-stat-key">Class X</div>
+                                <div class="edu-stat-sub">CBSE Board</div>
+                            </div>
+                            <div class="edu-stat-card edu-stat-card--accent">
+                                <div class="edu-stat-val">3+</div>
+                                <div class="edu-stat-key">Merged PRs</div>
+                                <div class="edu-stat-sub">Open Source</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- FOOTER CTA -->
-            <section id="contact" class="pt-24 pb-12 reveal-up flex flex-col items-center text-center">
-                <h2 class="text-4xl md:text-6xl font-black tracking-tight mb-6">Let's build something.</h2>
-                <p class="text-xl text-gray-400 max-w-xl mb-10">Currently open for new opportunities. Whether you have a
-                    question or just want to say hi, I'll try my best to get back to you!</p>
-                <a href="mailto:sumitchauhan.job@gmail.com"
-                    class="btn-primary px-10 py-5 rounded-full font-bold text-lg tracking-wide shadow-lg border border-white/20 relative overflow-hidden">
-                    <span class="btn-shimmer"></span>
-                    <span class="relative z-10">Say Hello <i data-feather="send" class="w-4 h-4 inline-block ml-2 -mt-1"></i></span>
-                </a>
+        <!-- ========================
+             SKILLS SECTION
+        ========================= -->
+        <section id="skills" class="page-section">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-num">02</span>
+                    <span class="eyebrow-dash"></span>
+                    <span class="eyebrow-text">SKILLS</span>
+                </div>
 
-                <div class="mt-8 flex flex-col md:flex-row gap-6 justify-center">
-                    <a href="tel:+918218097607"
-                        class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="phone" class="w-5 h-5 text-primary"></i> <span
-                            class="font-mono text-sm tracking-widest">+91-8218097607</span>
+                <h2 class="section-headline reveal-elem">Tech Stack.</h2>
+
+                <div class="skills-container reveal-elem">
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="code" class="skill-row-icon"></i>
+                            <span>Languages</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill"><i class="devicon-cplusplus-plain colored skill-pill-icon"></i>C++</span>
+                            <span class="skill-pill"><i class="devicon-java-plain colored skill-pill-icon"></i>Java</span>
+                            <span class="skill-pill"><i class="devicon-python-plain colored skill-pill-icon"></i>Python</span>
+                            <span class="skill-pill"><i class="devicon-typescript-plain colored skill-pill-icon"></i>TypeScript</span>
+                            <span class="skill-pill"><i class="devicon-azuresqldatabase-plain colored skill-pill-icon"></i>SQL</span>
+                            <span class="skill-pill"><i class="devicon-c-plain colored skill-pill-icon"></i>C</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="server" class="skill-row-icon"></i>
+                            <span>Backend / Infra</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill skill-pill--primary"><i data-feather="share-2" class="skill-pill-icon"></i>Distributed Systems</span>
+                            <span class="skill-pill"><i data-feather="grid" class="skill-pill-icon"></i>Microservices</span>
+                            <span class="skill-pill"><i data-feather="server" class="skill-pill-icon"></i>REST APIs</span>
+                            <span class="skill-pill"><i class="devicon-postgresql-plain colored skill-pill-icon"></i>PostgreSQL</span>
+                            <span class="skill-pill"><i class="devicon-redis-plain colored skill-pill-icon"></i>Redis</span>
+                            <span class="skill-pill"><i class="devicon-docker-plain colored skill-pill-icon"></i>Docker</span>
+                            <span class="skill-pill"><i class="devicon-linux-plain text-white skill-pill-icon"></i>Linux</span>
+                            <span class="skill-pill"><i data-feather="git-branch" class="skill-pill-icon"></i>CI/CD</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="cpu" class="skill-row-icon"></i>
+                            <span>Core CS</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill"><i data-feather="cpu" class="skill-pill-icon"></i>Data Structures</span>
+                            <span class="skill-pill"><i data-feather="git-merge" class="skill-pill-icon"></i>Algorithms</span>
+                            <span class="skill-pill"><i data-feather="command" class="skill-pill-icon"></i>Operating Systems</span>
+                            <span class="skill-pill"><i data-feather="wifi" class="skill-pill-icon"></i>Networks</span>
+                            <span class="skill-pill"><i data-feather="database" class="skill-pill-icon"></i>DBMS</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="zap" class="skill-row-icon"></i>
+                            <span>AI / ML</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill skill-pill--secondary"><i data-feather="link-2" class="skill-pill-icon"></i>LangChain</span>
+                            <span class="skill-pill skill-pill--secondary"><i data-feather="layers" class="skill-pill-icon"></i>RAG Pipelines</span>
+                            <span class="skill-pill"><i data-feather="bar-chart-2" class="skill-pill-icon"></i>Vector Embeddings</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================
+             CODING PROFILES / ARENA
+        ========================= -->
+        <section id="coding-profiles" class="page-section">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-num">03</span>
+                    <span class="eyebrow-dash"></span>
+                    <span class="eyebrow-text">ARENA</span>
+                </div>
+
+                <h2 class="section-headline reveal-elem">Competitive<br>Programming.</h2>
+
+                <!-- Platform cards -->
+                <div class="platform-card-grid reveal-elem">
+                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn">
+                        <img src="images/codeforces.svg" alt="Codeforces" class="platform-logo">
+                        <div class="platform-info">
+                            <span class="platform-name">Codeforces</span>
+                            <span class="platform-rank">Expert · <b>1864</b></span>
+                        </div>
+                        <i data-feather="arrow-up-right" class="platform-arrow"></i>
                     </a>
-                    <a href="mailto:sumitchauhan.job@gmail.com"
-                        class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
-                        <i data-feather="mail" class="w-5 h-5 text-secondary"></i> <span
-                            class="font-mono text-sm tracking-widest">sumitchauhan.job@gmail.com</span>
+
+                    <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn">
+                        <img src="images/leetcode.svg" alt="LeetCode" class="platform-logo">
+                        <div class="platform-info">
+                            <span class="platform-name">LeetCode</span>
+                            <span class="platform-rank">Knight · <b>1898</b></span>
+                        </div>
+                        <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                    </a>
+
+                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn">
+                        <img src="images/codechef.png" alt="CodeChef" class="platform-logo platform-logo--invert">
+                        <div class="platform-info">
+                            <span class="platform-name">CodeChef</span>
+                            <span class="platform-rank">5★ · <b>2070</b></span>
+                        </div>
+                        <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                    </a>
+
+                    <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn">
+                        <img src="images/gfg.svg" alt="GeeksforGeeks" class="platform-logo">
+                        <div class="platform-info">
+                            <span class="platform-name">GeeksforGeeks</span>
+                            <span class="platform-rank">Score · <b id="gfg-profile-score">1491</b></span>
+                        </div>
+                        <i data-feather="arrow-up-right" class="platform-arrow"></i>
                     </a>
                 </div>
 
-                <div
-                    class="mt-20 pt-8 border-t border-white/5 w-full flex flex-col items-center justify-center text-sm text-gray-500 gap-2">
-                    <p>&copy; 2025 Sumit Chauhan. All rights reserved.</p>
-                    <p>Designed with passion and coded with caffeine.</p>
-                    <div class="flex gap-4 mt-4">
-                        <a href="https://github.com/Gosling-dude" class="hover:text-white transition-colors">GitHub</a>
-                        <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/"
-                            class="hover:text-white transition-colors">LinkedIn</a>
+                <!-- Live Telemetry Dashboard -->
+                <div class="telemetry-wrap reveal-elem">
+                    <div class="telemetry-header">
+                        <div class="telemetry-title-row">
+                            <span class="telemetry-live-indicator">
+                                <span class="live-dot"></span>
+                                Live Contest Telemetry
+                            </span>
+                            <button id="telemetry-sync-btn" class="sync-btn" title="Sync live data">
+                                <i data-feather="refresh-cw"></i>
+                                <span>Sync</span>
+                            </button>
+                        </div>
+                        <p class="telemetry-subtitle">Real-time status updates across major platforms</p>
+                    </div>
+
+                    <!-- Tabs -->
+                    <div class="telemetry-tabs">
+                        <button id="db-tab-cf" class="t-tab t-tab--active">
+                            <img src="images/codeforces.svg" alt="" class="t-tab-icon"> Codeforces
+                        </button>
+                        <button id="db-tab-lc" class="t-tab">
+                            <img src="images/leetcode.svg" alt="" class="t-tab-icon"> LeetCode
+                        </button>
+                        <button id="db-tab-cc" class="t-tab">
+                            <img src="images/codechef.png" alt="" class="t-tab-icon t-tab-icon--invert"> CodeChef
+                        </button>
+                        <button id="db-tab-gfg" class="t-tab">
+                            <img src="images/gfg.svg" alt="" class="t-tab-icon"> GFG
+                        </button>
+                    </div>
+
+                    <!-- Panel area -->
+                    <div class="telemetry-panel-area">
+                        <div id="dashboard-loader" class="telemetry-loader">
+                            <div class="loader-spin"></div>
+                            <span>Syncing telemetry...</span>
+                        </div>
+
+                        <!-- CF Panel -->
+                        <div id="db-panel-cf" class="dashboard-tab-pane t-panel">
+                            <div class="metric-grid">
+                                <div class="metric-box">
+                                    <span class="metric-label">Current Rating</span>
+                                    <div class="metric-val" id="cf-rating">1944</div>
+                                    <span class="metric-sub metric-sub--accent" id="cf-rank">Candidate Master</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Max Rating</span>
+                                    <div class="metric-val" id="cf-max-rating">1944</div>
+                                    <span class="metric-sub" id="cf-max-rank">Candidate Master</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Problems Solved</span>
+                                    <div class="metric-val" id="cf-solved">650+</div>
+                                    <span class="metric-sub metric-sub--green">Live Counted</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Handle</span>
+                                    <div class="metric-val metric-val--sm" id="cf-handle">SumitXorY</div>
+                                    <span class="metric-sub">Active Profile</span>
+                                </div>
+                            </div>
+
+                            <div class="contest-history">
+                                <h4 class="contest-history-title">
+                                    <i data-feather="award"></i> Recent Contest Performance
+                                </h4>
+                                <div class="table-scroll">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Contest</th>
+                                                <th>Rank</th>
+                                                <th>Δ</th>
+                                                <th>Rating</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cf-contests-body">
+                                            <tr>
+                                                <td>Educational Codeforces Round 181</td>
+                                                <td class="mono">226</td>
+                                                <td class="mono green">+72</td>
+                                                <td class="mono bold">1944</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Codeforces Round 990 (Div. 2)</td>
+                                                <td class="mono">482</td>
+                                                <td class="mono green">+45</td>
+                                                <td class="mono bold">1872</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LC Panel -->
+                        <div id="db-panel-lc" class="dashboard-tab-pane t-panel hidden">
+                            <div class="metric-grid">
+                                <div class="metric-box">
+                                    <span class="metric-label">LC Rating</span>
+                                    <div class="metric-val" id="lc-rating">1898</div>
+                                    <span class="metric-sub metric-sub--accent" id="lc-rank">Knight</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Global Rank</span>
+                                    <div class="metric-val metric-val--sm" id="lc-ranking">Top 2.5%</div>
+                                    <span class="metric-sub" id="lc-ranking-exact">Rank #37,964</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Solved</span>
+                                    <div class="metric-val metric-val--sm" id="lc-solved">600+</div>
+                                    <span class="metric-sub" id="lc-acceptance">Acceptance: 52%</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Handle</span>
+                                    <div class="metric-val metric-val--sm" id="lc-handle">sumit_chauhan_</div>
+                                    <span class="metric-sub">Active</span>
+                                </div>
+                            </div>
+
+                            <div class="diff-bars">
+                                <h4 class="contest-history-title">Difficulty Distribution</h4>
+                                <div class="diff-bar-row">
+                                    <div class="diff-bar-meta">
+                                        <span class="diff-label diff-easy">EASY</span>
+                                        <span class="diff-count" id="lc-easy-count">150 / 800</span>
+                                    </div>
+                                    <div class="diff-track"><div class="diff-fill diff-fill--easy" id="lc-easy-bar" style="width:0%"></div></div>
+                                </div>
+                                <div class="diff-bar-row">
+                                    <div class="diff-bar-meta">
+                                        <span class="diff-label diff-med">MEDIUM</span>
+                                        <span class="diff-count" id="lc-medium-count">380 / 1600</span>
+                                    </div>
+                                    <div class="diff-track"><div class="diff-fill diff-fill--med" id="lc-medium-bar" style="width:0%"></div></div>
+                                </div>
+                                <div class="diff-bar-row">
+                                    <div class="diff-bar-meta">
+                                        <span class="diff-label diff-hard">HARD</span>
+                                        <span class="diff-count" id="lc-hard-count">70 / 700</span>
+                                    </div>
+                                    <div class="diff-track"><div class="diff-fill diff-fill--hard" id="lc-hard-bar" style="width:0%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CC Panel -->
+                        <div id="db-panel-cc" class="dashboard-tab-pane t-panel hidden">
+                            <div class="metric-grid">
+                                <div class="metric-box">
+                                    <span class="metric-label">CC Rating</span>
+                                    <div class="metric-val" id="cc-rating">2023</div>
+                                    <span class="metric-sub metric-sub--accent" id="cc-stars">5 Star (5★)</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Peak Rating</span>
+                                    <div class="metric-val" id="cc-max-rating">2023</div>
+                                    <span class="metric-sub">Personal Best</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Global Rank</span>
+                                    <div class="metric-val" id="cc-global-rank">1850</div>
+                                    <span class="metric-sub metric-sub--green">Top 1%</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Country Rank</span>
+                                    <div class="metric-val" id="cc-country-rank">1100</div>
+                                    <span class="metric-sub">India</span>
+                                </div>
+                            </div>
+
+                            <div class="cc-bottom-grid">
+                                <div class="cc-summary">
+                                    <h4 class="contest-history-title">Platform Summary</h4>
+                                    <ul class="summary-list">
+                                        <li><span>Handle</span><span class="mono">gosling_dude</span></li>
+                                        <li><span>Status</span><span class="green">Active</span></li>
+                                        <li><span>Division</span><span>Div 1</span></li>
+                                        <li><span>Solved</span><span class="mono" id="cc-solved">300+</span></li>
+                                    </ul>
+                                </div>
+                                <div class="cc-stars-panel">
+                                    <div class="cc-stars-big" id="cc-stars-display">5★</div>
+                                    <strong>Elite Competitive Coder</strong>
+                                    <p>Top-tier competitive programmer worldwide.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GFG Panel -->
+                        <div id="db-panel-gfg" class="dashboard-tab-pane t-panel hidden">
+                            <div class="metric-grid">
+                                <div class="metric-box">
+                                    <span class="metric-label">Coding Score</span>
+                                    <div class="metric-val" id="gfg-score">1491</div>
+                                    <span class="metric-sub metric-sub--accent">Overall</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Problems Solved</span>
+                                    <div class="metric-val" id="gfg-solved">438</div>
+                                    <span class="metric-sub">Live Counted</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Institute Rank</span>
+                                    <div class="metric-val" id="gfg-rank">155</div>
+                                    <span class="metric-sub metric-sub--green">NIT Jalandhar</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-label">Handle</span>
+                                    <div class="metric-val metric-val--sm" id="gfg-handle">sumit_chauhan143</div>
+                                    <span class="metric-sub">Active</span>
+                                </div>
+                            </div>
+
+                            <div class="cc-bottom-grid">
+                                <div class="cc-summary">
+                                    <h4 class="contest-history-title">Platform Summary</h4>
+                                    <ul class="summary-list">
+                                        <li><span>Institute</span><span>NIT Jalandhar</span></li>
+                                        <li><span>Longest Streak</span><span class="green mono" id="gfg-streak">202 days</span></li>
+                                        <li><span>Education</span><span>B.Tech CSE</span></li>
+                                        <li><span>Status</span><span class="green">Active</span></li>
+                                    </ul>
+                                </div>
+                                <div class="cc-stars-panel">
+                                    <div class="cc-stars-big" id="gfg-badge">NIT</div>
+                                    <strong>NITJ Rank 155</strong>
+                                    <p>Top CS student at NIT Jalandhar.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
 
-        </div>
+            </div>
+        </section>
+
+        <!-- ========================
+             PROJECTS SECTION
+        ========================= -->
+        <section id="projects" class="page-section">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-num">04</span>
+                    <span class="eyebrow-dash"></span>
+                    <span class="eyebrow-text">WORK</span>
+                </div>
+
+                <h2 class="section-headline reveal-elem">Selected<br>Projects.</h2>
+
+                <div class="projects-list">
+
+                    <!-- Project 01: Weaveflow -->
+                    <div class="project-item reveal-elem">
+                        <div class="project-num-badge">01</div>
+
+                        <div class="project-visual project-visual--weaveflow">
+                            <div class="project-visual-inner">
+                                <div class="project-visual-pattern"></div>
+                                <span class="project-visual-name">WEAVEFLOW</span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div>
+                                    <span class="project-type-label">AI Workflow Platform</span>
+                                    <h3 class="project-title">Weaveflow</h3>
+                                </div>
+                                <div class="project-links-row">
+                                    <a href="https://github.com/Gosling-dude/weaveflow" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
+                                        <i data-feather="github"></i> GitHub
+                                    </a>
+                                </div>
+                            </div>
+
+                            <p class="project-desc">
+                                An AI workflow orchestration platform for multi-step AI pipelines, enabling complex automation through distributed microservices.
+                            </p>
+
+                            <ul class="project-bullets">
+                                <li>Designed microservice-based backend enabling distributed workflow execution</li>
+                                <li>Implemented REST APIs and service integrations between workflow components</li>
+                                <li>PostgreSQL relational model for workflow state persistence</li>
+                                <li>CI/CD pipelines via GitHub Actions for automated builds</li>
+                            </ul>
+
+                            <div class="project-tech-stack">
+                                <span class="tech-chip">Next.js</span>
+                                <span class="tech-chip">TypeScript</span>
+                                <span class="tech-chip">PostgreSQL</span>
+                                <span class="tech-chip">REST APIs</span>
+                                <span class="tech-chip">Docker</span>
+                                <span class="tech-chip">GitHub Actions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 02: HerbiGPT -->
+                    <div class="project-item project-item--flip reveal-elem">
+                        <div class="project-num-badge">02</div>
+
+                        <div class="project-visual project-visual--herbigpt">
+                            <div class="project-visual-inner">
+                                <div class="project-visual-pattern"></div>
+                                <span class="project-visual-name">HERBIGPT</span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div>
+                                    <span class="project-type-label">AI Assistant · RAG</span>
+                                    <h3 class="project-title">HerbiGPT</h3>
+                                </div>
+                                <div class="project-links-row">
+                                    <a href="https://github.com/Gosling-dude/HerbiGPT---Your-Holistic-Wellness-Guide.git" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
+                                        <i data-feather="github"></i> GitHub
+                                    </a>
+                                </div>
+                            </div>
+
+                            <p class="project-desc">
+                                An AI wellness assistant powered by Retrieval-Augmented Generation (RAG), delivering knowledge-grounded responses with a scalable semantic search system.
+                            </p>
+
+                            <ul class="project-bullets">
+                                <li>Built RAG pipeline enabling knowledge-grounded AI responses</li>
+                                <li>Python backend for document ingestion, vector indexing, and LLM queries</li>
+                                <li>Automated document processing using OCR and web scraping</li>
+                                <li>Scalable retrieval system supporting concurrent semantic queries</li>
+                            </ul>
+
+                            <div class="project-tech-stack">
+                                <span class="tech-chip">Python</span>
+                                <span class="tech-chip">LangChain</span>
+                                <span class="tech-chip">Vector DB</span>
+                                <span class="tech-chip">RAG</span>
+                                <span class="tech-chip">OCR</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================
+             EXPERIENCE SECTION
+        ========================= -->
+        <section id="experience" class="page-section">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-num">05</span>
+                    <span class="eyebrow-dash"></span>
+                    <span class="eyebrow-text">WORK &amp; OPEN SOURCE</span>
+                </div>
+
+                <h2 class="section-headline reveal-elem">Experience &amp;<br>Contributions.</h2>
+
+                <!-- Professional -->
+                <div class="exp-block reveal-elem">
+                    <h3 class="exp-block-heading">Professional</h3>
+
+                    <div class="exp-card">
+                        <div class="exp-logo-cell">
+                            <div class="exp-logo-badge">K</div>
+                        </div>
+                        <div class="exp-body">
+                            <div class="exp-top-row">
+                                <div>
+                                    <h4 class="exp-role">Teaching Ninja</h4>
+                                    <p class="exp-company">Kalvium &middot; Internship &middot; On-site &middot; Bengaluru, India</p>
+                                </div>
+                                <span class="exp-period">Mar 2026 – Present</span>
+                            </div>
+                            <p class="exp-desc">
+                                Mentoring undergraduate students in Data Structures &amp; Algorithms, Competitive Programming, System Design, and core CS fundamentals. Conducting coding sessions and guiding problem-solving approaches to build strong software engineering foundations.
+                            </p>
+                            <div class="exp-tag-row">
+                                <span class="exp-tag">Data Structures</span>
+                                <span class="exp-tag">Algorithms</span>
+                                <span class="exp-tag">System Design</span>
+                                <span class="exp-tag">Competitive Programming</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Open Source -->
+                <div class="exp-block reveal-elem">
+                    <div class="oss-block-header">
+                        <h3 class="exp-block-heading">Open Source</h3>
+                        <p class="oss-block-sub">Production-grade contributions involving real code reviews, CI pipelines, and collaboration with maintainers.</p>
+                    </div>
+
+                    <div class="oss-list">
+
+                        <div class="oss-card">
+                            <div class="oss-org-col">
+                                <span class="oss-badge oss-badge--cncf">CNCF</span>
+                                <span class="oss-org-name">OpenTelemetry</span>
+                            </div>
+                            <div class="oss-content-col">
+                                <h4 class="oss-title">Emit warning when TraceIdRatioBasedSampler is used as child sampler</h4>
+                                <p class="oss-desc">Added a spec-required compatibility warning at configuration time without changing runtime behavior. Reviewed and merged by maintainers.</p>
+                                <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank" rel="noopener noreferrer" class="oss-pr-link mag-btn">
+                                    <i data-feather="git-pull-request"></i> PR #7937
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="oss-card">
+                            <div class="oss-org-col">
+                                <span class="oss-badge oss-badge--cncf">CNCF</span>
+                                <span class="oss-org-name">OpenTelemetry</span>
+                            </div>
+                            <div class="oss-content-col">
+                                <h4 class="oss-title">Clarify suppressed warnings in API common module</h4>
+                                <p class="oss-desc">Improved maintainability by documenting intentional warning suppressions with no functional changes.</p>
+                                <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7951" target="_blank" rel="noopener noreferrer" class="oss-pr-link mag-btn">
+                                    <i data-feather="git-pull-request"></i> PR #7951
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="oss-card">
+                            <div class="oss-org-col">
+                                <span class="oss-badge oss-badge--google">GOOGLE</span>
+                                <span class="oss-org-name">Gemini CLI</span>
+                            </div>
+                            <div class="oss-content-col">
+                                <h4 class="oss-title">Support GOOGLE_CLOUD_PROJECT_ID fallback</h4>
+                                <p class="oss-desc">Added a backward-compatible environment variable fallback improving developer experience across platforms.</p>
+                                <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer" class="oss-pr-link mag-btn">
+                                    <i data-feather="git-pull-request"></i> PR #2725
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="oss-github-row">
+                        <i data-feather="github"></i>
+                        <span>More contributions at</span>
+                        <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="oss-gh-link">
+                            github.com/Gosling-dude <i data-feather="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================
+             HIGHLIGHTS / ACHIEVEMENTS
+        ========================= -->
+        <section id="achievements" class="page-section">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-num">06</span>
+                    <span class="eyebrow-dash"></span>
+                    <span class="eyebrow-text">HIGHLIGHTS</span>
+                </div>
+
+                <h2 class="section-headline reveal-elem">Numbers That<br>Speak.</h2>
+
+                <!-- Hero stat -->
+                <div class="mega-stat reveal-elem">
+                    <div class="mega-stat-num stat-counter" data-count="1649">0</div>
+                    <div class="mega-stat-info">
+                        <h3>Algorithmic Problems Solved</h3>
+                        <p>across Codeforces, LeetCode, CodeChef, and GeeksforGeeks</p>
+                    </div>
+                </div>
+
+                <!-- Competition results -->
+                <div class="achievement-grid reveal-elem">
+                    <a href="https://codeforces.com/contest/2172/standings" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn">
+                        <i data-feather="external-link" class="ach-ext-icon"></i>
+                        <div class="ach-rank">AIR 23</div>
+                        <h4 class="ach-name">ICPC Asia Regional '25</h4>
+                        <p class="ach-detail">Global Rank 492 · Taichung</p>
+                    </a>
+
+                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn">
+                        <i data-feather="external-link" class="ach-ext-icon"></i>
+                        <div class="ach-rank">226<sup>th</sup></div>
+                        <h4 class="ach-name">Edu CF Round 181</h4>
+                        <p class="ach-detail">Out of 20,000+ globally</p>
+                    </a>
+
+                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn">
+                        <i data-feather="external-link" class="ach-ext-icon"></i>
+                        <div class="ach-rank">24<sup>th</sup></div>
+                        <h4 class="ach-name">CodeChef Starters 212B</h4>
+                        <p class="ach-detail">Out of 34,700+ globally</p>
+                    </a>
+                </div>
+
+                <!-- Leadership -->
+                <div class="leadership-row reveal-elem">
+                    <div class="leadership-card">
+                        <div class="leadership-icon"><i data-feather="users"></i></div>
+                        <div>
+                            <h4>Mentorship</h4>
+                            <p>Guided junior students in competitive programming &amp; algorithms</p>
+                        </div>
+                    </div>
+                    <div class="leadership-card">
+                        <div class="leadership-icon"><i data-feather="award"></i></div>
+                        <div>
+                            <h4>1<sup>st</sup> Place</h4>
+                            <p>Inter-NIT Chess Championship</p>
+                        </div>
+                    </div>
+                    <div class="leadership-card">
+                        <div class="leadership-icon"><i data-feather="target"></i></div>
+                        <div>
+                            <h4>3<sup>rd</sup> Runner-up</h4>
+                            <p>Inter-NIT Cricket Competition</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================
+             CONTACT SECTION
+        ========================= -->
+        <section id="contact" class="page-section contact-section">
+            <div class="container">
+                <div class="contact-inner reveal-elem">
+                    <div class="section-eyebrow">
+                        <span class="eyebrow-num">07</span>
+                        <span class="eyebrow-dash"></span>
+                        <span class="eyebrow-text">CONTACT</span>
+                    </div>
+
+                    <h2 class="contact-headline">
+                        Let's build<br>
+                        <span class="contact-headline-accent">something great.</span>
+                    </h2>
+
+                    <p class="contact-tagline">
+                        Currently open to new opportunities. Whether you have a role in mind or just want to connect — I'd love to hear from you.
+                    </p>
+
+                    <div class="contact-cta-row">
+                        <a href="mailto:sumitchauhan.job@gmail.com" class="btn-primary btn-primary--xl mag-btn">
+                            <span>Say Hello</span>
+                            <i data-feather="send"></i>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1SvcnctyYM8Ce36Gpd630K4pw6WgJIHg3/view?usp=sharing"
+                           target="_blank" rel="noopener noreferrer"
+                           class="btn-ghost btn-ghost--xl mag-btn">
+                            View Resume ↗
+                        </a>
+                    </div>
+
+                    <div class="contact-details-row">
+                        <a href="tel:+918218097607" class="contact-detail-link">
+                            <i data-feather="phone"></i>
+                            <span class="font-mono">+91-8218097607</span>
+                        </a>
+                        <a href="mailto:sumitchauhan.job@gmail.com" class="contact-detail-link">
+                            <i data-feather="mail"></i>
+                            <span class="font-mono">sumitchauhan.job@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2025 Sumit Chauhan. Designed with passion, coded with caffeine.</span>
+            <div class="footer-links">
+                <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="script.js?v=13"></script>
+
+    <!-- Main script -->
+    <script src="script.js"></script>
+
+    <!-- Init feather + mobile menu -->
     <script>
-        feather.replace();
-        // mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        document.querySelectorAll('#mobile-menu a').forEach(a => {
-            a.addEventListener('click', () => mobileMenu.classList.add('hidden'))
-        });
+        feather.replace({ 'stroke-width': 1.75, 'width': 18, 'height': 18 });
+
+        (function() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            if (!btn || !menu) return;
+
+            btn.addEventListener('click', () => {
+                const open = menu.classList.toggle('open');
+                btn.classList.toggle('open', open);
+                btn.setAttribute('aria-expanded', String(open));
+                menu.setAttribute('aria-hidden', String(!open));
+            });
+
+            menu.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    menu.classList.remove('open');
+                    btn.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                    menu.setAttribute('aria-hidden', 'true');
+                });
+            });
+        })();
     </script>
 </body>
-
 </html>
