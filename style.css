@@ -155,7 +155,8 @@ ul { list-style: none; }
   inset: 0;
   z-index: -3;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.68; /* dark enough for clear text readability */
+  will-change: transform;
 }
 
 .bg-grid-overlay {
@@ -164,49 +165,16 @@ ul { list-style: none; }
   z-index: -2;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 100%);
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 70% 50% at 50% 25%, black 20%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 25%, black 20%, transparent 100%);
+  opacity: 0.55;
 }
 
-.ambient-orb {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: -2;
-  filter: blur(60px);
-  will-change: transform;
-}
-
-.orb-1 {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
-  top: -15%; left: -8%;
-  animation: orb-drift 28s ease-in-out infinite;
-}
-
-.orb-2 {
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(34,211,238,0.12) 0%, transparent 70%);
-  bottom: 5%; right: -10%;
-  animation: orb-drift 34s ease-in-out infinite reverse;
-}
-
-.orb-3 {
-  width: 350px; height: 350px;
-  background: radial-gradient(circle, rgba(167,139,250,0.10) 0%, transparent 70%);
-  top: 40%; right: 20%;
-  animation: orb-drift 22s ease-in-out infinite 4s;
-}
-
-@keyframes orb-drift {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  25%       { transform: translate3d(40px, -30px, 0); }
-  50%       { transform: translate3d(-25px, 25px, 0); }
-  75%       { transform: translate3d(30px, 20px, 0); }
-}
+/* Orbs hidden — colour comes from the cosmic canvas nebulae */
+.ambient-orb { display: none; }
 
 /* ---------------------------------------------------------------
    7. NAVIGATION
@@ -1645,19 +1613,45 @@ ul { list-style: none; }
   background: radial-gradient(ellipse at 30% 50%, rgba(99,102,241,0.4) 0%, transparent 70%);
 }
 
-.project-visual--herbigpt {
+.weaveflow-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  opacity: 0.9;
+}
+
+.project-visual--weaveflow .project-visual-name {
+  color: rgba(165,180,252,0.12);
+}
+
+.project-visual--deeptrace {
   background: linear-gradient(135deg,
-    rgba(16,185,129,0.3) 0%,
-    rgba(16,185,129,0.15) 40%,
+    rgba(220,38,38,0.22) 0%,
+    rgba(139,92,246,0.18) 40%,
     rgba(14,14,18,1) 100%
   );
 }
 
-.project-visual--herbigpt::before {
+.project-visual--deeptrace::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(16,185,129,0.4) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 35% 50%, rgba(239,68,68,0.3) 0%, transparent 65%);
+}
+
+.deeptrace-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  opacity: 0.92;
+}
+
+.project-visual--deeptrace .project-visual-name {
+  color: rgba(252,165,165,0.12);
 }
 
 /* Flipped layout */

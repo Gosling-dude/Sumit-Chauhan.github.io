@@ -219,7 +219,7 @@
                             Computer Science undergrad at <strong>NIT Jalandhar</strong> (Batch of 2026), deeply focused on <em class="text-accent-glow">Backend Systems</em> &amp; <em class="text-accent-glow">Distributed Architectures</em>.
                         </p>
                         <p class="about-secondary-text">
-                            I've built AI workflow engines like Weaveflow and RAG assistants like HerbiGPT. I heavily contribute to open-source — primarily <strong>Google's Gemini CLI</strong> and the <strong>CNCF OpenTelemetry</strong> project. Beyond the keyboard, I'm an avid chess player, applying strategic thinking to system design.
+                            I've built AI workflow engines like Weaveflow and production-grade detection platforms like DeepTrace. I actively contribute to open-source — <strong>Google's Gemini CLI</strong> and the <strong>CNCF OpenTelemetry</strong> project — with 50+ merged PRs. Beyond the keyboard, I'm an avid chess player, applying strategic thinking to system design.
                         </p>
 
                         <div class="about-info-row">
@@ -252,7 +252,7 @@
                                 <div class="edu-stat-sub">CBSE Board</div>
                             </div>
                             <div class="edu-stat-card edu-stat-card--accent">
-                                <div class="edu-stat-val">3+</div>
+                                <div class="edu-stat-val">50+</div>
                                 <div class="edu-stat-key">Merged PRs</div>
                                 <div class="edu-stat-sub">Open Source</div>
                             </div>
@@ -652,6 +652,142 @@
                         <div class="project-visual project-visual--weaveflow">
                             <div class="project-visual-inner">
                                 <div class="project-visual-pattern"></div>
+                                <!-- WeaveFlow: Workflow Orchestration Engine mockup -->
+                                <svg class="weaveflow-svg" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                                  <defs>
+                                    <linearGradient id="wf-nodebg" x1="0" y1="0" x2="0" y2="1">
+                                      <stop offset="0%" stop-color="rgba(30,28,60,0.95)"/>
+                                      <stop offset="100%" stop-color="rgba(20,18,45,0.95)"/>
+                                    </linearGradient>
+                                    <linearGradient id="wf-edge" x1="0" y1="0" x2="1" y2="0">
+                                      <stop offset="0%" stop-color="rgba(99,102,241,0)"/>
+                                      <stop offset="40%" stop-color="rgba(99,102,241,0.9)"/>
+                                      <stop offset="100%" stop-color="rgba(139,92,246,0)"/>
+                                    </linearGradient>
+                                    <filter id="wf-glow">
+                                      <feGaussianBlur stdDeviation="2" result="blur"/>
+                                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                    </filter>
+                                  </defs>
+
+                                  <!-- Outer frame -->
+                                  <rect x="10" y="10" width="260" height="180" rx="8" fill="rgba(6,6,14,0.88)" stroke="rgba(99,102,241,0.18)" stroke-width="1"/>
+
+                                  <!-- Title bar -->
+                                  <rect x="10" y="10" width="260" height="24" rx="8" fill="rgba(12,12,24,0.96)"/>
+                                  <rect x="10" y="26" width="260" height="8" fill="rgba(12,12,24,0.96)"/>
+                                  <circle cx="26" cy="22" r="4" fill="rgba(239,68,68,0.7)"/>
+                                  <circle cx="38" cy="22" r="4" fill="rgba(251,191,36,0.7)"/>
+                                  <circle cx="50" cy="22" r="4" fill="rgba(34,197,94,0.7)"/>
+                                  <text x="147" y="26" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="7.5" font-family="monospace">Weaveflow — Pipeline Orchestration Engine</text>
+                                  <!-- Running status -->
+                                  <circle cx="254" cy="22" r="3" fill="rgba(34,197,94,0.95)">
+                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+                                  </circle>
+                                  <text x="248" y="20" text-anchor="end" fill="rgba(134,239,172,0.8)" font-size="5.5" font-family="monospace">RUNNING</text>
+
+                                  <!-- Pipeline flow: Trigger → Fetch → Transform → AI → Store → Notify -->
+                                  <!-- Row 1: Top pipeline -->
+                                  <!-- Node: TRIGGER -->
+                                  <rect x="16" y="44" width="44" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(99,102,241,0.6)" stroke-width="1.2"/>
+                                  <circle cx="24" cy="57" r="3" fill="rgba(34,197,94,0.9)"/>
+                                  <text x="38" y="54" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="6.5" font-family="monospace">TRIGGER</text>
+                                  <text x="38" y="65" text-anchor="middle" fill="rgba(134,239,172,0.7)" font-size="5.5" font-family="monospace">✓ done</text>
+
+                                  <!-- Arrow 1 -->
+                                  <line x1="60" y1="57" x2="74" y2="57" stroke="rgba(99,102,241,0.7)" stroke-width="1.2"/>
+                                  <polygon points="74,54 79,57 74,60" fill="rgba(99,102,241,0.8)"/>
+                                  <!-- Animated packet -->
+                                  <circle r="2.5" fill="rgba(129,140,248,0.95)" filter="url(#wf-glow)">
+                                    <animateMotion dur="1.8s" repeatCount="indefinite" calcMode="linear">
+                                      <mpath href="#wf-path1"/>
+                                    </animateMotion>
+                                  </circle>
+                                  <path id="wf-path1" d="M60,57 L79,57" fill="none"/>
+
+                                  <!-- Node: FETCH -->
+                                  <rect x="80" y="44" width="44" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(99,102,241,0.6)" stroke-width="1.2"/>
+                                  <circle cx="88" cy="57" r="3" fill="rgba(34,197,94,0.9)"/>
+                                  <text x="102" y="54" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="6.5" font-family="monospace">FETCH</text>
+                                  <text x="102" y="65" text-anchor="middle" fill="rgba(134,239,172,0.7)" font-size="5.5" font-family="monospace">✓ done</text>
+
+                                  <!-- Arrow 2 -->
+                                  <line x1="124" y1="57" x2="138" y2="57" stroke="rgba(99,102,241,0.7)" stroke-width="1.2"/>
+                                  <polygon points="138,54 143,57 138,60" fill="rgba(99,102,241,0.8)"/>
+                                  <circle r="2.5" fill="rgba(129,140,248,0.95)" filter="url(#wf-glow)">
+                                    <animateMotion dur="1.8s" begin="0.6s" repeatCount="indefinite" calcMode="linear">
+                                      <mpath href="#wf-path2"/>
+                                    </animateMotion>
+                                  </circle>
+                                  <path id="wf-path2" d="M124,57 L143,57" fill="none"/>
+
+                                  <!-- Node: TRANSFORM -->
+                                  <rect x="144" y="44" width="52" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(251,191,36,0.5)" stroke-width="1.2"/>
+                                  <circle cx="153" cy="57" r="3" fill="rgba(251,191,36,0.9)">
+                                    <animate attributeName="opacity" values="1;0.4;1" dur="1.2s" repeatCount="indefinite"/>
+                                  </circle>
+                                  <text x="170" y="54" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="6.5" font-family="monospace">TRANSFORM</text>
+                                  <text x="170" y="65" text-anchor="middle" fill="rgba(253,224,71,0.7)" font-size="5.5" font-family="monospace">⟳ running</text>
+
+                                  <!-- Down arrow from TRANSFORM to AI branch -->
+                                  <line x1="170" y1="70" x2="170" y2="84" stroke="rgba(139,92,246,0.6)" stroke-width="1.2" stroke-dasharray="3,2"/>
+                                  <polygon points="167,84 170,89 173,84" fill="rgba(139,92,246,0.7)"/>
+
+                                  <!-- Node: AI PROCESS (branch) -->
+                                  <rect x="144" y="90" width="52" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(139,92,246,0.5)" stroke-width="1.2"/>
+                                  <circle cx="153" cy="103" r="3" fill="rgba(139,92,246,0.5)"/>
+                                  <text x="170" y="100" text-anchor="middle" fill="rgba(200,200,220,0.65)" font-size="6.5" font-family="monospace">AI PROCESS</text>
+                                  <text x="170" y="111" text-anchor="middle" fill="rgba(147,197,253,0.55)" font-size="5.5" font-family="monospace">○ queued</text>
+
+                                  <!-- Right arrow from AI to STORE -->
+                                  <line x1="196" y1="103" x2="210" y2="103" stroke="rgba(99,102,241,0.4)" stroke-width="1.2" stroke-dasharray="3,2"/>
+                                  <polygon points="210,100 215,103 210,106" fill="rgba(99,102,241,0.5)"/>
+
+                                  <!-- Node: STORE -->
+                                  <rect x="216" y="90" width="44" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+                                  <circle cx="224" cy="103" r="3" fill="rgba(99,102,241,0.4)"/>
+                                  <text x="238" y="100" text-anchor="middle" fill="rgba(200,200,220,0.65)" font-size="6.5" font-family="monospace">STORE</text>
+                                  <text x="238" y="111" text-anchor="middle" fill="rgba(147,197,253,0.5)" font-size="5.5" font-family="monospace">○ queued</text>
+
+                                  <!-- Right arrow from TRANSFORM continuing to NOTIFY -->
+                                  <line x1="196" y1="57" x2="216" y2="57" stroke="rgba(99,102,241,0.4)" stroke-width="1.2" stroke-dasharray="3,2"/>
+                                  <polygon points="216,54 221,57 216,60" fill="rgba(99,102,241,0.5)"/>
+
+                                  <!-- Node: NOTIFY -->
+                                  <rect x="222" y="44" width="44" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
+                                  <circle cx="230" cy="57" r="3" fill="rgba(99,102,241,0.4)"/>
+                                  <text x="244" y="54" text-anchor="middle" fill="rgba(200,200,220,0.65)" font-size="6.5" font-family="monospace">NOTIFY</text>
+                                  <text x="244" y="65" text-anchor="middle" fill="rgba(147,197,253,0.5)" font-size="5.5" font-family="monospace">○ queued</text>
+
+                                  <!-- Metrics bar -->
+                                  <rect x="16" y="132" width="248" height="46" rx="5" fill="rgba(10,10,22,0.75)" stroke="rgba(99,102,241,0.15)" stroke-width="1"/>
+
+                                  <!-- Metric 1: Throughput -->
+                                  <text x="26" y="146" fill="rgba(129,140,248,0.65)" font-size="6" font-family="monospace">THROUGHPUT</text>
+                                  <text x="26" y="158" fill="rgba(255,255,255,0.9)" font-size="11" font-family="monospace" font-weight="bold">1.2k</text>
+                                  <text x="26" y="170" fill="rgba(129,140,248,0.5)" font-size="5.5" font-family="monospace">tasks / min</text>
+
+                                  <!-- Metric 2: P99 Latency -->
+                                  <text x="100" y="146" fill="rgba(129,140,248,0.65)" font-size="6" font-family="monospace">P99 LATENCY</text>
+                                  <text x="100" y="158" fill="rgba(255,255,255,0.9)" font-size="11" font-family="monospace" font-weight="bold">84ms</text>
+                                  <text x="100" y="170" fill="rgba(129,140,248,0.5)" font-size="5.5" font-family="monospace">avg response</text>
+
+                                  <!-- Metric 3: Services -->
+                                  <text x="175" y="146" fill="rgba(129,140,248,0.65)" font-size="6" font-family="monospace">SERVICES</text>
+                                  <text x="175" y="158" fill="rgba(255,255,255,0.9)" font-size="11" font-family="monospace" font-weight="bold">12</text>
+                                  <text x="175" y="170" fill="rgba(129,140,248,0.5)" font-size="5.5" font-family="monospace">microservices</text>
+
+                                  <!-- Metric 4: Uptime -->
+                                  <text x="225" y="146" fill="rgba(129,140,248,0.65)" font-size="6" font-family="monospace">UPTIME</text>
+                                  <text x="225" y="158" fill="rgba(134,239,172,0.9)" font-size="11" font-family="monospace" font-weight="bold">99.9%</text>
+                                  <text x="225" y="170" fill="rgba(129,140,248,0.5)" font-size="5.5" font-family="monospace">SLA target</text>
+
+                                  <!-- Corner bracket decorations -->
+                                  <path d="M10 20 L10 10 L20 10" fill="none" stroke="rgba(99,102,241,0.85)" stroke-width="2"/>
+                                  <path d="M260 20 L260 10 L250 10" fill="none" stroke="rgba(99,102,241,0.85)" stroke-width="2"/>
+                                  <path d="M10 180 L10 190 L20 190" fill="none" stroke="rgba(99,102,241,0.85)" stroke-width="2"/>
+                                  <path d="M260 180 L260 190 L250 190" fill="none" stroke="rgba(99,102,241,0.85)" stroke-width="2"/>
+                                </svg>
                                 <span class="project-visual-name">WEAVEFLOW</span>
                             </div>
                         </div>
@@ -691,47 +827,210 @@
                         </div>
                     </div>
 
-                    <!-- Project 02: HerbiGPT -->
+                    <!-- Project 02: DeepTrace -->
                     <div class="project-item project-item--flip reveal-elem">
                         <div class="project-num-badge">02</div>
 
-                        <div class="project-visual project-visual--herbigpt">
+                        <div class="project-visual project-visual--deeptrace">
                             <div class="project-visual-inner">
                                 <div class="project-visual-pattern"></div>
-                                <span class="project-visual-name">HERBIGPT</span>
+                                <!-- DeepTrace: AI Forensic Engine mockup -->
+                                <svg class="deeptrace-svg" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                                  <defs>
+                                    <linearGradient id="dt-imgbg" x1="0" y1="0" x2="1" y2="1">
+                                      <stop offset="0%" stop-color="#0f0f1a"/>
+                                      <stop offset="100%" stop-color="#1a1030"/>
+                                    </linearGradient>
+                                    <radialGradient id="dt-heatmap" cx="55%" cy="35%" r="45%">
+                                      <stop offset="0%" stop-color="rgba(239,68,68,0.9)"/>
+                                      <stop offset="28%" stop-color="rgba(251,146,60,0.65)"/>
+                                      <stop offset="58%" stop-color="rgba(234,179,8,0.3)"/>
+                                      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                                    </radialGradient>
+                                    <linearGradient id="dt-scan" x1="0" y1="0" x2="0" y2="1">
+                                      <stop offset="0%" stop-color="rgba(239,68,68,0)"/>
+                                      <stop offset="50%" stop-color="rgba(239,68,68,0.85)"/>
+                                      <stop offset="100%" stop-color="rgba(239,68,68,0)"/>
+                                    </linearGradient>
+                                    <linearGradient id="dt-confbar" x1="0" y1="0" x2="1" y2="0">
+                                      <stop offset="0%" stop-color="rgba(139,92,246,0.85)"/>
+                                      <stop offset="55%" stop-color="rgba(239,68,68,0.9)"/>
+                                      <stop offset="100%" stop-color="rgba(239,68,68,1)"/>
+                                    </linearGradient>
+                                  </defs>
+
+                                  <!-- Outer frame -->
+                                  <rect x="10" y="10" width="260" height="180" rx="8" fill="rgba(6,6,14,0.88)" stroke="rgba(239,68,68,0.18)" stroke-width="1"/>
+
+                                  <!-- Title bar -->
+                                  <rect x="10" y="10" width="260" height="24" rx="8" fill="rgba(12,12,22,0.96)"/>
+                                  <rect x="10" y="26" width="260" height="8" fill="rgba(12,12,22,0.96)"/>
+                                  <circle cx="26" cy="22" r="4" fill="rgba(239,68,68,0.7)"/>
+                                  <circle cx="38" cy="22" r="4" fill="rgba(251,191,36,0.7)"/>
+                                  <circle cx="50" cy="22" r="4" fill="rgba(34,197,94,0.7)"/>
+                                  <text x="147" y="26" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="7.5" font-family="monospace">DeepTrace — AI Forensic Analysis Engine</text>
+                                  <circle cx="257" cy="22" r="3" fill="rgba(239,68,68,0.95)">
+                                    <animate attributeName="opacity" values="1;0.25;1" dur="1.3s" repeatCount="indefinite"/>
+                                  </circle>
+
+                                  <!-- ── LEFT PANEL: GradCAM Analysis ── -->
+                                  <text x="16" y="48" fill="rgba(139,92,246,0.75)" font-size="6.5" font-family="monospace" letter-spacing="0.5">GRAD-CAM ANALYSIS</text>
+
+                                  <!-- Image background -->
+                                  <rect x="16" y="52" width="114" height="88" rx="4" fill="url(#dt-imgbg)"/>
+
+                                  <!-- Silhouette suggestion (abstract person shape) -->
+                                  <ellipse cx="73" cy="74" rx="14" ry="16" fill="rgba(99,102,241,0.17)" stroke="rgba(99,102,241,0.22)" stroke-width="0.5"/>
+                                  <rect x="57" y="88" width="32" height="36" rx="4" fill="rgba(99,102,241,0.11)" stroke="rgba(99,102,241,0.18)" stroke-width="0.5"/>
+
+                                  <!-- GradCAM heat overlay -->
+                                  <rect x="16" y="52" width="114" height="88" rx="4" fill="url(#dt-heatmap)" opacity="0.72"/>
+
+                                  <!-- Scanning beam (animated) -->
+                                  <rect x="16" y="52" width="114" height="6" rx="0" fill="url(#dt-scan)" opacity="0.78">
+                                    <animate attributeName="y" from="52" to="140" dur="2.4s" repeatCount="indefinite" calcMode="linear"/>
+                                  </rect>
+
+                                  <!-- Bounding box with animated dash -->
+                                  <rect x="54" y="58" width="38" height="50" rx="2" fill="none" stroke="rgba(239,68,68,0.88)" stroke-width="1.5" stroke-dasharray="4,2">
+                                    <animate attributeName="stroke-dashoffset" from="0" to="12" dur="1s" repeatCount="indefinite"/>
+                                  </rect>
+                                  <!-- Corner handles -->
+                                  <path d="M54 65 L54 58 L61 58" fill="none" stroke="rgba(239,68,68,1)" stroke-width="1.8"/>
+                                  <path d="M85 65 L92 65 L92 58 L85 58" fill="none" stroke="rgba(239,68,68,1)" stroke-width="1.8"/>
+                                  <path d="M54 101 L54 108 L61 108" fill="none" stroke="rgba(239,68,68,1)" stroke-width="1.8"/>
+                                  <path d="M85 101 L92 101 L92 108 L85 108" fill="none" stroke="rgba(239,68,68,1)" stroke-width="1.8"/>
+
+                                  <!-- Detection result label -->
+                                  <rect x="16" y="143" width="114" height="17" rx="3" fill="rgba(220,38,38,0.92)"/>
+                                  <text x="73" y="154.5" text-anchor="middle" fill="white" font-size="7" font-family="monospace" font-weight="bold">⚠ AI GENERATED · 97.3%</text>
+
+                                  <!-- Confidence bar -->
+                                  <text x="16" y="168" fill="rgba(139,92,246,0.65)" font-size="6" font-family="monospace">CONFIDENCE</text>
+                                  <rect x="16" y="171" width="114" height="7" rx="3.5" fill="rgba(22,22,42,0.85)"/>
+                                  <rect x="16" y="171" width="111" height="7" rx="3.5" fill="url(#dt-confbar)"/>
+                                  <text x="130" y="178" text-anchor="end" fill="rgba(252,165,165,0.9)" font-size="6" font-family="monospace">97.3%</text>
+
+                                  <!-- Panel divider -->
+                                  <line x1="143" y1="42" x2="143" y2="184" stroke="rgba(99,102,241,0.14)" stroke-width="1" stroke-dasharray="3,3"/>
+
+                                  <!-- ── RIGHT PANEL: Neural Network ── -->
+                                  <text x="150" y="48" fill="rgba(139,92,246,0.75)" font-size="6.5" font-family="monospace" letter-spacing="0.5">DUAL-STREAM CNN + FFT</text>
+
+                                  <!-- Input layer (4 nodes) -->
+                                  <circle cx="160" cy="66"  r="4.2" fill="rgba(139,92,246,0.92)" stroke="rgba(167,139,250,0.45)" stroke-width="1"/>
+                                  <circle cx="160" cy="80"  r="4.2" fill="rgba(139,92,246,0.92)" stroke="rgba(167,139,250,0.45)" stroke-width="1"/>
+                                  <circle cx="160" cy="94"  r="4.2" fill="rgba(139,92,246,0.92)" stroke="rgba(167,139,250,0.45)" stroke-width="1"/>
+                                  <circle cx="160" cy="108" r="4.2" fill="rgba(139,92,246,0.92)" stroke="rgba(167,139,250,0.45)" stroke-width="1"/>
+
+                                  <!-- Hidden layer (5 nodes) -->
+                                  <circle cx="192" cy="60"  r="3.6" fill="rgba(99,102,241,0.88)"/>
+                                  <circle cx="192" cy="73"  r="3.6" fill="rgba(99,102,241,0.88)"/>
+                                  <circle cx="192" cy="87"  r="3.6" fill="rgba(99,102,241,0.88)"/>
+                                  <circle cx="192" cy="101" r="3.6" fill="rgba(99,102,241,0.88)"/>
+                                  <circle cx="192" cy="115" r="3.6" fill="rgba(99,102,241,0.88)"/>
+
+                                  <!-- Output layer (2 nodes: AI / Real) -->
+                                  <circle cx="222" cy="76"  r="5.5" fill="rgba(239,68,68,0.94)" stroke="rgba(252,165,165,0.5)" stroke-width="1.5"/>
+                                  <circle cx="222" cy="101" r="5.5" fill="rgba(20,20,40,0.6)"   stroke="rgba(99,102,241,0.35)" stroke-width="1.5"/>
+
+                                  <!-- L1 → L2 connections -->
+                                  <g stroke="rgba(139,92,246,0.2)" stroke-width="0.65">
+                                    <line x1="164.2" y1="66" x2="188.4" y2="60"/>
+                                    <line x1="164.2" y1="66" x2="188.4" y2="73"/>
+                                    <line x1="164.2" y1="66" x2="188.4" y2="87"/>
+                                    <line x1="164.2" y1="80" x2="188.4" y2="60"/>
+                                    <line x1="164.2" y1="80" x2="188.4" y2="73"/>
+                                    <line x1="164.2" y1="80" x2="188.4" y2="87"/>
+                                    <line x1="164.2" y1="80" x2="188.4" y2="101"/>
+                                    <line x1="164.2" y1="94" x2="188.4" y2="73"/>
+                                    <line x1="164.2" y1="94" x2="188.4" y2="87"/>
+                                    <line x1="164.2" y1="94" x2="188.4" y2="101"/>
+                                    <line x1="164.2" y1="94" x2="188.4" y2="115"/>
+                                    <line x1="164.2" y1="108" x2="188.4" y2="87"/>
+                                    <line x1="164.2" y1="108" x2="188.4" y2="101"/>
+                                    <line x1="164.2" y1="108" x2="188.4" y2="115"/>
+                                  </g>
+
+                                  <!-- L2 → L3 (hot path toward AI output) -->
+                                  <line x1="195.6" y1="60"  x2="216.5" y2="76"  stroke="rgba(239,68,68,0.7)" stroke-width="1.3"/>
+                                  <line x1="195.6" y1="73"  x2="216.5" y2="76"  stroke="rgba(239,68,68,0.65)" stroke-width="1.3"/>
+                                  <line x1="195.6" y1="87"  x2="216.5" y2="76"  stroke="rgba(239,68,68,0.42)" stroke-width="1"/>
+                                  <line x1="195.6" y1="87"  x2="216.5" y2="101" stroke="rgba(99,102,241,0.22)" stroke-width="0.7"/>
+                                  <line x1="195.6" y1="101" x2="216.5" y2="101" stroke="rgba(99,102,241,0.26)" stroke-width="0.7"/>
+                                  <line x1="195.6" y1="115" x2="216.5" y2="101" stroke="rgba(99,102,241,0.26)" stroke-width="0.7"/>
+
+                                  <!-- Output labels -->
+                                  <text x="231" y="79"  fill="rgba(252,165,165,0.95)" font-size="6.5" font-family="monospace">AI 97%</text>
+                                  <text x="231" y="104" fill="rgba(147,197,253,0.55)"  font-size="6.5" font-family="monospace">R   3%</text>
+
+                                  <!-- Layer labels -->
+                                  <text x="160" y="122" text-anchor="middle" fill="rgba(167,139,250,0.38)" font-size="5.5" font-family="monospace">INPUT</text>
+                                  <text x="192" y="127" text-anchor="middle" fill="rgba(129,140,248,0.38)" font-size="5.5" font-family="monospace">FC</text>
+
+                                  <!-- FFT spectrum -->
+                                  <text x="150" y="142" fill="rgba(139,92,246,0.62)" font-size="6" font-family="monospace" letter-spacing="0.3">FFT ANOMALY SPECTRUM</text>
+                                  <g transform="translate(150,180)">
+                                    <rect x="0"  y="-5"  width="5" height="5"  rx="1" fill="rgba(139,92,246,0.6)"/>
+                                    <rect x="7"  y="-9"  width="5" height="9"  rx="1" fill="rgba(99,102,241,0.7)"/>
+                                    <rect x="14" y="-13" width="5" height="13" rx="1" fill="rgba(79,70,229,0.8)"/>
+                                    <rect x="21" y="-26" width="5" height="26" rx="1" fill="rgba(239,68,68,0.95)"/>
+                                    <rect x="28" y="-32" width="5" height="32" rx="1" fill="rgba(239,68,68,1)"/>
+                                    <rect x="35" y="-25" width="5" height="25" rx="1" fill="rgba(239,68,68,0.9)"/>
+                                    <rect x="42" y="-16" width="5" height="16" rx="1" fill="rgba(239,68,68,0.72)"/>
+                                    <rect x="49" y="-10" width="5" height="10" rx="1" fill="rgba(239,68,68,0.55)"/>
+                                    <rect x="56" y="-6"  width="5" height="6"  rx="1" fill="rgba(99,102,241,0.55)"/>
+                                    <rect x="63" y="-8"  width="5" height="8"  rx="1" fill="rgba(99,102,241,0.6)"/>
+                                    <rect x="70" y="-4"  width="5" height="4"  rx="1" fill="rgba(139,92,246,0.5)"/>
+                                    <rect x="77" y="-7"  width="5" height="7"  rx="1" fill="rgba(139,92,246,0.55)"/>
+                                    <line x1="0" y1="0" x2="85" y2="0" stroke="rgba(99,102,241,0.22)" stroke-width="0.5"/>
+                                    <!-- Anomaly marker -->
+                                    <line x1="30.5" y1="-32" x2="30.5" y2="-37" stroke="rgba(239,68,68,0.75)" stroke-width="0.8" stroke-dasharray="2,1"/>
+                                    <text x="30.5" y="-40" text-anchor="middle" fill="rgba(252,165,165,0.75)" font-size="5.5" font-family="monospace">ANOMALY</text>
+                                  </g>
+
+                                  <!-- Corner bracket decorations -->
+                                  <path d="M10 20 L10 10 L20 10" fill="none" stroke="rgba(239,68,68,0.85)" stroke-width="2"/>
+                                  <path d="M260 20 L260 10 L250 10" fill="none" stroke="rgba(239,68,68,0.85)" stroke-width="2"/>
+                                  <path d="M10 180 L10 190 L20 190" fill="none" stroke="rgba(239,68,68,0.85)" stroke-width="2"/>
+                                  <path d="M260 180 L260 190 L250 190" fill="none" stroke="rgba(239,68,68,0.85)" stroke-width="2"/>
+                                </svg>
+                                <span class="project-visual-name">DEEPTRACE</span>
                             </div>
                         </div>
 
                         <div class="project-content">
                             <div class="project-header">
                                 <div>
-                                    <span class="project-type-label">AI Assistant · RAG</span>
-                                    <h3 class="project-title">HerbiGPT</h3>
+                                    <span class="project-type-label">AI Detection · SaaS Platform</span>
+                                    <h3 class="project-title">DeepTrace</h3>
                                 </div>
                                 <div class="project-links-row">
-                                    <a href="https://github.com/Gosling-dude/HerbiGPT---Your-Holistic-Wellness-Guide.git" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
+                                    <a href="https://github.com/Gosling-dude/DeepTrace" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
                                         <i data-feather="github"></i> GitHub
                                     </a>
                                 </div>
                             </div>
 
                             <p class="project-desc">
-                                An AI wellness assistant powered by Retrieval-Augmented Generation (RAG), delivering knowledge-grounded responses with a scalable semantic search system.
+                                Production-grade AI image detection SaaS — dual-stream CNN + FFT frequency-domain architecture with Grad-CAM explainability, full JWT auth, RBAC, and admin analytics dashboards.
                             </p>
 
                             <ul class="project-bullets">
-                                <li>Built RAG pipeline enabling knowledge-grounded AI responses</li>
-                                <li>Python backend for document ingestion, vector indexing, and LLM queries</li>
-                                <li>Automated document processing using OCR and web scraping</li>
-                                <li>Scalable retrieval system supporting concurrent semantic queries</li>
+                                <li>Dual-stream CNN + FFT architecture achieving 96.8% detection accuracy at 180ms inference</li>
+                                <li>Grad-CAM heatmap overlay for model explainability and auditability</li>
+                                <li>JWT-based auth with role-based access control and admin user management</li>
+                                <li>Dockerized FastAPI + React 18 stack with PostgreSQL and async workers</li>
                             </ul>
 
                             <div class="project-tech-stack">
                                 <span class="tech-chip">Python</span>
-                                <span class="tech-chip">LangChain</span>
-                                <span class="tech-chip">Vector DB</span>
-                                <span class="tech-chip">RAG</span>
-                                <span class="tech-chip">OCR</span>
+                                <span class="tech-chip">FastAPI</span>
+                                <span class="tech-chip">PyTorch</span>
+                                <span class="tech-chip">React 18</span>
+                                <span class="tech-chip">TypeScript</span>
+                                <span class="tech-chip">Docker</span>
+                                <span class="tech-chip">PostgreSQL</span>
                             </div>
                         </div>
                     </div>
