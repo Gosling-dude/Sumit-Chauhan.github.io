@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumit Chauhan | Software Engineer</title>
-    <meta name="description" content="Portfolio of Sumit Chauhan — Software Engineer specializing in Backend Systems and Distributed Architectures. NIT Jalandhar, Batch of 2026.">
+    <title>Sumit Chauhan — Software Engineer</title>
+    <meta name="description" content="Sumit Chauhan — Software Engineer specializing in backend systems and distributed architecture. NIT Jalandhar, Batch of 2026.">
     <meta name="keywords" content="Sumit Chauhan, Software Engineer, Backend Systems, Distributed Systems, NIT Jalandhar, Competitive Programming">
-    <meta property="og:title" content="Sumit Chauhan | Software Engineer">
-    <meta property="og:description" content="Software Engineer specializing in Backend Systems & Distributed Architectures.">
+    <meta property="og:title" content="Sumit Chauhan — Software Engineer">
+    <meta property="og:description" content="Software Engineer specializing in backend systems and distributed architecture.">
     <meta property="og:type" content="website">
 
     <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 
     <!-- Devicons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
@@ -30,17 +30,16 @@
             theme: {
                 extend: {
                     colors: {
-                        base: '#060608',
-                        surface: '#0e0e12',
-                        'surface-2': '#141418',
-                        accent: '#818cf8',
-                        'accent-dim': '#6366f1',
-                        'accent-2': '#22d3ee',
-                        'accent-3': '#a78bfa',
+                        base: '#192524',
+                        surface: '#121216',
+                        'surface-2': '#17171c',
+                        accent: '#d1ebdb',
+                        'accent-dim': '#3c5759',
+                        'accent-2': '#EFECE9',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                     }
                 }
@@ -52,23 +51,28 @@
 </head>
 
 <body>
-    <!-- Custom cursor -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-ring" id="cursor-ring"></div>
-
     <!-- Scroll progress bar -->
     <div class="scroll-progress" id="scroll-progress"></div>
 
-    <!-- Canvas for particles -->
-    <canvas id="hero-canvas" class="hero-canvas"></canvas>
-
-    <!-- Ambient background orbs -->
-    <div class="ambient-orb orb-1"></div>
-    <div class="ambient-orb orb-2"></div>
-    <div class="ambient-orb orb-3"></div>
-
-    <!-- Grid overlay -->
-    <div class="bg-grid-overlay"></div>
+    <!-- ===========================================================
+         BACKDROP — looping footage held behind the content.
+         Decorative only; .cosmos-scrim + .cosmos-veil are what
+         guarantee text contrast and must not be removed independently.
+    ============================================================ -->
+    <div class="cosmos-stage" aria-hidden="true">
+        <!-- src is applied by JS (see initCosmicBackdrop) so phones and
+             reduced-motion users never pay to download the file. -->
+        <!-- No poster attribute on purpose: until the video paints, the
+             stage's own gradient shows through, which is already the
+             correct backdrop. A poster file would just be a second
+             asset to keep in sync. -->
+        <video class="cosmos-video" id="cosmos-video"
+               autoplay muted loop playsinline preload="metadata"
+               data-src="media/background_video.mp4"></video>
+        <div class="cosmos-scrim"></div>
+        <div class="cosmos-veil"></div>
+        <div class="cosmos-vignette"></div>
+    </div>
 
     <!-- ========================
          NAVIGATION
@@ -82,9 +86,10 @@
             <div class="nav-center">
                 <a href="#about" class="nav-link" data-target="about">About</a>
                 <a href="#skills" class="nav-link" data-target="skills">Skills</a>
-                <a href="#projects" class="nav-link" data-target="projects">Projects</a>
+                <a href="#projects" class="nav-link" data-target="projects">Work</a>
+                <a href="#coding-profiles" class="nav-link" data-target="coding-profiles">Coding</a>
                 <a href="#experience" class="nav-link" data-target="experience">Experience</a>
-                <a href="#achievements" class="nav-link" data-target="achievements">Highlights</a>
+                <a href="#achievements" class="nav-link" data-target="achievements">Achievements</a>
             </div>
 
             <a href="https://drive.google.com/file/d/1Xi79v6726GnArzIYIqSsiSnZ7Q6rSFse/view?usp=sharing"
@@ -102,9 +107,10 @@
         <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
             <a href="#about" class="mobile-nav-link">About</a>
             <a href="#skills" class="mobile-nav-link">Skills</a>
-            <a href="#projects" class="mobile-nav-link">Projects</a>
+            <a href="#projects" class="mobile-nav-link">Work</a>
+            <a href="#coding-profiles" class="mobile-nav-link">Coding</a>
             <a href="#experience" class="mobile-nav-link">Experience</a>
-            <a href="#achievements" class="mobile-nav-link">Highlights</a>
+            <a href="#achievements" class="mobile-nav-link">Achievements</a>
             <a href="#contact" class="mobile-nav-link">Contact</a>
             <a href="https://drive.google.com/file/d/1Xi79v6726GnArzIYIqSsiSnZ7Q6rSFse/view?usp=sharing"
                target="_blank" rel="noopener noreferrer"
@@ -115,12 +121,9 @@
     <main>
 
         <!-- ========================
-             HERO SECTION
+             01 · Hero
         ========================= -->
-        <section id="hero" class="hero-section">
-
-            <!-- Decorative large BG text -->
-            <div class="hero-bg-word" aria-hidden="true">BUILD</div>
+        <section id="hero" class="scene-section hero-section">
 
             <div class="hero-grid">
                 <!-- Left: Primary content -->
@@ -131,25 +134,25 @@
                     </div>
 
                     <h1 class="hero-title">
-                        <span class="hero-title-line" data-anim="hero-line">BUILDING</span>
-                        <span class="hero-title-line hero-title-accent" data-anim="hero-line">SCALABLE</span>
-                        <span class="hero-title-line hero-title-dim" data-anim="hero-line">SYSTEMS.</span>
+                        <span class="hero-title-line hero-title-pre" data-anim="hero-line">Backend systems &amp; distributed architecture</span>
+                        <span class="hero-title-line hero-title-accent" data-anim="hero-line">BUILDING</span>
+                        <span class="hero-title-line hero-title-dim" data-anim="hero-line">WHAT SCALES.</span>
                     </h1>
 
                     <p class="hero-desc" data-anim="hero-desc">
                         I'm <strong>Sumit Chauhan</strong>, a
                         <span class="hero-role-wrap"><span id="role-text" class="hero-role">Software Engineer.</span></span>
-                        <br>Based in India. Building what matters.
+                        <br>I design and build services that stay fast and predictable under load.
                     </p>
 
                     <div class="hero-actions" data-anim="hero-actions">
                         <a href="#projects" class="btn-primary mag-btn">
-                            <span>Explore Work</span>
+                            <span>View my work</span>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <path d="M7 17L17 7M17 7H7M17 7v10"/>
                             </svg>
                         </a>
-                        <a href="#contact" class="btn-ghost mag-btn">Get in touch</a>
+                        <a href="#contact" class="btn-ghost mag-btn">Make contact</a>
                     </div>
 
                     <div class="hero-social" data-anim="hero-actions">
@@ -163,33 +166,11 @@
                             <i data-feather="mail"></i>
                         </a>
                     </div>
-                </div>
 
-                <!-- Right: Visual / Profile -->
-                <div class="hero-visual" data-anim="hero-visual">
-                    <div class="profile-orbit-wrap">
-                        <!-- Rotating rings -->
-                        <div class="profile-ring ring-outer"></div>
-                        <div class="profile-ring ring-mid"></div>
-
-                        <!-- Profile image -->
-                        <div class="profile-img-frame">
-                            <img src="images/Profile.jpg?v=5" alt="Sumit Chauhan — Software Engineer" class="profile-img" />
-                        </div>
-
-                        <!-- Floating metric cards -->
-                        <div class="float-card float-card--tl">
-                            <span class="float-card-platform">Codeforces</span>
-                            <span class="float-card-value">Expert · 1944</span>
-                        </div>
-                        <div class="float-card float-card--tr">
-                            <span class="float-card-platform">LeetCode</span>
-                            <span class="float-card-value">Knight · 1898</span>
-                        </div>
-                        <div class="float-card float-card--br">
-                            <span class="float-card-platform">Solved</span>
-                            <span class="float-card-value float-card-value--big">1649<span class="float-card-plus">+</span></span>
-                        </div>
+                    <div class="hero-mini-stats" data-anim="hero-actions">
+                        <div class="hero-mini-stat"><b>1944</b><span>Codeforces · Expert</span></div>
+                        <div class="hero-mini-stat"><b>1898</b><span>LeetCode · Knight</span></div>
+                        <div class="hero-mini-stat"><b>1649+</b><span>Problems Solved</span></div>
                     </div>
                 </div>
             </div>
@@ -202,18 +183,18 @@
         </section>
 
         <!-- ========================
-             ABOUT SECTION
+             02 · About
         ========================= -->
-        <section id="about" class="page-section">
+        <section id="about" class="scene-section page-section">
             <div class="container">
                 <div class="section-eyebrow">
-                    <span class="eyebrow-num">01</span>
+                    <span class="eyebrow-num">02</span>
                     <span class="eyebrow-dash"></span>
-                    <span class="eyebrow-text">ABOUT</span>
+                    <span class="eyebrow-text">BACKGROUND</span>
                 </div>
 
                 <div class="about-layout">
-                    <div class="about-left reveal-elem">
+                    <div class="about-left reveal-elem glass-panel">
                         <h2 class="section-headline">The engineer<br>behind the systems.</h2>
                         <p class="about-primary-text">
                             Computer Science undergrad at <strong>NIT Jalandhar</strong> (Batch of 2026), deeply focused on <em class="text-accent-glow">Backend Systems</em> &amp; <em class="text-accent-glow">Distributed Architectures</em>.
@@ -236,22 +217,22 @@
 
                     <div class="about-right reveal-elem">
                         <div class="edu-stat-grid">
-                            <div class="edu-stat-card">
+                            <div class="edu-stat-card glass-panel">
                                 <div class="edu-stat-val">7.56</div>
                                 <div class="edu-stat-key">CGPA</div>
                                 <div class="edu-stat-sub">B.Tech CSE · NITJ</div>
                             </div>
-                            <div class="edu-stat-card">
+                            <div class="edu-stat-card glass-panel">
                                 <div class="edu-stat-val">92.6%</div>
                                 <div class="edu-stat-key">Class XII</div>
                                 <div class="edu-stat-sub">CBSE Board</div>
                             </div>
-                            <div class="edu-stat-card">
+                            <div class="edu-stat-card glass-panel">
                                 <div class="edu-stat-val">90.8%</div>
                                 <div class="edu-stat-key">Class X</div>
                                 <div class="edu-stat-sub">CBSE Board</div>
                             </div>
-                            <div class="edu-stat-card edu-stat-card--accent">
+                            <div class="edu-stat-card edu-stat-card--accent glass-panel">
                                 <div class="edu-stat-val">50+</div>
                                 <div class="edu-stat-key">Merged PRs</div>
                                 <div class="edu-stat-sub">Open Source</div>
@@ -263,19 +244,19 @@
         </section>
 
         <!-- ========================
-             SKILLS SECTION
+             03 · Skills
         ========================= -->
-        <section id="skills" class="page-section">
+        <section id="skills" class="scene-section page-section">
             <div class="container">
                 <div class="section-eyebrow">
-                    <span class="eyebrow-num">02</span>
+                    <span class="eyebrow-num">03</span>
                     <span class="eyebrow-dash"></span>
-                    <span class="eyebrow-text">SKILLS</span>
+                    <span class="eyebrow-text">TECHNICAL DOMAINS</span>
                 </div>
 
-                <h2 class="section-headline reveal-elem">Tech Stack.</h2>
+                <h2 class="section-headline reveal-elem">Domains I<br>work in.</h2>
 
-                <div class="skills-container reveal-elem">
+                <div class="skills-container reveal-elem glass-panel">
 
                     <div class="skill-row">
                         <div class="skill-row-label">
@@ -283,11 +264,11 @@
                             <span>Languages</span>
                         </div>
                         <div class="skill-row-tags">
-                            <span class="skill-pill"><i class="devicon-cplusplus-plain colored skill-pill-icon"></i>C++</span>
                             <span class="skill-pill"><i class="devicon-java-plain colored skill-pill-icon"></i>Java</span>
+                            <span class="skill-pill"><i class="devicon-cplusplus-plain colored skill-pill-icon"></i>C++</span>
                             <span class="skill-pill"><i class="devicon-python-plain colored skill-pill-icon"></i>Python</span>
-                            <span class="skill-pill"><i class="devicon-typescript-plain colored skill-pill-icon"></i>TypeScript</span>
                             <span class="skill-pill"><i class="devicon-azuresqldatabase-plain colored skill-pill-icon"></i>SQL</span>
+                            <span class="skill-pill"><i class="devicon-typescript-plain colored skill-pill-icon"></i>TypeScript</span>
                             <span class="skill-pill"><i class="devicon-c-plain colored skill-pill-icon"></i>C</span>
                         </div>
                     </div>
@@ -295,17 +276,19 @@
                     <div class="skill-row">
                         <div class="skill-row-label">
                             <i data-feather="server" class="skill-row-icon"></i>
-                            <span>Backend / Infra</span>
+                            <span>Backend / Infrastructure</span>
                         </div>
                         <div class="skill-row-tags">
-                            <span class="skill-pill skill-pill--primary"><i data-feather="share-2" class="skill-pill-icon"></i>Distributed Systems</span>
-                            <span class="skill-pill"><i data-feather="grid" class="skill-pill-icon"></i>Microservices</span>
+                            <span class="skill-pill skill-pill--primary"><i class="devicon-spring-plain colored skill-pill-icon"></i>Spring Boot</span>
                             <span class="skill-pill"><i data-feather="server" class="skill-pill-icon"></i>REST APIs</span>
+                            <span class="skill-pill"><i data-feather="grid" class="skill-pill-icon"></i>Microservices</span>
                             <span class="skill-pill"><i class="devicon-postgresql-plain colored skill-pill-icon"></i>PostgreSQL</span>
                             <span class="skill-pill"><i class="devicon-redis-plain colored skill-pill-icon"></i>Redis</span>
                             <span class="skill-pill"><i class="devicon-docker-plain colored skill-pill-icon"></i>Docker</span>
                             <span class="skill-pill"><i class="devicon-linux-plain text-white skill-pill-icon"></i>Linux</span>
-                            <span class="skill-pill"><i data-feather="git-branch" class="skill-pill-icon"></i>CI/CD</span>
+                            <span class="skill-pill"><i class="devicon-git-plain colored skill-pill-icon"></i>Git</span>
+                            <span class="skill-pill"><i class="devicon-githubactions-plain colored skill-pill-icon"></i>GitHub Actions</span>
+                            <span class="skill-pill"><i class="devicon-amazonwebservices-plain colored skill-pill-icon"></i>AWS</span>
                         </div>
                     </div>
 
@@ -317,9 +300,12 @@
                         <div class="skill-row-tags">
                             <span class="skill-pill"><i data-feather="cpu" class="skill-pill-icon"></i>Data Structures</span>
                             <span class="skill-pill"><i data-feather="git-merge" class="skill-pill-icon"></i>Algorithms</span>
+                            <span class="skill-pill"><i data-feather="box" class="skill-pill-icon"></i>Object-Oriented Programming</span>
                             <span class="skill-pill"><i data-feather="command" class="skill-pill-icon"></i>Operating Systems</span>
-                            <span class="skill-pill"><i data-feather="wifi" class="skill-pill-icon"></i>Networks</span>
+                            <span class="skill-pill"><i data-feather="wifi" class="skill-pill-icon"></i>Computer Networks</span>
                             <span class="skill-pill"><i data-feather="database" class="skill-pill-icon"></i>DBMS</span>
+                            <span class="skill-pill skill-pill--primary"><i data-feather="layout" class="skill-pill-icon"></i>System Design</span>
+                            <span class="skill-pill"><i data-feather="layers" class="skill-pill-icon"></i>Concurrency &amp; Multithreading</span>
                         </div>
                     </div>
 
@@ -329,9 +315,45 @@
                             <span>AI / ML</span>
                         </div>
                         <div class="skill-row-tags">
+                            <span class="skill-pill"><i class="devicon-python-plain colored skill-pill-icon"></i>Python</span>
+                            <span class="skill-pill"><i class="devicon-numpy-plain colored skill-pill-icon"></i>NumPy</span>
+                            <span class="skill-pill"><i class="devicon-pandas-plain colored skill-pill-icon"></i>Pandas</span>
+                            <span class="skill-pill"><i class="devicon-scikitlearn-plain colored skill-pill-icon"></i>Scikit-learn</span>
+                            <span class="skill-pill"><i class="devicon-tensorflow-original colored skill-pill-icon"></i>TensorFlow</span>
                             <span class="skill-pill skill-pill--secondary"><i data-feather="link-2" class="skill-pill-icon"></i>LangChain</span>
                             <span class="skill-pill skill-pill--secondary"><i data-feather="layers" class="skill-pill-icon"></i>RAG Pipelines</span>
-                            <span class="skill-pill"><i data-feather="bar-chart-2" class="skill-pill-icon"></i>Vector Embeddings</span>
+                            <span class="skill-pill"><i data-feather="database" class="skill-pill-icon"></i>Vector Databases</span>
+                            <span class="skill-pill"><i data-feather="message-square" class="skill-pill-icon"></i>Prompt Engineering</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="award" class="skill-row-icon"></i>
+                            <span>Competitive Programming</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill"><i data-feather="code" class="skill-pill-icon"></i>LeetCode</span>
+                            <span class="skill-pill"><i data-feather="award" class="skill-pill-icon"></i>Codeforces</span>
+                            <span class="skill-pill"><i data-feather="flag" class="skill-pill-icon"></i>CodeChef</span>
+                            <span class="skill-pill skill-pill--primary"><i data-feather="target" class="skill-pill-icon"></i>Problem Solving</span>
+                            <span class="skill-pill"><i data-feather="git-merge" class="skill-pill-icon"></i>Algorithm Design</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="tool" class="skill-row-icon"></i>
+                            <span>Tools</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill"><i class="devicon-git-plain colored skill-pill-icon"></i>Git</span>
+                            <span class="skill-pill"><i class="devicon-vscode-plain colored skill-pill-icon"></i>VS Code</span>
+                            <span class="skill-pill"><i class="devicon-intellij-plain colored skill-pill-icon"></i>IntelliJ IDEA</span>
+                            <span class="skill-pill"><i class="devicon-postman-plain colored skill-pill-icon"></i>Postman</span>
+                            <span class="skill-pill"><i class="devicon-firebase-plain colored skill-pill-icon"></i>Firebase</span>
+                            <span class="skill-pill"><i class="devicon-jupyter-plain colored skill-pill-icon"></i>Jupyter Notebook</span>
+                            <span class="skill-pill"><i data-feather="activity" class="skill-pill-icon"></i>Wireshark</span>
                         </div>
                     </div>
 
@@ -340,21 +362,131 @@
         </section>
 
         <!-- ========================
-             CODING PROFILES / ARENA
+             04 · Projects
         ========================= -->
-        <section id="coding-profiles" class="page-section">
+        <section id="projects" class="scene-section page-section">
             <div class="container">
                 <div class="section-eyebrow">
-                    <span class="eyebrow-num">03</span>
+                    <span class="eyebrow-num">04</span>
                     <span class="eyebrow-dash"></span>
-                    <span class="eyebrow-text">ARENA</span>
+                    <span class="eyebrow-text">SELECTED WORK</span>
+                </div>
+
+                <h2 class="section-headline reveal-elem">Selected<br>Projects.</h2>
+
+                <div class="projects-list">
+
+                    <!-- Project 01: Weaveflow -->
+                    <div class="project-item reveal-elem glass-panel">
+                        <div class="project-visual">
+                            <div class="project-plate">
+                                <span class="project-plate-idx">01</span>
+                                <span class="project-plate-rule"></span>
+                                <span class="project-plate-name">WEAVEFLOW</span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div>
+                                    <span class="project-type-label">AI Workflow Platform</span>
+                                    <h3 class="project-title">Weaveflow</h3>
+                                </div>
+                                <div class="project-links-row">
+                                    <a href="https://github.com/Gosling-dude/weaveflow" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
+                                        <i data-feather="github"></i> GitHub
+                                    </a>
+                                </div>
+                            </div>
+
+                            <p class="project-desc">
+                                An AI workflow orchestration platform for multi-step AI pipelines, enabling complex automation through distributed microservices.
+                            </p>
+
+                            <ul class="project-bullets">
+                                <li>Designed microservice-based backend enabling distributed workflow execution</li>
+                                <li>Implemented REST APIs and service integrations between workflow components</li>
+                                <li>PostgreSQL relational model for workflow state persistence</li>
+                                <li>CI/CD pipelines via GitHub Actions for automated builds</li>
+                            </ul>
+
+                            <div class="project-tech-stack">
+                                <span class="tech-chip">Next.js</span>
+                                <span class="tech-chip">TypeScript</span>
+                                <span class="tech-chip">PostgreSQL</span>
+                                <span class="tech-chip">REST APIs</span>
+                                <span class="tech-chip">Docker</span>
+                                <span class="tech-chip">GitHub Actions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 02: DeepTrace -->
+                    <div class="project-item project-item--flip reveal-elem glass-panel">
+                        <div class="project-visual">
+                            <div class="project-plate">
+                                <span class="project-plate-idx">02</span>
+                                <span class="project-plate-rule"></span>
+                                <span class="project-plate-name">DEEPTRACE</span>
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-header">
+                                <div>
+                                    <span class="project-type-label">AI Detection · SaaS Platform</span>
+                                    <h3 class="project-title">DeepTrace</h3>
+                                </div>
+                                <div class="project-links-row">
+                                    <a href="https://github.com/Gosling-dude/DeepTrace" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
+                                        <i data-feather="github"></i> GitHub
+                                    </a>
+                                </div>
+                            </div>
+
+                            <p class="project-desc">
+                                Production-grade AI image detection SaaS — dual-stream CNN + FFT frequency-domain architecture with Grad-CAM explainability, full JWT auth, RBAC, and admin analytics dashboards.
+                            </p>
+
+                            <ul class="project-bullets">
+                                <li>Dual-stream CNN + FFT architecture achieving 96.8% detection accuracy at 180ms inference</li>
+                                <li>Grad-CAM heatmap overlay for model explainability and auditability</li>
+                                <li>JWT-based auth with role-based access control and admin user management</li>
+                                <li>Dockerized FastAPI + React 18 stack with PostgreSQL and async workers</li>
+                            </ul>
+
+                            <div class="project-tech-stack">
+                                <span class="tech-chip">Python</span>
+                                <span class="tech-chip">FastAPI</span>
+                                <span class="tech-chip">PyTorch</span>
+                                <span class="tech-chip">React 18</span>
+                                <span class="tech-chip">TypeScript</span>
+                                <span class="tech-chip">Docker</span>
+                                <span class="tech-chip">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================
+             05 · Competitive programming
+        ========================= -->
+        <section id="coding-profiles" class="scene-section page-section">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-num">05</span>
+                    <span class="eyebrow-dash"></span>
+                    <span class="eyebrow-text">COMPETITIVE PROGRAMMING</span>
                 </div>
 
                 <h2 class="section-headline reveal-elem">Competitive<br>Programming.</h2>
 
                 <!-- Platform cards -->
                 <div class="platform-card-grid reveal-elem">
-                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn">
+                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel">
                         <img src="images/codeforces.svg" alt="Codeforces" class="platform-logo">
                         <div class="platform-info">
                             <span class="platform-name">Codeforces</span>
@@ -363,7 +495,7 @@
                         <i data-feather="arrow-up-right" class="platform-arrow"></i>
                     </a>
 
-                    <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn">
+                    <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel">
                         <img src="images/leetcode.svg" alt="LeetCode" class="platform-logo">
                         <div class="platform-info">
                             <span class="platform-name">LeetCode</span>
@@ -372,7 +504,7 @@
                         <i data-feather="arrow-up-right" class="platform-arrow"></i>
                     </a>
 
-                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn">
+                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel">
                         <img src="images/codechef.png" alt="CodeChef" class="platform-logo platform-logo--invert">
                         <div class="platform-info">
                             <span class="platform-name">CodeChef</span>
@@ -381,7 +513,7 @@
                         <i data-feather="arrow-up-right" class="platform-arrow"></i>
                     </a>
 
-                    <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn">
+                    <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel">
                         <img src="images/gfg.svg" alt="GeeksforGeeks" class="platform-logo">
                         <div class="platform-info">
                             <span class="platform-name">GeeksforGeeks</span>
@@ -392,7 +524,7 @@
                 </div>
 
                 <!-- Live Telemetry Dashboard -->
-                <div class="telemetry-wrap reveal-elem">
+                <div class="telemetry-wrap reveal-elem glass-panel">
                     <div class="telemetry-header">
                         <div class="telemetry-title-row">
                             <span class="telemetry-live-indicator">
@@ -631,536 +763,131 @@
         </section>
 
         <!-- ========================
-             PROJECTS SECTION
+             06 · Experience
         ========================= -->
-        <section id="projects" class="page-section">
-            <div class="container">
-                <div class="section-eyebrow">
-                    <span class="eyebrow-num">04</span>
-                    <span class="eyebrow-dash"></span>
-                    <span class="eyebrow-text">WORK</span>
-                </div>
-
-                <h2 class="section-headline reveal-elem">Selected<br>Projects.</h2>
-
-                <div class="projects-list">
-
-                    <!-- Project 01: Weaveflow -->
-                    <div class="project-item reveal-elem">
-                        <div class="project-num-badge">01</div>
-
-                        <div class="project-visual project-visual--weaveflow">
-                            <div class="project-visual-inner">
-                                <div class="project-visual-pattern"></div>
-                                <!-- WeaveFlow: Workflow Orchestration Engine mockup -->
-                                <svg class="weaveflow-svg" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                                  <defs>
-                                    <linearGradient id="wf-nodebg" x1="0" y1="0" x2="0" y2="1">
-                                      <stop offset="0%" stop-color="rgba(30,28,60,0.95)"/>
-                                      <stop offset="100%" stop-color="rgba(20,18,45,0.95)"/>
-                                    </linearGradient>
-                                    <linearGradient id="wf-edge" x1="0" y1="0" x2="1" y2="0">
-                                      <stop offset="0%" stop-color="rgba(99,102,241,0)"/>
-                                      <stop offset="40%" stop-color="rgba(99,102,241,0.9)"/>
-                                      <stop offset="100%" stop-color="rgba(139,92,246,0)"/>
-                                    </linearGradient>
-                                    <filter id="wf-glow">
-                                      <feGaussianBlur stdDeviation="2" result="blur"/>
-                                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                                    </filter>
-                                  </defs>
-
-                                  <!-- Outer frame -->
-                                  <rect x="10" y="10" width="260" height="180" rx="8" fill="rgba(6,6,14,0.88)" stroke="rgba(99,102,241,0.18)" stroke-width="1"/>
-
-                                  <!-- Title bar -->
-                                  <rect x="10" y="10" width="260" height="24" rx="8" fill="rgba(12,12,24,0.96)"/>
-                                  <rect x="10" y="26" width="260" height="8" fill="rgba(12,12,24,0.96)"/>
-                                  <circle cx="26" cy="22" r="4" fill="rgba(239,68,68,0.7)"/>
-                                  <circle cx="38" cy="22" r="4" fill="rgba(251,191,36,0.7)"/>
-                                  <circle cx="50" cy="22" r="4" fill="rgba(34,197,94,0.7)"/>
-                                  <text x="147" y="26" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="7.5" font-family="monospace">Weaveflow — Pipeline Orchestration Engine</text>
-                                  <!-- Running status -->
-                                  <circle cx="254" cy="22" r="3" fill="rgba(34,197,94,0.95)">
-                                    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
-                                  </circle>
-                                  <text x="248" y="20" text-anchor="end" fill="rgba(134,239,172,0.8)" font-size="5.5" font-family="monospace">RUNNING</text>
-
-                                  <!-- Pipeline flow: Trigger → Fetch → Transform → AI → Store → Notify -->
-                                  <!-- Row 1: Top pipeline -->
-                                  <!-- Node: TRIGGER -->
-                                  <rect x="16" y="44" width="44" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(99,102,241,0.6)" stroke-width="1.2"/>
-                                  <circle cx="24" cy="57" r="3" fill="rgba(34,197,94,0.9)"/>
-                                  <text x="38" y="54" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="6.5" font-family="monospace">TRIGGER</text>
-                                  <text x="38" y="65" text-anchor="middle" fill="rgba(134,239,172,0.7)" font-size="5.5" font-family="monospace">✓ done</text>
-
-                                  <!-- Arrow 1 -->
-                                  <line x1="60" y1="57" x2="74" y2="57" stroke="rgba(99,102,241,0.7)" stroke-width="1.2"/>
-                                  <polygon points="74,54 79,57 74,60" fill="rgba(99,102,241,0.8)"/>
-                                  <!-- Animated packet -->
-                                  <circle r="2.5" fill="rgba(129,140,248,0.95)" filter="url(#wf-glow)">
-                                    <animateMotion dur="1.8s" repeatCount="indefinite" calcMode="linear">
-                                      <mpath href="#wf-path1"/>
-                                    </animateMotion>
-                                  </circle>
-                                  <path id="wf-path1" d="M60,57 L79,57" fill="none"/>
-
-                                  <!-- Node: FETCH -->
-                                  <rect x="80" y="44" width="44" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(99,102,241,0.6)" stroke-width="1.2"/>
-                                  <circle cx="88" cy="57" r="3" fill="rgba(34,197,94,0.9)"/>
-                                  <text x="102" y="54" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="6.5" font-family="monospace">FETCH</text>
-                                  <text x="102" y="65" text-anchor="middle" fill="rgba(134,239,172,0.7)" font-size="5.5" font-family="monospace">✓ done</text>
-
-                                  <!-- Arrow 2 -->
-                                  <line x1="124" y1="57" x2="138" y2="57" stroke="rgba(99,102,241,0.7)" stroke-width="1.2"/>
-                                  <polygon points="138,54 143,57 138,60" fill="rgba(99,102,241,0.8)"/>
-                                  <circle r="2.5" fill="rgba(129,140,248,0.95)" filter="url(#wf-glow)">
-                                    <animateMotion dur="1.8s" begin="0.6s" repeatCount="indefinite" calcMode="linear">
-                                      <mpath href="#wf-path2"/>
-                                    </animateMotion>
-                                  </circle>
-                                  <path id="wf-path2" d="M124,57 L143,57" fill="none"/>
-
-                                  <!-- Node: TRANSFORM -->
-                                  <rect x="144" y="44" width="52" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(251,191,36,0.5)" stroke-width="1.2"/>
-                                  <circle cx="153" cy="57" r="3" fill="rgba(251,191,36,0.9)">
-                                    <animate attributeName="opacity" values="1;0.4;1" dur="1.2s" repeatCount="indefinite"/>
-                                  </circle>
-                                  <text x="170" y="54" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-size="6.5" font-family="monospace">TRANSFORM</text>
-                                  <text x="170" y="65" text-anchor="middle" fill="rgba(253,224,71,0.7)" font-size="5.5" font-family="monospace">⟳ running</text>
-
-                                  <!-- Down arrow from TRANSFORM to AI branch -->
-                                  <line x1="170" y1="70" x2="170" y2="84" stroke="rgba(139,92,246,0.6)" stroke-width="1.2" stroke-dasharray="3,2"/>
-                                  <polygon points="167,84 170,89 173,84" fill="rgba(139,92,246,0.7)"/>
-
-                                  <!-- Node: AI PROCESS (branch) -->
-                                  <rect x="144" y="90" width="52" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(139,92,246,0.5)" stroke-width="1.2"/>
-                                  <circle cx="153" cy="103" r="3" fill="rgba(139,92,246,0.5)"/>
-                                  <text x="170" y="100" text-anchor="middle" fill="rgba(200,200,220,0.65)" font-size="6.5" font-family="monospace">AI PROCESS</text>
-                                  <text x="170" y="111" text-anchor="middle" fill="rgba(147,197,253,0.55)" font-size="5.5" font-family="monospace">○ queued</text>
-
-                                  <!-- Right arrow from AI to STORE -->
-                                  <line x1="196" y1="103" x2="210" y2="103" stroke="rgba(99,102,241,0.4)" stroke-width="1.2" stroke-dasharray="3,2"/>
-                                  <polygon points="210,100 215,103 210,106" fill="rgba(99,102,241,0.5)"/>
-
-                                  <!-- Node: STORE -->
-                                  <rect x="216" y="90" width="44" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
-                                  <circle cx="224" cy="103" r="3" fill="rgba(99,102,241,0.4)"/>
-                                  <text x="238" y="100" text-anchor="middle" fill="rgba(200,200,220,0.65)" font-size="6.5" font-family="monospace">STORE</text>
-                                  <text x="238" y="111" text-anchor="middle" fill="rgba(147,197,253,0.5)" font-size="5.5" font-family="monospace">○ queued</text>
-
-                                  <!-- Right arrow from TRANSFORM continuing to NOTIFY -->
-                                  <line x1="196" y1="57" x2="216" y2="57" stroke="rgba(99,102,241,0.4)" stroke-width="1.2" stroke-dasharray="3,2"/>
-                                  <polygon points="216,54 221,57 216,60" fill="rgba(99,102,241,0.5)"/>
-
-                                  <!-- Node: NOTIFY -->
-                                  <rect x="222" y="44" width="44" height="26" rx="5" fill="url(#wf-nodebg)" stroke="rgba(99,102,241,0.35)" stroke-width="1.2"/>
-                                  <circle cx="230" cy="57" r="3" fill="rgba(99,102,241,0.4)"/>
-                                  <text x="244" y="54" text-anchor="middle" fill="rgba(200,200,220,0.65)" font-size="6.5" font-family="monospace">NOTIFY</text>
-                                  <text x="244" y="65" text-anchor="middle" fill="rgba(147,197,253,0.5)" font-size="5.5" font-family="monospace">○ queued</text>
-
-                                  <!-- Metrics bar -->
-                                  <rect x="16" y="132" width="248" height="46" rx="5" fill="rgba(10,10,22,0.75)" stroke="rgba(99,102,241,0.15)" stroke-width="1"/>
-
-                                  <!-- Metric 1: Throughput -->
-                                  <text x="26" y="146" fill="rgba(129,140,248,0.65)" font-size="6" font-family="monospace">THROUGHPUT</text>
-                                  <text x="26" y="158" fill="rgba(255,255,255,0.9)" font-size="11" font-family="monospace" font-weight="bold">1.2k</text>
-                                  <text x="26" y="170" fill="rgba(129,140,248,0.5)" font-size="5.5" font-family="monospace">tasks / min</text>
-
-                                  <!-- Metric 2: P99 Latency -->
-                                  <text x="100" y="146" fill="rgba(129,140,248,0.65)" font-size="6" font-family="monospace">P99 LATENCY</text>
-                                  <text x="100" y="158" fill="rgba(255,255,255,0.9)" font-size="11" font-family="monospace" font-weight="bold">84ms</text>
-                                  <text x="100" y="170" fill="rgba(129,140,248,0.5)" font-size="5.5" font-family="monospace">avg response</text>
-
-                                  <!-- Metric 3: Services -->
-                                  <text x="175" y="146" fill="rgba(129,140,248,0.65)" font-size="6" font-family="monospace">SERVICES</text>
-                                  <text x="175" y="158" fill="rgba(255,255,255,0.9)" font-size="11" font-family="monospace" font-weight="bold">12</text>
-                                  <text x="175" y="170" fill="rgba(129,140,248,0.5)" font-size="5.5" font-family="monospace">microservices</text>
-
-                                  <!-- Metric 4: Uptime -->
-                                  <text x="225" y="146" fill="rgba(129,140,248,0.65)" font-size="6" font-family="monospace">UPTIME</text>
-                                  <text x="225" y="158" fill="rgba(134,239,172,0.9)" font-size="11" font-family="monospace" font-weight="bold">99.9%</text>
-                                  <text x="225" y="170" fill="rgba(129,140,248,0.5)" font-size="5.5" font-family="monospace">SLA target</text>
-
-                                  <!-- Corner bracket decorations -->
-                                  <path d="M10 20 L10 10 L20 10" fill="none" stroke="rgba(99,102,241,0.85)" stroke-width="2"/>
-                                  <path d="M260 20 L260 10 L250 10" fill="none" stroke="rgba(99,102,241,0.85)" stroke-width="2"/>
-                                  <path d="M10 180 L10 190 L20 190" fill="none" stroke="rgba(99,102,241,0.85)" stroke-width="2"/>
-                                  <path d="M260 180 L260 190 L250 190" fill="none" stroke="rgba(99,102,241,0.85)" stroke-width="2"/>
-                                </svg>
-                                <span class="project-visual-name">WEAVEFLOW</span>
-                            </div>
-                        </div>
-
-                        <div class="project-content">
-                            <div class="project-header">
-                                <div>
-                                    <span class="project-type-label">AI Workflow Platform</span>
-                                    <h3 class="project-title">Weaveflow</h3>
-                                </div>
-                                <div class="project-links-row">
-                                    <a href="https://github.com/Gosling-dude/weaveflow" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
-                                        <i data-feather="github"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-
-                            <p class="project-desc">
-                                An AI workflow orchestration platform for multi-step AI pipelines, enabling complex automation through distributed microservices.
-                            </p>
-
-                            <ul class="project-bullets">
-                                <li>Designed microservice-based backend enabling distributed workflow execution</li>
-                                <li>Implemented REST APIs and service integrations between workflow components</li>
-                                <li>PostgreSQL relational model for workflow state persistence</li>
-                                <li>CI/CD pipelines via GitHub Actions for automated builds</li>
-                            </ul>
-
-                            <div class="project-tech-stack">
-                                <span class="tech-chip">Next.js</span>
-                                <span class="tech-chip">TypeScript</span>
-                                <span class="tech-chip">PostgreSQL</span>
-                                <span class="tech-chip">REST APIs</span>
-                                <span class="tech-chip">Docker</span>
-                                <span class="tech-chip">GitHub Actions</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 02: DeepTrace -->
-                    <div class="project-item project-item--flip reveal-elem">
-                        <div class="project-num-badge">02</div>
-
-                        <div class="project-visual project-visual--deeptrace">
-                            <div class="project-visual-inner">
-                                <div class="project-visual-pattern"></div>
-                                <!-- DeepTrace: AI Forensic Engine mockup -->
-                                <svg class="deeptrace-svg" viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-                                  <defs>
-                                    <linearGradient id="dt-imgbg" x1="0" y1="0" x2="1" y2="1">
-                                      <stop offset="0%" stop-color="#0f0f1a"/>
-                                      <stop offset="100%" stop-color="#1a1030"/>
-                                    </linearGradient>
-                                    <radialGradient id="dt-heatmap" cx="55%" cy="35%" r="45%">
-                                      <stop offset="0%" stop-color="rgba(239,68,68,0.9)"/>
-                                      <stop offset="28%" stop-color="rgba(251,146,60,0.65)"/>
-                                      <stop offset="58%" stop-color="rgba(234,179,8,0.3)"/>
-                                      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
-                                    </radialGradient>
-                                    <linearGradient id="dt-scan" x1="0" y1="0" x2="0" y2="1">
-                                      <stop offset="0%" stop-color="rgba(239,68,68,0)"/>
-                                      <stop offset="50%" stop-color="rgba(239,68,68,0.85)"/>
-                                      <stop offset="100%" stop-color="rgba(239,68,68,0)"/>
-                                    </linearGradient>
-                                    <linearGradient id="dt-confbar" x1="0" y1="0" x2="1" y2="0">
-                                      <stop offset="0%" stop-color="rgba(139,92,246,0.85)"/>
-                                      <stop offset="55%" stop-color="rgba(239,68,68,0.9)"/>
-                                      <stop offset="100%" stop-color="rgba(239,68,68,1)"/>
-                                    </linearGradient>
-                                  </defs>
-
-                                  <!-- Outer frame -->
-                                  <rect x="10" y="10" width="260" height="180" rx="8" fill="rgba(6,6,14,0.88)" stroke="rgba(239,68,68,0.18)" stroke-width="1"/>
-
-                                  <!-- Title bar -->
-                                  <rect x="10" y="10" width="260" height="24" rx="8" fill="rgba(12,12,22,0.96)"/>
-                                  <rect x="10" y="26" width="260" height="8" fill="rgba(12,12,22,0.96)"/>
-                                  <circle cx="26" cy="22" r="4" fill="rgba(239,68,68,0.7)"/>
-                                  <circle cx="38" cy="22" r="4" fill="rgba(251,191,36,0.7)"/>
-                                  <circle cx="50" cy="22" r="4" fill="rgba(34,197,94,0.7)"/>
-                                  <text x="147" y="26" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="7.5" font-family="monospace">DeepTrace — AI Forensic Analysis Engine</text>
-                                  <circle cx="257" cy="22" r="3" fill="rgba(239,68,68,0.95)">
-                                    <animate attributeName="opacity" values="1;0.25;1" dur="1.3s" repeatCount="indefinite"/>
-                                  </circle>
-
-                                  <!-- ── LEFT PANEL: GradCAM Analysis ── -->
-                                  <text x="16" y="48" fill="rgba(139,92,246,0.75)" font-size="6.5" font-family="monospace" letter-spacing="0.5">GRAD-CAM ANALYSIS</text>
-
-                                  <!-- Image background -->
-                                  <rect x="16" y="52" width="114" height="88" rx="4" fill="url(#dt-imgbg)"/>
-
-                                  <!-- Silhouette suggestion (abstract person shape) -->
-                                  <ellipse cx="73" cy="74" rx="14" ry="16" fill="rgba(99,102,241,0.17)" stroke="rgba(99,102,241,0.22)" stroke-width="0.5"/>
-                                  <rect x="57" y="88" width="32" height="36" rx="4" fill="rgba(99,102,241,0.11)" stroke="rgba(99,102,241,0.18)" stroke-width="0.5"/>
-
-                                  <!-- GradCAM heat overlay -->
-                                  <rect x="16" y="52" width="114" height="88" rx="4" fill="url(#dt-heatmap)" opacity="0.72"/>
-
-                                  <!-- Scanning beam (animated) -->
-                                  <rect x="16" y="52" width="114" height="6" rx="0" fill="url(#dt-scan)" opacity="0.78">
-                                    <animate attributeName="y" from="52" to="140" dur="2.4s" repeatCount="indefinite" calcMode="linear"/>
-                                  </rect>
-
-                                  <!-- Bounding box with animated dash -->
-                                  <rect x="54" y="58" width="38" height="50" rx="2" fill="none" stroke="rgba(239,68,68,0.88)" stroke-width="1.5" stroke-dasharray="4,2">
-                                    <animate attributeName="stroke-dashoffset" from="0" to="12" dur="1s" repeatCount="indefinite"/>
-                                  </rect>
-                                  <!-- Corner handles -->
-                                  <path d="M54 65 L54 58 L61 58" fill="none" stroke="rgba(239,68,68,1)" stroke-width="1.8"/>
-                                  <path d="M85 65 L92 65 L92 58 L85 58" fill="none" stroke="rgba(239,68,68,1)" stroke-width="1.8"/>
-                                  <path d="M54 101 L54 108 L61 108" fill="none" stroke="rgba(239,68,68,1)" stroke-width="1.8"/>
-                                  <path d="M85 101 L92 101 L92 108 L85 108" fill="none" stroke="rgba(239,68,68,1)" stroke-width="1.8"/>
-
-                                  <!-- Detection result label -->
-                                  <rect x="16" y="143" width="114" height="17" rx="3" fill="rgba(220,38,38,0.92)"/>
-                                  <text x="73" y="154.5" text-anchor="middle" fill="white" font-size="7" font-family="monospace" font-weight="bold">⚠ AI GENERATED · 97.3%</text>
-
-                                  <!-- Confidence bar -->
-                                  <text x="16" y="168" fill="rgba(139,92,246,0.65)" font-size="6" font-family="monospace">CONFIDENCE</text>
-                                  <rect x="16" y="171" width="114" height="7" rx="3.5" fill="rgba(22,22,42,0.85)"/>
-                                  <rect x="16" y="171" width="111" height="7" rx="3.5" fill="url(#dt-confbar)"/>
-                                  <text x="130" y="178" text-anchor="end" fill="rgba(252,165,165,0.9)" font-size="6" font-family="monospace">97.3%</text>
-
-                                  <!-- Panel divider -->
-                                  <line x1="143" y1="42" x2="143" y2="184" stroke="rgba(99,102,241,0.14)" stroke-width="1" stroke-dasharray="3,3"/>
-
-                                  <!-- ── RIGHT PANEL: Neural Network ── -->
-                                  <text x="150" y="48" fill="rgba(139,92,246,0.75)" font-size="6.5" font-family="monospace" letter-spacing="0.5">DUAL-STREAM CNN + FFT</text>
-
-                                  <!-- Input layer (4 nodes) -->
-                                  <circle cx="160" cy="66"  r="4.2" fill="rgba(139,92,246,0.92)" stroke="rgba(167,139,250,0.45)" stroke-width="1"/>
-                                  <circle cx="160" cy="80"  r="4.2" fill="rgba(139,92,246,0.92)" stroke="rgba(167,139,250,0.45)" stroke-width="1"/>
-                                  <circle cx="160" cy="94"  r="4.2" fill="rgba(139,92,246,0.92)" stroke="rgba(167,139,250,0.45)" stroke-width="1"/>
-                                  <circle cx="160" cy="108" r="4.2" fill="rgba(139,92,246,0.92)" stroke="rgba(167,139,250,0.45)" stroke-width="1"/>
-
-                                  <!-- Hidden layer (5 nodes) -->
-                                  <circle cx="192" cy="60"  r="3.6" fill="rgba(99,102,241,0.88)"/>
-                                  <circle cx="192" cy="73"  r="3.6" fill="rgba(99,102,241,0.88)"/>
-                                  <circle cx="192" cy="87"  r="3.6" fill="rgba(99,102,241,0.88)"/>
-                                  <circle cx="192" cy="101" r="3.6" fill="rgba(99,102,241,0.88)"/>
-                                  <circle cx="192" cy="115" r="3.6" fill="rgba(99,102,241,0.88)"/>
-
-                                  <!-- Output layer (2 nodes: AI / Real) -->
-                                  <circle cx="222" cy="76"  r="5.5" fill="rgba(239,68,68,0.94)" stroke="rgba(252,165,165,0.5)" stroke-width="1.5"/>
-                                  <circle cx="222" cy="101" r="5.5" fill="rgba(20,20,40,0.6)"   stroke="rgba(99,102,241,0.35)" stroke-width="1.5"/>
-
-                                  <!-- L1 → L2 connections -->
-                                  <g stroke="rgba(139,92,246,0.2)" stroke-width="0.65">
-                                    <line x1="164.2" y1="66" x2="188.4" y2="60"/>
-                                    <line x1="164.2" y1="66" x2="188.4" y2="73"/>
-                                    <line x1="164.2" y1="66" x2="188.4" y2="87"/>
-                                    <line x1="164.2" y1="80" x2="188.4" y2="60"/>
-                                    <line x1="164.2" y1="80" x2="188.4" y2="73"/>
-                                    <line x1="164.2" y1="80" x2="188.4" y2="87"/>
-                                    <line x1="164.2" y1="80" x2="188.4" y2="101"/>
-                                    <line x1="164.2" y1="94" x2="188.4" y2="73"/>
-                                    <line x1="164.2" y1="94" x2="188.4" y2="87"/>
-                                    <line x1="164.2" y1="94" x2="188.4" y2="101"/>
-                                    <line x1="164.2" y1="94" x2="188.4" y2="115"/>
-                                    <line x1="164.2" y1="108" x2="188.4" y2="87"/>
-                                    <line x1="164.2" y1="108" x2="188.4" y2="101"/>
-                                    <line x1="164.2" y1="108" x2="188.4" y2="115"/>
-                                  </g>
-
-                                  <!-- L2 → L3 (hot path toward AI output) -->
-                                  <line x1="195.6" y1="60"  x2="216.5" y2="76"  stroke="rgba(239,68,68,0.7)" stroke-width="1.3"/>
-                                  <line x1="195.6" y1="73"  x2="216.5" y2="76"  stroke="rgba(239,68,68,0.65)" stroke-width="1.3"/>
-                                  <line x1="195.6" y1="87"  x2="216.5" y2="76"  stroke="rgba(239,68,68,0.42)" stroke-width="1"/>
-                                  <line x1="195.6" y1="87"  x2="216.5" y2="101" stroke="rgba(99,102,241,0.22)" stroke-width="0.7"/>
-                                  <line x1="195.6" y1="101" x2="216.5" y2="101" stroke="rgba(99,102,241,0.26)" stroke-width="0.7"/>
-                                  <line x1="195.6" y1="115" x2="216.5" y2="101" stroke="rgba(99,102,241,0.26)" stroke-width="0.7"/>
-
-                                  <!-- Output labels -->
-                                  <text x="231" y="79"  fill="rgba(252,165,165,0.95)" font-size="6.5" font-family="monospace">AI 97%</text>
-                                  <text x="231" y="104" fill="rgba(147,197,253,0.55)"  font-size="6.5" font-family="monospace">R   3%</text>
-
-                                  <!-- Layer labels -->
-                                  <text x="160" y="122" text-anchor="middle" fill="rgba(167,139,250,0.38)" font-size="5.5" font-family="monospace">INPUT</text>
-                                  <text x="192" y="127" text-anchor="middle" fill="rgba(129,140,248,0.38)" font-size="5.5" font-family="monospace">FC</text>
-
-                                  <!-- FFT spectrum -->
-                                  <text x="150" y="142" fill="rgba(139,92,246,0.62)" font-size="6" font-family="monospace" letter-spacing="0.3">FFT ANOMALY SPECTRUM</text>
-                                  <g transform="translate(150,180)">
-                                    <rect x="0"  y="-5"  width="5" height="5"  rx="1" fill="rgba(139,92,246,0.6)"/>
-                                    <rect x="7"  y="-9"  width="5" height="9"  rx="1" fill="rgba(99,102,241,0.7)"/>
-                                    <rect x="14" y="-13" width="5" height="13" rx="1" fill="rgba(79,70,229,0.8)"/>
-                                    <rect x="21" y="-26" width="5" height="26" rx="1" fill="rgba(239,68,68,0.95)"/>
-                                    <rect x="28" y="-32" width="5" height="32" rx="1" fill="rgba(239,68,68,1)"/>
-                                    <rect x="35" y="-25" width="5" height="25" rx="1" fill="rgba(239,68,68,0.9)"/>
-                                    <rect x="42" y="-16" width="5" height="16" rx="1" fill="rgba(239,68,68,0.72)"/>
-                                    <rect x="49" y="-10" width="5" height="10" rx="1" fill="rgba(239,68,68,0.55)"/>
-                                    <rect x="56" y="-6"  width="5" height="6"  rx="1" fill="rgba(99,102,241,0.55)"/>
-                                    <rect x="63" y="-8"  width="5" height="8"  rx="1" fill="rgba(99,102,241,0.6)"/>
-                                    <rect x="70" y="-4"  width="5" height="4"  rx="1" fill="rgba(139,92,246,0.5)"/>
-                                    <rect x="77" y="-7"  width="5" height="7"  rx="1" fill="rgba(139,92,246,0.55)"/>
-                                    <line x1="0" y1="0" x2="85" y2="0" stroke="rgba(99,102,241,0.22)" stroke-width="0.5"/>
-                                    <!-- Anomaly marker -->
-                                    <line x1="30.5" y1="-32" x2="30.5" y2="-37" stroke="rgba(239,68,68,0.75)" stroke-width="0.8" stroke-dasharray="2,1"/>
-                                    <text x="30.5" y="-40" text-anchor="middle" fill="rgba(252,165,165,0.75)" font-size="5.5" font-family="monospace">ANOMALY</text>
-                                  </g>
-
-                                  <!-- Corner bracket decorations -->
-                                  <path d="M10 20 L10 10 L20 10" fill="none" stroke="rgba(239,68,68,0.85)" stroke-width="2"/>
-                                  <path d="M260 20 L260 10 L250 10" fill="none" stroke="rgba(239,68,68,0.85)" stroke-width="2"/>
-                                  <path d="M10 180 L10 190 L20 190" fill="none" stroke="rgba(239,68,68,0.85)" stroke-width="2"/>
-                                  <path d="M260 180 L260 190 L250 190" fill="none" stroke="rgba(239,68,68,0.85)" stroke-width="2"/>
-                                </svg>
-                                <span class="project-visual-name">DEEPTRACE</span>
-                            </div>
-                        </div>
-
-                        <div class="project-content">
-                            <div class="project-header">
-                                <div>
-                                    <span class="project-type-label">AI Detection · SaaS Platform</span>
-                                    <h3 class="project-title">DeepTrace</h3>
-                                </div>
-                                <div class="project-links-row">
-                                    <a href="https://github.com/Gosling-dude/DeepTrace" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
-                                        <i data-feather="github"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-
-                            <p class="project-desc">
-                                Production-grade AI image detection SaaS — dual-stream CNN + FFT frequency-domain architecture with Grad-CAM explainability, full JWT auth, RBAC, and admin analytics dashboards.
-                            </p>
-
-                            <ul class="project-bullets">
-                                <li>Dual-stream CNN + FFT architecture achieving 96.8% detection accuracy at 180ms inference</li>
-                                <li>Grad-CAM heatmap overlay for model explainability and auditability</li>
-                                <li>JWT-based auth with role-based access control and admin user management</li>
-                                <li>Dockerized FastAPI + React 18 stack with PostgreSQL and async workers</li>
-                            </ul>
-
-                            <div class="project-tech-stack">
-                                <span class="tech-chip">Python</span>
-                                <span class="tech-chip">FastAPI</span>
-                                <span class="tech-chip">PyTorch</span>
-                                <span class="tech-chip">React 18</span>
-                                <span class="tech-chip">TypeScript</span>
-                                <span class="tech-chip">Docker</span>
-                                <span class="tech-chip">PostgreSQL</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================
-             EXPERIENCE SECTION
-        ========================= -->
-        <section id="experience" class="page-section">
-            <div class="container">
-                <div class="section-eyebrow">
-                    <span class="eyebrow-num">05</span>
-                    <span class="eyebrow-dash"></span>
-                    <span class="eyebrow-text">WORK &amp; OPEN SOURCE</span>
-                </div>
-
-                <h2 class="section-headline reveal-elem">Experience &amp;<br>Contributions.</h2>
-
-                <!-- Professional -->
-                <div class="exp-block reveal-elem">
-                    <h3 class="exp-block-heading">Professional</h3>
-
-                    <div class="exp-card">
-                        <div class="exp-logo-cell">
-                            <div class="exp-logo-badge">K</div>
-                        </div>
-                        <div class="exp-body">
-                            <div class="exp-top-row">
-                                <div>
-                                    <h4 class="exp-role">Teaching Ninja</h4>
-                                    <p class="exp-company">Kalvium &middot; Internship &middot; On-site &middot; Bengaluru, India</p>
-                                </div>
-                                <span class="exp-period">Mar 2026 – Present</span>
-                            </div>
-                            <p class="exp-desc">
-                                Mentoring undergraduate students in Data Structures &amp; Algorithms, Competitive Programming, System Design, and core CS fundamentals. Conducting coding sessions and guiding problem-solving approaches to build strong software engineering foundations.
-                            </p>
-                            <div class="exp-tag-row">
-                                <span class="exp-tag">Data Structures</span>
-                                <span class="exp-tag">Algorithms</span>
-                                <span class="exp-tag">System Design</span>
-                                <span class="exp-tag">Competitive Programming</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Open Source -->
-                <div class="exp-block reveal-elem">
-                    <div class="oss-block-header">
-                        <h3 class="exp-block-heading">Open Source</h3>
-                        <p class="oss-block-sub">Production-grade contributions involving real code reviews, CI pipelines, and collaboration with maintainers.</p>
-                    </div>
-
-                    <div class="oss-list">
-
-                        <div class="oss-card">
-                            <div class="oss-org-col">
-                                <span class="oss-badge oss-badge--cncf">CNCF</span>
-                                <span class="oss-org-name">OpenTelemetry</span>
-                            </div>
-                            <div class="oss-content-col">
-                                <h4 class="oss-title">Emit warning when TraceIdRatioBasedSampler is used as child sampler</h4>
-                                <p class="oss-desc">Added a spec-required compatibility warning at configuration time without changing runtime behavior. Reviewed and merged by maintainers.</p>
-                                <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank" rel="noopener noreferrer" class="oss-pr-link mag-btn">
-                                    <i data-feather="git-pull-request"></i> PR #7937
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="oss-card">
-                            <div class="oss-org-col">
-                                <span class="oss-badge oss-badge--cncf">CNCF</span>
-                                <span class="oss-org-name">OpenTelemetry</span>
-                            </div>
-                            <div class="oss-content-col">
-                                <h4 class="oss-title">Clarify suppressed warnings in API common module</h4>
-                                <p class="oss-desc">Improved maintainability by documenting intentional warning suppressions with no functional changes.</p>
-                                <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7951" target="_blank" rel="noopener noreferrer" class="oss-pr-link mag-btn">
-                                    <i data-feather="git-pull-request"></i> PR #7951
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="oss-card">
-                            <div class="oss-org-col">
-                                <span class="oss-badge oss-badge--google">GOOGLE</span>
-                                <span class="oss-org-name">Gemini CLI</span>
-                            </div>
-                            <div class="oss-content-col">
-                                <h4 class="oss-title">Support GOOGLE_CLOUD_PROJECT_ID fallback</h4>
-                                <p class="oss-desc">Added a backward-compatible environment variable fallback improving developer experience across platforms.</p>
-                                <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer" class="oss-pr-link mag-btn">
-                                    <i data-feather="git-pull-request"></i> PR #2725
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="oss-github-row">
-                        <i data-feather="github"></i>
-                        <span>More contributions at</span>
-                        <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="oss-gh-link">
-                            github.com/Gosling-dude <i data-feather="arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ========================
-             HIGHLIGHTS / ACHIEVEMENTS
-        ========================= -->
-        <section id="achievements" class="page-section">
+        <section id="experience" class="scene-section page-section">
             <div class="container">
                 <div class="section-eyebrow">
                     <span class="eyebrow-num">06</span>
                     <span class="eyebrow-dash"></span>
-                    <span class="eyebrow-text">HIGHLIGHTS</span>
+                    <span class="eyebrow-text">EXPERIENCE</span>
+                </div>
+
+                <h2 class="section-headline reveal-elem">Experience &amp;<br>Contributions.</h2>
+
+                <!-- One continuous rail. Group labels ("Professional", "Open
+                     Source") are markers ON the rail rather than separate
+                     blocks, so the sequence reads as a single thread.
+                     Note: the OSS entries carry no dates in the source data,
+                     so they are NOT presented as a strict chronology — the
+                     rail shows order, not claimed dates. -->
+                <ol class="timeline reveal-elem">
+
+                    <li class="tl-node tl-node--label">
+                        <span class="tl-label">Professional</span>
+                    </li>
+
+                    <li class="tl-node">
+                        <div class="tl-head">
+                            <h4 class="tl-role">Teaching Ninja</h4>
+                            <span class="tl-period tl-period--now">Mar 2026 – Present</span>
+                        </div>
+                        <p class="tl-org">Kalvium &middot; Internship &middot; On-site &middot; Bengaluru, India</p>
+                        <p class="tl-desc">
+                            Mentoring undergraduate students in Data Structures &amp; Algorithms, Competitive Programming, System Design, and core CS fundamentals. Conducting coding sessions and guiding problem-solving approaches to build strong software engineering foundations.
+                        </p>
+                        <div class="tl-tags">
+                            <span class="tl-tag">Data Structures</span>
+                            <span class="tl-tag">Algorithms</span>
+                            <span class="tl-tag">System Design</span>
+                            <span class="tl-tag">Competitive Programming</span>
+                        </div>
+                    </li>
+
+                    <li class="tl-node tl-node--label">
+                        <span class="tl-label">Open Source</span>
+                        <p class="tl-label-sub">Production-grade contributions involving real code reviews, CI pipelines, and collaboration with maintainers.</p>
+                    </li>
+
+                    <li class="tl-node">
+                        <div class="tl-head">
+                            <h4 class="tl-role">Emit warning when TraceIdRatioBasedSampler is used as child sampler</h4>
+                            <span class="tl-period">PR #7937</span>
+                        </div>
+                        <p class="tl-org"><span class="tl-chip tl-chip--cncf">CNCF</span> OpenTelemetry</p>
+                        <p class="tl-desc">Added a spec-required compatibility warning at configuration time without changing runtime behavior. Reviewed and merged by maintainers.</p>
+                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank" rel="noopener noreferrer" class="tl-link">
+                            <i data-feather="git-pull-request"></i> View pull request
+                        </a>
+                    </li>
+
+                    <li class="tl-node">
+                        <div class="tl-head">
+                            <h4 class="tl-role">Clarify suppressed warnings in API common module</h4>
+                            <span class="tl-period">PR #7951</span>
+                        </div>
+                        <p class="tl-org"><span class="tl-chip tl-chip--cncf">CNCF</span> OpenTelemetry</p>
+                        <p class="tl-desc">Improved maintainability by documenting intentional warning suppressions with no functional changes.</p>
+                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7951" target="_blank" rel="noopener noreferrer" class="tl-link">
+                            <i data-feather="git-pull-request"></i> View pull request
+                        </a>
+                    </li>
+
+                    <li class="tl-node">
+                        <div class="tl-head">
+                            <h4 class="tl-role">Support GOOGLE_CLOUD_PROJECT_ID fallback</h4>
+                            <span class="tl-period">PR #2725</span>
+                        </div>
+                        <p class="tl-org"><span class="tl-chip tl-chip--google">GOOGLE</span> Gemini CLI</p>
+                        <p class="tl-desc">Added a backward-compatible environment variable fallback improving developer experience across platforms.</p>
+                        <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer" class="tl-link">
+                            <i data-feather="git-pull-request"></i> View pull request
+                        </a>
+                    </li>
+
+                    <!-- Open end. The rail fades rather than stopping, and this
+                         node is hollow/dashed — it states availability (already
+                         claimed in the hero badge) and nothing more. No invented
+                         plans, titles or dates. -->
+                    <li class="tl-node tl-node--future">
+                        <div class="tl-head">
+                            <h4 class="tl-role tl-role--future">Open to new opportunities</h4>
+                            <span class="tl-period tl-period--future">What's next</span>
+                        </div>
+                        <p class="tl-desc">Looking for backend and distributed-systems work where the problems are hard and the systems are real.</p>
+                        <a href="#contact" class="tl-link tl-link--future">
+                            <i data-feather="mail"></i> Get in touch
+                        </a>
+                    </li>
+
+                </ol>
+
+                <div class="oss-github-row">
+                    <i data-feather="github"></i>
+                    <span>More contributions at</span>
+                    <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="oss-gh-link">
+                        github.com/Gosling-dude <i data-feather="arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================
+             07 · Achievements
+        ========================= -->
+        <section id="achievements" class="scene-section page-section">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-num">07</span>
+                    <span class="eyebrow-dash"></span>
+                    <span class="eyebrow-text">ACHIEVEMENTS</span>
                 </div>
 
                 <h2 class="section-headline reveal-elem">Numbers That<br>Speak.</h2>
 
                 <!-- Hero stat -->
-                <div class="mega-stat reveal-elem">
+                <div class="mega-stat reveal-elem glass-panel">
                     <div class="mega-stat-num stat-counter" data-count="1649">0</div>
                     <div class="mega-stat-info">
                         <h3>Algorithmic Problems Solved</h3>
@@ -1170,21 +897,21 @@
 
                 <!-- Competition results -->
                 <div class="achievement-grid reveal-elem">
-                    <a href="https://codeforces.com/contest/2172/standings" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn">
+                    <a href="https://codeforces.com/contest/2172/standings" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn glass-panel">
                         <i data-feather="external-link" class="ach-ext-icon"></i>
                         <div class="ach-rank">AIR 23</div>
                         <h4 class="ach-name">ICPC Asia Regional '25</h4>
                         <p class="ach-detail">Global Rank 492 · Taichung</p>
                     </a>
 
-                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn">
+                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn glass-panel">
                         <i data-feather="external-link" class="ach-ext-icon"></i>
                         <div class="ach-rank">226<sup>th</sup></div>
                         <h4 class="ach-name">Edu CF Round 181</h4>
                         <p class="ach-detail">Out of 20,000+ globally</p>
                     </a>
 
-                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn">
+                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn glass-panel">
                         <i data-feather="external-link" class="ach-ext-icon"></i>
                         <div class="ach-rank">24<sup>th</sup></div>
                         <h4 class="ach-name">CodeChef Starters 212B</h4>
@@ -1194,21 +921,21 @@
 
                 <!-- Leadership -->
                 <div class="leadership-row reveal-elem">
-                    <div class="leadership-card">
+                    <div class="leadership-card glass-panel">
                         <div class="leadership-icon"><i data-feather="users"></i></div>
                         <div>
                             <h4>Mentorship</h4>
                             <p>Guided junior students in competitive programming &amp; algorithms</p>
                         </div>
                     </div>
-                    <div class="leadership-card">
+                    <div class="leadership-card glass-panel">
                         <div class="leadership-icon"><i data-feather="award"></i></div>
                         <div>
                             <h4>1<sup>st</sup> Place</h4>
                             <p>Inter-NIT Chess Championship</p>
                         </div>
                     </div>
-                    <div class="leadership-card">
+                    <div class="leadership-card glass-panel">
                         <div class="leadership-icon"><i data-feather="target"></i></div>
                         <div>
                             <h4>3<sup>rd</sup> Runner-up</h4>
@@ -1221,20 +948,20 @@
         </section>
 
         <!-- ========================
-             CONTACT SECTION
+             08 · Contact
         ========================= -->
-        <section id="contact" class="page-section contact-section">
+        <section id="contact" class="scene-section page-section contact-section">
             <div class="container">
-                <div class="contact-inner reveal-elem">
+                <div class="contact-inner reveal-elem glass-panel">
                     <div class="section-eyebrow">
-                        <span class="eyebrow-num">07</span>
+                        <span class="eyebrow-num">08</span>
                         <span class="eyebrow-dash"></span>
                         <span class="eyebrow-text">CONTACT</span>
                     </div>
 
                     <h2 class="contact-headline">
                         Let's build<br>
-                        <span class="contact-headline-accent">something great.</span>
+                        <span class="contact-headline-accent">something infinite.</span>
                     </h2>
 
                     <p class="contact-tagline">
@@ -1272,7 +999,7 @@
     <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-inner">
-            <span class="footer-copy">&copy; 2025 Sumit Chauhan. Designed with passion, coded with caffeine.</span>
+            <span class="footer-copy">&copy; 2025 Sumit Chauhan. Backend systems &amp; distributed architecture.</span>
             <div class="footer-links">
                 <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
