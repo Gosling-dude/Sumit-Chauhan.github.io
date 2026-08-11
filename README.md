@@ -2,7 +2,7 @@
 
 A modern, fully responsive, single-page portfolio website built with Tailwind CSS and vanilla JavaScript. Designed to showcase projects, skills, and experience with a clean, professional UI, animated elements, and dark mode support.
 
-[**Have a look**](https://sumit.life/)
+[**Have a look**](https://sumit.today/)
 
 ---
 
