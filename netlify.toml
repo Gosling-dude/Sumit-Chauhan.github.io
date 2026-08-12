@@ -1,0 +1,21 @@
+# Domain migration: sumit.life -> sumit.today
+#
+# These are domain-level redirects: they only take effect once sumit.life
+# and www.sumit.life are attached as domains/domain aliases on this
+# Netlify site (see project README / migration notes for status).
+#
+# No [build] section is defined here on purpose — this repo has no build
+# step, and the existing Netlify UI build/publish settings are left as
+# configured on the site rather than being overridden from this file.
+
+[[redirects]]
+  from = "https://sumit.life/*"
+  to = "https://sumit.today/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.sumit.life/*"
+  to = "https://sumit.today/:splat"
+  status = 301
+  force = true
