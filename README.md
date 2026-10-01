@@ -1,74 +1,60 @@
 # Sumit Chauhan - Personal Portfolio Website
 
-A modern, fully responsive, single-page portfolio website built with Tailwind CSS and vanilla JavaScript. Designed to showcase projects, skills, and experience with a clean, professional UI, animated elements, and dark mode support.
+A fast, fully responsive single-page portfolio built with plain HTML, CSS and vanilla JavaScript — no framework, no build step. Cinematic video backdrop, live competitive-programming stats, open-source contributions and shipped projects.
 
 [**Have a look**](https://sumit.today/)
 
 ---
 
-
 ## ✨ Features
 
-* **Modern UI/UX:** Clean design with animated gradient blobs and a sleek glassmorphism effect on cards.
-* **Dark Mode:** Seamless light/dark mode toggle with persistence using `localStorage`.
-* **Fully Responsive:** Adapts beautifully to all screen sizes, from mobile phones to desktops.
-* **Dynamic & Interactive:**
-    * **Text Rotator:** Hero section features a typing/fading text rotator for roles.
-    * **Scroll Animations:** Subtle fade-in-on-scroll animations powered by the Intersection Observer API.
-    * **Active Nav-Link:** Navigation links automatically highlight the section currently in view.
-    * **Animated Skills:** Skill icons bounce on hover for a lively feel.
-* **Zero Build Step:** Built with vanilla technologies and CDN links for simplicity. No complex build process required.
+* **Live coding profiles:** Codeforces, LeetCode, CodeChef and GeeksforGeeks stats are fetched live. There are no hard-coded ratings or solved counts anywhere in the markup.
+* **One source of truth:** every stat on the page (hero, platform cards, dashboard, achievements total) is bound to a single state object, so a value can never disagree between two places.
+* **Honest failure states:** if a platform can't be reached, the page says "Live data unavailable" instead of showing an old number. A freshness label shows when data was last synced.
+* **Cinematic backdrop:** looping ridge footage with a layered grade (scrim, readability gradient, vignette). Phones, data-saver and reduced-motion visitors get a 44 KB still frame instead of the video.
+* **Accessible:** keyboard-navigable tabs and menu, visible focus states, reduced-motion support, meaningful link text.
 
 ---
 
-## 📂 Sections Overview
+## 🧱 How the live data works
 
-1.  **Hero:** Introduction with a rotating role-text, profile image, and Call-to-Action buttons (Resume, Contact).
-2.  **About:** A detailed biography, education details, and key interests.
-3.  **Skills:** A grid showcasing personal tech stack (Java, Python, LangChain, etc.) and competitive programming profiles with links.
-4.  **Experience:** A vertical timeline of professional experience and open-source contributions.
-5.  **Projects:** Featured projects displayed as interactive cards with descriptions, tech tags, and links (GitHub, Live Demo).
-6.  **Achievements:** Notable accomplishments in coding competitions, hackathons, and academics.
-7.  **Contact:** A simple contact section with links to Email, GitHub, and LinkedIn.
-8.  **Footer:** Copyright information and a small tagline.
+```
+browser ──► /api/profiles/:platform  (Netlify Function, CDN-cached ~3 min)
+   │              └─► Codeforces API · LeetCode GraphQL · CodeChef · GeeksforGeeks
+   └─ if the function isn't reachable (GitHub Pages mirror, plain static preview):
+         Codeforces official API directly, public fallbacks for the rest
+```
+
+| File | Role |
+| --- | --- |
+| `js/profile-sources.mjs` | Handles + profile URLs, fetch/timeout/retry helpers and one parser per platform. Shared by the browser and the function. |
+| `js/live-profiles.mjs` | Browser state (`profileStats`), short localStorage cache, rendering of every `data-stat` binding, Sync button, freshness label. |
+| `netlify/functions/profiles.mjs` | Server-side proxy for platforms that block cross-origin browser requests. Public data only — no keys or secrets. |
+| `script.js` | Page UI: navigation, mobile menu, animations, backdrop video, dashboard tabs and the `PROJECTS` data the project cards are rendered from. |
+
+To show a stat somewhere new, add an element with `data-stat="<platform>.<field>"` (e.g. `data-stat="codeforces.rating"`); it is filled automatically.
 
 ---
 
 ## 🚀 Getting Started
 
-No build process is needed! You can run this project locally in two simple steps:
+```sh
+git clone https://github.com/Gosling-dude/Sumit-Chauhan.github.io.git
+cd Sumit-Chauhan.github.io
+npm start        # static server on http://localhost:8080
+npm test         # parser + function tests (Node 18+, no dependencies)
+```
 
-1.  **Clone the repository:**
-    ```sh
-    git clone [https://github.com/Gosling-dude/your-portfolio-repo.git](https://github.com/Gosling-dude/your-portfolio-repo.git)
-    ```
-
-2.  **Open the file:**
-    Navigate to the project directory and open the `index.html` file in your favorite browser.
-    ```sh
-    cd your-portfolio-repo
-    open index.html 
-    ```
-    (Or simply double-click the file in your file explorer)
+The page needs to be served over HTTP (ES modules don't load from `file://`). A plain static server won't run the Netlify Function, so the live stats use the browser fallbacks there; `netlify dev` runs the function locally too.
 
 ---
 
 ## 🎨 Customization
 
-To make this portfolio your own, you'll need to update the content directly in `index.html`:
-
-* **Metadata:** Change the `<title>` and `<meta name="description">` in the `<head>`.
-* **Hero Section:** Update the `roles` array in the main `<script>` tag at the bottom of the file with your roles.
-* **Resume Link:** Change the `href` in the "View Resume" button.
-* **About Section:** Edit the text, education details (CGPA, dates), and interest tags.
-* **Skills Section:**
-    * Update the "Tech Stack" grid with your personal skills, names, and icons.
-    * Change the links, ratings, and usernames for the "Competitive Programming" section.
-* **Experience Section:** Modify the timeline items (dates, titles, descriptions, links).
-* **Projects Section:** Update the project details (images, titles, descriptions, tech tags, and links).
-* **Achievements Section:** Change the stats and descriptions for your achievements.
-* **Contact Section:** Update the `href` attributes for your `mailto:`, GitHub, and LinkedIn links.
-* **Images:** Replace `images/profile.png` and any project images with your own.
+* **Profile handles / URLs:** `PROFILES` in `js/profile-sources.mjs` (and the matching card links in `index.html`).
+* **Projects:** the `PROJECTS` array at the top of `script.js`.
+* **Experience & open source:** the timeline in `index.html` (`#experience`).
+* **Resume, email and socials:** links in `index.html` (nav, hero, contact, footer).
 
 ---
 

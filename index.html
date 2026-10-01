@@ -5,11 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sumit Chauhan — Software Engineer</title>
-    <meta name="description" content="Sumit Chauhan — Software Engineer specializing in backend systems and distributed architecture. NIT Jalandhar, Batch of 2026.">
-    <meta name="keywords" content="Sumit Chauhan, Software Engineer, Backend Systems, Distributed Systems, NIT Jalandhar, Competitive Programming">
+    <meta name="description" content="Sumit Chauhan — Software Engineer and B.Tech Computer Science graduate from NIT Jalandhar, building backend and distributed systems, with work in AI/ML, competitive programming and open-source contributions to TensorFlow, Apache Arrow and OpenTelemetry.">
+    <meta name="keywords" content="Sumit Chauhan, Software Engineer, Backend Systems, Distributed Systems, AI/ML, Competitive Programming, Open Source, NIT Jalandhar">
+    <meta name="author" content="Sumit Chauhan">
+    <meta name="theme-color" content="#192524">
+    <link rel="canonical" href="https://sumit.today/">
     <meta property="og:title" content="Sumit Chauhan — Software Engineer">
-    <meta property="og:description" content="Software Engineer specializing in backend systems and distributed architecture.">
-    <meta property="og:type" content="website">
+    <meta property="og:description" content="Backend and distributed systems engineer. B.Tech CSE, NIT Jalandhar. Competitive programmer and open-source contributor to TensorFlow, Apache Arrow and OpenTelemetry.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://sumit.today/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@GaussianEdge">
+
+    <!-- Structured data. Profile URLs only — no stats, so nothing here can go stale. -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sumit Chauhan",
+        "jobTitle": "Software Engineer",
+        "url": "https://sumit.today/",
+        "email": "mailto:sumitchauhan.jobs@gmail.com",
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Dr. B R Ambedkar National Institute of Technology Jalandhar"
+        },
+        "knowsAbout": ["Backend Systems", "Distributed Systems", "AI/ML", "Competitive Programming", "Open Source"],
+        "sameAs": [
+            "https://github.com/Gosling-dude",
+            "https://www.linkedin.com/in/sumit-chauhan-006399257/",
+            "https://www.kaggle.com/sumitxory",
+            "https://x.com/GaussianEdge",
+            "https://codeforces.com/profile/SumitXorY",
+            "https://leetcode.com/u/sumit_chauhan_/",
+            "https://www.codechef.com/users/sumitx",
+            "https://www.geeksforgeeks.org/user/sumit_chauhan143/"
+        ]
+    }
+    </script>
 
     <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,38 +52,22 @@
     <!-- Devicons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
-    <!-- Feather icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
-
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        base: '#192524',
-                        surface: '#121216',
-                        'surface-2': '#17171c',
-                        accent: '#d1ebdb',
-                        'accent-dim': '#3c5759',
-                        'accent-2': '#EFECE9',
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-                        display: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Feather icons (pinned + deferred: the unversioned URL cost a redirect
+         and blocked rendering). The Tailwind Play CDN that used to sit here
+         is gone: no Tailwind utilities were in use, and the handful of base
+         rules it supplied now live at the top of style.css. -->
+    <script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js" defer></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Brand glyphs Feather doesn't ship (Kaggle, X). Defined once, used via <use>. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="icon-kaggle" viewBox="0 0 24 24"><path fill="currentColor" d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.246.495-.246h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.358"/></symbol>
+        <symbol id="icon-x" viewBox="0 0 24 24"><path fill="currentColor" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></symbol>
+    </svg>
+
     <!-- Scroll progress bar -->
     <div class="scroll-progress" id="scroll-progress"></div>
 
@@ -60,12 +77,11 @@
          guarantee text contrast and must not be removed independently.
     ============================================================ -->
     <div class="cosmos-stage" aria-hidden="true">
-        <!-- src is applied by JS (see initCosmicBackdrop) so phones and
-             reduced-motion users never pay to download the file. -->
-        <!-- No poster attribute on purpose: until the video paints, the
-             stage's own gradient shows through, which is already the
-             correct backdrop. A poster file would just be a second
-             asset to keep in sync. -->
+        <!-- src is applied by JS (see initCosmicBackdrop) so phones,
+             data-saver and reduced-motion users never download the file.
+             They get media/background_poster.webp (a still frame of the
+             same footage, ~40 KB) via the stage background instead; on
+             desktop the same still sits under the video until it plays. -->
         <video class="cosmos-video" id="cosmos-video"
                autoplay muted loop playsinline preload="metadata"
                data-src="media/background_video.mp4"></video>
@@ -92,13 +108,13 @@
                 <a href="#achievements" class="nav-link" data-target="achievements">Achievements</a>
             </div>
 
-            <a href="https://drive.google.com/file/d/1Xi79v6726GnArzIYIqSsiSnZ7Q6rSFse/view?usp=sharing"
+            <a href="https://drive.google.com/file/d/10qnXdjKh-4yWUMm1TSc6HL06cn2yOPXp/view?usp=sharing"
                target="_blank" rel="noopener noreferrer"
                class="nav-resume mag-btn">
-                Resume <span aria-hidden="true">↗</span>
+                Resume <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span>
             </a>
 
-            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
+            <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
@@ -112,9 +128,9 @@
             <a href="#experience" class="mobile-nav-link">Experience</a>
             <a href="#achievements" class="mobile-nav-link">Achievements</a>
             <a href="#contact" class="mobile-nav-link">Contact</a>
-            <a href="https://drive.google.com/file/d/1Xi79v6726GnArzIYIqSsiSnZ7Q6rSFse/view?usp=sharing"
+            <a href="https://drive.google.com/file/d/10qnXdjKh-4yWUMm1TSc6HL06cn2yOPXp/view?usp=sharing"
                target="_blank" rel="noopener noreferrer"
-               class="mobile-resume-link">View Resume ↗</a>
+               class="mobile-resume-link">View Resume <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a>
         </div>
     </nav>
 
@@ -148,30 +164,53 @@
                     <div class="hero-actions" data-anim="hero-actions">
                         <a href="#projects" class="btn-primary mag-btn">
                             <span>View my work</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                                 <path d="M7 17L17 7M17 7H7M17 7v10"/>
                             </svg>
                         </a>
+                        <a href="https://drive.google.com/file/d/10qnXdjKh-4yWUMm1TSc6HL06cn2yOPXp/view?usp=sharing"
+                           target="_blank" rel="noopener noreferrer"
+                           class="btn-ghost mag-btn">Resume <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a>
                         <a href="#contact" class="btn-ghost mag-btn">Make contact</a>
                     </div>
 
-                    <div class="hero-social" data-anim="hero-actions">
-                        <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="GitHub">
+                    <div class="hero-social" data-anim="hero-social">
+                        <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="GitHub (opens in a new tab)">
                             <i data-feather="github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="LinkedIn (opens in a new tab)">
                             <i data-feather="linkedin"></i>
                         </a>
-                        <a href="mailto:sumitchauhan.job@gmail.com" class="social-btn mag-btn" aria-label="Email">
+                        <a href="https://www.kaggle.com/sumitxory" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="Kaggle (opens in a new tab)">
+                            <svg class="brand-icon" aria-hidden="true" focusable="false"><use href="#icon-kaggle"></use></svg>
+                        </a>
+                        <a href="https://x.com/GaussianEdge" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="X, formerly Twitter (opens in a new tab)">
+                            <svg class="brand-icon brand-icon--x" aria-hidden="true" focusable="false"><use href="#icon-x"></use></svg>
+                        </a>
+                        <a href="mailto:sumitchauhan.jobs@gmail.com" class="social-btn mag-btn" aria-label="Email sumitchauhan.jobs@gmail.com">
                             <i data-feather="mail"></i>
                         </a>
                     </div>
 
-                    <div class="hero-mini-stats" data-anim="hero-actions">
-                        <div class="hero-mini-stat"><b>1944</b><span>Codeforces · Expert</span></div>
-                        <div class="hero-mini-stat"><b>1898</b><span>LeetCode · Knight</span></div>
-                        <div class="hero-mini-stat"><b>1649+</b><span>Problems Solved</span></div>
+                    <!-- Live values only: every number here is filled from the
+                         shared profile state in js/live-profiles.mjs. -->
+                    <div class="hero-mini-stats" data-anim="hero-stats" data-stats-group aria-busy="true">
+                        <div class="hero-mini-stat">
+                            <b data-stat="codeforces.rating"></b>
+                            <span>Codeforces · <span data-stat="codeforces.rank" data-format="title"></span></span>
+                        </div>
+                        <div class="hero-mini-stat">
+                            <b data-stat="leetcode.rating"></b>
+                            <span>LeetCode · <span data-stat="leetcode.title"></span></span>
+                        </div>
+                        <div class="hero-mini-stat" title="Sum of solved counts on Codeforces, LeetCode, CodeChef and GeeksforGeeks; each platform counted separately">
+                            <b data-stat="aggregate.totalSolved" data-format="int"></b>
+                            <span>Problems solved across <span data-stat="aggregate.coverageLabel"></span></span>
+                        </div>
                     </div>
+                    <p class="hero-sync" data-anim="hero-stats" data-sync-status data-state="loading">
+                        <span class="sync-dot" aria-hidden="true"></span><span class="sync-text">Syncing live data…</span>
+                    </p>
                 </div>
             </div>
 
@@ -197,10 +236,10 @@
                     <div class="about-left reveal-elem glass-panel">
                         <h2 class="section-headline">The engineer<br>behind the systems.</h2>
                         <p class="about-primary-text">
-                            Computer Science undergrad at <strong>NIT Jalandhar</strong> (Batch of 2026), deeply focused on <em class="text-accent-glow">Backend Systems</em> &amp; <em class="text-accent-glow">Distributed Architectures</em>.
+                            Software engineer and B.Tech Computer Science graduate from <strong>NIT Jalandhar</strong>, deeply focused on <em class="text-accent-glow">Backend Systems</em> &amp; <em class="text-accent-glow">Distributed Architectures</em>.
                         </p>
                         <p class="about-secondary-text">
-                            I've built AI workflow engines like Weaveflow and production-grade detection platforms like DeepTrace. I actively contribute to open-source — <strong>Google's Gemini CLI</strong> and the <strong>CNCF OpenTelemetry</strong> project — with 50+ merged PRs. Beyond the keyboard, I'm an avid chess player, applying strategic thinking to system design.
+                            I've shipped AI products like HerbiGPT and production-grade detection platforms like DeepTrace. I actively contribute to open source — merged fixes in <strong>TensorFlow</strong> and <strong>Apache Arrow</strong>, plus work on <strong>Google's Gemini CLI</strong> and <strong>CNCF OpenTelemetry</strong> — with 50+ merged PRs. Beyond the keyboard, I'm an avid chess player, applying strategic thinking to system design.
                         </p>
 
                         <div class="about-info-row">
@@ -210,7 +249,7 @@
                             </div>
                             <div class="about-info-item">
                                 <i data-feather="book-open"></i>
-                                <span>B.Tech CSE · NITJ</span>
+                                <span>B.Tech CSE · NIT Jalandhar · 2026</span>
                             </div>
                         </div>
                     </div>
@@ -374,99 +413,15 @@
 
                 <h2 class="section-headline reveal-elem">Selected<br>Projects.</h2>
 
-                <div class="projects-list">
-
-                    <!-- Project 01: Weaveflow -->
-                    <div class="project-item reveal-elem glass-panel">
-                        <div class="project-visual">
-                            <div class="project-plate">
-                                <span class="project-plate-idx">01</span>
-                                <span class="project-plate-rule"></span>
-                                <span class="project-plate-name">WEAVEFLOW</span>
-                            </div>
-                        </div>
-
-                        <div class="project-content">
-                            <div class="project-header">
-                                <div>
-                                    <span class="project-type-label">AI Workflow Platform</span>
-                                    <h3 class="project-title">Weaveflow</h3>
-                                </div>
-                                <div class="project-links-row">
-                                    <a href="https://github.com/Gosling-dude/weaveflow" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
-                                        <i data-feather="github"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-
-                            <p class="project-desc">
-                                An AI workflow orchestration platform for multi-step AI pipelines, enabling complex automation through distributed microservices.
-                            </p>
-
-                            <ul class="project-bullets">
-                                <li>Designed microservice-based backend enabling distributed workflow execution</li>
-                                <li>Implemented REST APIs and service integrations between workflow components</li>
-                                <li>PostgreSQL relational model for workflow state persistence</li>
-                                <li>CI/CD pipelines via GitHub Actions for automated builds</li>
-                            </ul>
-
-                            <div class="project-tech-stack">
-                                <span class="tech-chip">Next.js</span>
-                                <span class="tech-chip">TypeScript</span>
-                                <span class="tech-chip">PostgreSQL</span>
-                                <span class="tech-chip">REST APIs</span>
-                                <span class="tech-chip">Docker</span>
-                                <span class="tech-chip">GitHub Actions</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 02: DeepTrace -->
-                    <div class="project-item project-item--flip reveal-elem glass-panel">
-                        <div class="project-visual">
-                            <div class="project-plate">
-                                <span class="project-plate-idx">02</span>
-                                <span class="project-plate-rule"></span>
-                                <span class="project-plate-name">DEEPTRACE</span>
-                            </div>
-                        </div>
-
-                        <div class="project-content">
-                            <div class="project-header">
-                                <div>
-                                    <span class="project-type-label">AI Detection · SaaS Platform</span>
-                                    <h3 class="project-title">DeepTrace</h3>
-                                </div>
-                                <div class="project-links-row">
-                                    <a href="https://github.com/Gosling-dude/DeepTrace" target="_blank" rel="noopener noreferrer" class="project-link-btn mag-btn">
-                                        <i data-feather="github"></i> GitHub
-                                    </a>
-                                </div>
-                            </div>
-
-                            <p class="project-desc">
-                                Production-grade AI image detection SaaS — dual-stream CNN + FFT frequency-domain architecture with Grad-CAM explainability, full JWT auth, RBAC, and admin analytics dashboards.
-                            </p>
-
-                            <ul class="project-bullets">
-                                <li>Dual-stream CNN + FFT architecture achieving 96.8% detection accuracy at 180ms inference</li>
-                                <li>Grad-CAM heatmap overlay for model explainability and auditability</li>
-                                <li>JWT-based auth with role-based access control and admin user management</li>
-                                <li>Dockerized FastAPI + React 18 stack with PostgreSQL and async workers</li>
-                            </ul>
-
-                            <div class="project-tech-stack">
-                                <span class="tech-chip">Python</span>
-                                <span class="tech-chip">FastAPI</span>
-                                <span class="tech-chip">PyTorch</span>
-                                <span class="tech-chip">React 18</span>
-                                <span class="tech-chip">TypeScript</span>
-                                <span class="tech-chip">Docker</span>
-                                <span class="tech-chip">PostgreSQL</span>
-                            </div>
-                        </div>
-                    </div>
-
+                <!-- Cards are rendered by script.js from the PROJECTS data
+                     array — edit a project there, in one place. -->
+                <div class="projects-list" id="projects-list">
+                    <noscript>
+                        <p class="projects-noscript">
+                            <a href="https://herbigpt.netlify.app/" target="_blank" rel="noopener noreferrer">HerbiGPT — live demo ↗</a> ·
+                            <a href="https://github.com/Gosling-dude/DeepTrace" target="_blank" rel="noopener noreferrer">DeepTrace — GitHub ↗</a>
+                        </p>
+                    </noscript>
                 </div>
             </div>
         </section>
@@ -484,42 +439,69 @@
 
                 <h2 class="section-headline reveal-elem">Competitive<br>Programming.</h2>
 
-                <!-- Platform cards -->
+                <!-- Platform cards. The markup holds no numbers: every value
+                     is a data-stat binding filled from the one shared profile
+                     state in js/live-profiles.mjs (also used by the hero, the
+                     dashboard below and the achievements total). -->
                 <div class="platform-card-grid reveal-elem">
-                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel">
-                        <img src="images/codeforces.svg" alt="Codeforces" class="platform-logo">
-                        <div class="platform-info">
-                            <span class="platform-name">Codeforces</span>
-                            <span class="platform-rank">Expert · <b>1864</b></span>
-                        </div>
-                        <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                    <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel" data-platform="codeforces" data-state="loading">
+                        <span class="platform-card-head">
+                            <img src="images/codeforces.svg" alt="" class="platform-logo" width="32" height="32">
+                            <span class="platform-id">
+                                <span class="platform-name">Codeforces</span>
+                                <span class="platform-handle">@SumitXorY</span>
+                            </span>
+                            <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                        </span>
+                        <span class="platform-rank"><span data-stat="codeforces.rank" data-format="title"></span> · <b data-stat="codeforces.rating"></b></span>
+                        <span class="platform-solved"><span data-stat="codeforces.solved" data-format="int"></span> problems solved</span>
+                        <span class="platform-status" data-status-for="codeforces" data-state="loading"><span class="status-dot" aria-hidden="true"></span><span class="status-text">Syncing…</span></span>
+                        <span class="sr-only">(opens in a new tab)</span>
                     </a>
 
-                    <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel">
-                        <img src="images/leetcode.svg" alt="LeetCode" class="platform-logo">
-                        <div class="platform-info">
-                            <span class="platform-name">LeetCode</span>
-                            <span class="platform-rank">Knight · <b>1898</b></span>
-                        </div>
-                        <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                    <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel" data-platform="leetcode" data-state="loading">
+                        <span class="platform-card-head">
+                            <img src="images/leetcode.svg" alt="" class="platform-logo" width="32" height="32">
+                            <span class="platform-id">
+                                <span class="platform-name">LeetCode</span>
+                                <span class="platform-handle">@sumit_chauhan_</span>
+                            </span>
+                            <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                        </span>
+                        <span class="platform-rank"><span data-stat="leetcode.title"></span> · <b data-stat="leetcode.rating"></b></span>
+                        <span class="platform-solved"><span data-stat="leetcode.solved" data-format="int"></span> problems solved</span>
+                        <span class="platform-status" data-status-for="leetcode" data-state="loading"><span class="status-dot" aria-hidden="true"></span><span class="status-text">Syncing…</span></span>
+                        <span class="sr-only">(opens in a new tab)</span>
                     </a>
 
-                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel">
-                        <img src="images/codechef.png" alt="CodeChef" class="platform-logo platform-logo--invert">
-                        <div class="platform-info">
-                            <span class="platform-name">CodeChef</span>
-                            <span class="platform-rank">5★ · <b>2070</b></span>
-                        </div>
-                        <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                    <a href="https://www.codechef.com/users/sumitx" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel" data-platform="codechef" data-state="loading">
+                        <span class="platform-card-head">
+                            <img src="images/codechef.png" alt="" class="platform-logo platform-logo--invert" width="32" height="32">
+                            <span class="platform-id">
+                                <span class="platform-name">CodeChef</span>
+                                <span class="platform-handle">@sumitx</span>
+                            </span>
+                            <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                        </span>
+                        <span class="platform-rank"><span data-stat="codechef.stars" data-format="stars"></span> · <b data-stat="codechef.rating"></b></span>
+                        <span class="platform-solved"><span data-stat="codechef.solved" data-format="int"></span> problems solved</span>
+                        <span class="platform-status" data-status-for="codechef" data-state="loading"><span class="status-dot" aria-hidden="true"></span><span class="status-text">Syncing…</span></span>
+                        <span class="sr-only">(opens in a new tab)</span>
                     </a>
 
-                    <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel">
-                        <img src="images/gfg.svg" alt="GeeksforGeeks" class="platform-logo">
-                        <div class="platform-info">
-                            <span class="platform-name">GeeksforGeeks</span>
-                            <span class="platform-rank">Score · <b id="gfg-profile-score">1491</b></span>
-                        </div>
-                        <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                    <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank" rel="noopener noreferrer" class="platform-card mag-btn glass-panel" data-platform="geeksforgeeks" data-state="loading">
+                        <span class="platform-card-head">
+                            <img src="images/gfg.svg" alt="" class="platform-logo" width="32" height="32">
+                            <span class="platform-id">
+                                <span class="platform-name">GeeksforGeeks</span>
+                                <span class="platform-handle">@sumit_chauhan143</span>
+                            </span>
+                            <i data-feather="arrow-up-right" class="platform-arrow"></i>
+                        </span>
+                        <span class="platform-rank">Score · <b data-stat="geeksforgeeks.score"></b></span>
+                        <span class="platform-solved"><span data-stat="geeksforgeeks.solved" data-format="int"></span> problems solved</span>
+                        <span class="platform-status" data-status-for="geeksforgeeks" data-state="loading"><span class="status-dot" aria-hidden="true"></span><span class="status-text">Syncing…</span></span>
+                        <span class="sr-only">(opens in a new tab)</span>
                     </a>
                 </div>
 
@@ -527,63 +509,68 @@
                 <div class="telemetry-wrap reveal-elem glass-panel">
                     <div class="telemetry-header">
                         <div class="telemetry-title-row">
-                            <span class="telemetry-live-indicator">
-                                <span class="live-dot"></span>
+                            <h3 class="telemetry-live-indicator">
+                                <span class="live-dot" aria-hidden="true"></span>
                                 Live Contest Telemetry
-                            </span>
-                            <button id="telemetry-sync-btn" class="sync-btn" title="Sync live data">
-                                <i data-feather="refresh-cw"></i>
-                                <span>Sync</span>
-                            </button>
+                            </h3>
+                            <div class="telemetry-actions">
+                                <p class="sync-status" data-sync-status data-state="loading">
+                                    <span class="sync-dot" aria-hidden="true"></span><time class="sync-text">Syncing live data…</time>
+                                </p>
+                                <button id="telemetry-sync-btn" class="sync-btn" type="button" aria-label="Refresh live coding stats">
+                                    <i data-feather="refresh-cw"></i>
+                                    <span>Sync</span>
+                                </button>
+                            </div>
                         </div>
-                        <p class="telemetry-subtitle">Real-time status updates across major platforms</p>
+                        <p class="telemetry-subtitle">Pulled from each platform's public profile data. If a platform can't be reached, it says so instead of showing an old number.</p>
+                        <p class="sr-only" id="sync-announcer" aria-live="polite"></p>
                     </div>
 
                     <!-- Tabs -->
-                    <div class="telemetry-tabs">
-                        <button id="db-tab-cf" class="t-tab t-tab--active">
+                    <div class="telemetry-tabs" role="tablist" aria-label="Coding platforms">
+                        <button id="db-tab-cf" class="t-tab t-tab--active" type="button" role="tab" aria-selected="true" aria-controls="db-panel-cf">
                             <img src="images/codeforces.svg" alt="" class="t-tab-icon"> Codeforces
                         </button>
-                        <button id="db-tab-lc" class="t-tab">
+                        <button id="db-tab-lc" class="t-tab" type="button" role="tab" aria-selected="false" aria-controls="db-panel-lc" tabindex="-1">
                             <img src="images/leetcode.svg" alt="" class="t-tab-icon"> LeetCode
                         </button>
-                        <button id="db-tab-cc" class="t-tab">
+                        <button id="db-tab-cc" class="t-tab" type="button" role="tab" aria-selected="false" aria-controls="db-panel-cc" tabindex="-1">
                             <img src="images/codechef.png" alt="" class="t-tab-icon t-tab-icon--invert"> CodeChef
                         </button>
-                        <button id="db-tab-gfg" class="t-tab">
+                        <button id="db-tab-gfg" class="t-tab" type="button" role="tab" aria-selected="false" aria-controls="db-panel-gfg" tabindex="-1">
                             <img src="images/gfg.svg" alt="" class="t-tab-icon"> GFG
                         </button>
                     </div>
 
                     <!-- Panel area -->
                     <div class="telemetry-panel-area">
-                        <div id="dashboard-loader" class="telemetry-loader">
-                            <div class="loader-spin"></div>
-                            <span>Syncing telemetry...</span>
-                        </div>
 
                         <!-- CF Panel -->
-                        <div id="db-panel-cf" class="dashboard-tab-pane t-panel">
+                        <div id="db-panel-cf" class="dashboard-tab-pane t-panel" role="tabpanel" aria-labelledby="db-tab-cf" tabindex="0">
+                            <p class="panel-notice" data-notice-for="codeforces" hidden>
+                                Live data unavailable right now. <a href="https://codeforces.com/profile/SumitXorY" target="_blank" rel="noopener noreferrer">View the Codeforces profile <span aria-hidden="true">↗</span></a>
+                            </p>
                             <div class="metric-grid">
                                 <div class="metric-box">
                                     <span class="metric-label">Current Rating</span>
-                                    <div class="metric-val" id="cf-rating">1944</div>
-                                    <span class="metric-sub metric-sub--accent" id="cf-rank">Candidate Master</span>
+                                    <div class="metric-val" data-stat="codeforces.rating"></div>
+                                    <span class="metric-sub metric-sub--accent" data-stat="codeforces.rank" data-format="title"></span>
                                 </div>
                                 <div class="metric-box">
                                     <span class="metric-label">Max Rating</span>
-                                    <div class="metric-val" id="cf-max-rating">1944</div>
-                                    <span class="metric-sub" id="cf-max-rank">Candidate Master</span>
+                                    <div class="metric-val" data-stat="codeforces.maxRating"></div>
+                                    <span class="metric-sub" data-stat="codeforces.maxRank" data-format="title"></span>
                                 </div>
                                 <div class="metric-box">
                                     <span class="metric-label">Problems Solved</span>
-                                    <div class="metric-val" id="cf-solved">650+</div>
-                                    <span class="metric-sub metric-sub--green">Live Counted</span>
+                                    <div class="metric-val" data-stat="codeforces.solved" data-format="int"></div>
+                                    <span class="metric-sub">Unique accepted</span>
                                 </div>
                                 <div class="metric-box">
-                                    <span class="metric-label">Handle</span>
-                                    <div class="metric-val metric-val--sm" id="cf-handle">SumitXorY</div>
-                                    <span class="metric-sub">Active Profile</span>
+                                    <span class="metric-label">Rated Contests</span>
+                                    <div class="metric-val" data-stat="codeforces.contestCount" data-format="int"></div>
+                                    <span class="metric-sub">@SumitXorY</span>
                                 </div>
                             </div>
 
@@ -595,25 +582,14 @@
                                     <table class="data-table">
                                         <thead>
                                             <tr>
-                                                <th>Contest</th>
-                                                <th>Rank</th>
-                                                <th>Δ</th>
-                                                <th>Rating</th>
+                                                <th scope="col">Contest</th>
+                                                <th scope="col">Rank</th>
+                                                <th scope="col">Δ</th>
+                                                <th scope="col">Rating</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="cf-contests-body">
-                                            <tr>
-                                                <td>Educational Codeforces Round 181</td>
-                                                <td class="mono">226</td>
-                                                <td class="mono green">+72</td>
-                                                <td class="mono bold">1944</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Codeforces Round 990 (Div. 2)</td>
-                                                <td class="mono">482</td>
-                                                <td class="mono green">+45</td>
-                                                <td class="mono bold">1872</td>
-                                            </tr>
+                                        <tbody data-cf-contests>
+                                            <tr><td colspan="4" class="table-message">Loading recent contests…</td></tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -621,27 +597,30 @@
                         </div>
 
                         <!-- LC Panel -->
-                        <div id="db-panel-lc" class="dashboard-tab-pane t-panel hidden">
+                        <div id="db-panel-lc" class="dashboard-tab-pane t-panel" role="tabpanel" aria-labelledby="db-tab-lc" tabindex="0" hidden>
+                            <p class="panel-notice" data-notice-for="leetcode" hidden>
+                                Live data unavailable right now. <a href="https://leetcode.com/u/sumit_chauhan_/" target="_blank" rel="noopener noreferrer">View the LeetCode profile <span aria-hidden="true">↗</span></a>
+                            </p>
                             <div class="metric-grid">
                                 <div class="metric-box">
-                                    <span class="metric-label">LC Rating</span>
-                                    <div class="metric-val" id="lc-rating">1898</div>
-                                    <span class="metric-sub metric-sub--accent" id="lc-rank">Knight</span>
+                                    <span class="metric-label">Contest Rating</span>
+                                    <div class="metric-val" data-stat="leetcode.rating"></div>
+                                    <span class="metric-sub metric-sub--accent" data-stat="leetcode.title"></span>
                                 </div>
                                 <div class="metric-box">
-                                    <span class="metric-label">Global Rank</span>
-                                    <div class="metric-val metric-val--sm" id="lc-ranking">38,514</div>
-                                    <span class="metric-sub" id="lc-ranking-exact">38,514</span>
+                                    <span class="metric-label">Contest Global Rank</span>
+                                    <div class="metric-val metric-val--sm" data-stat="leetcode.contestGlobalRank" data-format="rank"></div>
+                                    <span class="metric-sub" data-stat="leetcode.topPercentage" data-format="top"></span>
                                 </div>
                                 <div class="metric-box">
-                                    <span class="metric-label">Solved</span>
-                                    <div class="metric-val metric-val--sm" id="lc-solved">732</div>
-                                    <span class="metric-sub" id="lc-acceptance">67.68%</span>
+                                    <span class="metric-label">Problems Solved</span>
+                                    <div class="metric-val" data-stat="leetcode.solved" data-format="int"></div>
+                                    <span class="metric-sub">Accepted</span>
                                 </div>
                                 <div class="metric-box">
-                                    <span class="metric-label">Handle</span>
-                                    <div class="metric-val metric-val--sm" id="lc-handle">sumit__chauhan__</div>
-                                    <span class="metric-sub">Active</span>
+                                    <span class="metric-label">Contests Attended</span>
+                                    <div class="metric-val" data-stat="leetcode.contestsAttended" data-format="int"></div>
+                                    <span class="metric-sub">@sumit_chauhan_</span>
                                 </div>
                             </div>
 
@@ -650,48 +629,51 @@
                                 <div class="diff-bar-row">
                                     <div class="diff-bar-meta">
                                         <span class="diff-label diff-easy">EASY</span>
-                                        <span class="diff-count" id="lc-easy-count">201</span>
+                                        <span class="diff-count" data-stat="leetcode.easy" data-format="int"></span>
                                     </div>
-                                    <div class="diff-track"><div class="diff-fill diff-fill--easy" id="lc-easy-bar" style="width:27%"></div></div>
+                                    <div class="diff-track"><div class="diff-fill diff-fill--easy" data-lc-bar="easy"></div></div>
                                 </div>
                                 <div class="diff-bar-row">
                                     <div class="diff-bar-meta">
                                         <span class="diff-label diff-med">MEDIUM</span>
-                                        <span class="diff-count" id="lc-medium-count">438</span>
+                                        <span class="diff-count" data-stat="leetcode.medium" data-format="int"></span>
                                     </div>
-                                    <div class="diff-track"><div class="diff-fill diff-fill--med" id="lc-medium-bar" style="width:60%"></div></div>
+                                    <div class="diff-track"><div class="diff-fill diff-fill--med" data-lc-bar="medium"></div></div>
                                 </div>
                                 <div class="diff-bar-row">
                                     <div class="diff-bar-meta">
                                         <span class="diff-label diff-hard">HARD</span>
-                                        <span class="diff-count" id="lc-hard-count">93</span>
+                                        <span class="diff-count" data-stat="leetcode.hard" data-format="int"></span>
                                     </div>
-                                    <div class="diff-track"><div class="diff-fill diff-fill--hard" id="lc-hard-bar" style="width:13%"></div></div>
+                                    <div class="diff-track"><div class="diff-fill diff-fill--hard" data-lc-bar="hard"></div></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- CC Panel -->
-                        <div id="db-panel-cc" class="dashboard-tab-pane t-panel hidden">
+                        <div id="db-panel-cc" class="dashboard-tab-pane t-panel" role="tabpanel" aria-labelledby="db-tab-cc" tabindex="0" hidden>
+                            <p class="panel-notice" data-notice-for="codechef" hidden>
+                                Live data unavailable right now. <a href="https://www.codechef.com/users/sumitx" target="_blank" rel="noopener noreferrer">View the CodeChef profile <span aria-hidden="true">↗</span></a>
+                            </p>
                             <div class="metric-grid">
                                 <div class="metric-box">
-                                    <span class="metric-label">CC Rating</span>
-                                    <div class="metric-val" id="cc-rating">2070</div>
-                                    <span class="metric-sub metric-sub--accent" id="cc-stars">5★</span>
+                                    <span class="metric-label">Current Rating</span>
+                                    <div class="metric-val" data-stat="codechef.rating"></div>
+                                    <span class="metric-sub metric-sub--accent" data-stat="codechef.stars" data-format="stars"></span>
                                 </div>
                                 <div class="metric-box">
-                                    <span class="metric-label">Peak Rating</span>
-                                    <div class="metric-val" id="cc-max-rating">2070</div>
-                                    <span class="metric-sub">Personal Best</span>
+                                    <span class="metric-label">Highest Rating</span>
+                                    <div class="metric-val" data-stat="codechef.maxRating"></div>
+                                    <span class="metric-sub">Personal best</span>
                                 </div>
                                 <div class="metric-box">
                                     <span class="metric-label">Global Rank</span>
-                                    <div class="metric-val" id="cc-global-rank">#902</div>
-                                    <span class="metric-sub metric-sub--green">Top 1%</span>
+                                    <div class="metric-val" data-stat="codechef.globalRank" data-format="rank"></div>
+                                    <span class="metric-sub">Worldwide</span>
                                 </div>
                                 <div class="metric-box">
                                     <span class="metric-label">Country Rank</span>
-                                    <div class="metric-val" id="cc-country-rank">#612</div>
+                                    <div class="metric-val" data-stat="codechef.countryRank" data-format="rank"></div>
                                     <span class="metric-sub">India</span>
                                 </div>
                             </div>
@@ -700,59 +682,44 @@
                                 <div class="cc-summary">
                                     <h4 class="contest-history-title">Platform Summary</h4>
                                     <ul class="summary-list">
-                                        <li><span>Handle</span><span class="mono">gosling_dude</span></li>
-                                        <li><span>Status</span><span class="green">Active</span></li>
-                                        <li><span>Division</span><span>Div 1</span></li>
-                                        <li><span>Solved</span><span class="mono" id="cc-solved">175</span></li>
+                                        <li><span>Handle</span><span class="mono">sumitx</span></li>
+                                        <li><span>Problems solved</span><span class="mono" data-stat="codechef.solved" data-format="int"></span></li>
+                                        <li><span>Rating tier</span><span data-stat="codechef.stars" data-format="stars"></span></li>
                                     </ul>
                                 </div>
                                 <div class="cc-stars-panel">
-                                    <div class="cc-stars-big" id="cc-stars-display">5★</div>
-                                    <strong>Elite Competitive Coder</strong>
-                                    <p>Top-tier competitive programmer worldwide.</p>
+                                    <div class="cc-stars-big" data-stat="codechef.stars" data-format="stars"></div>
+                                    <strong>CodeChef rating tier</strong>
+                                    <p>Star tier from the live CodeChef rating.</p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- GFG Panel -->
-                        <div id="db-panel-gfg" class="dashboard-tab-pane t-panel hidden">
+                        <div id="db-panel-gfg" class="dashboard-tab-pane t-panel" role="tabpanel" aria-labelledby="db-tab-gfg" tabindex="0" hidden>
+                            <p class="panel-notice" data-notice-for="geeksforgeeks" hidden>
+                                Live data unavailable right now. <a href="https://www.geeksforgeeks.org/user/sumit_chauhan143/" target="_blank" rel="noopener noreferrer">View the GeeksforGeeks profile <span aria-hidden="true">↗</span></a>
+                            </p>
                             <div class="metric-grid">
                                 <div class="metric-box">
                                     <span class="metric-label">Coding Score</span>
-                                    <div class="metric-val" id="gfg-score">1491</div>
+                                    <div class="metric-val" data-stat="geeksforgeeks.score" data-format="int"></div>
                                     <span class="metric-sub metric-sub--accent">Overall</span>
                                 </div>
                                 <div class="metric-box">
                                     <span class="metric-label">Problems Solved</span>
-                                    <div class="metric-val" id="gfg-solved">438</div>
-                                    <span class="metric-sub">Live Counted</span>
+                                    <div class="metric-val" data-stat="geeksforgeeks.solved" data-format="int"></div>
+                                    <span class="metric-sub">Accepted</span>
                                 </div>
                                 <div class="metric-box">
                                     <span class="metric-label">Institute Rank</span>
-                                    <div class="metric-val" id="gfg-rank">155</div>
-                                    <span class="metric-sub metric-sub--green">NIT Jalandhar</span>
+                                    <div class="metric-val" data-stat="geeksforgeeks.instituteRank" data-format="rank"></div>
+                                    <span class="metric-sub" data-stat="geeksforgeeks.institute"></span>
                                 </div>
                                 <div class="metric-box">
-                                    <span class="metric-label">Handle</span>
-                                    <div class="metric-val metric-val--sm" id="gfg-handle">sumit_chauhan143</div>
-                                    <span class="metric-sub">Active</span>
-                                </div>
-                            </div>
-
-                            <div class="cc-bottom-grid">
-                                <div class="cc-summary">
-                                    <h4 class="contest-history-title">Platform Summary</h4>
-                                    <ul class="summary-list">
-                                        <li><span>Institute</span><span>NIT Jalandhar</span></li>
-                                        <li><span>Longest Streak</span><span class="green mono" id="gfg-streak">202 days</span></li>
-                                        <li><span>Education</span><span>B.Tech CSE</span></li>
-                                        <li><span>Status</span><span class="green">Active</span></li>
-                                    </ul>
-                                </div>
-                                <div class="cc-stars-panel">
-                                    <div class="cc-stars-big" id="gfg-badge">NIT</div>
-                                    <strong>NITJ Rank 155</strong>
-                                    <p>Top CS student at NIT Jalandhar.</p>
+                                    <span class="metric-label">Longest POTD Streak</span>
+                                    <div class="metric-val metric-val--sm" data-stat="geeksforgeeks.longestStreak" data-format="days"></div>
+                                    <span class="metric-sub">@sumit_chauhan143</span>
                                 </div>
                             </div>
                         </div>
@@ -811,37 +778,103 @@
 
                     <li class="tl-node">
                         <div class="tl-head">
-                            <h4 class="tl-role">Emit warning when TraceIdRatioBasedSampler is used as child sampler</h4>
-                            <span class="tl-period">PR #7937</span>
+                            <h4 class="tl-role">Fix SIGABRT when a string constant reaches DeviceCompilationClusterSignature</h4>
+                            <span class="tl-period">Sep 2026</span>
                         </div>
-                        <p class="tl-org"><span class="tl-chip tl-chip--cncf">CNCF</span> OpenTelemetry</p>
+                        <p class="tl-org">
+                            <span class="tl-chip tl-chip--google">GOOGLE</span> TensorFlow
+                            <span class="tl-meta">tensorflow/tensorflow · PR #126899</span>
+                            <span class="tl-status">Merged</span>
+                        </p>
+                        <p class="tl-desc">Fixed a TensorFlow XLA/JIT crash caused by <code>DT_STRING</code> constants reaching hashing logic that unconditionally used memcpy-only tensor storage. Added a safe <code>TensorProto</code> serialization fallback and regression coverage.</p>
+                        <div class="tl-tags">
+                            <span class="tl-tag">XLA / JIT</span>
+                            <span class="tl-tag">Crash fix</span>
+                            <span class="tl-tag">Type-safe handling</span>
+                            <span class="tl-tag">Regression tests</span>
+                        </div>
+                        <a href="https://github.com/tensorflow/tensorflow/pull/126899" target="_blank" rel="noopener noreferrer" class="pr-btn">
+                            <i data-feather="git-pull-request"></i>
+                            <span>View Pull Request</span>
+                            <span class="pr-btn-arrow" aria-hidden="true">↗</span>
+                            <span class="sr-only">tensorflow/tensorflow #126899 (opens in a new tab)</span>
+                        </a>
+                    </li>
+
+                    <li class="tl-node">
+                        <div class="tl-head">
+                            <h4 class="tl-role">GH-33432: [R] Match base/stringr semantics for <code>str_replace()</code> with NA replacement</h4>
+                            <span class="tl-period">Sep 2026</span>
+                        </div>
+                        <p class="tl-org">
+                            <span class="tl-chip tl-chip--apache">APACHE</span> Apache Arrow
+                            <span class="tl-meta">apache/arrow · PR #51197</span>
+                            <span class="tl-status">Merged</span>
+                        </p>
+                        <p class="tl-desc">Fixed Apache Arrow R string replacement semantics so <code>NA</code> replacements correctly produce <code>NA</code> instead of inserting the literal string “NA”, with regression coverage across regex, fixed and ignore-case paths.</p>
+                        <div class="tl-tags">
+                            <span class="tl-tag">R bindings</span>
+                            <span class="tl-tag">String semantics</span>
+                            <span class="tl-tag">Bug fix</span>
+                            <span class="tl-tag">Regression tests</span>
+                        </div>
+                        <a href="https://github.com/apache/arrow/pull/51197" target="_blank" rel="noopener noreferrer" class="pr-btn">
+                            <i data-feather="git-pull-request"></i>
+                            <span>View Pull Request</span>
+                            <span class="pr-btn-arrow" aria-hidden="true">↗</span>
+                            <span class="sr-only">apache/arrow #51197 (opens in a new tab)</span>
+                        </a>
+                    </li>
+
+                    <li class="tl-node">
+                        <div class="tl-head">
+                            <h4 class="tl-role">Emit warning when TraceIdRatioBasedSampler is used as child sampler</h4>
+                        </div>
+                        <p class="tl-org">
+                            <span class="tl-chip tl-chip--cncf">CNCF</span> OpenTelemetry Java
+                            <span class="tl-meta">open-telemetry/opentelemetry-java · PR #7937</span>
+                            <span class="tl-status">Merged</span>
+                        </p>
                         <p class="tl-desc">Added a spec-required compatibility warning at configuration time without changing runtime behavior. Reviewed and merged by maintainers.</p>
-                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank" rel="noopener noreferrer" class="tl-link">
-                            <i data-feather="git-pull-request"></i> View pull request
+                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank" rel="noopener noreferrer" class="pr-btn">
+                            <i data-feather="git-pull-request"></i>
+                            <span>View Pull Request</span>
+                            <span class="pr-btn-arrow" aria-hidden="true">↗</span>
+                            <span class="sr-only">open-telemetry/opentelemetry-java #7937 (opens in a new tab)</span>
                         </a>
                     </li>
 
                     <li class="tl-node">
                         <div class="tl-head">
                             <h4 class="tl-role">Clarify suppressed warnings in API common module</h4>
-                            <span class="tl-period">PR #7951</span>
                         </div>
-                        <p class="tl-org"><span class="tl-chip tl-chip--cncf">CNCF</span> OpenTelemetry</p>
+                        <p class="tl-org">
+                            <span class="tl-chip tl-chip--cncf">CNCF</span> OpenTelemetry Java
+                            <span class="tl-meta">open-telemetry/opentelemetry-java · PR #7951</span>
+                        </p>
                         <p class="tl-desc">Improved maintainability by documenting intentional warning suppressions with no functional changes.</p>
-                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7951" target="_blank" rel="noopener noreferrer" class="tl-link">
-                            <i data-feather="git-pull-request"></i> View pull request
+                        <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7951" target="_blank" rel="noopener noreferrer" class="pr-btn">
+                            <i data-feather="git-pull-request"></i>
+                            <span>View Pull Request</span>
+                            <span class="pr-btn-arrow" aria-hidden="true">↗</span>
+                            <span class="sr-only">open-telemetry/opentelemetry-java #7951 (opens in a new tab)</span>
                         </a>
                     </li>
 
                     <li class="tl-node">
                         <div class="tl-head">
                             <h4 class="tl-role">Support GOOGLE_CLOUD_PROJECT_ID fallback</h4>
-                            <span class="tl-period">PR #2725</span>
                         </div>
-                        <p class="tl-org"><span class="tl-chip tl-chip--google">GOOGLE</span> Gemini CLI</p>
+                        <p class="tl-org">
+                            <span class="tl-chip tl-chip--google">GOOGLE</span> Gemini CLI
+                            <span class="tl-meta">google-gemini/gemini-cli · PR #2725</span>
+                        </p>
                         <p class="tl-desc">Added a backward-compatible environment variable fallback improving developer experience across platforms.</p>
-                        <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer" class="tl-link">
-                            <i data-feather="git-pull-request"></i> View pull request
+                        <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer" class="pr-btn">
+                            <i data-feather="git-pull-request"></i>
+                            <span>View Pull Request</span>
+                            <span class="pr-btn-arrow" aria-hidden="true">↗</span>
+                            <span class="sr-only">google-gemini/gemini-cli #2725 (opens in a new tab)</span>
                         </a>
                     </li>
 
@@ -862,12 +895,18 @@
 
                 </ol>
 
-                <div class="oss-github-row">
-                    <i data-feather="github"></i>
-                    <span>More contributions at</span>
-                    <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="oss-gh-link">
-                        github.com/Gosling-dude <i data-feather="arrow-right"></i>
-                    </a>
+                <div class="oss-more">
+                    <i data-feather="github" class="oss-more-icon"></i>
+                    <p>
+                        More contributions to
+                        <a href="https://github.com/redis/redis" target="_blank" rel="noopener noreferrer">Redis</a>,
+                        <a href="https://github.com/stripe" target="_blank" rel="noopener noreferrer">Stripe</a>,
+                        <a href="https://github.com/google/guava" target="_blank" rel="noopener noreferrer">Google Guava</a>,
+                        <a href="https://github.com/open-telemetry/opentelemetry-java" target="_blank" rel="noopener noreferrer">OpenTelemetry Java</a>,
+                        <a href="https://github.com/open-telemetry/opentelemetry-cpp" target="_blank" rel="noopener noreferrer">OpenTelemetry C++</a>,
+                        and other open-source projects.
+                        <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="oss-gh-link">See all activity on GitHub <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a>
+                    </p>
                 </div>
 
             </div>
@@ -887,11 +926,12 @@
                 <h2 class="section-headline reveal-elem">Numbers That<br>Speak.</h2>
 
                 <!-- Hero stat -->
-                <div class="mega-stat reveal-elem glass-panel">
-                    <div class="mega-stat-num stat-counter" data-count="1649">0</div>
+                <div class="mega-stat reveal-elem glass-panel" data-stats-group aria-busy="true">
+                    <div class="mega-stat-num" data-stat="aggregate.totalSolved" data-format="int" data-count-up></div>
                     <div class="mega-stat-info">
-                        <h3>Algorithmic Problems Solved</h3>
-                        <p>across Codeforces, LeetCode, CodeChef, and GeeksforGeeks</p>
+                        <h3>Problems solved across tracked platforms</h3>
+                        <p>Live sum of solved counts on Codeforces, LeetCode, CodeChef and GeeksforGeeks. Each platform is counted on its own, so a problem solved on two sites counts twice.</p>
+                        <p class="mega-stat-breakdown" data-aggregate-breakdown>Counting live totals…</p>
                     </div>
                 </div>
 
@@ -911,7 +951,7 @@
                         <p class="ach-detail">Out of 20,000+ globally</p>
                     </a>
 
-                    <a href="https://www.codechef.com/users/gosling_dude" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn glass-panel">
+                    <a href="https://www.codechef.com/users/sumitx" target="_blank" rel="noopener noreferrer" class="achievement-card mag-btn glass-panel">
                         <i data-feather="external-link" class="ach-ext-icon"></i>
                         <div class="ach-rank">24<sup>th</sup></div>
                         <h4 class="ach-name">CodeChef Starters 212B</h4>
@@ -969,14 +1009,14 @@
                     </p>
 
                     <div class="contact-cta-row">
-                        <a href="mailto:sumitchauhan.job@gmail.com" class="btn-primary btn-primary--xl mag-btn">
+                        <a href="mailto:sumitchauhan.jobs@gmail.com" class="btn-primary btn-primary--xl mag-btn">
                             <span>Say Hello</span>
                             <i data-feather="send"></i>
                         </a>
-                        <a href="https://drive.google.com/file/d/1Xi79v6726GnArzIYIqSsiSnZ7Q6rSFse/view?usp=sharing"
+                        <a href="https://drive.google.com/file/d/10qnXdjKh-4yWUMm1TSc6HL06cn2yOPXp/view?usp=sharing"
                            target="_blank" rel="noopener noreferrer"
                            class="btn-ghost btn-ghost--xl mag-btn">
-                            View Resume ↗
+                            View Resume <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span>
                         </a>
                     </div>
 
@@ -985,11 +1025,18 @@
                             <i data-feather="phone"></i>
                             <span class="font-mono">+91-8218097607</span>
                         </a>
-                        <a href="mailto:sumitchauhan.job@gmail.com" class="contact-detail-link">
+                        <a href="mailto:sumitchauhan.jobs@gmail.com" class="contact-detail-link">
                             <i data-feather="mail"></i>
-                            <span class="font-mono">sumitchauhan.job@gmail.com</span>
+                            <span class="font-mono">sumitchauhan.jobs@gmail.com</span>
                         </a>
                     </div>
+
+                    <ul class="contact-social" aria-label="Profiles">
+                        <li><a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="GitHub (opens in a new tab)"><i data-feather="github"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="LinkedIn (opens in a new tab)"><i data-feather="linkedin"></i></a></li>
+                        <li><a href="https://www.kaggle.com/sumitxory" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="Kaggle (opens in a new tab)"><svg class="brand-icon" aria-hidden="true" focusable="false"><use href="#icon-kaggle"></use></svg></a></li>
+                        <li><a href="https://x.com/GaussianEdge" target="_blank" rel="noopener noreferrer" class="social-btn mag-btn" aria-label="X, formerly Twitter (opens in a new tab)"><svg class="brand-icon brand-icon--x" aria-hidden="true" focusable="false"><use href="#icon-x"></use></svg></a></li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -999,46 +1046,25 @@
     <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-inner">
-            <span class="footer-copy">&copy; 2025 Sumit Chauhan. Backend systems &amp; distributed architecture.</span>
-            <div class="footer-links">
+            <span class="footer-copy">&copy; <span data-year>2026</span> Sumit Chauhan. Backend systems &amp; distributed architecture.</span>
+            <nav class="footer-links" aria-label="Elsewhere">
                 <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://www.linkedin.com/in/sumit-chauhan-006399257/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </div>
+                <a href="https://www.kaggle.com/sumitxory" target="_blank" rel="noopener noreferrer">Kaggle</a>
+                <a href="https://x.com/GaussianEdge" target="_blank" rel="noopener noreferrer">X</a>
+                <a href="https://drive.google.com/file/d/10qnXdjKh-4yWUMm1TSc6HL06cn2yOPXp/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
+            </nav>
         </div>
     </footer>
 
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- GSAP (deferred; script.js below runs after it, in order) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 
-    <!-- Main script -->
-    <script src="script.js"></script>
+    <!-- UI: navigation, mobile menu, animations, backdrop, projects, tabs -->
+    <script src="script.js" defer></script>
 
-    <!-- Init feather + mobile menu -->
-    <script>
-        feather.replace({ 'stroke-width': 1.75, 'width': 18, 'height': 18 });
-
-        (function() {
-            const btn = document.getElementById('mobile-menu-btn');
-            const menu = document.getElementById('mobile-menu');
-            if (!btn || !menu) return;
-
-            btn.addEventListener('click', () => {
-                const open = menu.classList.toggle('open');
-                btn.classList.toggle('open', open);
-                btn.setAttribute('aria-expanded', String(open));
-                menu.setAttribute('aria-hidden', String(!open));
-            });
-
-            menu.querySelectorAll('a').forEach(a => {
-                a.addEventListener('click', () => {
-                    menu.classList.remove('open');
-                    btn.classList.remove('open');
-                    btn.setAttribute('aria-expanded', 'false');
-                    menu.setAttribute('aria-hidden', 'true');
-                });
-            });
-        })();
-    </script>
+    <!-- Live coding-profile data (hero stats, platform cards, dashboard, totals) -->
+    <script type="module" src="js/live-profiles.mjs"></script>
 </body>
 </html>
