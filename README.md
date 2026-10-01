@@ -1,6 +1,6 @@
 # Sumit Chauhan - Personal Portfolio Website
 
-A fast, fully responsive single-page portfolio built with plain HTML, CSS and vanilla JavaScript — no framework, no build step. Cinematic video backdrop, live competitive-programming stats, open-source contributions and shipped projects.
+A fast, fully responsive single-page portfolio built with plain HTML, CSS and vanilla JavaScript, with no framework and no build step. Cinematic video backdrop, live competitive-programming stats, open-source contributions and shipped projects.
 
 [**Have a look**](https://sumit.today/)
 
@@ -29,7 +29,7 @@ browser ──► /api/profiles/:platform  (Netlify Function, CDN-cached ~3 min)
 | --- | --- |
 | `js/profile-sources.mjs` | Handles + profile URLs, fetch/timeout/retry helpers and one parser per platform. Shared by the browser and the function. |
 | `js/live-profiles.mjs` | Browser state (`profileStats`), short localStorage cache, rendering of every `data-stat` binding, Sync button, freshness label. |
-| `netlify/functions/profiles.mjs` | Server-side proxy for platforms that block cross-origin browser requests. Public data only — no keys or secrets. |
+| `netlify/functions/profiles.mjs` | Server-side proxy for platforms that block cross-origin browser requests. Public data only, no keys or secrets. |
 | `script.js` | Page UI: navigation, mobile menu, animations, backdrop video, dashboard tabs and the `PROJECTS` data the project cards are rendered from. |
 
 To show a stat somewhere new, add an element with `data-stat="<platform>.<field>"` (e.g. `data-stat="codeforces.rating"`); it is filled automatically.
