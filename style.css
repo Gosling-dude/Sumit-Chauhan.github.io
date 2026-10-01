@@ -1,5 +1,5 @@
 /* ================================================================
-   SUMIT CHAUHAN — PORTFOLIO
+   SUMIT CHAUHAN - PORTFOLIO
    Design system: deep green-black surfaces, teal/mint accents,
    looping ridge footage behind the content.
    ================================================================ */
@@ -23,7 +23,7 @@
   --ink-dim:     #bcc4ba;
   /* Both weak tiers were raised again when the panels were removed. With
      content now on a light 0.42 wash instead of an opaque panel, the old
-     #aab3a9 / #a1aaa3 pair measured 4.2 / 3.5:1 on bright frames — under
+     #aab3a9 / #a1aaa3 pair measured 4.2 / 3.5:1 on bright frames - under
      AA. They were also within 3% of each other, which is not a hierarchy.
      Now genuinely separated, and both clear AA (5.1 / 4.7) at the worst
      backdrop the footage produces. Ordering still holds:
@@ -34,13 +34,13 @@
      Teal carries the colour on surfaces (borders, panels, fills);
      mint carries it on text (links, highlights, active states).
      Mint is too pale to fill areas with, teal too dark to set type
-     in — using each for the wrong job is what looks washed out. */
-  --accent:      #d1ebdb;   /* mint — text-level highlights */
-  --accent-soft: #EFECE9;   /* cream — brightest emphasis */
-  --accent-deep: #3c5759;   /* teal — surfaces, borders, fills */
+     in - using each for the wrong job is what looks washed out. */
+  --accent:      #d1ebdb;   /* mint - text-level highlights */
+  --accent-soft: #EFECE9;   /* cream - brightest emphasis */
+  --accent-deep: #3c5759;   /* teal - surfaces, borders, fills */
   /* Derived, not from the supplied six. Needed because the palette's only
      saturated colour (#3c5759) is too dark to set type in, while #d1ebdb is
-     only ~11% saturated and reads as plain white at display sizes — which is
+     only ~11% saturated and reads as plain white at display sizes - which is
      exactly the "faded" problem. This is the same hue family, pushed to a
      lightness/saturation that actually registers as a colour. Use it for
      display accents and CTAs; use --accent for body-level highlights. */
@@ -54,13 +54,13 @@
   --violet:      #3c5759;
   --warm:        #d1ebdb;
 
-  /* Hairlines — tinted toward teal so borders carry colour too */
+  /* Hairlines - tinted toward teal so borders carry colour too */
   --line:        rgba(209, 235, 219, 0.12);
   --line-strong: rgba(209, 235, 219, 0.22);
   --line-accent: rgba(209, 235, 219, 0.34);
 
   /* --glass-bg / --glass-shadow removed: panels no longer have a fill or a
-     shadow. See .glass-panel — it is a masked wash now, not a surface. */
+     shadow. See .glass-panel - it is a masked wash now, not a surface. */
 
   --radius:      8px;
   --radius-sm:   6px;
@@ -78,8 +78,8 @@
    1 · RESET / BASE
 ---------------------------------------------------------------- */
 /* These base rules used to arrive from the Tailwind Play CDN (its
-   "preflight"), injected AFTER this file. The CDN is gone — no Tailwind
-   utility classes were in use — so the rules the design was actually
+   "preflight"), injected AFTER this file. The CDN is gone - no Tailwind
+   utility classes were in use - so the rules the design was actually
    rendered with are restated here, in the same effective order. */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -146,7 +146,7 @@ em { font-style: normal; }
 }
 
 /* One visible focus treatment for every interactive element. Keyboard
-   only — mouse clicks don't draw it. */
+   only - mouse clicks don't draw it. */
 :focus-visible {
   outline: 2px solid var(--accent-vivid);
   outline-offset: 3px;
@@ -175,7 +175,7 @@ em { font-style: normal; }
 
 /* ── Live-data states (js/live-profiles.mjs) ──────────────────────
    stat-loading: a quiet shimmer where a live value will land.
-   stat-na: the value couldn't be fetched — shown as a muted dash with
+   stat-na: the value couldn't be fetched - shown as a muted dash with
    a "Live data unavailable" tooltip, never as a guessed number. */
 .stat-loading {
   display: inline-block;
@@ -253,7 +253,7 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
   max-width: none;
   object-fit: cover;
   display: block;
-  /* NOTE: the source is 848x478 — below HD. No blur is applied, so it is
+  /* NOTE: the source is 848x478 - below HD. No blur is applied, so it is
      as sharp as the file allows; genuine HD needs a genuine HD file. */
   opacity: 0;
   transition: opacity 900ms ease-out;
@@ -268,7 +268,7 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
   background: rgba(20, 32, 30, 0.10);
 }
 
-/* Readability gradient — vertical, because the light is vertical.
+/* Readability gradient - vertical, because the light is vertical.
    Measured per horizontal band across the clip:
        top   0-18%   bright cloud      <- nav sits here: heaviest veil
        upper 18-45%  mid ridge
@@ -307,7 +307,7 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
 }
 
 /* ----------------------------------------------------------------
-   3 · (reserved — stage rail removed)
+   3 · (reserved - stage rail removed)
 ---------------------------------------------------------------- */
 
 /* ----------------------------------------------------------------
@@ -394,7 +394,7 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
   /* Dark fill, not a light one. These three sit on BARE footage with
      light text on top, so a light fill raises the backdrop and *reduces*
      contrast (measured 3.2:1). Chips inside panels use a light fill for
-     the opposite reason — there the panel behind them is already dark. */
+     the opposite reason - there the panel behind them is already dark. */
   border: none;
   background: rgba(25, 37, 36, 0.58);
   /* Frosted, like .glass-panel. A dark fill alone is invisible where the
@@ -493,7 +493,7 @@ main { position: relative; z-index: 2; }
 
 /* Note: .glass-panel briefly carried backdrop-filter (frosted glass). With
    the fill gone there is nothing to frost, and a blur with no fill would
-   render as a blurred rectangle — a box by another name. So the blur is off
+   render as a blurred rectangle - a box by another name. So the blur is off
    here. It survives only on the small controls (.btn-ghost, .social-btn,
    .nav-resume, .hero-badge), where a surface still has to separate itself
    from dark foliage. */
@@ -530,7 +530,7 @@ main { position: relative; z-index: 2; }
   inset: 0;
   background: rgba(25, 37, 36, 0.46);
   /* Feathered on all four sides (two linear masks intersected) so the wash
-     has no visible edge on bright footage — the old radial mask only faded
+     has no visible edge on bright footage - the old radial mask only faded
      the corners, which read as a box once the backdrop was brightened.
      The feather (18px) is inside every panel's padding, so text always
      sits on the full-strength wash. */
@@ -652,7 +652,7 @@ main { position: relative; z-index: 2; }
   /* Dark fill, not a light one. These three sit on BARE footage with
      light text on top, so a light fill raises the backdrop and *reduces*
      contrast (measured 3.2:1). Chips inside panels use a light fill for
-     the opposite reason — there the panel behind them is already dark. */
+     the opposite reason - there the panel behind them is already dark. */
   border: none;
   background: rgba(25, 37, 36, 0.52);
   /* Frosted, like .glass-panel. A dark fill alone is invisible where the
@@ -701,7 +701,7 @@ main { position: relative; z-index: 2; }
   color: transparent;
 }
 /* Heavier and brighter than before. A 1.4px/0.52 hairline was fine over flat
-   near-black, but this outline now sits on a detailed ridge — thin strokes
+   near-black, but this outline now sits on a detailed ridge - thin strokes
    get lost in the foliage and read as weak rather than restrained. */
 .hero-title-dim {
   color: transparent;
@@ -737,7 +737,7 @@ main { position: relative; z-index: 2; }
   font-size: 0.92rem;
   letter-spacing: 0.02em;
   /* Mint, not cream. As a flat off-white gradient this was the largest
-     element on the page with no colour in it — a big part of why the hero
+     element on the page with no colour in it - a big part of why the hero
      read as washed out. Dark base text on mint is the page's one high-
      chroma focal point. */
   color: var(--base);
@@ -761,7 +761,7 @@ main { position: relative; z-index: 2; }
   /* Dark fill, not a light one. These three sit on BARE footage with
      light text on top, so a light fill raises the backdrop and *reduces*
      contrast (measured 3.2:1). Chips inside panels use a light fill for
-     the opposite reason — there the panel behind them is already dark. */
+     the opposite reason - there the panel behind them is already dark. */
   border: none;
   background: rgba(25, 37, 36, 0.62);
   /* Frosted, like .glass-panel. A dark fill alone is invisible where the
@@ -801,13 +801,13 @@ main { position: relative; z-index: 2; }
 .social-btn svg { width: 18px; height: 18px; }
 /* Brand glyphs are filled marks; at the line icons' 18px they read heavier,
    so they sit a size down to match Feather's optical weight. */
-.social-btn .brand-icon { width: 15px; height: 15px; }
+.social-btn .brand-icon { width: 17px; height: 17px; }
 .social-btn .brand-icon--x { width: 14px; height: 14px; }
 .hero-social { flex-wrap: wrap; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Hero mini stats — quiet luminous chips beneath the actions */
+/* Hero mini stats - quiet luminous chips beneath the actions */
 .hero-mini-stats {
   display: flex;
   gap: 28px;
@@ -873,7 +873,7 @@ main { position: relative; z-index: 2; }
 }
 @keyframes scrollCue { 0% { top: -50%; } 100% { top: 120%; } }
 
-/* Freshness line under the hero stats — present, not prominent. */
+/* Freshness line under the hero stats - present, not prominent. */
 .hero-sync {
   display: inline-flex;
   align-items: center;
@@ -984,7 +984,7 @@ main { position: relative; z-index: 2; }
 }
 .skill-pill-icon { font-size: 1rem; width: 16px; height: 16px; }
 .skill-pill--primary { border-color: rgba(209,235,219, 0.4); background: rgba(209,235,219, 0.1); color: var(--blue-bright); }
-/* colour was var(--violet) — which the palette swap repointed at the dark
+/* colour was var(--violet) - which the palette swap repointed at the dark
    teal #3c5759, giving dark-teal text on a dark-teal pill at 1.75:1. That is
    why LangChain / RAG Pipelines looked blurred: they were nearly invisible.
    --accent-vivid takes it to 8.1:1. */
@@ -1016,14 +1016,14 @@ main { position: relative; z-index: 2; }
   background:
     radial-gradient(120% 120% at 50% 0%, rgba(209,235,219, 0.08), transparent 60%),
     rgba(21, 31, 30, 0.4);
-  /* divider line removed — the two halves now separate by fill alone */
+  /* divider line removed - the two halves now separate by fill alone */
 }
 
 /* ── Project plate ────────────────────────────────────────────────
    Replaced two invented SVG "dashboards" (fake RUNNING badges, fake p99
    latency, 7 looping <animate> elements). They read as decoration
    pretending to be product. This is purely typographic and states only
-   what is true: index, name, category. No numbers are claimed here —
+   what is true: index, name, category. No numbers are claimed here -
    the real detail lives in .project-content beside it. */
 .project-plate {
   position: relative;
@@ -1188,7 +1188,7 @@ main { position: relative; z-index: 2; }
   color: var(--ink-dim);
 }
 .platform-status[data-state="error"] { color: #e3a3ac; }
-/* Nothing to show — say so once, in the status line, instead of a stack
+/* Nothing to show - say so once, in the status line, instead of a stack
    of dashes. */
 .platform-card[data-state="error"] .platform-rank,
 .platform-card[data-state="error"] .platform-solved { display: none; }
@@ -1427,7 +1427,7 @@ main { position: relative; z-index: 2; }
 }
 
 /* ----------------------------------------------------------------
-   13 · EXPERIENCE — vertical timeline
+   13 · EXPERIENCE - vertical timeline
    Replaced .exp-card / .oss-card glass panels. Boxes fought the footage:
    five stacked frosted rectangles read as a wall, not a sequence. A rail
    carries the order with far less material.
@@ -1439,7 +1439,7 @@ main { position: relative; z-index: 2; }
   position: relative;
 }
 
-/* The rail. Fades out at the bottom rather than stopping dead — the
+/* The rail. Fades out at the bottom rather than stopping dead - the
    sequence is ongoing, and a hard terminus would contradict the open
    final node. */
 .timeline::before {
@@ -1497,7 +1497,7 @@ main { position: relative; z-index: 2; }
   box-shadow: 0 0 0 4px rgba(25, 37, 36, 0.9), 0 0 16px -2px rgba(143, 214, 181, 0.7);
 }
 
-/* Group labels — smaller, hollow marker: they mark a change of kind,
+/* Group labels - smaller, hollow marker: they mark a change of kind,
    not an event in the sequence. */
 .tl-node--label { padding-bottom: 22px; }
 .tl-node--label::before {
@@ -1679,7 +1679,7 @@ main { position: relative; z-index: 2; }
 
 /* ── The open end ─────────────────────────────────────────────────
    Hollow, dashed marker. Deliberately makes no claim beyond the
-   availability already stated in the hero badge — no invented role,
+   availability already stated in the hero badge - no invented role,
    employer or date. */
 .tl-node--future::before {
   background: transparent;
@@ -1718,11 +1718,9 @@ main { position: relative; z-index: 2; }
 .oss-more {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
   margin-top: 28px;
   max-width: 74ch;
 }
-.oss-more-icon { flex-shrink: 0; margin-top: 3px; color: var(--accent-vivid); }
 .oss-more p {
   margin: 0;
   font-size: 0.95rem;
@@ -1916,3 +1914,134 @@ main { position: relative; z-index: 2; }
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .reveal-elem, [data-anim] { opacity: 1 !important; transform: none !important; filter: none !important; }
 }
+
+/* ----------------------------------------------------------------
+   18 · MORE PROJECTS (grid under the featured projects)
+---------------------------------------------------------------- */
+.more-projects { margin-top: 56px; }
+.more-projects-title {
+  margin: 0 0 20px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-shadow: 0 1px 2px rgba(10, 18, 16, 0.35), 0 2px 22px rgba(10, 18, 16, 0.55);
+}
+.more-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 18px;
+}
+.mini-project {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px;
+  min-width: 0;
+}
+.mini-project-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.mini-project-desc { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+.mini-project .project-tech-stack { margin-top: 4px; }
+.mini-project .project-links-row { justify-content: flex-start; margin-top: auto; padding-top: 6px; }
+.mini-project-gh { width: 28px; height: 28px; color: var(--ink); }
+.project-link-icon { width: 15px; height: 15px; }
+
+/* ----------------------------------------------------------------
+   19 · OPEN-SOURCE CONTRIBUTION CARDS
+   The project (logo + name) leads, the PR title follows. Logos are the
+   projects' own marks from Simple Icons, set in the brand colour where
+   that colour holds up on the dark backdrop (black marks use ink).
+---------------------------------------------------------------- */
+.tl-node--oss { padding-bottom: 26px; }
+.tl-node--oss::before { top: 26px; }
+.oss-card {
+  position: relative;
+  padding: 22px 24px 24px;
+  border-radius: 14px;
+  background: rgba(20, 31, 30, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(209, 235, 219, 0.08);
+  max-width: 820px;
+  transition: box-shadow 0.35s var(--ease), background 0.35s var(--ease);
+}
+.oss-card::before {               /* project-coloured accent edge */
+  content: "";
+  position: absolute;
+  left: 0; top: 18px; bottom: 18px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--brand, var(--accent-vivid));
+  opacity: 0.85;
+}
+.oss-card:hover,
+.oss-card:focus-within {
+  background: rgba(20, 31, 30, 0.66);
+  box-shadow: inset 0 0 0 1px rgba(209, 235, 219, 0.16);
+}
+.oss-card--tensorflow { --brand: #FF6F00; }
+.oss-card--arrow      { --brand: #EFECE9; }
+.oss-card--otel       { --brand: #F5A800; }
+.oss-card--gemini     { --brand: #8E75B2; }
+
+.oss-card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; min-width: 0; }
+.oss-card-logo {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: rgba(239, 236, 233, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(239, 236, 233, 0.10);
+  color: var(--brand, var(--ink));
+}
+.oss-card-logo-svg { width: 26px; height: 26px; }
+.oss-card-id { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.oss-card-project {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.oss-card-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
+.oss-card-repo { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); overflow-wrap: anywhere; }
+.oss-card-date { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); }
+.oss-card-title {
+  margin: 0 0 8px;
+  font-size: clamp(0.98rem, 1.5vw, 1.08rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--accent-soft);
+  overflow-wrap: anywhere;
+}
+.oss-card-desc { margin: 0; font-size: 0.92rem; color: var(--ink-soft); max-width: 70ch; }
+.oss-card .tl-tags { margin-top: 12px; }
+@media (max-width: 480px) {
+  .oss-card { padding: 18px 16px 20px; }
+  .oss-card-logo { width: 40px; height: 40px; }
+  .oss-card-logo-svg { width: 22px; height: 22px; }
+}
+
+/* "More contributions to …": logo + name pills inline in the sentence */
+.oss-more { flex-direction: column; gap: 14px; }
+.oss-repo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.oss-repo-logo { width: 15px; height: 15px; flex-shrink: 0; }
+.oss-repo--redis .oss-repo-logo  { color: #FF4438; }
+.oss-repo--stripe .oss-repo-logo { color: #635BFF; }
+.oss-repo--google .oss-repo-logo { color: #4285F4; }
+.oss-repo--otel .oss-repo-logo   { color: #F5A800; }
+.oss-gh-link { display: inline-flex; align-items: center; gap: 8px; margin-left: 0; }
+.project-content > .project-links-row { justify-content: flex-start; margin-top: 22px; }
+.project-content > .project-tech-stack { margin-top: 0; }
+.mini-project > .project-link-btn { align-self: flex-start; margin-top: auto; }

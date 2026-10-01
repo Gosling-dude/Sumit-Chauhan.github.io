@@ -1,5 +1,5 @@
 /* ================================================================
-   LIVE PROFILES — the single source of truth for every coding stat on
+   LIVE PROFILES - the single source of truth for every coding stat on
    the page: hero, platform cards, dashboard and achievements.
 
      sources (profile-sources.mjs) → profileStats (state) → render
@@ -10,7 +10,7 @@
    profileStats, so a value can never disagree between two places.
 
    Failure is explicit: a platform that can't be reached shows "Live data
-   unavailable" — never a remembered or hard-coded number.
+   unavailable" - never a remembered or hard-coded number.
    ================================================================ */
 import {
   PROFILES,
@@ -70,7 +70,7 @@ function writeCache() {
       if (e.data && e.fetchedAt) profiles[p] = { data: e.data, fetchedAt: e.fetchedAt, source: e.source };
     }
     localStorage.setItem(CACHE_KEY, JSON.stringify({ profiles }));
-  } catch { /* storage full / disabled — caching is optional */ }
+  } catch { /* storage full / disabled - caching is optional */ }
 }
 
 function hydrateFromCache() {
@@ -86,12 +86,12 @@ function hydrateFromCache() {
         fetchedAt: c.fetchedAt,
         source: c.source || 'cache',
       };
-    } catch { /* malformed cache entry — ignore it */ }
+    } catch { /* malformed cache entry - ignore it */ }
   }
 }
 
 /* ---------------------------------------------------------------
-   FETCHING — per platform, independent, de-duplicated
+   FETCHING - per platform, independent, de-duplicated
    1. the serverless proxy (/api/profiles/:platform)
    2. the production proxy, when this page is served from elsewhere
    3. the platform's public endpoint directly from the browser
@@ -119,7 +119,7 @@ async function fetchFromApi(url, platform) {
       };
     } catch (err) {
       // Retry once on a dropped connection. A timeout already cost the full
-      // budget, and an HTTP answer (404, 502) is final — both move on to the
+      // budget, and an HTTP answer (404, 502) is final - both move on to the
       // next source instead.
       if (attempt === 0 && err instanceof SourceError && err.status === null && err.retryable && !err.timedOut) continue;
       throw err;
@@ -305,7 +305,7 @@ function renderBindings() {
     } else if (state === 'loading') {
       el.textContent = '';
     } else {
-      el.textContent = '—';
+      el.textContent = '–';
       el.title = state === 'unavailable' ? 'Live data unavailable' : 'Not reported by the platform right now';
     }
   }
@@ -391,12 +391,12 @@ function renderCodeforcesContests() {
   }
   for (const c of e.data.recentContests) {
     const tr = document.createElement('tr');
-    const delta = typeof c.delta === 'number' ? `${c.delta >= 0 ? '+' : '−'}${Math.abs(c.delta)}` : '—';
+    const delta = typeof c.delta === 'number' ? `${c.delta >= 0 ? '+' : '−'}${Math.abs(c.delta)}` : '–';
     tr.append(
       cell(c.name, 'bold'),
-      cell(c.rank !== null ? `#${nf.format(c.rank)}` : '—', 'mono'),
+      cell(c.rank !== null ? `#${nf.format(c.rank)}` : '–', 'mono'),
       cell(delta, `mono ${typeof c.delta === 'number' ? (c.delta >= 0 ? 'green' : 'red') : ''}`),
-      cell(c.newRating !== null ? String(c.newRating) : '—', 'mono bold'),
+      cell(c.newRating !== null ? String(c.newRating) : '–', 'mono bold'),
     );
     tbody.append(tr);
   }

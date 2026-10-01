@@ -4,7 +4,7 @@
 # and www.sumit.life are attached as domains/domain aliases on this
 # Netlify site (see project README / migration notes for status).
 #
-# No [build] section is defined here on purpose — this repo has no build
+# No [build] section is defined here on purpose - this repo has no build
 # step, and the existing Netlify UI build/publish settings are left as
 # configured on the site rather than being overridden from this file.
 

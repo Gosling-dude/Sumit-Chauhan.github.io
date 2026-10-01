@@ -1,5 +1,5 @@
 /* ================================================================
-   PROFILE SOURCES — fetching + parsing for the coding-profile stats.
+   PROFILE SOURCES - fetching + parsing for the coding-profile stats.
 
    Isomorphic on purpose: imported by the browser (js/live-profiles.mjs)
    AND bundled into the Netlify Function (netlify/functions/profiles.mjs),
@@ -7,7 +7,7 @@
 
    Every value that leaves this module has been through sanitizeProfile():
    a number is a finite number or null, never a guess. Nothing in this
-   file holds a rating, a count or any other stat — only handles and URLs.
+   file holds a rating, a count or any other stat - only handles and URLs.
    ================================================================ */
 
 export const PROFILES = Object.freeze({
@@ -64,7 +64,7 @@ export async function fetchWithTimeout(url, { timeout = 8000, ...init } = {}) {
 }
 
 function httpError(res) {
-  // 404 means "nothing here" (e.g. no function deployed on this host) — retrying won't help.
+  // 404 means "nothing here" (e.g. no function deployed on this host) - retrying won't help.
   return new SourceError(`HTTP ${res.status}`, { status: res.status, retryable: res.status === 429 || res.status >= 500 });
 }
 
@@ -133,7 +133,7 @@ function toText(value, max = 80) {
 }
 
 /* ---------------------------------------------------------------
-   Normalised shape — the contract between sources and the UI
+   Normalised shape - the contract between sources and the UI
    --------------------------------------------------------------- */
 const SCHEMA = {
   codeforces: {
@@ -154,7 +154,7 @@ const SCHEMA = {
   },
 };
 
-// The fields without which a payload is useless — if none are present the
+// The fields without which a payload is useless - if none are present the
 // source is treated as failed rather than rendered as a row of dashes.
 const HEADLINE = {
   codeforces: ['rating', 'solved'],
@@ -193,7 +193,7 @@ export function sanitizeProfile(platform, raw) {
 }
 
 /* ---------------------------------------------------------------
-   CODEFORCES — official API (CORS-enabled, so it also works directly
+   CODEFORCES - official API (CORS-enabled, so it also works directly
    from the browser). Rate limit is per IP, so calls run sequentially
    and "Call limit exceeded" is retried after the documented 2 s window.
    --------------------------------------------------------------- */
@@ -260,7 +260,7 @@ export async function fetchCodeforcesData({ handle = PROFILES.codeforces.handle,
 }
 
 /* ---------------------------------------------------------------
-   LEETCODE — public GraphQL (server-side only: no CORS for browsers),
+   LEETCODE - public GraphQL (server-side only: no CORS for browsers),
    with the open-source alfa-leetcode-api wrapper as a second source.
    --------------------------------------------------------------- */
 const LEETCODE_GRAPHQL = 'https://leetcode.com/graphql';
@@ -351,11 +351,11 @@ export async function fetchLeetCodeAlfa({ handle = PROFILES.leetcode.handle, tim
 }
 
 /* ---------------------------------------------------------------
-   CODECHEF — no public API; the public profile page is parsed.
+   CODECHEF - no public API; the public profile page is parsed.
    --------------------------------------------------------------- */
 
 /** CodeChef's published star bands. Used only when the page's own star
-    markup can't be read — it is derived from the live rating, not stored. */
+    markup can't be read - it is derived from the live rating, not stored. */
 export function codechefStarsFromRating(rating) {
   if (typeof rating !== 'number') return null;
   const bands = [1400, 1600, 1800, 2000, 2200, 2500];
@@ -404,7 +404,7 @@ export async function fetchCodeChefData({ handle = PROFILES.codechef.handle, tim
 }
 
 /* ---------------------------------------------------------------
-   GEEKSFORGEEKS — the JSON endpoint behind the public profile page,
+   GEEKSFORGEEKS - the JSON endpoint behind the public profile page,
    with the rendered profile page as a second source.
    --------------------------------------------------------------- */
 const gfgApiUrl = (handle) =>
