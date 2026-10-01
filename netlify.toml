@@ -19,3 +19,10 @@
   to = "https://sumit.today/:splat"
   status = 301
   force = true
+
+# Live coding-profile stats: netlify/functions/profiles.mjs serves
+# /api/profiles/:platform (route declared in the function's own config).
+# Zero dependencies; esbuild bundles js/profile-sources.mjs into it.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

@@ -77,12 +77,22 @@
 /* ----------------------------------------------------------------
    1 · RESET / BASE
 ---------------------------------------------------------------- */
-*, *::before, *::after { box-sizing: border-box; }
+/* These base rules used to arrive from the Tailwind Play CDN (its
+   "preflight"), injected AFTER this file. The CDN is gone — no Tailwind
+   utility classes were in use — so the rules the design was actually
+   rendered with are restated here, in the same effective order. */
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+}
 
 html {
+  line-height: 1.5;
   scroll-behavior: smooth;
   scroll-padding-top: 84px;
   -webkit-text-size-adjust: 100%;
+  tab-size: 4;
 }
 
 body {
@@ -91,18 +101,58 @@ body {
   color: var(--ink-soft);
   font-family: var(--sans);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.5;
   letter-spacing: 0.01em;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
+h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
+h1, h2, h3, h4, h5, h6, p, figure, blockquote { margin: 0; }
+ol, ul { list-style: none; margin: 0; padding: 0; }
+button {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  background-image: none;
+  cursor: pointer;
+}
+button:disabled { cursor: default; }
+table { border-collapse: collapse; text-indent: 0; }
+sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; top: -0.5em; }
+code { font-family: var(--mono); font-size: 0.9em; }
+
 a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-strong { color: var(--ink); font-weight: 600; }
+img, svg, video { display: block; vertical-align: middle; }
+img, video { max-width: 100%; height: auto; }
+strong, b { color: var(--ink); font-weight: 700; }
 em { font-style: normal; }
 ::selection { background: rgba(209,235,219, 0.32); color: #fff; }
+
+[hidden] { display: none !important; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* One visible focus treatment for every interactive element. Keyboard
+   only — mouse clicks don't draw it. */
+:focus-visible {
+  outline: 2px solid var(--accent-vivid);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+:focus:not(:focus-visible) { outline: none; }
 
 .font-mono { font-family: var(--mono); }
 .text-white { color: #fff; }
@@ -123,11 +173,51 @@ em { font-style: normal; }
 
 .hidden { display: none !important; }
 
+/* ── Live-data states (js/live-profiles.mjs) ──────────────────────
+   stat-loading: a quiet shimmer where a live value will land.
+   stat-na: the value couldn't be fetched — shown as a muted dash with
+   a "Live data unavailable" tooltip, never as a guessed number. */
+.stat-loading {
+  display: inline-block;
+  min-width: 2.8em;
+  height: 0.82em;
+  vertical-align: -0.06em;
+  border-radius: 4px;
+  background: linear-gradient(90deg, rgba(209,235,219,0.08) 0%, rgba(209,235,219,0.22) 50%, rgba(209,235,219,0.08) 100%);
+  background-size: 200% 100%;
+  animation: statShimmer 1.4s ease-in-out infinite;
+}
+div.stat-loading, b.stat-loading { min-width: 2.2em; }
+@keyframes statShimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+.stat-na { opacity: 0.6; }
+
+.sync-dot,
+.status-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+[data-state="live"] > .sync-dot,
+[data-state="live"] > .status-dot { background: #74b894; box-shadow: 0 0 0 3px rgba(116,184,148,0.18); }
+[data-state="partial"] > .sync-dot,
+[data-state="stale"] > .sync-dot,
+[data-state="stale"] > .status-dot { background: #d9b871; }
+[data-state="loading"] > .sync-dot,
+[data-state="loading"] > .status-dot { background: var(--accent); animation: pulseDot 1.2s ease-in-out infinite; }
+[data-state="error"] > .sync-dot,
+[data-state="error"] > .status-dot { background: #d4838f; }
+
 /* ----------------------------------------------------------------
    2 · BACKDROP (looping footage)
-   A procedural canvas "space scene" engine used to live here; it read as
-   artificial and was deleted. Real footage sits far back instead, so it
-   reads as atmosphere rather than as a feature.
+   Cinematic layering, back to front:
+     poster still  →  video (graded)  →  scrim (tint)  →  veil (readability
+     gradient)  →  vignette (edges)
+   Each layer has one job, so the footage can stay bright and clear in the
+   middle of the frame while text keeps its contrast. No blur anywhere and
+   no opaque layer: the brightest band is the cloud line behind the nav,
+   and only that band is veiled hard.
 ---------------------------------------------------------------- */
 .cosmos-stage {
   position: fixed;
@@ -135,10 +225,24 @@ em { font-style: normal; }
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  /* Fallback backdrop: shows before the video decodes, and stays visible
-     if the file is missing or the browser blocks autoplay. */
-  background:
-    radial-gradient(135% 90% at 50% 0%, #23322f 0%, #192524 45%, #0f1717 100%);
+  /* Fallback if neither poster nor video can load. */
+  background: radial-gradient(135% 90% at 50% 0%, #23322f 0%, #192524 45%, #0f1717 100%);
+}
+
+/* The poster: a still of the video's first frame (44 KB). It is the whole
+   backdrop on phones, for reduced motion and on data saver, and the
+   placeholder on desktop until the video is playing. Graded exactly like
+   the video so the hand-off is invisible. */
+.cosmos-stage::before,
+.cosmos-video {
+  filter: brightness(1.12) contrast(1.08) saturate(1.14);
+  transform: scale(1.02);          /* hides sub-pixel edge seams only */
+}
+.cosmos-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("media/background_poster.webp") center / cover no-repeat;
 }
 
 .cosmos-video {
@@ -146,84 +250,58 @@ em { font-style: normal; }
   inset: 0;
   width: 100%;
   height: 100%;
+  max-width: none;
   object-fit: cover;
   display: block;
-  /* No blur. The 2px was inherited thinking from the old 320x180 clip, where
-     it hid a 6x upscale. This source is 848x478 and the blur was throwing
-     away the sharpness it actually has.
-     NOTE: 848x478 is below HD — it cannot be made sharper than the file is.
-     Removing the blur gets everything the source has; genuine HD needs a
-     genuine HD file. */
-  filter: saturate(1.04) brightness(0.98) contrast(1.08);
-  transform: scale(1.02);          /* hides sub-pixel edge seams only */
-  /* Kept for the JS fallback path only — the clip loops natively now
-     (measured seam 20.7/255 on a slow drift), so nothing drives this
-     during normal playback. */
-  opacity: 1;
-  transition: opacity 600ms ease-in-out;
+  /* NOTE: the source is 848x478 — below HD. No blur is applied, so it is
+     as sharp as the file allows; genuine HD needs a genuine HD file. */
+  opacity: 0;
+  transition: opacity 900ms ease-out;
 }
+.cosmos-stage.is-playing .cosmos-video { opacity: 1; }
 
-/* Global tint, deliberately light. Its job is to marry the footage to the
-   green-black palette and take the edge off the brightest frames — NOT to
-   carry text contrast. Pushing this above ~0.45 starts hiding the footage
-   again, which is the thing this backdrop exists to show. */
+/* Colour grade, deliberately light: marries the footage to the
+   green-black palette without dimming it. */
 .cosmos-scrim {
   position: absolute;
   inset: 0;
-  background: rgba(25, 37, 36, 0.14);
+  background: rgba(20, 32, 30, 0.10);
 }
 
-/* THE CONTRAST GUARANTEE — vertical, because the light is vertical.
-   Measured per horizontal band across the whole clip:
-       top   0-18%   median rgb(169,178,180)   <- bright cloud, nav sits here
-       upper 18-45%  median rgb( 52, 64, 64)
-       mid   45-75%  median rgb( 59, 69, 37)
-       lower 75-100% median rgb( 54, 57, 27)   <- deep green, already dark
-   So the veil is heaviest at the top and eases downward: it has to kill the
-   cloud behind the nav, but veiling the lower two-thirds would just hide the
-   green the design is built on. This element is inside the FIXED stage, so
-   these bands are viewport-relative and hold at every scroll position.
-   (The previous left-weighted gradient existed to protect hero copy from the
-   portrait on the right. The portrait is gone and the light is top-heavy, so
-   that axis no longer describes the problem.) */
+/* Readability gradient — vertical, because the light is vertical.
+   Measured per horizontal band across the clip:
+       top   0-18%   bright cloud      <- nav sits here: heaviest veil
+       upper 18-45%  mid ridge
+       lower 45-100% deep green        <- already dark: barely veiled
+   The lower bands were cut back hard from the previous pass; that is
+   where the footage now reads clearly. Body text never sits on bare
+   footage: panels and the timeline carry their own soft wash. */
 .cosmos-veil {
   position: absolute;
   inset: 0;
-  /* Roughly halved from the first pass — that version darkened the footage
-     into the "blackish dull" look. What made the reduction affordable was
-     moving small labels off the dim/faint ink tiers (see .eyebrow-text
-     etc. below), not veiling harder. */
   background:
     linear-gradient(180deg,
-      rgba(21, 31, 30, 0.60) 0%,
-      rgba(21, 31, 30, 0.54) 13%,
-      rgba(22, 33, 32, 0.40) 26%,
-      rgba(23, 35, 33, 0.30) 42%,
-      rgba(25, 37, 36, 0.25) 62%,
-      rgba(25, 37, 36, 0.26) 100%);
+      rgba(18, 28, 27, 0.56) 0%,
+      rgba(18, 28, 27, 0.44) 12%,
+      rgba(20, 31, 30, 0.26) 28%,
+      rgba(22, 33, 32, 0.14) 46%,
+      rgba(22, 33, 32, 0.12) 70%,
+      rgba(18, 28, 27, 0.24) 100%);
 }
 
-/* The corner darkening is gone. A radial vignette at 0.62 was crushing the
-   frame edges to near-black — the "dark in the corners" look. Only a light
-   bottom fade remains, to stop the footage colliding with the footer.
-   Contrast is unaffected: the measured band figures modelled scrim + veil
-   only and never counted the vignette, so removing it brings the real
-   backdrop into line with what was measured rather than lightening past it. */
+/* Controlled vignette: a soft elliptical falloff that frames the shot
+   (the cinematic part) and a short bottom fade for the footer. Kept well
+   short of the old 0.62 corner crush. */
 .cosmos-vignette {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, transparent 0%, transparent 82%, rgba(16, 26, 24, 0.34) 100%);
+    radial-gradient(125% 100% at 50% 42%, transparent 55%, rgba(10, 17, 16, 0.40) 100%),
+    linear-gradient(180deg, transparent 0%, transparent 84%, rgba(14, 22, 21, 0.30) 100%);
 }
 
-/* No prefers-reduced-motion rule here on purpose: initCosmicBackdrop
-   returns before it ever assigns src, so under reduced motion there is
-   no video element to style — the stage gradient is the whole backdrop.
-   A filter override here would be dead code. */
-
-/* Small screens: a full-bleed video is the worst bandwidth-per-pixel
-   trade on the page. JS skips loading the source entirely; this just
-   makes sure the element can't occupy space if that ever changes. */
+/* Small screens: no video element at all (JS never assigns src); the
+   graded poster above is the backdrop. */
 @media (max-width: 760px) {
   .cosmos-video { display: none; }
 }
@@ -337,10 +415,15 @@ em { font-style: normal; }
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
+  width: 44px; height: 44px;       /* full-size tap target */
+  margin-right: -10px;             /* keeps the lines where they were */
   background: none; border: none;
+  border-radius: 10px;
   cursor: pointer;
-  padding: 8px;
+  padding: 0;
 }
 .hamburger-line {
   width: 24px; height: 2px;
@@ -365,10 +448,13 @@ em { font-style: normal; }
   gap: 8px;
   padding: 40px;
   transform: translateX(100%);
-  transition: transform 0.45s var(--ease);
+  /* visibility (delayed on close) keeps the off-canvas links out of the
+     tab order without cutting the slide-out short. */
+  visibility: hidden;
+  transition: transform 0.45s var(--ease), visibility 0s linear 0.45s;
   z-index: 49;
 }
-.mobile-menu.open { transform: none; }
+.mobile-menu.open { transform: none; visibility: visible; transition: transform 0.45s var(--ease), visibility 0s; }
 .mobile-nav-link {
   font-family: var(--display);
   font-size: 1.5rem;
@@ -400,6 +486,9 @@ main { position: relative; z-index: 2; }
 }
 .page-section {
   padding: clamp(90px, 13vh, 160px) 0;
+  /* Decorative washes (e.g. .timeline::after) bleed past the gutter by
+     design; clip them here so they can't create a horizontal scroll. */
+  overflow-x: clip;
 }
 
 /* Note: .glass-panel briefly carried backdrop-filter (frosted glass). With
@@ -439,9 +528,21 @@ main { position: relative; z-index: 2; }
      (4 platform cards, 3 achievement cards) and overlapping washes
      would stack into darker seams between them. */
   inset: 0;
-  background: rgba(25, 37, 36, 0.42);
-  -webkit-mask-image: radial-gradient(118% 118% at 50% 50%, #000 60%, rgba(0,0,0,0.55) 84%, transparent 100%);
-  mask-image: radial-gradient(118% 118% at 50% 50%, #000 60%, rgba(0,0,0,0.55) 84%, transparent 100%);
+  background: rgba(25, 37, 36, 0.46);
+  /* Feathered on all four sides (two linear masks intersected) so the wash
+     has no visible edge on bright footage — the old radial mask only faded
+     the corners, which read as a box once the backdrop was brightened.
+     The feather (18px) is inside every panel's padding, so text always
+     sits on the full-strength wash. */
+  --feather: 18px;
+  -webkit-mask-image:
+    linear-gradient(90deg, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%),
+    linear-gradient(180deg, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(90deg, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%),
+    linear-gradient(180deg, transparent 0, #000 var(--feather), #000 calc(100% - var(--feather)), transparent 100%);
+  mask-composite: intersect;
   z-index: -1;
   pointer-events: none;
 }
@@ -483,6 +584,21 @@ main { position: relative; z-index: 2; }
   margin: 0 0 40px;
 }
 
+/* Type that sits directly on the footage gets a soft, wide shadow: it only
+   shows where a bright frame passes behind the letters, and keeps
+   contrast there without veiling the whole frame. */
+.section-headline,
+.section-eyebrow,
+.hero-title-pre,
+.hero-desc,
+.hero-mini-stats,
+.hero-sync,
+.oss-more,
+.tl-label,
+.tl-label-sub {
+  text-shadow: 0 1px 2px rgba(10, 18, 16, 0.35), 0 2px 22px rgba(10, 18, 16, 0.55);
+}
+
 /* ----------------------------------------------------------------
    8 · HERO
 ---------------------------------------------------------------- */
@@ -493,6 +609,26 @@ main { position: relative; z-index: 2; }
   justify-content: center;
   padding: 120px 0 80px;
   position: relative;
+}
+/* Hero-only readability gradient. The copy is left-aligned, so the wash
+   is too: it settles behind the text and is gone by the middle of the
+   frame, leaving the right side of the footage untouched. */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    rgba(16, 26, 25, 0.50) 0%,
+    rgba(16, 26, 25, 0.34) 34%,
+    rgba(16, 26, 25, 0.10) 58%,
+    transparent 74%);
+}
+@media (max-width: 760px) {
+  .hero-section::before {
+    background: linear-gradient(180deg, rgba(16, 26, 25, 0.18) 0%, rgba(16, 26, 25, 0.34) 45%, rgba(16, 26, 25, 0.22) 100%);
+  }
 }
 
 .hero-grid {
@@ -662,6 +798,12 @@ main { position: relative; z-index: 2; }
   border-color: rgba(209,235,219, 0.5);
   box-shadow: none;
 }
+.social-btn svg { width: 18px; height: 18px; }
+/* Brand glyphs are filled marks; at the line icons' 18px they read heavier,
+   so they sit a size down to match Feather's optical weight. */
+.social-btn .brand-icon { width: 15px; height: 15px; }
+.social-btn .brand-icon--x { width: 14px; height: 14px; }
+.hero-social { flex-wrap: wrap; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -693,7 +835,8 @@ main { position: relative; z-index: 2; }
   color: var(--ink);
   line-height: 1;
 }
-.hero-mini-stat span {
+.hero-mini-stat > span {
+  max-width: 24ch;
   font-size: 0.7rem;
   letter-spacing: 0.05em;
   /* --ink, not a dim tier: this label sits on BARE footage, where the
@@ -729,7 +872,25 @@ main { position: relative; z-index: 2; }
   animation: scrollCue 1.8s ease-in-out infinite;
 }
 @keyframes scrollCue { 0% { top: -50%; } 100% { top: 120%; } }
+
+/* Freshness line under the hero stats — present, not prominent. */
+.hero-sync {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
 .scroll-cue-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink); }
+
+/* On phones the hero content reaches the bottom of the screen; the cue
+   would sit on top of the stats. */
+@media (max-width: 760px), (max-height: 760px) {
+  .hero-scroll-cue { display: none; }
+}
 
 @media (max-width: 600px) {
   .hero-mini-stats { gap: 18px; }
@@ -746,7 +907,7 @@ main { position: relative; z-index: 2; }
   align-items: stretch;
 }
 .about-left { padding: 36px; }
-.about-left .section-headline { margin-bottom: 24px; font-size: clamp(1.8rem, 3.6vw, 3rem); }
+.about-left .section-headline { margin-bottom: 24px; font-size: clamp(1.8rem, 3.4vw, 2.8rem); }
 .about-primary-text { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--ink); margin: 0 0 18px; line-height: 1.55; }
 .about-secondary-text { font-size: 0.98rem; color: var(--ink-soft); margin: 0 0 26px; }
 .about-info-row { display: flex; flex-wrap: wrap; gap: 22px; }
@@ -933,6 +1094,23 @@ main { position: relative; z-index: 2; }
   white-space: nowrap;
 }
 .project-link-btn:hover { color: var(--cyan); border-color: rgba(209,235,219,0.5); background: rgba(209,235,219,0.08); }
+.project-link-btn svg { width: 15px; height: 15px; }
+/* The one action that matters on a shipped project: same mint as the
+   hero's primary CTA so it reads as "go". */
+.project-link-btn--primary {
+  color: var(--base);
+  font-weight: 600;
+  background: linear-gradient(120deg, var(--accent) 0%, var(--accent-vivid) 100%);
+  box-shadow: 0 10px 28px -14px rgba(143, 214, 181, 0.6);
+}
+.project-link-btn--primary:hover {
+  color: var(--base);
+  background: linear-gradient(120deg, var(--accent) 0%, var(--accent-vivid) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px -14px rgba(143, 214, 181, 0.8);
+}
+.project-links-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.projects-noscript a { color: var(--accent); text-decoration: underline; }
 .project-desc { color: var(--ink-soft); margin: 0 0 18px; font-size: 0.98rem; }
 .project-bullets { list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-direction: column; gap: 10px; }
 .project-bullets li {
@@ -960,6 +1138,11 @@ main { position: relative; z-index: 2; }
   border-radius: 7px;
 }
 
+@media (max-width: 520px) {
+  .project-header { flex-direction: column; }
+  .project-links-row { justify-content: flex-start; }
+}
+
 @media (max-width: 860px) {
   .project-item, .project-item--flip { grid-template-columns: 1fr; }
   .project-item--flip .project-visual { order: 0; border-left: none; }
@@ -977,25 +1160,52 @@ main { position: relative; z-index: 2; }
 }
 .platform-card {
   display: flex;
-  align-items: center;
-  gap: 13px;
+  flex-direction: column;
+  gap: 8px;
   padding: 18px;
+  min-width: 0;
   transition: transform 0.35s var(--ease), box-shadow 0.35s;
 }
+.platform-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; min-width: 0; }
+.platform-id { display: flex; flex-direction: column; min-width: 0; }
+.platform-handle {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-dim);
+  overflow-wrap: anywhere;
+}
+.platform-solved { font-size: 0.8rem; color: var(--ink-soft); }
+.platform-solved [data-stat] { font-family: var(--mono); color: var(--ink); }
+.platform-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 2px;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+.platform-status[data-state="error"] { color: #e3a3ac; }
+/* Nothing to show — say so once, in the status line, instead of a stack
+   of dashes. */
+.platform-card[data-state="error"] .platform-rank,
+.platform-card[data-state="error"] .platform-solved { display: none; }
 .platform-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(209,235,219,0.55); }
 .platform-logo { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
 .platform-logo--invert { filter: brightness(0) invert(1); opacity: 0.92; }
-.platform-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.platform-name { font-weight: 600; font-size: 0.92rem; color: var(--ink); }
-.platform-rank { font-size: 0.78rem; color: var(--ink-dim); }
-.platform-rank b { color: var(--cyan); font-family: var(--mono); }
-.platform-arrow { margin-left: auto; color: var(--ink-faint); transition: all 0.3s var(--ease); }
+.platform-name { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+.platform-rank { font-size: 0.86rem; color: var(--ink-soft); }
+.platform-rank b { color: var(--cyan); font-family: var(--mono); font-size: 1.02rem; }
+.platform-arrow { margin-left: auto; flex-shrink: 0; color: var(--ink-faint); transition: all 0.3s var(--ease); }
 .platform-card:hover .platform-arrow { color: var(--cyan); transform: translate(2px, -2px); }
 
 .telemetry-wrap { padding: clamp(22px, 3vw, 36px); position: relative; }
 .telemetry-header { margin-bottom: 22px; }
 .telemetry-title-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .telemetry-live-indicator {
+  margin: 0;
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -1011,7 +1221,28 @@ main { position: relative; z-index: 2; }
   box-shadow: 0 0 0 3px rgba(255, 84, 112, 0.16);
   animation: pulseDot 1.6s ease-in-out infinite;
 }
-.telemetry-subtitle { font-size: 0.84rem; color: var(--ink-dim); margin: 6px 0 0; }
+.telemetry-subtitle { font-size: 0.84rem; color: var(--ink-dim); margin: 6px 0 0; max-width: 64ch; }
+.telemetry-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.sync-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-soft);
+}
+.panel-notice {
+  margin: 0 0 18px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  color: var(--ink);
+  background: rgba(212, 131, 143, 0.12);
+}
+.panel-notice a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.table-message { color: var(--ink-dim); font-size: 0.84rem; }
 .sync-btn {
   display: inline-flex;
   align-items: center;
@@ -1028,6 +1259,7 @@ main { position: relative; z-index: 2; }
 }
 .sync-btn:hover { color: var(--cyan); border-color: rgba(209,235,219,0.45); }
 .sync-btn.syncing-active svg { animation: spin 1s linear infinite; }
+.sync-btn:disabled { opacity: 0.75; }
 
 .telemetry-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
 .t-tab {
@@ -1126,6 +1358,12 @@ main { position: relative; z-index: 2; }
   font-weight: 600;
 }
 .data-table td { padding: 12px; color: var(--ink-soft); border-bottom: 1px solid rgba(209,235,219, 0.06); }
+@media (max-width: 480px) {
+  .data-table { font-size: 0.8rem; }
+  .data-table th, .data-table td { padding: 10px 6px; }
+  .data-table th { letter-spacing: 0.04em; }
+  .data-table td.mono { white-space: nowrap; }
+}
 .data-table .mono { font-family: var(--mono); }
 .data-table .bold { font-weight: 600; color: var(--ink); }
 .data-table .green, .green { color: #74b894; }
@@ -1140,7 +1378,7 @@ main { position: relative; z-index: 2; }
 .diff-hard { color: #d4838f; }
 .diff-count { font-family: var(--mono); font-size: 0.84rem; color: var(--ink); }
 .diff-track { height: 8px; background: rgba(209,235,219, 0.08); border-radius: 999px; overflow: hidden; }
-.diff-fill { height: 100%; border-radius: 999px; transition: width 1s var(--ease); }
+.diff-fill { width: 0; height: 100%; border-radius: 999px; transition: width 1s var(--ease); }
 .diff-fill--easy { background: linear-gradient(90deg, #55977a, #74b894); }
 .diff-fill--med { background: linear-gradient(90deg, #b8923f, #d9b871); }
 .diff-fill--hard { background: linear-gradient(90deg, #a85560, #d4838f); }
@@ -1175,13 +1413,17 @@ main { position: relative; z-index: 2; }
 .cc-stars-panel strong { color: var(--ink); font-size: 0.92rem; }
 .cc-stars-panel p { font-size: 0.78rem; color: var(--ink-dim); margin: 0; }
 
-@media (max-width: 760px) {
+@media (max-width: 1100px) {
   .platform-card-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
   .metric-grid { grid-template-columns: 1fr 1fr; }
   .cc-bottom-grid { grid-template-columns: 1fr; }
 }
-@media (max-width: 440px) {
+@media (max-width: 480px) {
   .platform-card-grid { grid-template-columns: 1fr; }
+  .metric-box { padding: 14px; }
+  .metric-val { font-size: 1.5rem; }
 }
 
 /* ----------------------------------------------------------------
@@ -1225,8 +1467,9 @@ main { position: relative; z-index: 2; }
   position: absolute;
   inset: -30px -6% -30px -48px;
   background: linear-gradient(90deg,
-    rgba(25, 37, 36, 0.30) 0%,
-    rgba(25, 37, 36, 0.30) 70%,
+    rgba(25, 37, 36, 0) 0%,
+    rgba(25, 37, 36, 0.32) 5%,
+    rgba(25, 37, 36, 0.32) 70%,
     rgba(25, 37, 36, 0.12) 86%,
     transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 7%, #000 93%, transparent 100%);
@@ -1293,13 +1536,26 @@ main { position: relative; z-index: 2; }
   max-width: 74ch;
 }
 .tl-role {
+  flex: 1 1 30ch;                  /* long PR titles wrap; the date stays beside them */
   margin: 0;
+  min-width: 0;
   font-size: clamp(1.02rem, 1.7vw, 1.22rem);
   font-weight: 700;
   color: var(--ink);
   line-height: 1.3;
+  /* PR titles carry long identifiers (DeviceCompilationClusterSignature)
+     that would otherwise overflow a 320px screen. */
+  overflow-wrap: anywhere;
+}
+.tl-role code, .tl-desc code {
+  font-size: 0.88em;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(209, 235, 219, 0.10);
+  color: var(--accent-soft);
 }
 .tl-period {
+  flex: none;
   font-family: var(--mono);
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -1327,7 +1583,33 @@ main { position: relative; z-index: 2; }
   background: rgba(209, 235, 219, 0.12);
   color: var(--accent);
 }
+.tl-chip--apache { color: #f1d9b5; background: rgba(217, 184, 113, 0.14); }
 .tl-chip--google { border-color: rgba(219, 240, 228, 0.30); }
+.tl-meta {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  overflow-wrap: anywhere;
+}
+.tl-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #a6dcc1;
+  background: rgba(116, 184, 148, 0.16);
+}
+.tl-status::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #74b894;
+}
 
 .tl-desc {
   margin: 0;
@@ -1358,6 +1640,42 @@ main { position: relative; z-index: 2; }
 }
 .tl-link svg { width: 15px; height: 15px; }
 .tl-link:hover { text-decoration: underline; }
+
+/* ── "View Pull Request ↗" ───────────────────────────────────────
+   A real button, not a text link: it is the evidence for the entry.
+   Dark frosted pill like the hero's ghost buttons (it sits on footage),
+   with a mint hairline that lights up on hover/focus. */
+.pr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 16px;
+  padding: 10px 18px;
+  min-height: 44px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  border-radius: 999px;
+  background: rgba(25, 37, 36, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(143, 214, 181, 0.32);
+  backdrop-filter: blur(12px) saturate(115%);
+  -webkit-backdrop-filter: blur(12px) saturate(115%);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease), color 0.3s;
+}
+.pr-btn svg { width: 16px; height: 16px; color: var(--accent-vivid); }
+.pr-btn-arrow { transition: transform 0.3s var(--ease); }
+.pr-btn:hover,
+.pr-btn:focus-visible {
+  color: #fff;
+  background: rgba(143, 214, 181, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(143, 214, 181, 0.7), 0 12px 30px -16px rgba(143, 214, 181, 0.7);
+  transform: translateY(-2px);
+}
+.pr-btn:hover .pr-btn-arrow,
+.pr-btn:focus-visible .pr-btn-arrow { transform: translate(2px, -2px); }
+.pr-btn:active { transform: translateY(0); }
+.pr-btn:focus-visible { outline-offset: 4px; border-radius: 999px; }
 
 /* ── The open end ─────────────────────────────────────────────────
    Hollow, dashed marker. Deliberately makes no claim beyond the
@@ -1397,16 +1715,30 @@ main { position: relative; z-index: 2; }
   .tl-head { gap: 6px; }
 }
 
-.oss-github-row {
+.oss-more {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-  font-size: 0.88rem;
-  color: var(--ink-dim);
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 28px;
+  max-width: 74ch;
 }
-.oss-github-row svg { color: var(--ink-soft); }
-.oss-gh-link { display: inline-flex; align-items: center; gap: 6px; color: var(--cyan); font-weight: 500; }
+.oss-more-icon { flex-shrink: 0; margin-top: 3px; color: var(--accent-vivid); }
+.oss-more p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.oss-more p a:not(.oss-gh-link) {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(143, 214, 181, 0.45);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.25s, color 0.25s;
+}
+.oss-more p a:not(.oss-gh-link):hover { color: var(--accent); text-decoration-color: var(--accent-vivid); }
+.oss-gh-link { display: inline-block; margin-left: 4px; color: var(--cyan); font-weight: 500; white-space: nowrap; }
 .oss-gh-link:hover { text-decoration: underline; }
 
 /* ----------------------------------------------------------------
@@ -1431,7 +1763,23 @@ main { position: relative; z-index: 2; }
   color: transparent;
 }
 .mega-stat-info h3 { font-family: var(--display); font-size: clamp(1.2rem, 2.4vw, 1.7rem); color: var(--ink); margin: 0 0 6px; }
-.mega-stat-info p { font-size: 0.92rem; color: var(--ink-dim); margin: 0; }
+.mega-stat-info p { font-size: 0.92rem; color: var(--ink-dim); margin: 0; max-width: 60ch; }
+.mega-stat-info .mega-stat-breakdown {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+}
+.mega-stat-num.stat-loading {
+  min-width: 3.2ch;
+  height: 0.8em;
+  /* The number is gradient-clipped text; the placeholder needs a plain box. */
+  background: linear-gradient(90deg, rgba(209,235,219,0.08) 0%, rgba(209,235,219,0.22) 50%, rgba(209,235,219,0.08) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}
 
 .achievement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 26px; }
 .achievement-card {
@@ -1518,6 +1866,8 @@ main { position: relative; z-index: 2; }
 }
 .contact-detail-link svg { color: var(--cyan); }
 .contact-detail-link:hover { color: var(--ink); }
+.contact-detail-link span { overflow-wrap: anywhere; }
+.contact-social { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
 /* ----------------------------------------------------------------
    16 · FOOTER
@@ -1540,7 +1890,7 @@ main { position: relative; z-index: 2; }
   flex-wrap: wrap;
 }
 .footer-copy { font-size: 0.8rem; color: var(--ink-faint); }
-.footer-links { display: flex; gap: 20px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
 .footer-links a { font-size: 0.82rem; color: var(--ink-dim); transition: color 0.3s; }
 .footer-links a:hover { color: var(--cyan); }
 
