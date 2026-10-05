@@ -1707,6 +1707,95 @@ main { position: relative; z-index: 2; }
   .tl-node--future::before { animation: none; }
 }
 
+/* ── Professional entries: company logo beside the entry ─────────
+   The logo leads like the OSS cards' project mark. Fixed tile height,
+   width from each mark's own aspect ratio, so neither logo is cropped
+   or stretched. The initials sit under the image as the fallback. */
+/* The logo column is as wide as the widest mark (Fermi's), so both
+   entries' text starts on the same line whatever the logo's shape. */
+.tl-job {
+  --logo-h: 44px;
+  display: grid;
+  grid-template-columns: calc(var(--logo-h) * 241 / 132) minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+}
+.tl-job-body { min-width: 0; }
+.tl-logo {
+  position: relative;
+  justify-self: start;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  height: var(--logo-h);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(239, 236, 233, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(239, 236, 233, 0.10);
+  transition: box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
+}
+.tl-logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.tl-logo-fallback {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.tl-logo.is-broken img { display: none; }
+/* Fermi's mark is already a dark rounded tile (241 × 132) */
+.tl-logo--fermi {
+  width: calc(var(--logo-h) * 241 / 132);
+  border-radius: calc(var(--logo-h) * 0.2);
+}
+a.tl-logo:hover,
+a.tl-logo:focus-visible {
+  box-shadow: inset 0 0 0 1px rgba(143, 214, 181, 0.55), 0 10px 26px -14px rgba(143, 214, 181, 0.6);
+  transform: translateY(-1px);
+}
+/* Kalvium's red mark is drawn for a light ground */
+.tl-logo--kalvium { width: var(--logo-h); }
+.tl-logo--kalvium img {
+  padding: 4px;
+  background: #fff;
+}
+.tl-logo--kalvium.is-broken .tl-logo-fallback { color: #ef3c3c; }
+
+/* Block, not the flex row .tl-org uses for chips: a linked company name
+   followed by plain text should wrap as one sentence. */
+.tl-org--text { display: block; }
+.tl-org-link { color: var(--ink); font-weight: 600; }
+.tl-org-link:hover,
+.tl-org-link:focus-visible { color: var(--accent); text-decoration: underline; }
+
+/* Same diamond bullets as the project cards; --ink-soft, not --ink-dim,
+   because these sit on bare footage. */
+.tl-points { margin: 0; display: flex; flex-direction: column; gap: 8px; max-width: 68ch; }
+.tl-points li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.tl-points li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  font-size: 0.7rem;
+  color: var(--cyan);
+}
+
+@media (max-width: 480px) {
+  /* Stack on phones: a logo column here would squeeze the text to ~170px */
+  .tl-job { --logo-h: 36px; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .tl-logo { border-radius: 8px; }
+}
+
 @media (max-width: 640px) {
   .timeline { padding-left: 26px; }
   .tl-node::before { left: -26px; }

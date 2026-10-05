@@ -293,6 +293,14 @@ if (window.feather) feather.replace({ 'stroke-width': 1.75, width: 18, height: 1
 
 document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = String(new Date().getFullYear()); });
 
+// Experience logos: if an image fails, drop it so the initials tile shows.
+// Checks images that already failed before this deferred script ran, too.
+document.querySelectorAll('.tl-logo img').forEach((img) => {
+  const fail = () => img.closest('.tl-logo').classList.add('is-broken');
+  if (img.complete && img.naturalWidth === 0) fail();
+  else img.addEventListener('error', fail, { once: true });
+});
+
 /* ---------------------------------------------------------------
    SCROLL PROGRESS
    --------------------------------------------------------------- */
