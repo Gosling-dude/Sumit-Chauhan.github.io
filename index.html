@@ -111,10 +111,10 @@
 
             <div class="nav-center">
                 <a href="#about" class="nav-link" data-target="about">About</a>
-                <a href="#skills" class="nav-link" data-target="skills">Skills</a>
-                <a href="#projects" class="nav-link" data-target="projects">Work</a>
-                <a href="#coding-profiles" class="nav-link" data-target="coding-profiles">Coding</a>
                 <a href="#experience" class="nav-link" data-target="experience">Experience</a>
+                <a href="#coding-profiles" class="nav-link" data-target="coding-profiles">Coding</a>
+                <a href="#projects" class="nav-link" data-target="projects">Work</a>
+                <a href="#skills" class="nav-link" data-target="skills">Skills</a>
                 <a href="#achievements" class="nav-link" data-target="achievements">Achievements</a>
             </div>
 
@@ -132,10 +132,10 @@
 
         <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
             <a href="#about" class="mobile-nav-link">About</a>
-            <a href="#skills" class="mobile-nav-link">Skills</a>
-            <a href="#projects" class="mobile-nav-link">Work</a>
-            <a href="#coding-profiles" class="mobile-nav-link">Coding</a>
             <a href="#experience" class="mobile-nav-link">Experience</a>
+            <a href="#coding-profiles" class="mobile-nav-link">Coding</a>
+            <a href="#projects" class="mobile-nav-link">Work</a>
+            <a href="#skills" class="mobile-nav-link">Skills</a>
             <a href="#achievements" class="mobile-nav-link">Achievements</a>
             <a href="#contact" class="mobile-nav-link">Contact</a>
             <a href="https://drive.google.com/file/d/10qnXdjKh-4yWUMm1TSc6HL06cn2yOPXp/view?usp=sharing"
@@ -293,152 +293,130 @@
         </section>
 
         <!-- ========================
-             03 · Skills
+             06 · Experience
         ========================= -->
-        <section id="skills" class="scene-section page-section">
+        <section id="experience" class="scene-section page-section">
             <div class="container">
                 <div class="section-eyebrow">
-                    <span class="eyebrow-num">03</span>
+                    <span class="eyebrow-num">06</span>
                     <span class="eyebrow-dash"></span>
-                    <span class="eyebrow-text">TECHNICAL DOMAINS</span>
+                    <span class="eyebrow-text">EXPERIENCE</span>
                 </div>
 
-                <h2 class="section-headline reveal-elem">Domains I<br>work in.</h2>
+                <h2 class="section-headline reveal-elem">Experience &amp;<br>Contributions.</h2>
 
-                <div class="skills-container reveal-elem glass-panel">
+                <!-- One continuous rail. Group labels ("Professional", "Open
+                     Source") are markers ON the rail rather than separate
+                     blocks, so the sequence reads as a single thread.
+                     Note: the OSS entries carry no dates in the source data,
+                     so they are NOT presented as a strict chronology - the
+                     rail shows order, not claimed dates. -->
+                <ol class="timeline reveal-elem">
 
-                    <div class="skill-row">
-                        <div class="skill-row-label">
-                            <i data-feather="code" class="skill-row-icon"></i>
-                            <span>Languages</span>
-                        </div>
-                        <div class="skill-row-tags">
-                            <span class="skill-pill"><i class="devicon-java-plain colored skill-pill-icon"></i>Java</span>
-                            <span class="skill-pill"><i class="devicon-cplusplus-plain colored skill-pill-icon"></i>C++</span>
-                            <span class="skill-pill"><i class="devicon-python-plain colored skill-pill-icon"></i>Python</span>
-                            <span class="skill-pill"><i class="devicon-azuresqldatabase-plain colored skill-pill-icon"></i>SQL</span>
-                            <span class="skill-pill"><i class="devicon-typescript-plain colored skill-pill-icon"></i>TypeScript</span>
-                            <span class="skill-pill"><i class="devicon-c-plain colored skill-pill-icon"></i>C</span>
-                        </div>
-                    </div>
+                    <li class="tl-node tl-node--label">
+                        <span class="tl-label">Professional</span>
+                    </li>
 
-                    <div class="skill-row">
-                        <div class="skill-row-label">
-                            <i data-feather="server" class="skill-row-icon"></i>
-                            <span>Backend / Infrastructure</span>
+                    <!-- Company logos come from images/brands (web-sized copies
+                         of the original company marks). The initials under
+                         each image are the fallback if it fails to load. -->
+                    <li class="tl-node tl-node--job">
+                        <div class="tl-job">
+                            <a href="https://www.linkedin.com/company/110266916/" target="_blank" rel="noopener noreferrer" class="tl-logo tl-logo--fermi" tabindex="-1" aria-hidden="true">
+                                <span class="tl-logo-fallback" aria-hidden="true">F</span>
+                                <img src="images/brands/fermi-ai.png" alt="" width="241" height="132" loading="lazy" decoding="async">
+                            </a>
+                            <div class="tl-job-body">
+                                <div class="tl-head">
+                                    <h4 class="tl-role">Software Engineer</h4>
+                                    <span class="tl-period tl-period--now"><time datetime="2026-10">Oct 2026</time> – Present</span>
+                                </div>
+                                <p class="tl-org tl-org--text">
+                                    <a href="https://www.linkedin.com/company/110266916/" target="_blank" rel="noopener noreferrer" class="tl-org-link">Fermi AI<span class="sr-only"> (opens in a new tab)</span></a>
+                                    &middot; Internship &middot; On-site &middot; Bengaluru, Karnataka, India
+                                </p>
+                                <p class="tl-desc">
+                                    Software engineering intern at Fermi AI, working on-site with the engineering team in Bengaluru.
+                                </p>
+                            </div>
                         </div>
-                        <div class="skill-row-tags">
-                            <span class="skill-pill skill-pill--primary"><i class="devicon-spring-plain colored skill-pill-icon"></i>Spring Boot</span>
-                            <span class="skill-pill"><i data-feather="server" class="skill-pill-icon"></i>REST APIs</span>
-                            <span class="skill-pill"><i data-feather="grid" class="skill-pill-icon"></i>Microservices</span>
-                            <span class="skill-pill"><i class="devicon-postgresql-plain colored skill-pill-icon"></i>PostgreSQL</span>
-                            <span class="skill-pill"><i class="devicon-redis-plain colored skill-pill-icon"></i>Redis</span>
-                            <span class="skill-pill"><i class="devicon-docker-plain colored skill-pill-icon"></i>Docker</span>
-                            <span class="skill-pill"><i class="devicon-linux-plain text-white skill-pill-icon"></i>Linux</span>
-                            <span class="skill-pill"><i class="devicon-git-plain colored skill-pill-icon"></i>Git</span>
-                            <span class="skill-pill"><i class="devicon-githubactions-plain colored skill-pill-icon"></i>GitHub Actions</span>
-                            <span class="skill-pill"><i class="devicon-amazonwebservices-plain colored skill-pill-icon"></i>AWS</span>
-                        </div>
-                    </div>
+                    </li>
 
-                    <div class="skill-row">
-                        <div class="skill-row-label">
-                            <i data-feather="cpu" class="skill-row-icon"></i>
-                            <span>Core CS</span>
+                    <li class="tl-node tl-node--job">
+                        <div class="tl-job">
+                            <span class="tl-logo tl-logo--kalvium">
+                                <span class="tl-logo-fallback" aria-hidden="true">K</span>
+                                <img src="images/brands/kalvium.png" alt="" width="135" height="132" loading="lazy" decoding="async">
+                            </span>
+                            <div class="tl-job-body">
+                                <div class="tl-head">
+                                    <h4 class="tl-role">Technical Program Associate</h4>
+                                    <span class="tl-period"><time datetime="2026-03">Mar 2026</time> – <time datetime="2026-10">Oct 2026</time></span>
+                                </div>
+                                <p class="tl-org">Kalvium &middot; Internship &middot; On-site &middot; Bengaluru, Karnataka, India</p>
+                                <ul class="tl-points">
+                                    <li>Developed a LeetCode automation tool to track and analyze student profiles and activity via API integration.</li>
+                                    <li>Mentored 500+ students in DSA, Competitive Programming, and problem-solving.</li>
+                                </ul>
+                                <div class="tl-tags">
+                                    <span class="tl-tag">DSA mentoring</span>
+                                    <span class="tl-tag">Competitive programming</span>
+                                    <span class="tl-tag">API integration</span>
+                                    <span class="tl-tag">Automation</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="skill-row-tags">
-                            <span class="skill-pill"><i data-feather="cpu" class="skill-pill-icon"></i>Data Structures</span>
-                            <span class="skill-pill"><i data-feather="git-merge" class="skill-pill-icon"></i>Algorithms</span>
-                            <span class="skill-pill"><i data-feather="box" class="skill-pill-icon"></i>Object-Oriented Programming</span>
-                            <span class="skill-pill"><i data-feather="command" class="skill-pill-icon"></i>Operating Systems</span>
-                            <span class="skill-pill"><i data-feather="wifi" class="skill-pill-icon"></i>Computer Networks</span>
-                            <span class="skill-pill"><i data-feather="database" class="skill-pill-icon"></i>DBMS</span>
-                            <span class="skill-pill skill-pill--primary"><i data-feather="layout" class="skill-pill-icon"></i>System Design</span>
-                            <span class="skill-pill"><i data-feather="layers" class="skill-pill-icon"></i>Concurrency &amp; Multithreading</span>
-                        </div>
-                    </div>
+                    </li>
 
-                    <div class="skill-row">
-                        <div class="skill-row-label">
-                            <i data-feather="zap" class="skill-row-icon"></i>
-                            <span>AI / ML</span>
-                        </div>
-                        <div class="skill-row-tags">
-                            <span class="skill-pill"><i class="devicon-python-plain colored skill-pill-icon"></i>Python</span>
-                            <span class="skill-pill"><i class="devicon-numpy-plain colored skill-pill-icon"></i>NumPy</span>
-                            <span class="skill-pill"><i class="devicon-pandas-plain colored skill-pill-icon"></i>Pandas</span>
-                            <span class="skill-pill"><i class="devicon-scikitlearn-plain colored skill-pill-icon"></i>Scikit-learn</span>
-                            <span class="skill-pill"><i class="devicon-tensorflow-original colored skill-pill-icon"></i>TensorFlow</span>
-                            <span class="skill-pill skill-pill--secondary"><i data-feather="link-2" class="skill-pill-icon"></i>LangChain</span>
-                            <span class="skill-pill skill-pill--secondary"><i data-feather="layers" class="skill-pill-icon"></i>RAG Pipelines</span>
-                            <span class="skill-pill"><i data-feather="database" class="skill-pill-icon"></i>Vector Databases</span>
-                            <span class="skill-pill"><i data-feather="message-square" class="skill-pill-icon"></i>Prompt Engineering</span>
-                        </div>
-                    </div>
+                    <li class="tl-node tl-node--label" id="oss-label">
+                        <span class="tl-label">Open Source</span>
+                        <p class="tl-label-sub">Contributions to large production codebases, reviewed and merged by their maintainers.</p>
+                    </li>
 
-                    <div class="skill-row">
-                        <div class="skill-row-label">
-                            <i data-feather="award" class="skill-row-icon"></i>
-                            <span>Competitive Programming</span>
-                        </div>
-                        <div class="skill-row-tags">
-                            <span class="skill-pill"><i data-feather="code" class="skill-pill-icon"></i>LeetCode</span>
-                            <span class="skill-pill"><i data-feather="award" class="skill-pill-icon"></i>Codeforces</span>
-                            <span class="skill-pill"><i data-feather="flag" class="skill-pill-icon"></i>CodeChef</span>
-                            <span class="skill-pill skill-pill--primary"><i data-feather="target" class="skill-pill-icon"></i>Problem Solving</span>
-                            <span class="skill-pill"><i data-feather="git-merge" class="skill-pill-icon"></i>Algorithm Design</span>
-                        </div>
-                    </div>
-
-                    <div class="skill-row">
-                        <div class="skill-row-label">
-                            <i data-feather="tool" class="skill-row-icon"></i>
-                            <span>Tools</span>
-                        </div>
-                        <div class="skill-row-tags">
-                            <span class="skill-pill"><i class="devicon-git-plain colored skill-pill-icon"></i>Git</span>
-                            <span class="skill-pill"><i class="devicon-vscode-plain colored skill-pill-icon"></i>VS Code</span>
-                            <span class="skill-pill"><i class="devicon-intellij-plain colored skill-pill-icon"></i>IntelliJ IDEA</span>
-                            <span class="skill-pill"><i class="devicon-postman-plain colored skill-pill-icon"></i>Postman</span>
-                            <span class="skill-pill"><i class="devicon-firebase-plain colored skill-pill-icon"></i>Firebase</span>
-                            <span class="skill-pill"><i class="devicon-jupyter-plain colored skill-pill-icon"></i>Jupyter Notebook</span>
-                            <span class="skill-pill"><i data-feather="activity" class="skill-pill-icon"></i>Wireshark</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ========================
-             04 · Projects
-        ========================= -->
-        <section id="projects" class="scene-section page-section">
-            <div class="container">
-                <div class="section-eyebrow">
-                    <span class="eyebrow-num">04</span>
-                    <span class="eyebrow-dash"></span>
-                    <span class="eyebrow-text">PROJECTS</span>
-                </div>
-
-                <h2 class="section-headline reveal-elem">Things I've<br>built.</h2>
-
-                <!-- Rendered by script.js from the PROJECTS array: featured
-                     projects get the large layout, the rest go in the grid. -->
-                <div class="projects-list" id="projects-list">
-                    <noscript>
-                        <p class="projects-noscript">
-                            <a href="https://deep-trace-seven.vercel.app/" target="_blank" rel="noopener noreferrer">DeepTrace (live demo)</a> ·
-                            <a href="https://herbigpt.netlify.app/" target="_blank" rel="noopener noreferrer">HerbiGPT (live demo)</a> ·
-                            <a href="https://github.com/Gosling-dude?tab=repositories" target="_blank" rel="noopener noreferrer">All projects on GitHub</a>
+                    <!-- Contribution cards are rendered by script.js from the
+                         CONTRIBUTIONS array and inserted here. This item is the
+                         no-JS fallback and is removed once they render. -->
+                    <li class="tl-node" data-oss-fallback>
+                        <p class="tl-desc">
+                            Pull requests:
+                            <a href="https://github.com/tensorflow/tensorflow/pull/126899" target="_blank" rel="noopener noreferrer">TensorFlow #126899</a>,
+                            <a href="https://github.com/apache/arrow/pull/51197" target="_blank" rel="noopener noreferrer">Apache Arrow #51197</a>,
+                            <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank" rel="noopener noreferrer">OpenTelemetry Java #7937</a>,
+                            <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7951" target="_blank" rel="noopener noreferrer">#7951</a>,
+                            <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer">Gemini CLI #2725</a>.
                         </p>
-                    </noscript>
+                    </li>
+
+                    <!-- Open end. The rail fades rather than stopping, and this
+                         node is hollow/dashed - it states availability (already
+                         claimed in the hero badge) and nothing more. No invented
+                         plans, titles or dates. -->
+                    <li class="tl-node tl-node--future">
+                        <div class="tl-head">
+                            <h4 class="tl-role tl-role--future">Open to new opportunities</h4>
+                            <span class="tl-period tl-period--future">What's next</span>
+                        </div>
+                        <p class="tl-desc">Looking for backend and distributed-systems work where the problems are hard and the systems are real.</p>
+                        <a href="#contact" class="tl-link tl-link--future">
+                            <i data-feather="mail"></i> Get in touch
+                        </a>
+                    </li>
+
+                </ol>
+
+                <div class="oss-more">
+                    <p>
+                        More contributions to
+                        <a href="https://github.com/redis/redis" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--redis"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-redis"></use></svg>Redis</a>,
+                        <a href="https://github.com/stripe" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--stripe"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-stripe"></use></svg>Stripe</a>,
+                        <a href="https://github.com/google/guava" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--google"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-google"></use></svg>Google Guava</a>,
+                        <a href="https://github.com/open-telemetry/opentelemetry-java" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--otel"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-opentelemetry"></use></svg>OpenTelemetry Java</a>,
+                        <a href="https://github.com/open-telemetry/opentelemetry-cpp" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--otel"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-opentelemetry"></use></svg>OpenTelemetry C++</a>,
+                        and other open-source projects.
+                    </p>
+                    <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="oss-gh-link"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg>All activity on GitHub <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a>
                 </div>
 
-                <div class="more-projects reveal-elem" aria-labelledby="more-projects-title">
-                    <h3 class="more-projects-title" id="more-projects-title">More projects</h3>
-                    <ul class="more-projects-grid" id="more-projects-grid"></ul>
-                </div>
             </div>
         </section>
 
@@ -746,130 +724,152 @@
         </section>
 
         <!-- ========================
-             06 · Experience
+             04 · Projects
         ========================= -->
-        <section id="experience" class="scene-section page-section">
+        <section id="projects" class="scene-section page-section">
             <div class="container">
                 <div class="section-eyebrow">
-                    <span class="eyebrow-num">06</span>
+                    <span class="eyebrow-num">04</span>
                     <span class="eyebrow-dash"></span>
-                    <span class="eyebrow-text">EXPERIENCE</span>
+                    <span class="eyebrow-text">PROJECTS</span>
                 </div>
 
-                <h2 class="section-headline reveal-elem">Experience &amp;<br>Contributions.</h2>
+                <h2 class="section-headline reveal-elem">Things I've<br>built.</h2>
 
-                <!-- One continuous rail. Group labels ("Professional", "Open
-                     Source") are markers ON the rail rather than separate
-                     blocks, so the sequence reads as a single thread.
-                     Note: the OSS entries carry no dates in the source data,
-                     so they are NOT presented as a strict chronology - the
-                     rail shows order, not claimed dates. -->
-                <ol class="timeline reveal-elem">
-
-                    <li class="tl-node tl-node--label">
-                        <span class="tl-label">Professional</span>
-                    </li>
-
-                    <!-- Company logos come from images/brands (web-sized copies
-                         of the original company marks). The initials under
-                         each image are the fallback if it fails to load. -->
-                    <li class="tl-node tl-node--job">
-                        <div class="tl-job">
-                            <a href="https://www.linkedin.com/company/110266916/" target="_blank" rel="noopener noreferrer" class="tl-logo tl-logo--fermi" tabindex="-1" aria-hidden="true">
-                                <span class="tl-logo-fallback" aria-hidden="true">F</span>
-                                <img src="images/brands/fermi-ai.png" alt="" width="241" height="132" loading="lazy" decoding="async">
-                            </a>
-                            <div class="tl-job-body">
-                                <div class="tl-head">
-                                    <h4 class="tl-role">Software Engineer</h4>
-                                    <span class="tl-period tl-period--now"><time datetime="2026-10">Oct 2026</time> – Present</span>
-                                </div>
-                                <p class="tl-org tl-org--text">
-                                    <a href="https://www.linkedin.com/company/110266916/" target="_blank" rel="noopener noreferrer" class="tl-org-link">Fermi AI<span class="sr-only"> (opens in a new tab)</span></a>
-                                    &middot; Internship &middot; On-site &middot; Bengaluru, Karnataka, India
-                                </p>
-                                <p class="tl-desc">
-                                    Software engineering intern at Fermi AI, working on-site with the engineering team in Bengaluru.
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="tl-node tl-node--job">
-                        <div class="tl-job">
-                            <span class="tl-logo tl-logo--kalvium">
-                                <span class="tl-logo-fallback" aria-hidden="true">K</span>
-                                <img src="images/brands/kalvium.png" alt="" width="135" height="132" loading="lazy" decoding="async">
-                            </span>
-                            <div class="tl-job-body">
-                                <div class="tl-head">
-                                    <h4 class="tl-role">Technical Program Associate</h4>
-                                    <span class="tl-period"><time datetime="2026-03">Mar 2026</time> – <time datetime="2026-10">Oct 2026</time></span>
-                                </div>
-                                <p class="tl-org">Kalvium &middot; Internship &middot; On-site &middot; Bengaluru, Karnataka, India</p>
-                                <ul class="tl-points">
-                                    <li>Developed a LeetCode automation tool to track and analyze student profiles and activity via API integration.</li>
-                                    <li>Mentored 500+ students in DSA, Competitive Programming, and problem-solving.</li>
-                                </ul>
-                                <div class="tl-tags">
-                                    <span class="tl-tag">DSA mentoring</span>
-                                    <span class="tl-tag">Competitive programming</span>
-                                    <span class="tl-tag">API integration</span>
-                                    <span class="tl-tag">Automation</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="tl-node tl-node--label" id="oss-label">
-                        <span class="tl-label">Open Source</span>
-                        <p class="tl-label-sub">Contributions to large production codebases, reviewed and merged by their maintainers.</p>
-                    </li>
-
-                    <!-- Contribution cards are rendered by script.js from the
-                         CONTRIBUTIONS array and inserted here. This item is the
-                         no-JS fallback and is removed once they render. -->
-                    <li class="tl-node" data-oss-fallback>
-                        <p class="tl-desc">
-                            Pull requests:
-                            <a href="https://github.com/tensorflow/tensorflow/pull/126899" target="_blank" rel="noopener noreferrer">TensorFlow #126899</a>,
-                            <a href="https://github.com/apache/arrow/pull/51197" target="_blank" rel="noopener noreferrer">Apache Arrow #51197</a>,
-                            <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7937" target="_blank" rel="noopener noreferrer">OpenTelemetry Java #7937</a>,
-                            <a href="https://github.com/open-telemetry/opentelemetry-java/pull/7951" target="_blank" rel="noopener noreferrer">#7951</a>,
-                            <a href="https://github.com/google-gemini/gemini-cli/pull/2725" target="_blank" rel="noopener noreferrer">Gemini CLI #2725</a>.
+                <!-- Rendered by script.js from the PROJECTS array: featured
+                     projects get the large layout, the rest go in the grid. -->
+                <div class="projects-list" id="projects-list">
+                    <noscript>
+                        <p class="projects-noscript">
+                            <a href="https://deep-trace-seven.vercel.app/" target="_blank" rel="noopener noreferrer">DeepTrace (live demo)</a> ·
+                            <a href="https://herbigpt.netlify.app/" target="_blank" rel="noopener noreferrer">HerbiGPT (live demo)</a> ·
+                            <a href="https://github.com/Gosling-dude?tab=repositories" target="_blank" rel="noopener noreferrer">All projects on GitHub</a>
                         </p>
-                    </li>
-
-                    <!-- Open end. The rail fades rather than stopping, and this
-                         node is hollow/dashed - it states availability (already
-                         claimed in the hero badge) and nothing more. No invented
-                         plans, titles or dates. -->
-                    <li class="tl-node tl-node--future">
-                        <div class="tl-head">
-                            <h4 class="tl-role tl-role--future">Open to new opportunities</h4>
-                            <span class="tl-period tl-period--future">What's next</span>
-                        </div>
-                        <p class="tl-desc">Looking for backend and distributed-systems work where the problems are hard and the systems are real.</p>
-                        <a href="#contact" class="tl-link tl-link--future">
-                            <i data-feather="mail"></i> Get in touch
-                        </a>
-                    </li>
-
-                </ol>
-
-                <div class="oss-more">
-                    <p>
-                        More contributions to
-                        <a href="https://github.com/redis/redis" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--redis"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-redis"></use></svg>Redis</a>,
-                        <a href="https://github.com/stripe" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--stripe"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-stripe"></use></svg>Stripe</a>,
-                        <a href="https://github.com/google/guava" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--google"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-google"></use></svg>Google Guava</a>,
-                        <a href="https://github.com/open-telemetry/opentelemetry-java" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--otel"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-opentelemetry"></use></svg>OpenTelemetry Java</a>,
-                        <a href="https://github.com/open-telemetry/opentelemetry-cpp" target="_blank" rel="noopener noreferrer" class="oss-repo oss-repo--otel"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-opentelemetry"></use></svg>OpenTelemetry C++</a>,
-                        and other open-source projects.
-                    </p>
-                    <a href="https://github.com/Gosling-dude" target="_blank" rel="noopener noreferrer" class="oss-gh-link"><svg class="oss-repo-logo" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg>All activity on GitHub <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a>
+                    </noscript>
                 </div>
 
+                <div class="more-projects reveal-elem" aria-labelledby="more-projects-title">
+                    <h3 class="more-projects-title" id="more-projects-title">More projects</h3>
+                    <ul class="more-projects-grid" id="more-projects-grid"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================
+             03 · Skills
+        ========================= -->
+        <section id="skills" class="scene-section page-section">
+            <div class="container">
+                <div class="section-eyebrow">
+                    <span class="eyebrow-num">03</span>
+                    <span class="eyebrow-dash"></span>
+                    <span class="eyebrow-text">TECHNICAL DOMAINS</span>
+                </div>
+
+                <h2 class="section-headline reveal-elem">Domains I<br>work in.</h2>
+
+                <div class="skills-container reveal-elem glass-panel">
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="code" class="skill-row-icon"></i>
+                            <span>Languages</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill"><i class="devicon-java-plain colored skill-pill-icon"></i>Java</span>
+                            <span class="skill-pill"><i class="devicon-cplusplus-plain colored skill-pill-icon"></i>C++</span>
+                            <span class="skill-pill"><i class="devicon-python-plain colored skill-pill-icon"></i>Python</span>
+                            <span class="skill-pill"><i class="devicon-azuresqldatabase-plain colored skill-pill-icon"></i>SQL</span>
+                            <span class="skill-pill"><i class="devicon-typescript-plain colored skill-pill-icon"></i>TypeScript</span>
+                            <span class="skill-pill"><i class="devicon-c-plain colored skill-pill-icon"></i>C</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="server" class="skill-row-icon"></i>
+                            <span>Backend / Infrastructure</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill skill-pill--primary"><i class="devicon-spring-plain colored skill-pill-icon"></i>Spring Boot</span>
+                            <span class="skill-pill"><i data-feather="server" class="skill-pill-icon"></i>REST APIs</span>
+                            <span class="skill-pill"><i data-feather="grid" class="skill-pill-icon"></i>Microservices</span>
+                            <span class="skill-pill"><i class="devicon-postgresql-plain colored skill-pill-icon"></i>PostgreSQL</span>
+                            <span class="skill-pill"><i class="devicon-redis-plain colored skill-pill-icon"></i>Redis</span>
+                            <span class="skill-pill"><i class="devicon-docker-plain colored skill-pill-icon"></i>Docker</span>
+                            <span class="skill-pill"><i class="devicon-linux-plain text-white skill-pill-icon"></i>Linux</span>
+                            <span class="skill-pill"><i class="devicon-git-plain colored skill-pill-icon"></i>Git</span>
+                            <span class="skill-pill"><i class="devicon-githubactions-plain colored skill-pill-icon"></i>GitHub Actions</span>
+                            <span class="skill-pill"><i class="devicon-amazonwebservices-plain colored skill-pill-icon"></i>AWS</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="cpu" class="skill-row-icon"></i>
+                            <span>Core CS</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill"><i data-feather="cpu" class="skill-pill-icon"></i>Data Structures</span>
+                            <span class="skill-pill"><i data-feather="git-merge" class="skill-pill-icon"></i>Algorithms</span>
+                            <span class="skill-pill"><i data-feather="box" class="skill-pill-icon"></i>Object-Oriented Programming</span>
+                            <span class="skill-pill"><i data-feather="command" class="skill-pill-icon"></i>Operating Systems</span>
+                            <span class="skill-pill"><i data-feather="wifi" class="skill-pill-icon"></i>Computer Networks</span>
+                            <span class="skill-pill"><i data-feather="database" class="skill-pill-icon"></i>DBMS</span>
+                            <span class="skill-pill skill-pill--primary"><i data-feather="layout" class="skill-pill-icon"></i>System Design</span>
+                            <span class="skill-pill"><i data-feather="layers" class="skill-pill-icon"></i>Concurrency &amp; Multithreading</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="zap" class="skill-row-icon"></i>
+                            <span>AI / ML</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill"><i class="devicon-python-plain colored skill-pill-icon"></i>Python</span>
+                            <span class="skill-pill"><i class="devicon-numpy-plain colored skill-pill-icon"></i>NumPy</span>
+                            <span class="skill-pill"><i class="devicon-pandas-plain colored skill-pill-icon"></i>Pandas</span>
+                            <span class="skill-pill"><i class="devicon-scikitlearn-plain colored skill-pill-icon"></i>Scikit-learn</span>
+                            <span class="skill-pill"><i class="devicon-tensorflow-original colored skill-pill-icon"></i>TensorFlow</span>
+                            <span class="skill-pill skill-pill--secondary"><i data-feather="link-2" class="skill-pill-icon"></i>LangChain</span>
+                            <span class="skill-pill skill-pill--secondary"><i data-feather="layers" class="skill-pill-icon"></i>RAG Pipelines</span>
+                            <span class="skill-pill"><i data-feather="database" class="skill-pill-icon"></i>Vector Databases</span>
+                            <span class="skill-pill"><i data-feather="message-square" class="skill-pill-icon"></i>Prompt Engineering</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="award" class="skill-row-icon"></i>
+                            <span>Competitive Programming</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill"><i data-feather="code" class="skill-pill-icon"></i>LeetCode</span>
+                            <span class="skill-pill"><i data-feather="award" class="skill-pill-icon"></i>Codeforces</span>
+                            <span class="skill-pill"><i data-feather="flag" class="skill-pill-icon"></i>CodeChef</span>
+                            <span class="skill-pill skill-pill--primary"><i data-feather="target" class="skill-pill-icon"></i>Problem Solving</span>
+                            <span class="skill-pill"><i data-feather="git-merge" class="skill-pill-icon"></i>Algorithm Design</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-row">
+                        <div class="skill-row-label">
+                            <i data-feather="tool" class="skill-row-icon"></i>
+                            <span>Tools</span>
+                        </div>
+                        <div class="skill-row-tags">
+                            <span class="skill-pill"><i class="devicon-git-plain colored skill-pill-icon"></i>Git</span>
+                            <span class="skill-pill"><i class="devicon-vscode-plain colored skill-pill-icon"></i>VS Code</span>
+                            <span class="skill-pill"><i class="devicon-intellij-plain colored skill-pill-icon"></i>IntelliJ IDEA</span>
+                            <span class="skill-pill"><i class="devicon-postman-plain colored skill-pill-icon"></i>Postman</span>
+                            <span class="skill-pill"><i class="devicon-firebase-plain colored skill-pill-icon"></i>Firebase</span>
+                            <span class="skill-pill"><i class="devicon-jupyter-plain colored skill-pill-icon"></i>Jupyter Notebook</span>
+                            <span class="skill-pill"><i data-feather="activity" class="skill-pill-icon"></i>Wireshark</span>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
