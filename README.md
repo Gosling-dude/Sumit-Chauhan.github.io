@@ -11,7 +11,7 @@ A fast, fully responsive single-page portfolio built with plain HTML, CSS and va
 * **Live coding profiles:** Codeforces, LeetCode, CodeChef and GeeksforGeeks stats are fetched live. There are no hard-coded ratings or solved counts anywhere in the markup.
 * **One source of truth:** every stat on the page (hero, platform cards, dashboard, achievements total) is bound to a single state object, so a value can never disagree between two places.
 * **Honest failure states:** if a platform can't be reached, the page says "Live data unavailable" instead of showing an old number. A freshness label shows when data was last synced.
-* **Cinematic backdrop:** looping ridge footage with a layered grade (scrim, readability gradient, vignette). Phones, data-saver and reduced-motion visitors get a 44 KB still frame instead of the video.
+* **Cinematic backdrop:** looping ridge footage with a layered grade (scrim, readability gradient, vignette). Phones, data-saver and reduced-motion visitors get a 48 KB still frame instead of the video.
 * **Accessible:** keyboard-navigable tabs and menu, visible focus states, reduced-motion support, meaningful link text.
 
 ---

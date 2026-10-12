@@ -395,10 +395,11 @@ navLinks.forEach((link) => {
 
 /* ---------------------------------------------------------------
    BACKDROP VIDEO
-   Decorative only. Phones, reduced-motion and data-saver visitors get
-   the still poster (CSS background on .cosmos-stage) and never download
-   the video. On desktop the poster sits underneath until the first
-   frame plays, then the video fades in over it.
+   Decorative only, on every screen size. Reduced-motion and data-saver
+   visitors get the still poster (CSS background on .cosmos-stage) and
+   never download the video. Everyone else sees the poster until the
+   first frame plays, then the video fades in over it. Portrait screens
+   load a centre-cropped cut: cover-fit only shows the middle there.
    --------------------------------------------------------------- */
 (function initCosmicBackdrop() {
   const video = document.getElementById('cosmos-video');
@@ -407,22 +408,107 @@ navLinks.forEach((link) => {
 
   const connection = navigator.connection || {};
   const saveData = connection.saveData === true || /(^|-)2g$/.test(connection.effectiveType || '');
-  const small = window.matchMedia('(max-width: 760px)').matches;
-  if (small || prefersReducedMotion || saveData) return;
+  if (prefersReducedMotion || saveData) return;
 
-  video.src = video.dataset.src;
+  const portrait = window.matchMedia('(max-aspect-ratio: 1/1)').matches;
+  video.muted = true; // iOS only autoplays when the property is set too
+  video.src = (portrait && video.dataset.srcPortrait) || video.dataset.src;
 
+  // Slightly under real time so the drift reads as ambient.
+  const BASE_RATE = 0.75;
   video.addEventListener('loadedmetadata', () => {
-    // Slightly under real time so the drift reads as ambient.
-    video.playbackRate = 0.75;
+    video.playbackRate = BASE_RATE;
   }, { once: true });
+
+  /* Scroll camera. The footage never pauses or seeks: scrolling only
+     eases the playback rate up (so a scroll "travels" through more of the
+     clip) and moves a virtual camera over the running video:
+       - vertical glide: the frame slides with the scroll (up when going
+         down, down when going up) on a soft spring, so it trails the
+         page, eases past centre a touch, then floats back;
+       - a slow parallax lift across the whole page;
+       - a push-in when scrolling down and a pull-back when scrolling up.
+     The loop stops itself once at rest. */
+  const MAX_RATE = 2.4;      // playback at full scroll speed
+  const SPEED_FULL = 28;     // px/frame that counts as "full speed"
+  const LIFT = 0.03;         // page-long parallax, fraction of viewport height
+  const GLIDE = 0.032;       // vertical slide at full speed, fraction of vh
+  const BASE_SCALE = 1.12;   // headroom so no movement ever shows an edge
+  const PUSH = 0.03;         // extra zoom at full speed
+  // Largest offset the pulled-back scale can still cover without an edge.
+  const MAX_SHIFT = (BASE_SCALE - PUSH - 1) / 2;
+
+  let lastY = window.scrollY;
+  let velocity = 0;          // smoothed px/frame, signed (+ = down)
+  let rate = BASE_RATE;
+  let camY = 0;
+  let camYVel = 0;           // spring velocity of the vertical glide
+  let camS = BASE_SCALE;
+  let frame = 0;
+
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
+
+  function tick() {
+    const y = window.scrollY;
+    const vh = window.innerHeight;
+    velocity = lerp(velocity, y - lastY, 0.12);
+    lastY = y;
+
+    const speed = clamp(Math.abs(velocity) / SPEED_FULL, 0, 1);
+    const eased = speed * (2 - speed); // ease-out: small scrolls still register
+    const dir = Math.sign(velocity);
+
+    // Playback: speeds up with scroll, drifts back to ambient.
+    rate = lerp(rate, BASE_RATE + (MAX_RATE - BASE_RATE) * eased, 0.06);
+    if (Math.abs(video.playbackRate - rate) > 0.01) video.playbackRate = rate;
+
+    // Vertical: centred page-long lift + direction-driven glide, on a
+    // lightly under-damped spring for the floaty settle.
+    const max = document.documentElement.scrollHeight - vh;
+    const progress = max > 0 ? y / max : 0;
+    const targetY = ((0.5 - progress) * LIFT - dir * eased * GLIDE) * vh;
+    camYVel = camYVel * 0.84 + (targetY - camY) * 0.045;
+    camY = clamp(camY + camYVel, -MAX_SHIFT * vh, MAX_SHIFT * vh);
+
+    // Depth: push in going down, pull back going up.
+    camS = lerp(camS, BASE_SCALE + dir * eased * PUSH, 0.06);
+
+    stage.style.setProperty('--cam-y', `${camY.toFixed(2)}px`);
+    stage.style.setProperty('--cam-s', camS.toFixed(4));
+
+    const settled = Math.abs(velocity) < 0.05
+      && Math.abs(rate - BASE_RATE) < 0.01
+      && Math.abs(camY - targetY) < 0.1 && Math.abs(camYVel) < 0.05
+      && Math.abs(camS - BASE_SCALE) < 0.0005;
+    if (settled) {
+      video.playbackRate = BASE_RATE;
+      frame = 0;
+    } else {
+      frame = requestAnimationFrame(tick);
+    }
+  }
+  const wake = () => { if (!frame) frame = requestAnimationFrame(tick); };
+  window.addEventListener('scroll', wake, { passive: true });
+  window.addEventListener('resize', wake, { passive: true });
+  wake();
   video.addEventListener('playing', () => stage.classList.add('is-playing'), { once: true });
 
-  // Autoplay can still be refused (battery saver, policy). The poster is
-  // already the right backdrop, so just release the element.
+  // Autoplay can still be refused (iOS Low Power Mode, browser policy).
+  // Mobile browsers usually allow it after the first touch, so try once
+  // more then; if that fails too, the poster is already the right
+  // backdrop, so just release the element.
   video.play().catch(() => {
-    video.removeAttribute('src');
-    video.load();
+    // touchend/click are the events iOS counts as a user gesture.
+    const gestures = ['touchend', 'click'];
+    const retry = () => {
+      gestures.forEach((t) => window.removeEventListener(t, retry));
+      video.play().catch(() => {
+        video.removeAttribute('src');
+        video.load();
+      });
+    };
+    gestures.forEach((t) => window.addEventListener(t, retry, { passive: true }));
   });
 
   // No decoding while the tab is hidden.

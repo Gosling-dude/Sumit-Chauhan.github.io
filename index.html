@@ -87,14 +87,20 @@
          guarantee text contrast and must not be removed independently.
     ============================================================ -->
     <div class="cosmos-stage" aria-hidden="true">
-        <!-- src is applied by JS (see initCosmicBackdrop) so phones,
-             data-saver and reduced-motion users never download the file.
-             They get media/background_poster.webp (a still frame of the
-             same footage, ~40 KB) via the stage background instead; on
-             desktop the same still sits under the video until it plays. -->
+        <!-- src is applied by JS (see initCosmicBackdrop) so data-saver and
+             reduced-motion users never download the file. They get
+             media/background_poster.webp (a still frame of the same
+             footage, ~48 KB) via the stage background instead; everyone
+             else sees the same still under the video until it plays.
+             Portrait screens (phones, upright tablets) get a centre-cropped
+             cut, which is all they show anyway, at under half the size. -->
+        <!-- The clip is a seamless loop: its last 2.5 s cross-fade into its
+             own opening, so `loop` restarts without a visible cut. -->
         <video class="cosmos-video" id="cosmos-video"
                autoplay muted loop playsinline preload="metadata"
-               data-src="media/background_video.mp4"></video>
+               disablepictureinpicture disableremoteplayback
+               data-src="media/background_video.mp4"
+               data-src-portrait="media/background_video_portrait.mp4"></video>
         <div class="cosmos-scrim"></div>
         <div class="cosmos-veil"></div>
         <div class="cosmos-vignette"></div>

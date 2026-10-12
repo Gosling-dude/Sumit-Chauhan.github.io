@@ -229,14 +229,17 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
   background: radial-gradient(135% 90% at 50% 0%, #23322f 0%, #192524 45%, #0f1717 100%);
 }
 
-/* The poster: a still of the video's first frame (44 KB). It is the whole
-   backdrop on phones, for reduced motion and on data saver, and the
-   placeholder on desktop until the video is playing. Graded exactly like
+/* The poster: a still of the video's first frame (48 KB). It is the whole
+   backdrop for reduced motion and on data saver (or if autoplay is
+   refused), and the placeholder everywhere until the video is playing. Graded exactly like
    the video so the hand-off is invisible. */
 .cosmos-stage::before,
 .cosmos-video {
   filter: brightness(1.12) contrast(1.08) saturate(1.14);
-  transform: scale(1.02);          /* hides sub-pixel edge seams only */
+  /* --cam-y / --cam-s are driven by the scroll camera in script.js
+     (desktop only). The defaults hide sub-pixel edge seams only. */
+  transform: translate3d(0, var(--cam-y, 0px), 0) scale(var(--cam-s, 1.02));
+  will-change: transform;
 }
 .cosmos-stage::before {
   content: "";
@@ -300,11 +303,6 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
     linear-gradient(180deg, transparent 0%, transparent 84%, rgba(14, 22, 21, 0.30) 100%);
 }
 
-/* Small screens: no video element at all (JS never assigns src); the
-   graded poster above is the backdrop. */
-@media (max-width: 760px) {
-  .cosmos-video { display: none; }
-}
 
 /* ----------------------------------------------------------------
    3 · (reserved - stage rail removed)
