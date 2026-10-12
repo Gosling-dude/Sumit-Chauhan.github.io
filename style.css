@@ -937,6 +937,17 @@ main { position: relative; z-index: 2; }
 .edu-stat-card--accent .edu-stat-val { color: var(--cyan); }
 .edu-stat-key { font-size: 0.82rem; font-weight: 600; color: var(--blue-bright); margin-top: 6px; }
 .edu-stat-sub { font-size: 0.72rem; color: var(--ink-faint); }
+.edu-stat-repos {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+.edu-stat-repos .oss-repo-logo { width: 12px; height: 12px; }
 
 @media (max-width: 820px) {
   .about-layout { grid-template-columns: 1fr; }
@@ -2198,6 +2209,8 @@ a.tl-logo:focus-visible {
 .oss-repo--stripe .oss-repo-logo { color: #635BFF; }
 .oss-repo--google .oss-repo-logo { color: #4285F4; }
 .oss-repo--otel .oss-repo-logo   { color: #F5A800; }
+.oss-repo--gemini .oss-repo-logo { color: #8E75B2; }
+.oss-repo--tensorflow .oss-repo-logo { color: #FF6F00; }
 .oss-gh-link { display: inline-flex; align-items: center; gap: 8px; margin-left: 0; }
 .project-content > .project-links-row { justify-content: flex-start; margin-top: 22px; }
 .project-content > .project-tech-stack { margin-top: 0; }
