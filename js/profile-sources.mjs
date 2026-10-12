@@ -166,7 +166,7 @@ const HEADLINE = {
 
 function coerceContests(list) {
   if (!Array.isArray(list)) return [];
-  return list.slice(0, 5).map((c) => ({
+  return list.slice(0, 3).map((c) => ({
     name: toText(c && c.name, 120),
     rank: toCount(c && c.rank),
     newRating: toCount(c && c.newRating),
@@ -239,7 +239,7 @@ export function normalizeCodeforces(info, ratingHistory, submissions) {
     maxRank: user.maxRank,
     contestCount: history ? history.length : null,
     recentContests: history
-      ? history.slice(-5).reverse().map((c) => ({
+      ? history.slice(-3).reverse().map((c) => ({
           name: c.contestName,
           rank: c.rank,
           newRating: c.newRating,
