@@ -20,7 +20,8 @@ const pad = '<!-- -->'.repeat(40);
 
 test('sanitizeProfile coerces, rejects junk and requires a headline stat', () => {
   const out = sanitizeProfile('codechef', { handle: ' sumitx ', rating: '2,012', stars: 5, globalRank: 'Inactive', countryRank: -4, solved: NaN, extra: 1 });
-  assert.deepEqual(out, { handle: 'sumitx', rating: 2012, maxRating: null, stars: 5, globalRank: null, countryRank: null, solved: null });
+  assert.deepEqual(out, { handle: 'sumitx', rating: 2012, maxRating: null, stars: 5, globalRank: null, countryRank: null, solved: null,
+    dsaRating: null, dsaMaxRating: null, dsaGlobalRank: null, dsaCountryRank: null });
   assert.throws(() => sanitizeProfile('codechef', { handle: 'x', solved: 10 }), SourceError);
   assert.throws(() => sanitizeProfile('codeforces', null), SourceError);
   assert.throws(() => sanitizeProfile('nope', {}), SourceError);
@@ -88,9 +89,17 @@ test('CodeChef profile page parsing', () => {
       <li><a href="/ratings/all"><strong>1,234</strong></a> Global Rank</li>
       <li><a href="/ratings/all?filterBy=Country%3DIndia"><strong>567</strong></a> Country Rank</li>
     </ul></div>
+    <div id="rating-block-dsa-monday" style="display:none"><div class="rating-header text-center">
+      <div class="rating-number">2090</div><a href="/ratings/dsa-monday"><strong>DSA Rating</strong></a>
+      <small>(Highest Rating 2095)</small></div>
+      <div class="rating-ranks"><ul class="inline-list">
+      <li><a href="/ratings/dsa-monday"><strong>128</strong></a> Global Rank</li>
+      <li><a href="/ratings/dsa-monday?filterBy=Country%3DIndia"><strong>118</strong></a> Country Rank</li>
+    </ul></div></div>
     <h3>Total Problems Solved: 210</h3>${pad}`;
   assert.deepEqual(parseCodeChefProfile(html, 'sumitx'), {
     handle: 'sumitx', rating: 2012, maxRating: 2050, stars: 5, globalRank: 1234, countryRank: 567, solved: 210,
+    dsaRating: 2090, dsaMaxRating: 2095, dsaGlobalRank: 128, dsaCountryRank: 118,
   });
 
   // Inactive ranks + no star markup: ranks become null, stars come from the live rating.
@@ -100,6 +109,7 @@ test('CodeChef profile page parsing', () => {
   assert.equal(d.stars, 3);
   assert.equal(d.globalRank, null);
   assert.equal(d.solved, null);
+  assert.equal(d.dsaRating, null);
 
   assert.throws(() => parseCodeChefProfile(`<html>${pad}</html>`), SourceError);
   assert.throws(() => parseCodeChefProfile(''), SourceError);

@@ -147,6 +147,7 @@ const SCHEMA = {
   codechef: {
     handle: 'text', rating: 'count', maxRating: 'count', stars: 'count', globalRank: 'count',
     countryRank: 'count', solved: 'count',
+    dsaRating: 'count', dsaMaxRating: 'count', dsaGlobalRank: 'count', dsaCountryRank: 'count',
   },
   geeksforgeeks: {
     handle: 'text', score: 'count', solved: 'count', instituteRank: 'count', institute: 'text',
@@ -362,35 +363,51 @@ export function codechefStarsFromRating(rating) {
   return 1 + bands.filter((b) => rating >= b).length;
 }
 
-export function parseCodeChefProfile(html, handle = PROFILES.codechef.handle) {
-  if (typeof html !== 'string' || html.length < 200) throw new SourceError('CodeChef: empty profile page');
-  const pick = (re) => { const m = html.match(re); return m ? m[1] : null; };
-
-  const rating = toCount(pick(/class="rating-number"[^>]*>\s*([\d,]+)/));
-  if (rating === null || rating === 0) throw new SourceError('CodeChef: rating not found in profile page');
-
-  const starMarkup = pick(/class="rating-star"[^>]*>([\s\S]*?)<\/div>/);
-  let stars = starMarkup ? (starMarkup.match(/&#9733;|&#x2605;|★/gi) || []).length : 0;
-  if (!stars) stars = toCount(pick(/class="rating"[^>]*>\s*(\d)\s*(?:&#9733;|★)/));
-  if (!stars) stars = codechefStarsFromRating(rating);
-
+function parseCodeChefRanks(block) {
   let globalRank = null;
   let countryRank = null;
-  const ranks = pick(/class="rating-ranks"[^>]*>([\s\S]*?)<\/ul>/) || '';
+  const ranks = (block.match(/class="rating-ranks"[^>]*>([\s\S]*?)<\/ul>/) || [])[1] || '';
   for (const [, item] of ranks.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/g)) {
     const value = toCount((item.match(/<strong>\s*([^<]*?)\s*<\/strong>/) || [])[1]);
     if (/global/i.test(item)) globalRank = value;
     else if (/country/i.test(item)) countryRank = value;
   }
+  return { globalRank, countryRank };
+}
+
+export function parseCodeChefProfile(html, handle = PROFILES.codechef.handle) {
+  if (typeof html !== 'string' || html.length < 200) throw new SourceError('CodeChef: empty profile page');
+  const pick = (re, src = html) => { const m = src.match(re); return m ? m[1] : null; };
+
+  // The rating widget has a "CodeChef Rating" block followed by a separate
+  // "DSA Rating" block (Monday Munch contests); keep each block's fields apart.
+  const dsaAt = html.indexOf('id="rating-block-dsa-monday"');
+  const main = dsaAt >= 0 ? html.slice(0, dsaAt) : html;
+  const dsa = dsaAt >= 0 ? html.slice(dsaAt) : '';
+
+  const rating = toCount(pick(/class="rating-number"[^>]*>\s*([\d,]+)/, main));
+  if (rating === null || rating === 0) throw new SourceError('CodeChef: rating not found in profile page');
+
+  const starMarkup = pick(/class="rating-star"[^>]*>([\s\S]*?)<\/div>/, main);
+  let stars = starMarkup ? (starMarkup.match(/&#9733;|&#x2605;|★/gi) || []).length : 0;
+  if (!stars) stars = toCount(pick(/class="rating"[^>]*>\s*(\d)\s*(?:&#9733;|★)/));
+  if (!stars) stars = codechefStarsFromRating(rating);
+
+  const { globalRank, countryRank } = parseCodeChefRanks(main);
+  const dsaRanks = parseCodeChefRanks(dsa);
 
   return sanitizeProfile('codechef', {
     handle,
     rating,
-    maxRating: pick(/Highest Rating\s*([\d,]+)/i),
+    maxRating: pick(/Highest Rating\s*([\d,]+)/i, main),
     stars,
     globalRank,
     countryRank,
     solved: pick(/Total Problems Solved\s*:?\s*(?:<[^>]*>\s*)*([\d,]+)/i),
+    dsaRating: pick(/class="rating-number"[^>]*>\s*([\d,]+)/, dsa),
+    dsaMaxRating: pick(/Highest Rating\s*([\d,]+)/i, dsa),
+    dsaGlobalRank: dsaRanks.globalRank,
+    dsaCountryRank: dsaRanks.countryRank,
   });
 }
 

@@ -21,8 +21,8 @@ import {
   sanitizeProfile,
 } from './profile-sources.mjs';
 
-const CACHE_KEY = 'portfolio_profiles_v6';
-const LEGACY_CACHE_KEYS = ['portfolio_telemetry_cache_v5', 'portfolio_telemetry_cache_v4'];
+const CACHE_KEY = 'portfolio_profiles_v7';
+const LEGACY_CACHE_KEYS = ['portfolio_profiles_v6', 'portfolio_telemetry_cache_v5', 'portfolio_telemetry_cache_v4'];
 const FRESH_MS = 5 * 60 * 1000;       // cached data younger than this skips the network
 const MAX_CACHE_AGE_MS = 30 * 60 * 1000; // cached data older than this is never shown
 const LIVE_LABEL_MS = 10 * 60 * 1000; // after this a card says "Synced N min ago", not "Live"
