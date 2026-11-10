@@ -87,10 +87,20 @@
          guarantee text contrast and must not be removed independently.
     ============================================================ -->
     <div class="cosmos-stage" aria-hidden="true">
+        <!-- Backdrop comparison: add ?bg=ridge to the URL to see the
+             previous ridge footage instead of the rainforest. Read here,
+             before first paint, so the matching poster is the one that
+             loads; script.js picks the video files from the same attribute. -->
+        <script>
+            (function () {
+                var bg = new URLSearchParams(location.search).get('bg');
+                if (bg) document.currentScript.parentElement.dataset.backdrop = bg;
+            })();
+        </script>
         <!-- src is applied by JS (see initCosmicBackdrop) so data-saver and
              reduced-motion users never download the file. They get
              media/background_poster.webp (a still frame of the same
-             footage, ~48 KB) via the stage background instead; everyone
+             footage, ~35 KB) via the stage background instead; everyone
              else sees the same still under the video until it plays.
              Portrait screens (phones, upright tablets) get a centre-cropped
              cut, which is all they show anyway, at under half the size. -->

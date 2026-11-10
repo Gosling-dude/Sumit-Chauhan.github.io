@@ -1,7 +1,7 @@
 /* ================================================================
    SUMIT CHAUHAN - PORTFOLIO
    Design system: deep green-black surfaces, teal/mint accents,
-   looping ridge footage behind the content.
+   looping rainforest-canopy footage behind the content.
    ================================================================ */
 
 /* ----------------------------------------------------------------
@@ -20,15 +20,19 @@
      load-bearing: --ink-faint must stay below --ink-dim. */
   --ink:         #EFECE9;
   --ink-soft:    #D0D5CE;
-  --ink-dim:     #bcc4ba;
+  --ink-dim:     #c7cec5;
   /* Both weak tiers were raised again when the panels were removed. With
      content now on a light 0.42 wash instead of an opaque panel, the old
      #aab3a9 / #a1aaa3 pair measured 4.2 / 3.5:1 on bright frames - under
      AA. They were also within 3% of each other, which is not a hierarchy.
      Now genuinely separated, and both clear AA (5.1 / 4.7) at the worst
      backdrop the footage produces. Ordering still holds:
-     ink > ink-soft > ink-dim > ink-faint. */
-  --ink-faint:   #b4bdb3;
+     ink > ink-soft > ink-dim > ink-faint.
+     Raised once more (from #bcc4ba / #b4bdb3) after a per-element audit
+     of the rainforest backdrop: every small label that sat under 7:1
+     used one of these two tiers. Steps between tiers are still even
+     (about 8-9% luminance each). */
+  --ink-faint:   #bec6bc;
 
   /* ── Accent ────────────────────────────────────────────────────
      Teal carries the colour on surfaces (borders, panels, fills);
@@ -215,9 +219,10 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
      poster still  →  video (graded)  →  scrim (tint)  →  veil (readability
      gradient)  →  vignette (edges)
    Each layer has one job, so the footage can stay bright and clear in the
-   middle of the frame while text keeps its contrast. No blur anywhere and
-   no opaque layer: the brightest band is the cloud line behind the nav,
-   and only that band is veiled hard.
+   middle of the frame while text keeps its contrast. No CSS blur (the
+   footage's softness is baked into the file) and no opaque layer: the
+   brightest band is the mist line behind the nav, and only that band is
+   veiled hard.
 ---------------------------------------------------------------- */
 .cosmos-stage {
   position: fixed;
@@ -229,7 +234,7 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
   background: radial-gradient(135% 90% at 50% 0%, #23322f 0%, #192524 45%, #0f1717 100%);
 }
 
-/* The poster: a still of the video's first frame (48 KB). It is the whole
+/* The poster: a still of the video's first frame (1280px, ~35 KB). It is the whole
    backdrop for reduced motion and on data saver (or if autoplay is
    refused), and the placeholder everywhere until the video is playing. Graded exactly like
    the video so the hand-off is invisible. */
@@ -253,6 +258,13 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
   right: 0;
   background: url("media/background_poster.webp") center / cover no-repeat;
 }
+/* Alternate footage for comparison (?bg=ridge, see index.html): the
+   ridge clip's own still, so the poster always matches the video. That
+   clip is 1920x1080 (portrait cut 864x768) from its 4K master, mirrored,
+   with a light grade in the encode: greens lifted, cloud band lowered. */
+.cosmos-stage[data-backdrop="ridge"]::before {
+  background-image: url("media/background_poster_ridge.webp");
+}
 
 .cosmos-video {
   position: absolute;
@@ -261,8 +273,15 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
   max-width: none;
   object-fit: cover;
   display: block;
-  /* NOTE: the source is 848x478 - below HD. No blur is applied, so it is
-     as sharp as the file allows; genuine HD needs a genuine HD file. */
+  /* Source: 1920x1080 (portrait cut 864x768), downscaled from a 4K
+     master and graded in the encode, not here:
+       - dehazed (shadows pulled down, olive leaves moved toward green);
+         the raw clip's mist lifted the frame toward white
+       - calmed: highlights rolled off and a wide gaussian mixed with the
+         sharp frame at 55% blur / 45% sharp (a mist-diffusion look),
+         which cuts the leaf-level speckle by ~60%
+       - true 0.5x slow motion from the 60 fps master
+     No CSS blur is applied on top. */
   opacity: 0;
   transition: opacity 900ms ease-out;
 }
@@ -278,9 +297,12 @@ div.stat-loading, b.stat-loading { min-width: 2.2em; }
 
 /* Readability gradient - vertical, because the light is vertical.
    Measured per horizontal band across the clip:
-       top   0-18%   bright cloud      <- nav sits here: heaviest veil
-       upper 18-45%  mid ridge
+       top   0-18%   misty horizon     <- nav sits here: heaviest veil
+       upper 18-45%  canopy crowns
        lower 45-100% deep green        <- already dark: barely veiled
+   (rainforest clip after its grade, mean luma: 93 / 57 / 46 of 255.
+   Behind the hero, --ink-dim holds >= 5.8:1 even on the brightest 1%
+   of pixels, so the veil is if anything generous now.)
    The lower bands were cut back hard from the previous pass; that is
    where the footage now reads clearly. Body text never sits on bare
    footage: panels and the timeline carry their own soft wash. */
@@ -704,7 +726,7 @@ main { position: relative; z-index: 2; }
   color: transparent;
 }
 /* Heavier and brighter than before. A 1.4px/0.52 hairline was fine over flat
-   near-black, but this outline now sits on a detailed ridge - thin strokes
+   near-black, but this outline now sits on a detailed canopy - thin strokes
    get lost in the foliage and read as weak rather than restrained. */
 .hero-title-dim {
   color: transparent;
@@ -1380,8 +1402,10 @@ main { position: relative; z-index: 2; }
 }
 .data-table .mono { font-family: var(--mono); }
 .data-table .bold { font-weight: 600; color: var(--ink); }
-.data-table .green, .green { color: #74b894; }
-.data-table .red, .red { color: #d4838f; }
+/* Both lifted a step (from #74b894 / #d4838f): these 13-14px rating
+   deltas were the lowest-contrast body text on the page (5.3:1). */
+.data-table .green, .green { color: #86c9a5; }
+.data-table .red, .red { color: #e29aa5; }
 
 .diff-bars { margin-top: 4px; }
 .diff-bar-row { margin-bottom: 16px; }
@@ -1471,7 +1495,7 @@ main { position: relative; z-index: 2; }
 
 /* Removing the panels put this text directly on the footage, where
    --ink-soft measured 4.1:1 and --ink-dim 2.8:1 as the section scrolls
-   through the bright cloud band. This is the replacement for the panel:
+   through the bright mist band. This is the replacement for the panel:
    a soft wash with NO border, NO radius and every edge faded out, so it
    reads as atmosphere rather than the box it replaced. Measured 5.5:1
    worst case at this strength. */

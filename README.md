@@ -11,7 +11,7 @@ A fast, fully responsive single-page portfolio built with plain HTML, CSS and va
 * **Live coding profiles:** Codeforces, LeetCode, CodeChef and GeeksforGeeks stats are fetched live. There are no hard-coded ratings or solved counts anywhere in the markup.
 * **One source of truth:** every stat on the page (hero, platform cards, dashboard, achievements total) is bound to a single state object, so a value can never disagree between two places.
 * **Honest failure states:** if a platform can't be reached, the page says "Live data unavailable" instead of showing an old number. A freshness label shows when data was last synced.
-* **Cinematic backdrop:** looping ridge footage with a layered grade (scrim, readability gradient, vignette). Phones, data-saver and reduced-motion visitors get a 48 KB still frame instead of the video.
+* **Cinematic backdrop:** looping 1080p rainforest-canopy footage (seamless 36 s cross-faded loop in true half-speed slow motion, dehazed for deeper greens and softened so it stays calm behind the text) with a layered grade (scrim, readability gradient, vignette). Portrait screens get a lighter centre-cropped cut; data-saver and reduced-motion visitors get a ~35 KB still frame instead of the video. Footage: [Aerial View of Misty Vietnamese Jungle](https://www.pexels.com/video/aerial-view-of-misty-vietnamese-jungle-in-4k-30575008/) (Pexels, free license).
 * **Accessible:** keyboard-navigable tabs and menu, visible focus states, reduced-motion support, meaningful link text.
 
 ---
@@ -55,6 +55,7 @@ The page needs to be served over HTTP (ES modules don't load from `file://`). A 
 * **Projects:** the `PROJECTS` array at the top of `script.js`.
 * **Experience & open source:** the timeline in `index.html` (`#experience`).
 * **Resume, email and socials:** links in `index.html` (nav, hero, contact, footer).
+* **Backdrop footage:** the rainforest clip is the default. Add `?bg=ridge` to the URL to compare it with the ridge clip the site used before, rebuilt in 1080p from its 4K master (`media/background_video_ridge*.mp4`; footage: [Lush green mountains beneath misty skies](https://mixkit.co/free-stock-video/lush-green-mountains-beneath-misty-skies-100409/), Mixkit free license); further alternates go in `ALT_BACKDROPS` in `script.js` plus a matching poster rule in `style.css`.
 
 ---
 
