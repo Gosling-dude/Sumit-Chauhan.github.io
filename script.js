@@ -413,16 +413,15 @@ navLinks.forEach((link) => {
   // Alternate footage for side-by-side comparison, chosen with ?bg=<name>
   // (index.html copies it onto the stage as data-backdrop before first
   // paint; style.css swaps the poster from the same attribute). The default
-  // rainforest clip comes from the <video> data-src attributes.
+  // ridge clip comes from the <video> data-src attributes.
   const ALT_BACKDROPS = {
-    // The ridge clip the site used before, rebuilt in HD from its 4K master
-    // (the old copy was 848x478). It is real-time footage at its native
-    // 23.976 fps, so it is slowed a little in the player to read as
-    // ambient drift, as it always was.
-    ridge: {
-      src: 'media/background_video_ridge.mp4',
-      portrait: 'media/background_video_ridge_portrait.mp4',
-      rate: 0.75,
+    // Rainforest canopy: already true 0.5x slow motion in the file (every
+    // frame of the 60 fps master, retimed to 30), so it plays at its native
+    // rate - each frame shown once, smoother than slowing it in the player.
+    rainforest: {
+      src: 'media/background_video_rainforest.mp4',
+      portrait: 'media/background_video_rainforest_portrait.mp4',
+      rate: 1,
     },
   };
   const altName = stage.dataset.backdrop;
@@ -434,11 +433,9 @@ navLinks.forEach((link) => {
     ? (portrait && alt.portrait) || alt.src
     : (portrait && video.dataset.srcPortrait) || video.dataset.src;
 
-  // The rainforest file is already true 0.5x slow motion (every frame of
-  // the 60 fps master, retimed to 30), so it plays at its native rate: each
-  // frame is shown once, which is smoother than slowing a 30 fps file in
-  // the player.
-  const BASE_RATE = alt ? alt.rate : 1;
+  // The default ridge clip is real-time footage (native 23.976 fps), so it
+  // is slowed a little in the player to read as ambient drift.
+  const BASE_RATE = alt ? alt.rate : 0.75;
   video.addEventListener('loadedmetadata', () => {
     video.playbackRate = BASE_RATE;
   }, { once: true });
