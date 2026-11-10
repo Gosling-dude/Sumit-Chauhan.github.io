@@ -1210,13 +1210,17 @@ main { position: relative; z-index: 2; }
   color: var(--ink-dim);
   overflow-wrap: anywhere;
 }
-.platform-solved { font-size: 0.8rem; color: var(--ink-soft); }
-.platform-solved [data-stat] { font-family: var(--mono); color: var(--ink); }
+/* Secondary line under the rank (only CodeChef has one: its DSA rating). */
+.platform-sub { font-size: 0.8rem; color: var(--ink-soft); }
+.platform-sub [data-stat] { font-family: var(--mono); color: var(--ink); }
 .platform-status {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  margin-top: 2px;
+  /* Pinned to the card's foot, so the status rows line up across the
+     row even though only some cards have a secondary line. */
+  margin-top: auto;
+  padding-top: 2px;
   font-family: var(--mono);
   font-size: 0.66rem;
   letter-spacing: 0.06em;
@@ -1227,7 +1231,7 @@ main { position: relative; z-index: 2; }
 /* Nothing to show - say so once, in the status line, instead of a stack
    of dashes. */
 .platform-card[data-state="error"] .platform-rank,
-.platform-card[data-state="error"] .platform-solved { display: none; }
+.platform-card[data-state="error"] .platform-sub { display: none; }
 .platform-card:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(209,235,219,0.55); }
 .platform-logo { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; }
 .platform-logo--invert { filter: brightness(0) invert(1); opacity: 0.92; }
