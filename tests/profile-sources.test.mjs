@@ -13,6 +13,8 @@ import {
   codechefStarsFromRating,
   normalizeGfgInfo,
   parseGfgProfilePage,
+  isConfiguredHandle,
+  PROFILES,
   SourceError,
 } from '../js/profile-sources.mjs';
 
@@ -56,12 +58,12 @@ test('Codeforces: unique accepted problems, history, missing pieces degrade to n
 
 test('LeetCode GraphQL + alfa wrapper normalise to the same shape', () => {
   const body = { data: {
-    matchedUser: { username: 'sumit_chauhan_', submitStatsGlobal: { acSubmissionNum: [
+    matchedUser: { username: 'SumitXorY', submitStatsGlobal: { acSubmissionNum: [
       { difficulty: 'All', count: 600 }, { difficulty: 'Easy', count: 150 }, { difficulty: 'Medium', count: 350 }, { difficulty: 'Hard', count: 100 },
     ] } },
     userContestRanking: { attendedContestsCount: 42, rating: 1876.6, globalRanking: 23456, topPercentage: 4.813, badge: { name: 'Knight' } },
   } };
-  const a = sanitizeProfile('leetcode', normalizeLeetCodeGraphQL(body, 'sumit_chauhan_'));
+  const a = sanitizeProfile('leetcode', normalizeLeetCodeGraphQL(body, 'SumitXorY'));
   assert.equal(a.rating, 1877);
   assert.equal(a.solved, 600);
   assert.equal(a.badge, 'Knight');
@@ -76,9 +78,23 @@ test('LeetCode GraphQL + alfa wrapper normalise to the same shape', () => {
   const b = sanitizeProfile('leetcode', normalizeLeetCodeAlfa(
     { solvedProblem: 600, easySolved: 150, mediumSolved: 350, hardSolved: 100 },
     { contestAttend: 42, contestRating: 1876.6, contestGlobalRanking: 23456, contestTopPercentage: 4.81, contestBadges: { name: 'Knight' } },
-    'sumit_chauhan_',
+    'SumitXorY',
   ));
   assert.deepEqual({ ...b }, { ...a, topPercentage: 4.81 });
+});
+
+test('stats are only accepted for the configured account', () => {
+  const lc = PROFILES.leetcode.handle;
+  assert.equal(isConfiguredHandle('leetcode', { handle: lc }), true);
+  assert.equal(isConfiguredHandle('leetcode', { handle: lc.toUpperCase() }), true, 'case-insensitive');
+  // a proxy or cache still holding a previous account
+  assert.equal(isConfiguredHandle('leetcode', { handle: 'previous_account' }), false);
+  // nothing to tie the payload to an account
+  assert.equal(isConfiguredHandle('leetcode', { handle: null }), false);
+  assert.equal(isConfiguredHandle('leetcode', null), false);
+  assert.equal(isConfiguredHandle('nope', { handle: lc }), false);
+  // every configured platform accepts its own handle
+  for (const [p, { handle }] of Object.entries(PROFILES)) assert.equal(isConfiguredHandle(p, { handle }), true, p);
 });
 
 test('CodeChef profile page parsing', () => {

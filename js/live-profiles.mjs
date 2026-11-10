@@ -19,6 +19,7 @@ import {
   SourceError,
   fetchJson,
   sanitizeProfile,
+  isConfiguredHandle,
 } from './profile-sources.mjs';
 
 const CACHE_KEY = 'portfolio_profiles_v7';
@@ -80,9 +81,11 @@ function hydrateFromCache() {
     const age = c && typeof c.fetchedAt === 'number' ? Date.now() - c.fetchedAt : Infinity;
     if (!(age >= 0 && age < MAX_CACHE_AGE_MS)) continue;
     try {
+      const data = sanitizeProfile(p, c.data);
+      if (!isConfiguredHandle(p, data)) continue; // cached under a handle the site no longer uses
       profileStats[p] = {
         status: age < FRESH_MS ? 'live' : 'stale',
-        data: sanitizeProfile(p, c.data),
+        data,
         fetchedAt: c.fetchedAt,
         source: c.source || 'cache',
       };
@@ -111,9 +114,15 @@ async function fetchFromApi(url, platform) {
     try {
       const body = await fetchJson(url, { timeout: API_TIMEOUT });
       if (!body || body.ok !== true || body.platform !== platform) throw new SourceError('unexpected API payload');
+      const data = sanitizeProfile(platform, body.data);
+      // A proxy deployed before a handle change keeps serving the old
+      // account; skip it and let the next source answer for the current one.
+      if (!isConfiguredHandle(platform, data)) {
+        throw new SourceError(`API is serving @${data.handle}, not @${PROFILES[platform].handle}`);
+      }
       const reported = Date.parse(body.fetchedAt);
       return {
-        data: sanitizeProfile(platform, body.data),
+        data,
         fetchedAt: Number.isFinite(reported) ? Math.min(reported, Date.now()) : Date.now(),
         source: 'api',
       };

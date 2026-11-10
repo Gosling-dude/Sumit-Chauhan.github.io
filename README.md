@@ -34,6 +34,8 @@ browser ──► /api/profiles/:platform  (Netlify Function, CDN-cached ~3 min)
 
 To show a stat somewhere new, add an element with `data-stat="<platform>.<field>"` (e.g. `data-stat="codeforces.rating"`); it is filled automatically.
 
+Every payload the browser didn't fetch itself (from the function, or from its own short cache) is checked against the handle in `PROFILES` before it is shown. After changing a handle, a not-yet-redeployed function or a visitor's cache is skipped rather than showing the previous account's stats.
+
 ---
 
 ## 🚀 Getting Started
