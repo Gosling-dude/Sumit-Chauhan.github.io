@@ -410,12 +410,35 @@ navLinks.forEach((link) => {
   const saveData = connection.saveData === true || /(^|-)2g$/.test(connection.effectiveType || '');
   if (prefersReducedMotion || saveData) return;
 
+  // Alternate footage for side-by-side comparison, chosen with ?bg=<name>
+  // (index.html copies it onto the stage as data-backdrop before first
+  // paint; style.css swaps the poster from the same attribute). The default
+  // rainforest clip comes from the <video> data-src attributes.
+  const ALT_BACKDROPS = {
+    // The ridge clip the site used before, rebuilt in HD from its 4K master
+    // (the old copy was 848x478). It is real-time footage at its native
+    // 23.976 fps, so it is slowed a little in the player to read as
+    // ambient drift, as it always was.
+    ridge: {
+      src: 'media/background_video_ridge.mp4',
+      portrait: 'media/background_video_ridge_portrait.mp4',
+      rate: 0.75,
+    },
+  };
+  const altName = stage.dataset.backdrop;
+  const alt = altName && Object.hasOwn(ALT_BACKDROPS, altName) ? ALT_BACKDROPS[altName] : null;
+
   const portrait = window.matchMedia('(max-aspect-ratio: 1/1)').matches;
   video.muted = true; // iOS only autoplays when the property is set too
-  video.src = (portrait && video.dataset.srcPortrait) || video.dataset.src;
+  video.src = alt
+    ? (portrait && alt.portrait) || alt.src
+    : (portrait && video.dataset.srcPortrait) || video.dataset.src;
 
-  // Slightly under real time so the drift reads as ambient.
-  const BASE_RATE = 0.75;
+  // The rainforest file is already true 0.5x slow motion (every frame of
+  // the 60 fps master, retimed to 30), so it plays at its native rate: each
+  // frame is shown once, which is smoother than slowing a 30 fps file in
+  // the player.
+  const BASE_RATE = alt ? alt.rate : 1;
   video.addEventListener('loadedmetadata', () => {
     video.playbackRate = BASE_RATE;
   }, { once: true });
@@ -514,7 +537,7 @@ navLinks.forEach((link) => {
     .fromTo('[data-anim="hero-desc"]', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1 }, '-=0.6')
     .fromTo(['[data-anim="hero-actions"]', '[data-anim="hero-social"]', '[data-anim="hero-stats"]'],
       { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 }, '-=0.7')
-    .fromTo('.hero-scroll-cue', { opacity: 0 }, { opacity: 0.5, duration: 1 }, '-=0.3');
+    .fromTo('.hero-scroll-cue', { opacity: 0 }, { opacity: 0.72, duration: 1 }, '-=0.3');
 
   // Safety net: whatever happens to the timeline, nothing stays invisible.
   setTimeout(() => { if (tl.progress() < 1) tl.progress(1); }, 6000);

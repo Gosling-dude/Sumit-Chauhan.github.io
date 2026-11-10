@@ -18,8 +18,8 @@ export const PROFILES = Object.freeze({
   },
   leetcode: {
     label: 'LeetCode',
-    handle: 'sumit_chauhan_',
-    url: 'https://leetcode.com/u/sumit_chauhan_/',
+    handle: 'SumitXorY',
+    url: 'https://leetcode.com/u/SumitXorY/',
   },
   codechef: {
     label: 'CodeChef',
@@ -34,6 +34,19 @@ export const PROFILES = Object.freeze({
 });
 
 export const PLATFORMS = Object.freeze(Object.keys(PROFILES));
+
+/** True only when a payload belongs to the account configured above.
+    Stats can outlive a handle change in two places - a deployed proxy
+    still built with the old PROFILES, and a visitor's localStorage cache -
+    so the browser checks every payload it did not fetch itself. Handles
+    compare case-insensitively, as the platforms treat them; a payload
+    with no handle cannot be tied to the account and is rejected (every
+    parser in this file sets one). */
+export function isConfiguredHandle(platform, data) {
+  const want = PROFILES[platform] && PROFILES[platform].handle;
+  const got = data && data.handle;
+  return typeof want === 'string' && typeof got === 'string' && got.toLowerCase() === want.toLowerCase();
+}
 
 /* ---------------------------------------------------------------
    HTTP helpers
