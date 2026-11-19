@@ -932,6 +932,9 @@ main { position: relative; z-index: 2; }
 .about-left .section-headline { margin-bottom: 24px; font-size: clamp(1.8rem, 3.4vw, 2.8rem); }
 .about-primary-text { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--ink); margin: 0 0 18px; line-height: 1.55; }
 .about-secondary-text { font-size: 0.98rem; color: var(--ink-soft); margin: 0 0 26px; }
+.about-secondary-text a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.about-secondary-text a:hover,
+.about-secondary-text a:focus-visible { color: var(--accent); }
 .about-info-row { display: flex; flex-wrap: wrap; gap: 22px; }
 .about-info-item { display: inline-flex; align-items: center; gap: 9px; font-size: 0.88rem; color: var(--ink-dim); }
 .about-info-item svg { color: var(--cyan); }
